@@ -1,0 +1,6 @@
+[packages]
+Flask = "*"
+psycopg2 = "*"
+
+[requires]
+python_version = "3.8"
