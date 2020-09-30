@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./pikachu:/home/pikachu/pikachu
+      - ./settings.py:/home/pikachu/settings.py
+    command: ["/home/pikachu/wait-for-postgres.sh", "db:5432", "--", "python3", "/home/pikachu/pikachu/application.py"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      PGHOST: db
+      PGDATABASE: pikachu
+      PGUSER: pikachu
+      PGPASSWORD: pikachu
+
+  db:
+    image: "mdillon/postgis:11-alpine"
+
+    volumes:
+      - type: volume
+        source: pg-data
+        target: /var/lib/postgresql/data
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/pikachu.sql
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U" , "postgres" , "-d", "pikachu" ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    environment:
+      POSTGRES_DB: pikachu
+      POSTGRES_USER: pikachu
+      POSTGRES_PASSWORD: pikachu
+
+volumes:
+  pg-data:
