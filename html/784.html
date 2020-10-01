@@ -1,0 +1,5040 @@
+<!doctype html>
+<html lang="fr" class="listing-search" >
+<head><meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"fbb1b82437",applicationID:"35418444"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var i=n[t]={exports:{}};e[t][0].call(i.exports,function(n){var i=e[t][1][n];return r(i||n)},i,i.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<t.length;i++)r(t[i]);return r}({1:[function(e,n,t){function r(){}function i(e,n,t){return function(){return o(e,[u.now()].concat(c(arguments)),n?null:this,t),n?void 0:this}}var o=e("handle"),a=e(5),c=e(6),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,n){s[n]=i(p+n,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,i="function"==typeof n;return o(l+"tracer",[u.now(),e,t],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],t),i)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[u.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=i(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){var t=e.getEntries();t.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,n){var t=e.getEntries();t.length>0&&d("lcp",[t[t.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var n=Math.round(e.timeStamp),t={type:e.type};n<=p.now()?t.fid=p.now()-n:n>p.offset&&n<=Date.now()?(n-=p.offset,t.fid=p.now()-n):n=p.now(),g=!0,d("timing",["fi",n,t])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(4),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],3:[function(e,n,t){function r(e,n){if(!i)return!1;if(e!==i)return!1;if(!n)return!0;if(!o)return!1;for(var t=o.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}n.exports={agent:i,version:o,match:r}},{}],4:[function(e,n,t){function r(e){function n(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,n,!1)}n.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],5:[function(e,n,t){function r(e,n){var t=[],r="",o=0;for(r in e)i.call(e,r)&&(t[o]=n(r,e[r]),o+=1);return t}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],6:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,i=t-n||0,o=Array(i<0?0:i);++r<i;)o[r]=e[n+r];return o}n.exports=r},{}],7:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function i(e){function n(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function t(t,r,i,o){if(!p.aborted||o){e&&e(t,r,i);for(var a=n(i),c=v(t),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[t]];return d&&d.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(t)}function y(e,n){u(e,function(e,t){n=n||"feature",w[t]=n,n in s||(s[n]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(5),s={},d={},p=n.exports=i();p.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(i.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[n]=r,r}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){i.buffer([e],r),i.emit(e,n,t)}var i=e("ee").get("handle");n.exports=r,r.ee=i},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=E.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();u(w,function(n,t){e[n]||(e[n]=t)});var t=a();f("mark",["onload",t+E.offset],null,"api"),f("timing",["load",t]);var r=l.createElement("script");r.src="https://"+e.agent,n.parentNode.insertBefore(r,n)}}function i(){"complete"===l.readyState&&o()}function o(){f("mark",["domContent",a()+E.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(c=Math.max((new Date).getTime(),c))-E.offset}var c=(new Date).getTime(),f=e("handle"),u=e(5),s=e("ee"),d=e(3),p=window,l=p.document,m="addEventListener",v="attachEvent",g=p.XMLHttpRequest,y=g&&g.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:g,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var h=""+location,w={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1177.min.js"},b=g&&y&&y[m]&&!/CriOS/.test(navigator.userAgent),E=n.exports={offset:c,now:a,origin:h,features:{},xhrWrappable:b,userAgent:d};e(1),e(2),l[m]?(l[m]("DOMContentLoaded",o,!1),p[m]("load",r,!1)):(l[v]("onreadystatechange",i),p[v]("onload",r)),f("mark",["firstbyte",c],null,"api");var x=0,O=e(7)},{}],"wrap-function":[function(e,n,t){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(6),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;n.exports=function(e,n){function t(e,n,t,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof t?t(r,a):t||{}}catch(u){p([u,"",[r,a,i],c])}s(n+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(n+"err",[r,a,d],c),d}finally{s(n+"end",[r,a,f],c)}}return r(e)?e:(n||(n=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,n,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<n.length;f++)c=n[f],a=e[c],r(a)||(e[c]=t(a,u?c+i:i,o,c))}function s(t,r,i){if(!f||n){var o=f;f=!0;try{e.emit(t,r,i,n)}catch(a){p([a,t,r,i])}f=o}}function d(e,n){if(Object.defineProperty&&Object.keys)try{var t=Object.keys(e);return t.forEach(function(t){Object.defineProperty(n,t,{get:function(){return e[t]},set:function(n){return e[t]=n,n}})}),n}catch(r){p([r])}for(var i in e)c.call(e,i)&&(n[i]=e[i]);return n}function p(n){try{e.emit("internal-error",n)}catch(t){}}return e||(e=i),t.inPlace=u,t.flag=a,t}},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"fbb1b82437","applicationID":"35418444","transactionName":"NlEEYEoCC0MHWkwIXQ8bIEFWABFZCVcXFkUWGhBdXRQWHgpQSxVbD1MVDksGBEIFUWcUQA1rFVFX","queueTime":0,"applicationTime":874,"agent":""}</script>
+        <title>Vente Appartement et Maison Paris (75000) | acheter Appartement, Maison à Paris</title>
+
+         
+    <meta name="description" content="Paris (75000) : Toutes les annonces de vente de Appartements et de Maisons. Tout pour acheter un Appartement ou un Maison à Paris.">
+ 
+
+        
+    <meta property="og:title" content="Meilleursagents.com" />
+    <meta property="og:description" content="Obtenez gratuitement une estimation en ligne du prix de votre bien immobilier, puis engagez les meilleures agences immobilières partenaires de MeilleursAgents.com pour vendre votre bien immobilier au meilleur prix." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.meilleursagents.com/" />
+    <meta property="og:image" content="https://www-staging.meilleursagents.org/static/browser_icons/ms-icon-310x310.png?t=1601469223" />
+    <meta property="og:image:width" content="310" />
+    <meta property="og:image:height" content="310" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Logo Meilleursagents" />
+ 
+
+        <!--
+        **********************************************************************************************
+        * ON RECRUTE ! ON RECRUTE ! ON RECRUTE ! ON RECRUTE ! ON RECRUTE ! ON RECRUTE ! ON RECRUTE ! *
+        **********************************************************************************************
+        * Envie de faire partie de notre équipe de développeurs ?                                    *
+        * Rendez-vous sur : https://carriere.meilleursagents.com/                                    *
+        **********************************************************************************************
+        --><meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+            <meta name="bitly-verification" content="189fcdc5a47e" />
+            <meta property="fb:admins" content="647198951" />
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    
+
+    
+
+    
+        <link rel="prev" href="/annonces/achat/paris-75000/?page=783">
+    
+    
+        <link rel="next" href="/annonces/achat/paris-75000/?page=785">
+    
+    
+        <link rel="canonical" href="https://www-staging.meilleursagents.org/annonces/achat/paris-75000/" />
+    <link rel="stylesheet" type="text/css" href="https://www-staging.meilleursagents.org/static/build/site/css/vendors.ab47a6f1.css?t=1601469709">
+            <link rel="stylesheet" type="text/css" href="https://www-staging.meilleursagents.org/static/build/site/css/mapbox.3d186160.css?t=1601469709">
+            <link rel="stylesheet" type="text/css" href="https://www-staging.meilleursagents.org/static/build/site/css/main.cdd2b7e7.css?t=1601469709">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-57x57.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-60x60.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-72x72.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-76x76.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-114x114.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-120x120.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-144x144.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-152x152.png?t=1601469223">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://www-staging.meilleursagents.org/static/browser_icons/apple-icon-180x180.png?t=1601469223">
+        <link rel="icon" type="image/png" sizes="192x192"  href="https://www-staging.meilleursagents.org/static/browser_icons/android-icon-192x192.png?t=1601469223">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://www-staging.meilleursagents.org/static/browser_icons/favicon-32x32.png?t=1601469223">
+        <link rel="icon" type="image/png" sizes="96x96" href="https://www-staging.meilleursagents.org/static/browser_icons/favicon-96x96.png?t=1601469223">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://www-staging.meilleursagents.org/static/browser_icons/favicon-16x16.png?t=1601469223">
+        <link rel="icon shortcut" type="image/x-icon" href="https://www-staging.meilleursagents.org/static/browser_icons/favicon.ico?t=1601469223">
+        <link rel="manifest" href="https://www-staging.meilleursagents.org/static/browser_icons/manifest.json?t=1601469223">
+        <meta name="msapplication-TileColor" content="#0074e4">
+        <meta name="msapplication-TileImage" content="https://www-staging.meilleursagents.org/static/browser_icons/ms-icon-144x144.png?t=1601469223">
+        <meta name="theme-color" content="#0074e4"><script>
+        
+
+        var MA = {Config: {}};MA.Config.CDN_DOMAIN = "www-staging.meilleursagents.org";MA.Config.SESSION_COOKIE_DOMAIN = ".meilleursagents.org";MA.Config.GEOAPI_URL = "https://geo-staging.meilleursagents.org/geo/v1/";MA.Config.COOKIE_BANNER_URL = "https://cookiebanner-staging.meilleursagents.org/cookie-banner.js";MA.Config.INDICEAPI_URL = "https://indices-staging.meilleursagents.org/indices/v1/";MA.Config.GOOGLE_MAPS_API_KEY = "AIzaSyCc0BIQ6wm-wX1TiAT_GPN7FKtvH1Qqpko";MA.Config.MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoibWVpbGxldXJzYWdlbnRzIiwiYSI6ImNqMWV5YnRpMDAwMHkyeXRnd3JkdXRiaDEifQ.emcFsn3Ox6WcKmOHhbTOPQ";MA.Config.MAPBOX_STATIC_STYLE = "meilleursagents/cj1eyu17c00iv2rqslqi866y6";MA.Config.PRO_WEBSITE_URL = "https://pro-staging.meilleursagents.org";MA.Config.WEBANALYTICS_URL = "https://wa-staging.meilleursagents.org/wa/";MA.Config.PLACE_TYPE_PLURALS = {"continent": "continents", "country": "countries", "region": "regions", "subregion": "subregions", "city": "cities", "subcity": "subcities", "arrmun": "arrmuns", "borough": "boroughs", "neighborhood": "neighborhoods", "iris": "irises", "street": "streets", "address": "addresses", "urban_unit": "urban_units", "parcelle": "parcelles"};MA.Config.DEBUG = false;MA.Config.WA_DEBUG = true;MA.Config.PRICE_MAP_TILE_API_HOSTS = ["tile-staging.meilleursagents.org"];MA.Config.GA_DEBUG = true;MA.Config.GA_ACCOUNT = "UA-3873079-16";MA.Config.ALGOLIA_SEARCH_API_KEY = "87daa3fa80dc0a4ef806c530502cca37";MA.Config.ALGOLIA_APP_ID = "plE6NVKCPM9O";MA.Config.STATIC_MAP_BLUE_MARKER = "https://www.meilleursagents.com/static/images/blue-marker.png";MA.Config.STATIC_MAP_HOME_SPOT_MARKER = "https://www.meilleursagents.com/static/images/home-spot-highlight@2x.png";MA.Config.SENTRY_DSN = "https://95a771a0012949118bbc661269aba59a@sentry.io/59360";MA.Config.GEOAPI_MAX_RESULTS = 5;
+        
+        MA.Config.HIGHCHARTS_URL = 'https://code.highcharts.com/highcharts.js';
+
+        MA.Config.DISPATCHERS = {"ab_dispatcher": {"mypro_connect": true, "mypro_connect_preview_emails_popin": false, "mypro_connect_targeting": true, "mypro_connect_upcoming_emails": true, "mypro_estimations": true, "mypro_new_menu_layout": false, "navbar_with_firstname": true, "new_cookie_banner": false, "sentry_mypro": true, "sentry_tools": true, "top_of_the_list": false}, "deploy_dispatcher": {}};
+
+        MA.Context = {
+            endpoint: 'listings_bp.search_url_seo',
+            requestIsPost: false
+        };
+
+        
+            var MA_USER = {"id": null, "authenticated": false, "type": "Anonymous", "dates": null, "segment": null};
+            MA.Context.analyticsEnabled = true;
+            MA.Context.analyticsTags = [["create", "UA-3873079-16", "meilleursagents.org"], ["require", "linkid", "linkid.js"], ["set", "page", "/annonces/achat/paris-75000/"], ["set", "dimension1", "Anonymous"], ["set", "dimension5", "Anonymous"], ["set", "dimension18", "test:cookie:banner:current"], ["set", "dimension7", "test:navbar:pr\u00e9nom"], ["set", "contentGroup1", "listings/search/buy"], ["set", "dimension4", "listings/search/buy"], ["set", "contentGroup2", "listings"], ["set", "dimension8", "listings"], ["send", "pageview"]];
+            MA.Context.gaCategory = 'Annonces';
+            var dataLayer = [{"user": {}, "geo": null, "realtor": null, "page": {"category": "listings", "template": "{ga_page_template}"}, "stack": "python"}];
+
+            
+                MA.Context.pageCategory = 'listings';
+            
+        
+
+        
+    MA.Context.listingsCount = 9559;
+    MA.Context.searchFilterTransactionType = "TRANSACTION_TYPE.SELL";
+    MA.Context.searchFilterPlaces = [{"subregion_id": 114, "city_id": 0, "zip": "75000", "slug": "paris-75000", "id": 138724240, "name": "Paris", "name_short": "Paris", "name_type": 0, "geotype_label": "city", "type": 40}];
+
+    </script><!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5PCML7');</script>
+        <!-- End Google Tag Manager --><script>
+            (function(w, d, e, u, c, g, a, b){
+                w["SSJSConnectorObj"] = w["SSJSConnectorObj"] || {ss_cid : c, domain_info: g};
+                a = d.createElement(e);
+                a.async = true;
+                a.src = u;
+                b = d.getElementsByTagName(e)[0];
+                b.parentNode.insertBefore(a, b);
+            })(window,document,"script","https://cdn.perfdrive.com/aperture/aperture.js","81ad","auto");
+        </script>
+    
+</head>
+
+<body>
+    <!-- Google Tag Manager -->
+    <noscript><iframe sandbox="allow-scripts" src="//www.googletagmanager.com/ns.html?id=GTM-5PCML7"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager -->
+    <div data-page-topbars>
+    
+        
+            
+            <div id="cookies-eu-banner" class="cookies-eu-banner hide">
+    <div class="cookies-eu-banner__wrapper">
+        <div class="cookies-eu-banner__text">
+            En poursuivant votre navigation sur ce site, vous acceptez l’utilisation des cookies qui nous permettent d’assurer le bon fonctionnement de nos services, de vous fournir un contenu personnalisé et de mesurer l’audience de notre site. Pour en savoir plus
+            <a href="/terms/#cookies"
+                 data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:terms" data-ua-event-label="cookie:banner:terms_button"  data-ua-non-interaction="true" >cliquez ici</a>
+            et pour paramétrer les cookies
+            <a href="/cookies/"
+                 data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:cookies_settings" data-ua-event-label="cookie:banner:settings_button"  data-ua-non-interaction="true" >cliquez ici</a>.
+        </div>
+        <button id="cookies-eu-accept"
+                class="cookies-eu-banner__button"
+                 data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="cookie:banner:success" data-ua-event-label="from:listings"  data-ua-non-interaction="true" >
+            J'ai compris
+        </button>
+    </div>
+</div>
+        
+    
+
+    <!--[if lte IE 8]>
+    <p class="browserupgrade">Nous ne supportons pas votre version de navigateur. <a href='http://browsehappy.com/'>Mettez à jour votre navigateur</a> pour améliorer votre expérience.</p>
+    <![endif]-->
+
+    
+        <div id="b2b_topbanner" data-b2b-topbanner class="topbanner topbanner--red hide">
+            <div class="topbanner__content">
+                <span class="margin-right"><strong>Agent immobilier</strong>, créez gratuitement votre Vitrine en ligne</span>
+                <a href="https://extranet-staging.meilleursagents.org/realtor/new?gaLabel=pro:top_banner:create_realtor_page_button" class="btn btn--tiny btn--secondary"  data-ua-hit-type="event" data-ua-event-category="All" data-ua-event-action="pro:go:create_realtor_page" data-ua-event-label="pro:top_banner:create_realtor_page_button"  >Créer ma Vitrine</a>
+            </div>
+        </div>
+    
+</div>
+
+<div id="page-wrapper" class="page-wrapper" data-page-wrapper>
+    <a href="#start-of-content" class="show-on-focus skip-link">Aller au contenu principal</a>
+    <nav class="topnav" data-navbar>
+        <div class="topnav__branding">
+            <a href="/"
+                class="topnav__logo"
+                data-page-logo
+                 data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:home" data-ua-event-label="nav:logo"  >
+                <img class="vertical-align-middle" src="https://www-staging.meilleursagents.org/static/images/logo.svg?t=1601469223" alt="Immobilier avec MeilleursAgents">
+            </a>
+            <button href="#menu" class="btn-reset mobile-nav-toggler" data-mobile-nav-toggler
+                 data-ua-event-category="Annonces" data-ua-event-action="show:menu" data-ua-event-label="nav:burger_menu"  >
+                <span class="mobile-nav-toggler__bars"></span>
+                <span class="mobile-nav-toggler__title">Menu</span>
+            </button>
+        </div>
+        <div class="topnav__menu" data-nav-menu>
+            <div class="topnav-submenu" data-nav-price-menu>
+                
+<button class="topnav-submenu__button" data-nav-menu-button id="topnav-price-button" aria-controls="topnav-price-content" data-ua-event-category="Annonces" data-ua-event-action="go:prices_submenu" data-ua-event-label="nav:prices_global"  data-ua-non-interaction="true" >
+    Prix immobilier
+    <span class="icon icon-expand_more topnav-submenu__button-icon topnav-submenu__button-icon--mobile-hidden margin-left-half"></span>
+</button>
+
+                <ul class="topnav-submenu__items" data-nav-menu-popup aria-labelledby="topnav-price-button" id="topnav-price-content" role="menu">
+                    
+<li role="presentation">
+    <a href="/prix-immobilier/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:prices" data-ua-event-label="nav:prices"  data-nav-prices-link
+    >Carte des prix</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/prix-immobilier/dvf/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:dvf_landing" data-ua-event-label="nav:dvf"  
+    >Historique des ventes (base DVF)</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/comprendre-le-marche-immobilier/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:understand_the_market" data-ua-event-label="nav:understand_the_market"  
+    >Comprendre le marché immobilier</a>
+</li>
+
+                </ul>
+            </div>
+            <div class="topnav-submenu" data-nav-estimate-menu>
+                
+<button class="topnav-submenu__button" data-nav-menu-button id="topnav-estimate-button" aria-controls="topnav-estimate-content" data-ua-event-category="Annonces" data-ua-event-action="go:estima_submenu" data-ua-event-label="nav:estima_global"  data-ua-non-interaction="true" >
+    Estimer un bien
+    <span class="icon icon-expand_more topnav-submenu__button-icon topnav-submenu__button-icon--mobile-hidden margin-left-half"></span>
+</button>
+
+                <ul class="topnav-submenu__items" data-nav-menu-popup  aria-labelledby="topnav-estimate-button" id="topnav-estimate-content" role="menu">
+                    
+<li role="presentation">
+    <a href="/estimation-immobiliere/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:estima" data-ua-event-label="nav:estima"  data-nav-estima-link
+    >Estimation en ligne</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/professionnel-immobilier/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:find_a_pro" data-ua-event-label="nav:realtor_estima"  
+    >Estimation par une agence</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/reussir-votre-estimation/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:how_to_estimate" data-ua-event-label="nav:how_to_estimate"  
+    >Comment réussir votre estimation ?</a>
+</li>
+
+                </ul>
+            </div>
+            <div class="topnav-submenu" data-nav-agency-menu>
+                
+<button class="topnav-submenu__button" data-nav-menu-button id="topnav-agency-button" aria-controls="topnav-agency-content" data-ua-event-category="Annonces" data-ua-event-action="go:find_a_pro_submenu" data-ua-event-label="nav:find_a_pro_global"  data-ua-non-interaction="true" >
+    Choisir une agence
+    <span class="icon icon-expand_more topnav-submenu__button-icon topnav-submenu__button-icon--mobile-hidden margin-left-half"></span>
+</button>
+
+                <ul class="topnav-submenu__items" data-nav-menu-popup  aria-labelledby="topnav-agency-button" id="topnav-agency-content" role="menu">
+                    
+<li role="presentation">
+    <a href="/professionnel-immobilier/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:find_a_pro" data-ua-event-label="nav:compare_pros"  data-nav-realtors-link
+    >Comparateur d'agences</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/agence-immobiliere/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:find_a_pro" data-ua-event-label="nav:find_a_realtor"  data-nav-agencies-link
+    >Annuaire des agences immobilières</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/mandataire-immobilier/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:find_a_pro" data-ua-event-label="nav:find_a_mandataire"  data-nav-representative-link
+    >Annuaire des mandataires immobiliers</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/choisir-la-bonne-agence/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:how_to_find_a_pro" data-ua-event-label="nav:how_to_find_a_pro"  
+    >Comment choisir la bonne agence ?</a>
+</li>
+
+                </ul>
+            </div>
+            <div class="topnav-submenu" data-nav-sell-menu>
+                
+<button class="topnav-submenu__button" data-nav-menu-button id="topnav-sell-button" aria-controls="topnav-sell-content" data-ua-event-category="Annonces" data-ua-event-action="go:buy_rent_sell_submenu" data-ua-event-label="nav:buy_rent_sell_global"  data-ua-non-interaction="true" >
+    Acheter - Louer - Vendre
+    <span class="icon icon-expand_more topnav-submenu__button-icon topnav-submenu__button-icon--mobile-hidden margin-left-half"></span>
+</button>
+
+                <ul class="topnav-submenu__items" data-nav-menu-popup  aria-labelledby="topnav-sell-button" id="topnav-sell-content" role="menu">
+                    
+<li role="presentation">
+    <a href="/achat/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:buy" data-ua-event-label="nav:buy"  data-nav-sell-link
+    >Annonces de vente</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/location/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:rent" data-ua-event-label="nav:rent"  
+    >Annonces de location</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/immobilier-neuf/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:invest" data-ua-event-label="nav:invest"  
+    >Programmes neufs</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/credit-immobilier/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:mortgage" data-ua-event-label="nav:mortgage"  
+    >Simulation de crédit</a>
+</li>
+
+                    
+<li role="presentation">
+    <a href="/reussir-votre-vente/" role="menuitem" class="topnav-submenu__item" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:how_to_sell" data-ua-event-label="nav:how_to_sell"  
+    >Comment réussir votre vente ?</a>
+</li>
+
+                </ul>
+            </div>
+            <div class="topnav-submenu topnav-submenu--separated" data-nav-account-menu>
+                <a href="/_signin?show=signin" class="topnav-submenu__button topnav-submenu__button--raw" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:signin" data-ua-event-label="nav:signin"  data-nav-menu-login-button
+    >
+        Connexion
+    </a>
+            </div>
+            <div class="topnav-submenu" data-nav-pro-menu>
+                <a href="https://pro-staging.meilleursagents.org?utm_source=trappe_lead&amp;utm_medium=www&amp;utm_campaign=Navigation&amp;utm_content=nav:ma_pro" data-nav-top-level-link class="topnav-submenu__button topnav-submenu__button--raw" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="pro:go:ma_pro" data-ua-event-label="nav:ma_pro"  >
+                    Nos offres pro
+                    <svg class="svg margin-left-half" width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" alt="">
+                        <path class="svg__path" fill="#4a4a4a" d="M10 6.25a.5.5 0 0 0-.5.5v3.56a.69.69 0 0 1-.69.69H1.69a.69.69 0 0 1-.69-.69V3.19a.69.69 0 0 1 .69-.69h3.56a.5.5 0 0 0 0-1H1.69A1.69 1.69 0 0 0 0 3.19v7.12A1.69 1.69 0 0 0 1.69 12h7.12a1.69 1.69 0 0 0 1.69-1.69V6.75a.5.5 0 0 0-.5-.5z"/>
+                        <path class="svg__path" fill="#4a4a4a" d="M11.5 0h-3a.5.5 0 0 0-.5.5.5.5 0 0 0 .5.5h1.79L5.15 6.15a.48.48 0 0 0 0 .7.48.48 0 0 0 .7 0L11 1.71V3.5a.5.5 0 0 0 1 0v-3a.5.5 0 0 0-.5-.5z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+<div id="start-of-content" class="show-on-focus"></div>
+
+    <div class="l-container"><div>
+    <div class="section section--search-listing-form">
+        <div class="section__content">
+            <form action="/annonces/achat/search/" method="get" class="search-filters-wrapper search-filters-wrapper--search-listing-form" data-search-filters-form novalidate>
+                <h2 class="title--h2 hide-sm">Rechercher</h2>
+                <div class="search-filters">
+                    <input type="hidden" name="sort" value="current_price_date:desc" data-sort-field>
+                    <input type="hidden" name="page" value="" data-page-field>
+                    <input type="hidden" name="transaction_types" value="TRANSACTION_TYPE.SELL">
+
+                    
+                    <input type="hidden" name="place_ids" value="138724240">
+                    <div class="search-filters__criteria search-filters__criteria--double search-filter">
+                        <label class="search-filter__label">Localisation</label>
+                        <button class="search-filter__button search-filter__button--dropdown"
+                                id="place-field"
+                                data-search-filter
+                                data-opened-class="search-filter__button--dropdown-opened"
+                        >Choisissez un lieu</button>
+                        <div class="search-filter__dropdown search-filter__dropdown--large" data-search-filter-dropdown data-search-filter-dropdown-place data-opened-class="search-filter__dropdown--opened" data-control-group>
+                            <div class="select2--bordered">
+                                <input name="_places"
+                                        type="text"
+                                        class="field__control"
+                                        placeholder="Code postal, ville"
+                                        aria-label="Code postal, ville"
+                                        data-filter-type="places"
+                                        data-filter-target="#place-field"
+                                        data-places-search
+                                        data-place-types="subregions,cities,subcities,arrmuns">
+                            </div>
+                            <div data-selected-places class="tag-list margin-bottom margin-top">
+                            </div>
+                            <div data-nearby-places></div>
+                            <div data-control-errors></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="search-filters__criteria search-filters__criteria--small search-filter">
+                        <label class="search-filter__label">Type</label>
+                        <button class="search-filter__button search-filter__button--dropdown"
+                                id="item-type-field"
+                                data-search-filter
+                                data-opened-class="search-filter__button--dropdown-opened"
+                                title=""
+                        >Choisir</button>
+                        <div class="search-filter__dropdown"
+                            data-search-filter-dropdown
+                            data-search-filter-dropdown-item-type
+                            data-opened-class="search-filter__dropdown--opened"
+                        >
+                            
+
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.APARTMENT" name="item_types" class="checkbox" value="ITEM_TYPE.APARTMENT" checked=&#34;checked&#34;
+                                            aria-label="Appartement"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Appartement"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.APARTMENT" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Appartement</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.HOUSE" name="item_types" class="checkbox" value="ITEM_TYPE.HOUSE" checked=&#34;checked&#34;
+                                            aria-label="Maison"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Maison"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.HOUSE" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Maison</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.LAND" name="item_types" class="checkbox" value="ITEM_TYPE.LAND" 
+                                            aria-label="Terrain"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Terrain"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.LAND" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Terrain</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.PARKING" name="item_types" class="checkbox" value="ITEM_TYPE.PARKING" 
+                                            aria-label="Parking"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Parking"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.PARKING" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Parking</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.OFFICE" name="item_types" class="checkbox" value="ITEM_TYPE.OFFICE" 
+                                            aria-label="Bureau"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Bureau"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.OFFICE" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Bureau</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.SHOP" name="item_types" class="checkbox" value="ITEM_TYPE.SHOP" 
+                                            aria-label="Boutique / Local Commercial"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Boutique / Local Commercial"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.SHOP" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Boutique / Local Commercial</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.BUILDING" name="item_types" class="checkbox" value="ITEM_TYPE.BUILDING" 
+                                            aria-label="Immeuble"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Immeuble"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.BUILDING" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Immeuble</span></div>
+                                    </label>
+                                </div>
+                            
+                            
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="item-type-ITEM_TYPE.OTHER" name="item_types" class="checkbox" value="ITEM_TYPE.OTHER" 
+                                            aria-label="Autre"
+                                            data-filter-type="list"
+                                            data-filter-target="#item-type-field"
+                                            data-filter-label="Autre"
+                                    >
+                                    <label for="item-type-ITEM_TYPE.OTHER" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">Autre</span></div>
+                                    </label>
+                                </div>
+                            
+                        </div>
+                    </div>
+
+                    
+                    <div class="search-filters__criteria search-filters__criteria--small search-filter">
+                        <label class="search-filter__label">Prix</label>
+                        <button class="search-filter__button search-filter__button--dropdown"
+                                id="price-field"
+                                data-search-filter
+                                data-opened-class="search-filter__button--dropdown-opened"
+                                title=""
+                        >Choisir</button>
+                        <div class="search-filter__dropdown" data-search-filter-dropdown data-search-filter-dropdown-price data-opened-class="search-filter__dropdown--opened">
+                            
+
+                            
+                                <div data-control-group>
+                                    <div class="field-container">
+                                            <label class="field__label" for="min_price">Min :</label>
+                                            <div class="field field--postfixed field--small" data-error-class="field--invalid">
+                                                <input class="field__control field__control--small-postfix" id="min_price" name="min_price" type="number" value=""
+                                                        aria-label="Min :"
+                                                        placeholder="1€"
+                                                        data-filter-type="range"
+                                                        data-filter-units="€"
+                                                        data-filter-target="#price-field"
+                                                        data-filter-name="price"
+                                                >
+                                                <span class="field__postfix field__postfix--small field__postfix--grey">€</span>
+                                            </div>
+                                        <div class="search-filter__error-block" data-control-errors></div>
+                                    </div>
+                                </div>
+                            
+                            
+                                <div data-control-group>
+                                    <div class="field-container">
+                                            <label class="field__label" for="max_price">Max :</label>
+                                            <div class="field field--postfixed field--small" data-error-class="field--invalid">
+                                                <input class="field__control field__control--small-postfix" id="max_price" name="max_price" type="number" value=""
+                                                        aria-label="Max :"
+                                                        placeholder="1 000 000 000€"
+                                                        data-filter-type="range"
+                                                        data-filter-units="€"
+                                                        data-filter-target="#price-field"
+                                                        data-filter-name="price"
+                                                >
+                                                <span class="field__postfix field__postfix--small field__postfix--grey">€</span>
+                                            </div>
+                                        <div class="search-filter__error-block" data-control-errors></div>
+                                    </div>
+                                </div>
+                            
+                            <div data-control-price-range-errors></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="search-filters__criteria search-filters__criteria--small search-filter">
+                        <label class="search-filter__label">Surface</label>
+                        <button class="search-filter__button search-filter__button--dropdown"
+                                id="area-field"
+                                data-search-filter
+                                data-opened-class="search-filter__button--dropdown-opened"
+                                title=""
+                        >Choisir</button>
+                        <div class="search-filter__dropdown" data-search-filter-dropdown data-search-filter-dropdown-area data-opened-class="search-filter__dropdown--opened">
+                            
+
+                            
+                                <div data-control-group>
+                                    <div class="field-container">
+                                        <label class="field__label" for="min_area">Min :</label>
+                                        <div class="field field--postfixed field--small" data-error-class="field--invalid">
+                                            <input class="field__control field__control--small-postfix" id="min_area" name="min_area" type="number" value=""
+                                                    aria-label="Min :"
+                                                    placeholder="1m²"
+                                                    data-filter-type="range"
+                                                    data-filter-units="m²"
+                                                    data-filter-target="#area-field"
+                                                    data-filter-name="area"
+                                            >
+                                            <span class="field__postfix field__postfix--small field__postfix--grey">m²</span>
+                                        </div>
+                                        <div class="search-filter__error-block" data-control-errors></div>
+                                    </div>
+                                </div>
+                            
+                            
+                                <div data-control-group>
+                                    <div class="field-container">
+                                        <label class="field__label" for="max_area">Max :</label>
+                                        <div class="field field--postfixed field--small" data-error-class="field--invalid">
+                                            <input class="field__control field__control--small-postfix" id="max_area" name="max_area" type="number" value=""
+                                                    aria-label="Max :"
+                                                    placeholder="60 000m²"
+                                                    data-filter-type="range"
+                                                    data-filter-units="m²"
+                                                    data-filter-target="#area-field"
+                                                    data-filter-name="area"
+                                            >
+                                            <span class="field__postfix field__postfix--small field__postfix--grey">m²</span>
+                                        </div>
+                                        <div class="search-filter__error-block" data-control-errors></div>
+                                    </div>
+                                </div>
+                            
+                            <div data-control-area-range-errors></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="search-filters__criteria search-filters__criteria--small search-filter">
+                        <label class="search-filter__label">Nb. de pièces</label>
+                        <button class="search-filter__button search-filter__button--dropdown"
+                                id="rooms-field"
+                                data-search-filter
+                                data-opened-class="search-filter__button--dropdown-opened"
+                                title=""
+                        >Choisir</button>
+                        <div class="search-filter__dropdown" data-search-filter-dropdown data-search-filter-dropdown-rooms data-opened-class="search-filter__dropdown--opened">
+                            
+
+                            <div class="flex text--nowrap flex-space-between">
+                                <div class="margin-right">
+                                    
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="room-count1" name="room_counts" class="checkbox" value="1" 
+                                            aria-label="1 pièce"
+                                            data-filter-type="rooms"
+                                            data-filter-target="#rooms-field"
+                                            data-filter-label="1"
+                                    >
+                                    <label for="room-count1" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">1 pièce</span></div>
+                                    </label>
+                                </div>
+                            
+                                    
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="room-count2" name="room_counts" class="checkbox" value="2" 
+                                            aria-label="2 pièces"
+                                            data-filter-type="rooms"
+                                            data-filter-target="#rooms-field"
+                                            data-filter-label="2"
+                                    >
+                                    <label for="room-count2" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">2 pièces</span></div>
+                                    </label>
+                                </div>
+                            
+                                    
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="room-count3" name="room_counts" class="checkbox" value="3" 
+                                            aria-label="3 pièces"
+                                            data-filter-type="rooms"
+                                            data-filter-target="#rooms-field"
+                                            data-filter-label="3"
+                                    >
+                                    <label for="room-count3" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">3 pièces</span></div>
+                                    </label>
+                                </div>
+                            
+                                </div>
+                                <div>
+                                    
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="room-count4" name="room_counts" class="checkbox" value="4" 
+                                            aria-label="4 pièces"
+                                            data-filter-type="rooms"
+                                            data-filter-target="#rooms-field"
+                                            data-filter-label="4"
+                                    >
+                                    <label for="room-count4" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">4 pièces</span></div>
+                                    </label>
+                                </div>
+                            
+                                    
+                                <div class="label-container margin-bottom-double">
+                                    <input type="checkbox" id="room-count5" name="room_counts" class="checkbox" value="5" 
+                                            aria-label="5 pièces et +"
+                                            data-filter-type="rooms"
+                                            data-filter-target="#rooms-field"
+                                            data-filter-label="5+"
+                                    >
+                                    <label for="room-count5" class="label label--checkbox label--small">
+                                        <div class="label__content"><span class="margin-right-half">5 pièces et +</span></div>
+                                    </label>
+                                </div>
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-filters__criteria search-filters__criteria--actions search-filter search-filter--cta">
+                        <button class="btn btn--primary btn--small search-filter__button" type="submit" data-submit>Voir les résultats</button>
+                        <button
+                            class="btn btn--secondary btn--small search-filter__button hide-sm"
+                            type="button"
+                            data-alert-button
+                            data-url=/immobilier/buyer_search
+                             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:create_alert_button:clicked" data-ua-event-label="listings:create_alert_button"  
+                        >
+                            <span class="icon-notifications"></span>
+                            Créer une alerte
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <div class="bottom-navigation bottom-navigation--small bottom-navigation--search-listing-form no-padding">
+        <div class="bottom-navigation__buttons bottom-navigation__buttons--full-width bottom-navigation__buttons--search-listing-form padding-left padding-right">
+            <button
+                class="btn btn--secondary btn--small margin-right-double"
+                type="button"
+                data-alert-button
+                data-url=/immobilier/buyer_search
+                data-ua-hit-type="event"
+                data-ua-event-category="Annonces"
+                data-ua-event-action="listings:create_alert_button:clicked"
+                data-ua-event-label="listings:create_alert_button"
+            >
+                Créer une alerte
+            </button>
+            <button
+                class="btn btn--primary btn--small"
+                type="button"
+                data-open-filters-popin
+                data-ua-hit-type="event"
+                data-ua-event-category="Annonces"
+                data-ua-event-action="listings:modify_search_button:clicked"
+                data-ua-event-label="listings:modify_search_button"
+            >
+                Modifier ma recherche
+            </button>
+        </div>
+    </div>
+
+    <div data-listings-container class="pending">
+        
+<section class="section section--emphasis section--search-listing-result">
+    <div class="search-listing-result">
+        <div class="search-listing-result__header">
+            <h1
+                class="title--h2 search-listing-result__title"
+                data-search-listing-result-title
+            >
+                
+                    
+                        9 559 annonces de vente trouvées pour votre recherche
+                    
+                
+            </h1>
+            <h1
+                class="search-listing-result__title search-listing-result__title--mobile"
+                data-search-listing-result-title
+            >
+                9 559 Résultats
+            </h1>
+            <select data-search-listing-result-sort dir="rtl" class="search-listing-result__sort text--grey" aria-label="Trier par">
+                <option disabled>Trier par</option>
+                
+                
+                    <option value="current_price_date:desc" >Date</option>
+                
+                
+                    <option value="price:asc" >Prix croissant</option>
+                
+                
+                    <option value="price:desc" >Prix décroissant</option>
+                
+                
+                    <option value="area:asc" >Surface croissante</option>
+                
+                
+                    <option value="area:desc" >Surface décroissante</option>
+                
+            </select>
+        </div>
+
+        
+
+        <div class="search-listing-result__content">
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1967368293|realtor_id=58124|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1967368293/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/iWk72kUdwlE7JHDyRJ4U0rVQiA0=/368x207/listings/a5/70/a5705c6c1c49d13f73ac9b0aa888f4f58eb9d3d3.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/iWk72kUdwlE7JHDyRJ4U0rVQiA0=/368x207/listings/a5/70/a5705c6c1c49d13f73ac9b0aa888f4f58eb9d3d3.jpg , //thumbor-staging.meilleursagents.org/28pbZsTNdO2YJCvhAJ6N9LPauUg=/736x414/listings/a5/70/a5705c6c1c49d13f73ac9b0aa888f4f58eb9d3d3.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 6ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">13</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1967368293/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Appartement 4 pièces - 82 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    1 540 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 6ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1967368293"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+                <div class="tag tag--red">Exclusivité</div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1967201379|realtor_id=58124|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1967201379/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/QnMHNynLmbqOceBU2nJKcA9qClg=/368x207/listings/16/d5/16d53b76132a7a0c85a9978c0010908f6a9550a2.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/QnMHNynLmbqOceBU2nJKcA9qClg=/368x207/listings/16/d5/16d53b76132a7a0c85a9978c0010908f6a9550a2.jpg , //thumbor-staging.meilleursagents.org/oqGmYFsbXy3lxw-7NG2SIZvOJeo=/736x414/listings/16/d5/16d53b76132a7a0c85a9978c0010908f6a9550a2.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 10ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">8</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1967201379/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Appartement 2 pièces - 51 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    525 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 10ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1967201379"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+                <div class="tag tag--red">Exclusivité</div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964931|realtor_id=62701|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964931/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 2ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964931/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Maison 5 pièces - 100 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    430 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 2ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964931"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964934|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964934/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 16ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964934/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Appartement 2 pièces - 51 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    444 200 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 16ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964934"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964935|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964935/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 16ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964935/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Studio - 51 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    444 200 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 16ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964935"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964937|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964937/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 2ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964937/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Maison 5 pièces - 100 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    430 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 2ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964937"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964938|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964938/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 2ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964938/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Maison 1 pièce - 100 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    430 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 2ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964938"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964961|realtor_id=62701|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964961/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 2ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964961/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Maison 5 pièces - 100 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    430 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 2ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964961"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964962|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964962/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 16ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964962/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Appartement 2 pièces - 51 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    444 200 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 16ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964962"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964963|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964963/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 16ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964963/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Studio - 51 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    444 200 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 16ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964963"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964965|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964965/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 2ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964965/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Maison 5 pièces - 100 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    430 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 2ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964965"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-item search-listing-result__item" data-search-listing-item data-wa-track="display"
+        data-wa-key="print" data-wa-name="listing_in_list"
+        data-wa-data="listing_id=1969964966|realtor_id=31|source=listings_results">
+        <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964966/" class="listing-item__picture-container" data-search-listing-item-picture
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:picture_link"  
+            >
+            
+    
+
+    
+
+    
+        
+            
+            
+                
+            
+                
+            
+            
+                <img src="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg"
+                     srcset="//thumbor-staging.meilleursagents.org/edX1xU9AbYbR7ctvQELYE7iDLC4=/368x207/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg , //thumbor-staging.meilleursagents.org/JeIFDe2oKJtiIy-avhQkfBbMyeY=/736x414/listings/98/38/983873a4a131a6f7b7dea50fa0ab3fbe5403d047.jpg 2x" alt=""    class="listing-item__picture" alt="Annonce Paris 2ème arrondissement">
+            
+        
+    
+
+            
+            <div class="listing-item__picture-legend">
+                <i class="icon icon-photo_camera listing-item__picture-icon"></i>
+                <span class="listing-item__picture-number">1</span>
+            </div>
+            
+        </a>
+        <div class="listing-item__content">
+            <a href="https://www-staging.meilleursagents.org/annonces/achat/1969964966/" class="listing-item__characteristics no-underline"
+                data-search-listing-item-characteristics  data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:listing" data-ua-event-label="listings:listing:details_link"  
+                >
+                <div class="listing-characteristic margin-bottom" data-search-listing-item-title>
+                    Maison 1 pièce - 100 m²
+                </div>
+
+                
+                <div class="listing-price margin-bottom" data-search-listing-item-price>
+                    430 000 €
+                </div>
+                
+
+                
+                <div class="text--muted text--small" data-search-listing-item-place>
+                    Paris 2ème arrondissement
+                </div>
+                
+            </a>
+            <div class="listing-actions listing-actions--listing-item"><button class="btn-reset listing-actions__item" data-icon-url="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                    data-icon-url-active="https://www-staging.meilleursagents.org/static/images/like-fill-blue5.svg?t=1601469223" data-follow-listing-button
+                    data-follow-status="False" data-listing-id="1969964966"
+                    data-ua-event-category="Annonces" data-ua-event-action-prefix="listing"
+                    data-ua-event-label-prefix="listings:listing">
+                    <img data-follow-listing-button-icon
+                        src="https://www-staging.meilleursagents.org/static/images/like.svg?t=1601469223"
+                        alt="Enregistrer" width="18" />
+                </button>
+            </div>
+            <div class="listing-item__tag">
+                
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="search-listing-result__pagination">
+            
+    
+    
+
+    
+        <ul class="pagination"
+            role="navigation"
+            aria-label="Pagination"
+            data-paginate-search-listing
+            data-paginate-page-size="12"
+            >
+            <li>
+                <button class="pagination__navigator pagination__navigator--prev no-underline "
+                    data-paginate-previous
+                    data-paginate-page-num="783"
+                     data-url="/immobilier/recherche/" 
+                     data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_prev" data-ua-event-label="listings:listings_list:paging"  >
+                    <i class="icon icon-navigate_before pagination__navigator-icon" aria-hidden="true"></i>
+                    <span class="pagination__navigator-text pointer-event underline--hover" aria-label="Page précédente">Précédent</span>
+                </button>
+            </li>
+
+            
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="1" data-url="/immobilier/recherche/"
+                aria-label="Page 1"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            1
+        </button>
+    </li>
+
+
+            
+            
+                 
+                    <li>
+                        <button class="pagination__button pagination__ellipsis" disabled aria-hidden="true">...</button>
+                    </li>
+                    
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="782" data-url="/immobilier/recherche/"
+                aria-label="Page 782"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            782
+        </button>
+    </li>
+
+                    
+                
+            
+                
+                    
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="783" data-url="/immobilier/recherche/"
+                aria-label="Page 783"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            783
+        </button>
+    </li>
+
+                    
+                
+            
+                
+                    
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="784" data-url="/immobilier/recherche/"
+                disabled
+                data-paginate-current
+                aria-label="Page courante, page 784"
+                aria-current="page"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            784
+        </button>
+    </li>
+
+                    
+                
+            
+                
+                    
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="785" data-url="/immobilier/recherche/"
+                aria-label="Page 785"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            785
+        </button>
+    </li>
+
+                    
+                
+            
+                
+                    
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="786" data-url="/immobilier/recherche/"
+                aria-label="Page 786"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            786
+        </button>
+    </li>
+
+                    
+                
+            
+                 
+                    <li>
+                        <button class="pagination__button pagination__ellipsis" disabled aria-hidden="true">...</button>
+                    </li>
+                    
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+
+            
+    <li>
+        <button class="pagination__button pagination__page"
+            data-paginate-page
+            data-paginate-page-num="797" data-url="/immobilier/recherche/"
+                aria-label="Page 797"
+             data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_page" data-ua-event-label="listings:listings_list:paging"  >
+            797
+        </button>
+    </li>
+
+
+            <li>
+                <button data-paginate-next
+                     data-url="/immobilier/recherche/" 
+                    data-paginate-page-num="785"
+                    class="pagination__navigator pagination__navigator--next no-underline "
+                     data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="listings:listings_list:show_next" data-ua-event-label="listings:listings_list:paging"  >
+                    <span class="pagination__navigator-text pointer-event underline--hover" aria-label="Page suivante">Suivant</span>
+                    <i class="icon icon-navigate_next pagination__navigator-icon" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    
+
+        </div>
+
+        <div class="search-listing-result__footer">
+            <div class="search-listing-result__pro-contact full-width">
+                <h3 class="search-listing-result__footer-block-title">Vous êtes agent immobilier ?</h3>
+                <div class="realtor-pro-banner__content">
+                    <p class="search-listing-result__footer-block-message">
+                        Affichez vos annonces sur des pages à forte audience et touchez des prospects en recherche active.
+                    </p>
+                    <a
+                        class="btn btn--secondary btn--small search-listing-result__footer-block-button"
+                        href="https://pro-staging.meilleursagents.org?utm_source=trappe_lead&amp;utm_medium=www&amp;utm_campaign=Annonces&amp;utm_content=listings:are_you_a_pro:contact_us"
+                        data-ua-hit-type="event"
+                        data-ua-event-category=Annonces
+                        data-ua-event-action="pro:go:ma_pro"
+                        data-ua-event-label="listings:are_you_a_pro:contact_us"
+                    >
+                        Contactez-nous
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="loading-container container--no-horizontal-gutter container--no-vertical-gutter">
+    <div class="spinner--dots"><div class="bounce1"></div> <div class="bounce2"></div> <div class="bounce3"></div></div>
+</div>
+    </div>
+</section>
+
+
+    
+<section class="search-listing-result">
+    <div class="listings-search-pre-footer">
+        <div class="listings-directory listings-directory--search">
+            <div class="flex flex-wrap">
+                
+                
+                    <div class="listings-directory__container">
+                        
+                            <h3 class="listings-directory__title">Les biens à vendre à Paris</h3>
+                        
+                        <div class="flex flex-wrap">
+                            <ul class="list-link list-link--listings-directory">
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-1er-arrondissement-75001/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 1er
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-2eme-arrondissement-75002/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 2e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-3eme-arrondissement-75003/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 3e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-4eme-arrondissement-75004/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 4e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-5eme-arrondissement-75005/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 5e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-6eme-arrondissement-75006/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 6e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-7eme-arrondissement-75007/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 7e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-8eme-arrondissement-75008/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 8e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-9eme-arrondissement-75009/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 9e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-10eme-arrondissement-75010/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 10e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-11eme-arrondissement-75011/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 11e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-12eme-arrondissement-75012/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 12e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-13eme-arrondissement-75013/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 13e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-14eme-arrondissement-75014/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 14e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-15eme-arrondissement-75015/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 15e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-16eme-arrondissement-75016/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 16e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-17eme-arrondissement-75017/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 17e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-18eme-arrondissement-75018/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 18e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-19eme-arrondissement-75019/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 19e
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/paris-20eme-arrondissement-75020/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Paris 20e
+    </a>
+
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                
+                
+                    
+                        <div class="listings-directory__container">
+                            <h3 class="listings-directory__title">Acheter  un bien à Paris</h3>
+                            <div class="flex flex-wrap">
+                                <ul class="list-link list-link--listings-directory">
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/appartement/studio/"
+        data-ua-hit-type="event"
+    >
+        
+            Studio
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/appartement/2-pieces/"
+        data-ua-hit-type="event"
+    >
+        
+            Appartement 2 pièces
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/appartement/3-pieces/"
+        data-ua-hit-type="event"
+    >
+        
+            Appartement 3 pièces
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/appartement/4-pieces/"
+        data-ua-hit-type="event"
+    >
+        
+            Appartement 4 pièces
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/appartement/5-pieces-et-plus/"
+        data-ua-hit-type="event"
+    >
+        
+            Appartement 5 pièces et plus
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/maison/1-piece/"
+        data-ua-hit-type="event"
+    >
+        
+            Maison 1 pièce
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/maison/2-pieces/"
+        data-ua-hit-type="event"
+    >
+        
+            Maison 2 pièces
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/maison/3-pieces/"
+        data-ua-hit-type="event"
+    >
+        
+            Maison 3 pièces
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/maison/4-pieces/"
+        data-ua-hit-type="event"
+    >
+        
+            Maison 4 pièces
+        
+        
+    </a>
+
+                                    </li>
+                                    <li>
+                                        
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/maison/5-pieces-et-plus/"
+        data-ua-hit-type="event"
+    >
+        
+            Maison 5 pièces et plus
+        
+        
+    </a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                
+                <div class="listings-directory__container">
+                    <h3 class="listings-directory__title">Les annonces par type de bien</h3>
+                    <div class="flex flex-wrap">
+                        <ul class="list-link list-link--listings-directory">
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/appartement/"
+        data-ua-hit-type="event"
+    >
+        
+            Appartement 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/maison/"
+        data-ua-hit-type="event"
+    >
+        
+            Maison 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/bureau/"
+        data-ua-hit-type="event"
+    >
+        
+            Bureau 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/terrain/"
+        data-ua-hit-type="event"
+    >
+        
+            Terrain 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/parking/"
+        data-ua-hit-type="event"
+    >
+        
+            Parking 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/immeuble/"
+        data-ua-hit-type="event"
+    >
+        
+            Immeuble 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/boutique-local-commercial/"
+        data-ua-hit-type="event"
+    >
+        
+            Boutique / Local Commercial 
+        
+        
+    </a>
+
+                            </li>
+                            <li>
+                                
+    
+        
+    
+    <a
+        href="/annonces/achat/paris-75000/bien/"
+        data-ua-hit-type="event"
+    >
+        
+            Bien 
+        
+        
+    </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                    <div class="listings-directory__container">
+                        
+                            <h3 class="listings-directory__title">Les biens à vendre à proximité</h3>
+                        
+                        <div class="flex flex-wrap">
+                            <ul class="list-link list-link--listings-directory">
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/boulogne-billancourt-92100/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Boulogne-Billancourt
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/clichy-92110/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Clichy
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/issy-les-moulineaux-92130/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Issy-les-Moulineaux
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/levallois-perret-92300/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Levallois-Perret
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/malakoff-92240/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Malakoff
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/montrouge-92120/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Montrouge
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/neuilly-sur-seine-92200/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Neuilly-sur-Seine
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/puteaux-92800/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Puteaux
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/saint-cloud-92210/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        St-Cloud
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/suresnes-92150/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Suresnes
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/vanves-92170/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Vanves
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/aubervilliers-93300/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Aubervilliers
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/bagnolet-93170/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Bagnolet
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/les-lilas-93260/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Les Lilas
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/montreuil-93100/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Montreuil
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/pantin-93500/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Pantin
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/le-pre-saint-gervais-93310/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Le Pré-St-Gervais
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/saint-denis-93200/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        St-Denis
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/saint-ouen-93400/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        St-Ouen
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/charenton-le-pont-94220/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Charenton-le-Pont
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/fontenay-sous-bois-94120/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Fontenay-sous-Bois
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/gentilly-94250/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Gentilly
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/ivry-sur-seine-94200/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Ivry-sur-Seine
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/joinville-le-pont-94340/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Joinville-le-Pont
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/le-kremlin-bicetre-94270/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Le Kremlin-Bicêtre
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/nogent-sur-marne-94130/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Nogent-sur-Marne
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/saint-mande-94160/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        St-Mandé
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/saint-maurice-94410/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        St-Maurice
+    </a>
+
+                                    </li>
+                                
+                                    <li>
+                                        
+    
+        
+            
+        
+    
+    <a
+        href="/annonces/achat/vincennes-94300/"
+        data-ua-hit-type="event"
+    >
+        
+            Achat
+            
+        
+        Vincennes
+    </a>
+
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+    </div>
+
+    <div data-follow-connexion
+            class="popin popin-auth mfp-hide"
+            role="dialog">
+        
+    
+        <div class="title--h1">
+            Connectez-vous pour ajouter une annonce à vos favoris
+        </div>
+    
+
+    
+
+    <div class="auth-container">
+        <div class="auth-forms" data-auth-section>
+            <div class="nav-tabs nav-tabs--left nav-tabs--separated margin-bottom-quadruple" data-tabs-nav>
+                <div class="nav-tabs__content">
+                    <a class="nav-tabs__item nav-tabs__item--active" href="#signin" data-signin-tab>J'ai déjà un compte</a>
+                    <a class="nav-tabs__item " href="#signup" data-signup-tab>Créer un compte</a>
+                </div>
+            </div>
+            <div>
+                <section id="signin" class="">
+                    <form method="POST" action="/_signin?show=signin" class="clearfix" data-auth-form data-signin-form>
+                        <input type="hidden" name="action" value="signin" />
+                        <input id="user_csrf_token" name="user_csrf_token" type="hidden" value="0bfe7727781c71171cc48b26c9c0b5aef46ffbf8.X3Smfw.oGQMR3xbJEuk-K-gGCb53M0rvZ4">
+
+                        <div class="margin-bottom-double">
+                            <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_username"
+                           data-error-class="field__label--invalid"
+                    >Adresse email ou identifiant<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signin-username="" id="user_username" name="user_username" type="text" value=""><div data-control-errors></div></div>
+            </div>
+                            <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_password_signin_form"
+                           data-error-class="field__label--invalid"
+                    >Mot de passe<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signin-password="" id="user_password_signin_form" name="user_password" type="password" value=""><div data-control-errors></div></div>
+            </div>
+                            <div class="label-container" >
+            <input class="checkbox" id="user_remember_me" name="user_remember_me" type="checkbox" value="y">
+            <label for="user_remember_me" class="label label--small label--checkbox">
+                <div class="label__content">
+                    <span>Rester connecté</span>
+                </div>
+            </label>
+        </div>
+                        </div>
+
+                        <div class="flex flex-column flex-center">
+                            <button type="submit" data-signin-submit class="btn btn--primary margin-bottom-double">Se connecter</button>
+                            <a href="/request_password" class="btn btn--link">Mot de passe oublié ?</a>
+                        </div>
+                    </form>
+                </section>
+
+                <section id="signup" class="hide">
+                    <form method="POST" action="/_signin?show=signup" class="clearfix" data-auth-form data-signup-form>
+                        <input type="hidden" name="action" value="signup" />
+                        <input id="user_csrf_token" name="user_csrf_token" type="hidden" value="0bfe7727781c71171cc48b26c9c0b5aef46ffbf8.X3Smfw.oGQMR3xbJEuk-K-gGCb53M0rvZ4">
+                        <input type="hidden" name="cta_id" value="listing_follow">
+                        
+
+                        <div data-control-group
+            data-error-class="field--invalid"
+            class="field"
+    ><label class="field__label"
+                    for="user_gender"
+                    data-error-class="field__label--invalid"
+            >Civilité<span class="">&nbsp;*</span></label><div data-control class="field__control-wrapper"><ul class="radio-squares no-margin">
+                
+                    
+                
+                     
+                        <li class="radio-square" data-signup-gender-1>
+                            <input
+                                type="radio"
+                                id="user_gender-1"
+                                name="user_gender"
+                                class="radio-square__input"
+                                value="1"
+                                
+                                
+                                data-signup-gender="s"
+                            >
+                            <label for="user_gender-1" class="radio-square__label">
+                                Monsieur
+                            </label>
+                        </li>
+                    
+                
+                     
+                        <li class="radio-square" data-signup-gender-3>
+                            <input
+                                type="radio"
+                                id="user_gender-2"
+                                name="user_gender"
+                                class="radio-square__input"
+                                value="3"
+                                
+                                
+                                data-signup-gender="s"
+                            >
+                            <label for="user_gender-2" class="radio-square__label">
+                                Madame
+                            </label>
+                        </li>
+                    
+                
+            </ul>
+
+            <div data-control-errors></div></div>
+    </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_firstname"
+                           data-error-class="field__label--invalid"
+                    >Prénom<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signup-firstname="" id="user_firstname" name="user_firstname" type="text" value=""><div data-control-errors></div></div>
+            </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_lastname"
+                           data-error-class="field__label--invalid"
+                    >Nom<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signup-lastname="" id="user_lastname" name="user_lastname" type="text" value=""><div data-control-errors></div></div>
+            </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_cell_phone"
+                           data-error-class="field__label--invalid"
+                    >Téléphone<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signup-cell_phone="" id="user_cell_phone" name="user_cell_phone" type="tel" value=""><div data-control-errors></div></div>
+            </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_email"
+                           data-error-class="field__label--invalid"
+                    >Email<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signup-email="" id="user_email" name="user_email" type="email" value=""><div data-control-errors></div></div>
+            </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_password"
+                           data-error-class="field__label--invalid"
+                    >Mot de passe<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signup-password="" id="user_password" name="user_password" type="password" value=""><div data-control-errors></div></div>
+            </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_password2"
+                           data-error-class="field__label--invalid"
+                    >Confirmer le mot de passe<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><input class=" field__control required" data-signup-password2="" id="user_password2" name="user_password2" type="password" value=""><div data-control-errors></div></div>
+            </div>
+                        <div data-control-group
+                 data-error-class="field--invalid"
+                data-signup-optin_partners-container
+                 class="field"
+            ><label class="field__label"
+                           for="user_optin_partners"
+                           data-error-class="field__label--invalid"
+                    >Je souhaite bénéficier des meilleures offres des partenaires de MeilleursAgents<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><select class=" field__control required field__control--select" data-signup-optin_partners="" id="user_optin_partners" name="user_optin_partners"><option value=""></option><option value="1">OUI, avec plaisir</option><option value="2">OUI, mais pas plus d'1 fois / mois</option><option value="3">OUI, mais pas plus de 2 fois / mois</option><option value="0">NON, j'y renonce</option></select><div data-control-errors></div></div>
+            </div>
+
+                        <div class="auth--pro-block">
+                            <div class="label-container" data-signup-is_pro-field>
+            <input class="checkbox" data-signup-is_pro="" id="user_is_pro" name="user_is_pro" type="checkbox" value="y">
+            <label for="user_is_pro" class="label label--small label--checkbox">
+                <div class="label__content">
+                    <span>Je suis un pro de l'immobilier</span>
+                </div>
+            </label>
+        </div>
+
+                            <div class="hide" data-signup-profile-container>
+                                <div data-control-group
+                 data-error-class="field--invalid"
+                
+                 class="field"
+            ><label class="field__label"
+                           for="user_profile"
+                           data-error-class="field__label--invalid"
+                    >Votre activité professionnelle<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><select class="field__control--select field__control required" data-signup-profile="" id="user_profile" name="user_profile"><option value="__None"></option><option value="USER_PROFILE.DIAGNOSER">Diagnostiqueur</option><option value="USER_PROFILE.REAL_ESTATE_EXPERT">Expert immobilier</option><option value="USER_PROFILE.INSTITUTIONNAL">Institutionnel / Fondation</option><option value="USER_PROFILE.NOTARY">Notaire</option><option value="USER_PROFILE.ESTATE_DEVELOPER">Promoteur / Constructeur</option><option selected value="USER_PROFILE.REALTOR">Agent immobilier</option><option value="USER_PROFILE.REPRESENTATIVE">Mandataire immobilier</option><option value="USER_PROFILE.SYNDIC">Administrateur de biens / Syndic</option><option value="USER_PROFILE.INSURER">Assureur</option><option value="USER_PROFILE.BANKER">Banquier</option><option value="USER_PROFILE.ASSET_ADVISOR">Conseiller en Gestion de Patrimoine</option><option value="USER_PROFILE.BROKER">Courtier</option><option value="USER_PROFILE.OTHER">Autre</option></select><div data-control-errors></div></div>
+            </div>
+                                <div data-control-group
+                 data-error-class="field--invalid"
+                data-signup-profile_realtor_position-container
+                 class="field"
+            ><label class="field__label"
+                           for="user_profile_realtor_position"
+                           data-error-class="field__label--invalid"
+                    >Votre fonction<span class="">&nbsp;*</span></label><div data-control
+                     class="field__control-wrapper"
+                ><select class="field__control--select field__control required" data-signup-profile_realtor_position="" id="user_profile_realtor_position" name="user_profile_realtor_position"><option selected value="__None"></option><option value="USER_PROFILE_REALTOR_POSITIONS.TRANSACTION_MANAGER">Responsable transaction</option><option value="USER_PROFILE_REALTOR_POSITIONS.AGENCY_MANAGER">Responsable d'agence</option><option value="USER_PROFILE_REALTOR_POSITIONS.ACCOUNTANT">Comptable</option><option value="USER_PROFILE_REALTOR_POSITIONS.PRESIDENT">Président / Gérant</option><option value="USER_PROFILE_REALTOR_POSITIONS.DIRECTOR">Directeur / Responsable d'agence</option><option value="USER_PROFILE_REALTOR_POSITIONS.ADVISOR_SALES">Conseiller / Négociateur vente</option><option value="USER_PROFILE_REALTOR_POSITIONS.ADVISOR_RENT">Conseiller / Négociateur location</option><option value="USER_PROFILE_REALTOR_POSITIONS.ADMINISTRATOR_RENT">Gestionnaire location / syndic</option><option value="USER_PROFILE_REALTOR_POSITIONS.ASSISTANT">Assistant</option><option value="USER_PROFILE_REALTOR_POSITIONS.OTHER">Autres</option></select><div data-control-errors></div></div>
+            </div>
+                            </div>
+                        </div>
+
+                        
+                            
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+<div class="g-recaptcha" data-sitekey="6Lcu0w8TAAAAABpzjHp-te14694rwcxiMD0N8z0k"></div>
+
+    <div data-control-errors></div>
+
+                        
+
+                        <div class="flex flex-justify-center flex-center margin-top-double">
+                            <button type="submit" data-signup-submit class="btn btn--primary">Créer mon compte</button>
+                        </div>
+                    </form>
+                    <p class="text--small">
+                        En cliquant sur “Créer mon compte” vous acceptez nos
+                        <a target="_blank" href="/terms/">conditions générales d'utilisation</a>
+                        et notre 
+                        <a target="_blank" href="/terms/#privacy">politique de confidentialité</a>.
+                        MeilleursAgents propose aux particuliers un service d'aide à un projet immobilier, dont la réalisation de l'estimation en ligne peut constituer le préalable avant l'estimation par des professionnels de l'immobilier.
+                        MeilleursAgents procède au traitement des données nécessaires à l'utilisation de ses services ; ces données sont uniquement destinées à MeilleursAgents. Vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition, pour les informations vous concernant. Pour exercer vos droits, <a target="_blank" href="/contact/">contactez-nous</a>.
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <div class="auth-explications">
+            <ul class="check-list">
+                <li class="check-list__item">
+                    <div>
+                        <h3 class="title--h3">Confidentialité</h3>
+                        <div>Vos coordonnées et données personnelles ne sont jamais transmises à des tiers sans votre autorisation préalable.</div>
+                    </div>
+                </li>
+                <li class="check-list__item">
+                    <div>
+                        <h3 class="title--h3">Anti-spam</h3>
+                        <div>Chez MeilleursAgents.com, vous ne recevrez aucun email non sollicité.</div>
+                    </div>
+                </li>
+                <li class="check-list__item">
+                    <div>
+                        <h3 class="title--h3">Sans engagement</h3>
+                        <div>Vous pourrez vous désinscrire à tout moment et facilement.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+</div></div>
+
+
+    <footer class="footer">
+    <div class="footer__content"><div class="footer__menu">
+            <div class="footer__menu-header">A propos</div>
+            <a class="footer__menu-item" href="/a-propos/terms/">Pourquoi MeilleursAgents ?</a>
+            <a class="footer__menu-item" href="/a-propos/espace-presse/">Espace presse</a>
+            <a class="footer__menu-item" href="/a-propos/presse/">La presse parle de nous</a>
+            <a class="footer__menu-item" href="https://carriere.meilleursagents.com">Nous recrutons !</a>
+            <a class="footer__menu-item" href="https://www.meilleursagents.com/wikimmo/">Mag Info Wikimmo</a>
+            <a class="footer__menu-item" href="https://pro-staging.meilleursagents.org?utm_source=trappe_lead&amp;utm_medium=www&amp;utm_campaign=Footer&amp;utm_content=footer:ma_pro:discover_ma_pro"  data-ua-hit-type="event" data-ua-event-category="All" data-ua-event-action="pro:go:ma_pro" data-ua-event-label="footer:ma_pro:discover_ma_pro"  >Nos offres pro</a>
+        </div>
+
+        <div class="footer__menu">
+            <div class="footer__menu-header">Conditions</div>
+            <a class="footer__menu-item" href="/terms/">Conditions générales d'utilisation</a>
+            <a class="footer__menu-item" href="/terms/#legal">Mentions légales</a>
+            <a class="footer__menu-item" href="/terms/#honoraires">Nos honoraires de vente</a>
+            <a class="footer__menu-item" href="/terms/#privacy">Politique de confidentialité</a>
+            <a
+                class="footer__menu-item"
+                href="/cookies/" data-ua-hit-type="event" data-ua-event-category="Annonces" data-ua-event-action="go:cookies_settings" data-ua-event-label="listings:footer:cookies_settings_link"  >Paramétrage des cookies</a>
+            <a class="footer__menu-item" href="/terms/#comparateur">Mentions comparateur</a>
+        </div>
+
+        <div class="footer__menu">
+            <div class="footer__menu-header">Aide</div>
+            <a class="footer__menu-item" href="/support/faq/">Foire aux questions (FAQ)</a>
+            <a class="footer__menu-item" href="/contact/">Contactez-nous</a>
+        </div>
+
+        <div class="footer__social">
+            <a class="no-underline" href="https://www.facebook.com/meilleursagents" target="_blank" title="Page Facebook de MeilleursAgents">
+                <i class="icon icon-facebook" role="img" aria-label="Page Facebook de MeilleursAgents"></i>
+            </a>
+            <a class="no-underline" href="https://twitter.com/meilleursagents" target="_blank" title="Page Twitter de MeilleursAgents">
+                <i class="icon icon-twitter" role="img" aria-label="Page Twitter de MeilleursAgents"></i>
+            </a>
+        </div>
+
+        <div class="footer__lastline">
+            <div>
+                <div class="footer__happyAtWork-link">
+                    <img src="https://www-staging.meilleursagents.org/static/images/happy_at_work_2018.jpg?t=1601469223" alt="Numéro 1 en 2018 d'après le sondage Happy at work" />
+                </div>
+            </div>
+            © MeilleursAgents. Copyright 2008 - 2020.
+        </div></div>
+</footer></div>
+<div data-select2-placeholder></div>
+<div data-popin-placeholder></div>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CPromise.prototype.finally%2CObject.assign%2CObject.entries%2CString.prototype.includes%2CNumber.isNaN%2CSet%2CMap%2CArray.from%2CArray.prototype.find%2CArray.prototype.includes%2CElement.prototype.dataset%2CElement.prototype.matches%2CURLSearchParams"></script>
+
+    <script type="text/javascript" src="https://www-staging.meilleursagents.org/static/build/site/js/vendors.c747264a.js?t=1601469709"></script>
+    <script type="text/javascript" src="https://www-staging.meilleursagents.org/static/build/site/js/mapbox.c6ce8651.js?t=1601469709"></script>
+    
+    <script type="text/javascript" src="https://www-staging.meilleursagents.org/static/build/site/js/main.317a1d43.js?t=1601469709"></script>
+
+    
+        <script></script>
+    </body>
+</html>
