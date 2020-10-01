@@ -4,8 +4,8 @@ L’objectif est de réaliser une carte des prix moyens (€/m2) de mise en vent
 
 Voici un exemple de ce qu’on veut obtenir au final : 
 
-![image 2](img/image2.png)
-![image 1](img/image1.png)
+![image 2](pricemap/img/image2.png)
+![image 1](pricemap/img/image1.png)
 
 ## 1 - Collecter l’information 
 

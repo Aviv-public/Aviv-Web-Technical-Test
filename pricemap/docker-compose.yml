@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./pricemap:/home/pricemap/pricemap
+      - ./settings.py:/home/pricemap/settings.py
+      - ./run.py:/home/pricemap/run.py
+    command: ["/home/pricemap/wait-for-postgres.sh", "db:5432", "--", "python3", "/home/pricemap/run.py"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      PGHOST: db
+      PGDATABASE: pricemap
+      PGUSER: pricemap
+      PGPASSWORD: pricemap
+
+  db:
+    image: "mdillon/postgis:11-alpine"
+
+    volumes:
+      - type: volume
+        source: pg-data
+        target: /var/lib/postgresql/data
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U" , "postgres" , "-d", "pricemap" ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    environment:
+      POSTGRES_DB: pricemap
+      POSTGRES_USER: pricemap
+      POSTGRES_PASSWORD: pricemap
+
+volumes:
+  pg-data:
