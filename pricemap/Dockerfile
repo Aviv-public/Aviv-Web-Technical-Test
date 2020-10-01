@@ -10,7 +10,6 @@ COPY docker/wait-for-postgres.sh /home/pricemap/wait-for-postgres.sh
 
 COPY pricemap /home/pricemap/pricemap
 COPY settings.py /home/pricemap/settings.py
-COPY run.py /home/pricemap/run_pricemap.py
 
 USER pricemap
 WORKDIR /home/pricemap/pricemap

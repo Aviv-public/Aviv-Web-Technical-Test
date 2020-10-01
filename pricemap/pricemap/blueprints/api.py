@@ -45,7 +45,7 @@ def geoms():
 @api.route('/get_price/<path:cog>')
 def get_price(cog):
     """
-    Return the volumes distribution for the given cog in json format
+    Return the volumes distribution for the given cog in storage format
     """
     # FIXME
     #   - Give a better name
