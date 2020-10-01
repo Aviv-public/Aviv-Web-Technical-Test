@@ -1,17 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import, division, print_function, unicode_literals
-
-from flask import g, Flask, render_template
+from flask import Flask, g,render_template
 import psycopg2
 
-import pikachu.blueprints.api
-
+from pricemap.blueprints.api import api
 
 app = Flask(__name__)
 app.config.from_object('settings')
-app.register_blueprint(pikachu.blueprints.api.api, url_prefix='/api')
+app.register_blueprint(api, url_prefix='/api')
 
 
 @app.before_request
@@ -32,7 +26,3 @@ def before_request():
 @app.route('/')
 def index():
    return render_template('index.html')
-
-
-if __name__ == '__main__':
-   app.run(app.config['HOST'], app.config['PORT'])
