@@ -1,13 +1,23 @@
 import json
+import logging
 import os
 import collections
+import sys
 from io import BytesIO
 
 import requests
+import typing
 from lxml import etree
 
+logger = logging.getLogger(__file__)
+logger.setLevel(logging.INFO)
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
-base_url = "https://www-staging.meilleursagents.org/annonces/achat/paris-75000/"
+
+base_url = "https://www-staging.meilleursagents.org/annonces/achat/paris-75000/appartement/"
 
 
 subcity_place_id = {
@@ -33,34 +43,47 @@ subcity_place_id = {
         "Paris 20\u00e8me arrondissement": 32701,
 }
 
+ListingPageGenerator = typing.Generator[typing.Tuple[bytes, int], None, None]
+ListingDataGenerator = typing.Generator[typing.Tuple[int, typing.Dict[str, str]], None, None]
 
-def page_fetcher():
+
+def page_fetcher() -> ListingPageGenerator:
     page_number = 1
     while True:
+        logger.info("Fetching page %d", page_number)
+
         response = requests.get(base_url + f"?page={page_number}")
         if response.status_code == 416:
             return
+        if response.status_code != 200:
+            logger.error("Enable to fetch page %d", page_number)
+            yield b"", -1
+
         yield response.content, page_number
+
         page_number += 1
 
 
-def disk_fetcher(directory):
+def disk_fetcher(directory: str) -> ListingPageGenerator:
     for path in os.listdir(path=directory):
         with open(os.path.join(directory, path), 'rb') as fd:
             page_number = int(os.path.splitext(path)[0])
             yield fd.read(), page_number
 
 
-def parser(fetcher):
+def parser(fetcher: ListingPageGenerator) -> ListingDataGenerator:
     for content, page_number in fetcher:
+        logger.info("Parsing page %d", page_number)
+
         parser = etree.HTMLParser()
         tree = etree.parse(BytesIO(content), parser)
-        listing = tree.xpath("//*[@data-search-listing-item-characteristics]")
+        listing = tree.xpath("//*[@data-search-listing-item]")
         data = [
                 {
-                    "title": item.xpath("./*[@data-search-listing-item-title]")[0].text.strip(),
-                    "price": item.xpath("./*[@data-search-listing-item-price]")[0].text.strip(),
-                    "place": item.xpath("./*[@data-search-listing-item-place]")[0].text.strip(),
+                    "title": item.xpath(".//*[@data-search-listing-item-title]")[0].text.strip(),
+                    "price": item.xpath(".//*[@data-search-listing-item-price]")[0].text.strip(),
+                    "place": item.xpath(".//*[@data-search-listing-item-place]")[0].text.strip(),
+                    "listing_id": item.attrib["data-wa-data"].split("|")[0].split("=")[1]
                 }
                 for item in listing
         ]
@@ -68,22 +91,22 @@ def parser(fetcher):
 
 
 if __name__ == "__main__":
-    # for response, page_number in get_pages():
-    #     print(page_number)
-    #     with open(f"{page_number}.html", "wb") as result_file:
-    #         result_file.write(response.content)
     result = collections.defaultdict(list)
-    error = 0
-    for number, data in parser(disk_fetcher("html")):
+
+    errors = 0
+    for number, data in parser(page_fetcher()):
         for listing in data:
             try:
                 result[subcity_place_id[listing["place"]]].append(listing)
             except Exception as exc:
-                error += 1
+                logger.exception("Error while indexing listing by place ID")
+                errors += 1
 
-    print(error)
+    logger.info("Ignoring %d listings", errors)
     for place_id, listings in result.items():
-        # os.mkdir(os.path.join("storage", str(place_id)))
-        with open(f"json/{place_id}.json", "w") as fd:
-            fd.write(json.dumps(listings))
+        cwd = os.path.dirname(__file__)
+        file_path = os.path.join(cwd, "listingapi", "storage", f"{place_id}.json")
 
+        logger.info("Store place_id %d", place_id)
+        with open(file_path, "w") as fd:
+            fd.write(json.dumps(listings))

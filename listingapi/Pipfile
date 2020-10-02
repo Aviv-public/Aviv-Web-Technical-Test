@@ -5,6 +5,8 @@ verify_ssl = true
 
 [packages]
 Flask="*"
+lxml="*"
+requests="*"
 
 [requires]
 python_version = "3.8"

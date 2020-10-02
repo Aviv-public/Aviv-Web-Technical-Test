@@ -16,7 +16,6 @@ services:
     volumes:
       - ./pricemap/pricemap:/home/pricemap/pricemap
       - ./pricemap/settings.py:/home/pricemap/settings.py
-      - ./pricemap/run.py:/home/pricemap/run.py
     command: ["/home/pricemap/wait-for-postgres.sh", "db:5432", "--", "flask", "run", "-h", "0.0.0.0"]
     ports:
       - "8080:5000"
