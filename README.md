@@ -1,37 +1,38 @@
 # Projet - Carte des prix à Paris
 
-L’objectif est de réaliser une carte des prix moyens (€/m2) de mise en vente par arrondissement à Paris, accompagnée de statistiques, à partir d'une API d'annonce de Meilleurs Agents.
+L’objectif est de réaliser une carte des prix moyens (€/m2) de mise en vente par arrondissement à Paris, accompagnée de statistiques, à partir d'une API d'annonces de Meilleurs Agents.
 Voici un exemple de ce qu’on veut obtenir au final :
 
 ![image 2](pricemap/img/image2.png)
 ![image 1](pricemap/img/image1.png)
 
-Une partie du projet vous est déja fourni. Pour le faire fonctionner, seul `docker` et `docker-compose` ne sont nécessaires. Pour le reste, utilisz les outils que vous souhaitez.
+Une partie du projet vous est déja fourni. Pour le faire fonctionner, seul `docker` et `docker-compose` sont nécessaires. Pour le reste, utilisez les outils que vous souhaitez.
 
 Ce qui est déjà en place:
 - une application web de visualisation (`pricemap`)
 - une base données (`PostgreSQL`)
 - une API d'annonces de biens immobilier sur Paris (`listingapi`)
 
+L'ensemble de votre code doit tourner dans le conteneur `pricemap`.
 
-Voici une documentation sur le fonctionnement du projet est disponible [ici](./usages.md)
+Une documentation sur le fonctionnement du projet est disponible [ici](./usages.md)
 
 
 ## 1 - Collecter l’information
 
-On souhaite collecter l'ensemble des annonces de biens immobilier sur Paris. Ces informations seront à récuperer depuis l'API d'annonce fournie qu'il faudra parcourir entièrement.
+On souhaite collecter l'ensemble des annonces de biens immobilier sur Paris. Ces informations seront à récupérer depuis l'API d'annonces fournie qu'il faudra parcourir entièrement.
 
 On peut accéder à cette API, une fois le projet démarré :
 - depuis la machine locale via : http://localhost:8181/listings/32682
 - depuis le conteneur de votre application via: http://listingapi:5000/listings/32682
 
-**L'API ce trouve dans le module "listingapi" et aucune modification n'est à apporter à ce projet**
+**L'API se trouve dans le module "listingapi" et aucune modification n'est à apporter à ce projet**
 
 #### 1.1 -  Filtre par localisation
 
 Au sein de Paris, nous souhaitons sectoriser les annonces par arrondissement.
 
-L’argument `place_id` prendra donc successivement pour valeur les identifiants des arrondissements de Paris tels qu’indiqués dans le tableau ci-dessous.
+Le paramètre de requête `place_id` prendra donc successivement pour valeur les identifiants des arrondissements de Paris tels qu’indiqués dans le tableau ci-dessous.
 
 Ces identifiants sont également disponibles en base de données, dans le schéma public dans une table nommée `geo_place`, contenant les arrondissements de Paris et leurs cog (Code Officiel Géographique).
 
@@ -76,11 +77,11 @@ Pour chaque annonce, on est intéressé par les caractéristiques suivantes :
 - `area` : superficie du bien, en valeur entière de mètres carrés
 - `room_count` : nombre de pièces du bien, en valeur entière également ;
 
-Il se peut que les caractéristiques ne soit pas exposées comme souhaité par l'API, mais certaines d'entre elles sont à extraire. Attention aux appartements de 1 pièce qui sont notés « Studio »
+Il se peut que les caractéristiques ne soient pas exposées comme souhaité par l'API, mais que certaines d'entre elles soient à extraire. Attention aux appartements de 1 pièce qui sont notés « Studio »
 
-### 1.4 - Structure les informations en base de données
+### 1.4 - Structure des informations en base de données
 
-L’information extraite du site web doit ensuite être stockée en base de données dans une ou plusieurs tables qui faudra définir au préalable.
+L’information extraite de la `listingapi` web doit ensuite être stockée en base de données dans une ou plusieurs tables qui faudra définir au préalable.
 En plus de leurs caractéristiques, on veut aussi modéliser l’évolution des annonces dans le temps. Plus concrètement, on veut connaître :
 
 - la date de mise en ligne (ou au moins la date à laquelle on l’a vue pour la première fois),
@@ -96,11 +97,9 @@ Voici les informations requises pour se connecter au serveur de base de données
 - password : `pricemap`
 - database : `pricemap`
 
-Le port de PostgreSQL est également exposé sur votre machine locale, vous pouvez également y accéder depuis `localhost`.
-
 ## 2 - Restituer l’information
 
-La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrit en Python à l’aide du micro-framework Flask.
+La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrite en Python à l’aide du micro-framework Flask.
 
 L’application web est déjà fonctionnelle, il reste à l’alimenter en données correctes.
 
