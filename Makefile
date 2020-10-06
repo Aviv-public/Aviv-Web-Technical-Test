@@ -9,4 +9,3 @@ clean:
 
 clean-all:
 	docker-compose down --remove-orphans -v
-

@@ -5,10 +5,6 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 # Service
 import os
 
-DEBUG = True
-HOST = '0.0.0.0'
-PORT = 8080
-
 # Database
 DATABASE = {
     'database': os.getenv('PGDATABASE'),
