@@ -118,3 +118,13 @@ Il ne reste donc plus qu’à calculer, pour l’arrondissement ciblé, la distr
 ### 2.3 - Afficher le prix moyen de l’arrondissement (bonus)
 
 Entre la carte et l’histogramme, nous n’affichons nulle part le prix moyen de l’arrondissement de manière numérique. Que faut-il faire pour l’afficher sur la page web lorsqu’on clique sur un arrondissement de la carte ?
+
+## 3 - Industrialisation
+
+### 3.1 - Passage à l'échelle
+On souhaiterait avoir l'historique des prix a l'échelle de la France. Pour cela vous devez réfléchir à une architecture
+qui permettra d'insèrer les prix des annonces sur toute la France dans la même échelle de temps que l'insertion des prix pour
+Paris.
+
+Carte blanche en terme d'infrastructure, aucune limitation de budget ni aucune autre contrainte.
+On souhaite avoir comme rendu un shema (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test.
