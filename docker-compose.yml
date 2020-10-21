@@ -4,18 +4,18 @@ services:
   listingapi:
     build: listingapi
     volumes:
-      - ./listingapi/listingapi:/home/listingapi/listingapi
+      - ./listingapi:/home/listingapi/app:rw
     command: ["flask", "run", "-h", "0.0.0.0"]
     ports:
       - "8181:5000"
     environment:
       FLASK_DEBUG: 1
+      FLASK_APP: "listingapi.app"
 
   pricemap:
     build: pricemap
     volumes:
-      - ./pricemap/pricemap:/home/pricemap/pricemap
-      - ./pricemap/settings.py:/home/pricemap/settings.py
+      - ./pricemap:/home/pricemap/app:rw
     command: ["/home/pricemap/wait-for-postgres.sh", "db:5432", "--", "flask", "run", "-h", "0.0.0.0"]
     ports:
       - "8080:5000"
@@ -28,6 +28,7 @@ services:
       PGUSER: pricemap
       PGPASSWORD: pricemap
       FLASK_DEBUG: 1
+      FLASK_APP: "pricemap.app"
 
   db:
     image: "mdillon/postgis:11-alpine"
