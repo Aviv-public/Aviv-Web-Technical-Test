@@ -25,7 +25,7 @@ def listings(place_id: int):
 
     page_size = 20
     offset = page * page_size
-    if offset > len(listings):
+    if offset >= len(listings):
         return make_response("", 416)
 
     return jsonify(listings[page*20:offset+page_size])
