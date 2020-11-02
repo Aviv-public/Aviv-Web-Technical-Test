@@ -18,7 +18,7 @@ def listings(place_id: int):
     cwd = os.path.dirname(__file__)
     file_path = os.path.join(cwd, "storage", f"{place_id}.json")
     if not os.path.exists(file_path):
-        raise NotFound(f"\"place_id\" not found!")
+        raise NotFound(f"\"place_id\" {place_id} not found!")
 
     with open(file_path) as fd:
         listings = json.load(fd)
@@ -28,4 +28,4 @@ def listings(place_id: int):
     if offset >= len(listings):
         return make_response("", 416)
 
-    return jsonify(listings[page*20:offset+page_size])
+    return jsonify(listings[offset:offset+page_size])
