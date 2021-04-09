@@ -133,7 +133,16 @@ Entre la carte et l’histogramme, nous n’affichons nulle part le prix moyen d
 ## 3 - Industrialisation
 
 ### 3.1 - Passage à l'échelle
-On souhaiterait avoir l'historique des prix a l'échelle de la France. Pour cela vous devez réfléchir à une architecture qui permettra d'insérer les prix des annonces sur toute la France dans la même échelle de temps que l'insertion des prix pour Paris.
 
-Carte blanche en terme d'infrastructure, aucune limitation de budget ni aucune autre contrainte.
-On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test.
+On souhaite maintenant avoir l'historique des prix à l'échelle de la France pour offrir une carte des prix contenant des valeurs les plus fraîches possibles aux utilisateurs de notre site grand public.
+
+Pour cela vous devez réfléchir à une architecture qui respectera les contraintes suivantes:
+
+1. insérer les prix des annonces sur toute la France en moins de 5 minutes.
+
+2. assurer un temps de réponse inférieur à 500ms lors de la consultation de la carte quel que soit le nombre d'utilisateurs connectés simultanément.
+
+Vous avez carte blanche en terme d'infrastructure, aucune limitation de budget, de langage ou de technologie, ni aucune autre contrainte.
+
+On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test. 
+
