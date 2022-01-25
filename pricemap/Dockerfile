@@ -3,7 +3,7 @@ FROM python:3.8-slim
 # Install postgres client for waiting db container
 RUN apt-get update && apt-get install --assume-yes postgresql-client
 
-RUN useradd -ms  /bin/bash pricemap
+RUN useradd -ms /bin/bash pricemap
 ARG USER_ID
 RUN if [ "$(id -u pricemap)" != "${USER_ID}" ]; then usermod -u ${USER_ID} pricemap ; fi
 

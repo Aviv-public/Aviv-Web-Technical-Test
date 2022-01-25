@@ -17,6 +17,7 @@ Ce qui est déjà en place:
 - une application web de visualisation (`pricemap`)
 - une base de données (`PostgreSQL`)
 - une API d'annonces de biens immobilier sur Paris (`listingapi`)
+- un premier jet du code pour la partie 1 ("Collecter l'information")
 
 **L'ensemble de votre code doit tourner dans le conteneur `pricemap`.**
 
@@ -32,6 +33,11 @@ On souhaite collecter l'ensemble des annonces de biens immobilier sur Paris. Ces
 On peut accéder à cette API, une fois le projet démarré :
 - depuis la machine locale via : http://localhost:8181/listings/32682
 - depuis le conteneur de votre application `pricemap` via: http://listingapi:5000/listings/32682
+
+Afin de commencer, un premier jet du code existe déjà dans le fichier `app.py`. Ce code ajoute un endpoint `/update_data` à l'application `pricemap` qui lance la récupération de la donnée.
+**Le code est fonctionnel, mais il existe plusieurs améliorations possibles.**
+L'objectif de cette partie est de retravailler et compléter ce code déjà existant, afin de le rendre plus propre et plus proche de l'état de l'art.
+Cette partie est libre, il est donc possible de déplacer le code, d'ajouter des bibliothèques, de changer la façon dont le code est appelé etc...
 
 
 

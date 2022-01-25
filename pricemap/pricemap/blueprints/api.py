@@ -19,7 +19,7 @@ def geoms():
         SELECT
             ST_ASGEOJSON(geom) as geom,
             cog,
-            -- FIXME the next line shoudl return a real price
+            -- FIXME the next line should return a real price
             trunc(random() * 5000 + 5500) as price
         FROM geo_place;"""
     cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
