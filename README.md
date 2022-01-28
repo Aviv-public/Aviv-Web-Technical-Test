@@ -114,23 +114,24 @@ Voici les informations requises pour se connecter au serveur de base de données
 
 La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrite en Python à l’aide du micro-framework Flask.
 
-L’application web est déjà fonctionnelle, il reste à l’alimenter en données correctes.
+Comme pour la partie 1, l’application web est déjà fonctionnelle mais peut être améliorée
 
 ### 2.1 - Cartographier les prix par arrondissement
 
 Au chargement de la page web, le code JavaScript en charge de la génération de la carte interroge l’application web Python afin d’obtenir la liste des entités géographiques à afficher. L’application web fournit en retour une structure de données au format GeoJSON contenant la liste des arrondissements à afficher, leur forme géométrique ainsi qu’un prix moyen, définit aléatoirement pour le moment. La couleur de la forme géométrique dépend du prix de l’arrondissement qu’elle représente, selon la même échelle de couleurs que celle actuellement utilisée pour la carte de Paris sur le site web de MeilleursAgents.
 
-Il ne reste donc plus qu’à calculer, pour chaque arrondissement, le prix moyen par mètre carré réel et à intégrer ce résultat dans la réponse de l’application web au code JavaScript en charge de la génération de la carte.
+Pour chaque arrondissement, le prix moyen par mètre carré réel est calculé pour être ensuite affiché sur le site web.
 
-Pour cela, il faut modifier l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`.
+Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : requête, calcul de la donnée, schémas de stockage de la donnée etc...
 
 ### 2.2 - Afficher des statistiques par arrondissement
 
 Lorsque l’on clique sur un arrondissement, un histogramme apparaît. Cet histogramme représente la distribution du volume d’annonces par gamme de prix dans cet arrondissement. De la même manière que précédemment, le code JavaScript en charge de la génération de cet histogramme interroge l’application web avant chaque affichage, en passant le code de l’arrondissement en paramètre. L’application web fournit en retour une structure de données au format JSON contenant, entre autres, les valeurs de chacune des barres de l’histogramme. L’axe des ordonnées est alors mis à l’échelle automatiquement en fonction des valeurs fournies.
 
-Il ne reste donc plus qu’à calculer, pour l’arrondissement ciblé, la distribution des annonces par gammes de prix et à l’intégrer à la réponse de l’application web au code JavaScript en charge de la génération de l’histogramme.
+Pour l’arrondissement ciblé, la distribution des annonces par gammes de prix est calculée pour être ensuite intégrée la réponse de l’application web et au code JavaScript en charge de la génération de l’histogramme.
 
-Pour cela, il faut modifier l'endpoint `/get_price/<path:cog>` dans `pricemap/pricemap/blueprints/api.py`.
+Le code est dans l'endpoint `/get_price/<path:cog>` dans `pricemap/pricemap/blueprints/api.py`. Comme pour l'autre endpoint, le code peut être aussi amélioré.
+Vous pouvez changer la distribution, les labels, la méthode de calcul etc... de l'histogramme.
 
 ### 2.3 - Afficher le prix moyen de l’arrondissement (bonus)
 

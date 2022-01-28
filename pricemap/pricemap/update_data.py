@@ -28,42 +28,42 @@ GEOMS_IDS = [
 
 def init_database():
     sql = """
-        CREATE TABLE IF NOT EXISTS listings (
-            id INTEGER PRIMARY KEY,
+        CREATE TABLE listings (
+            id INTEGER,
             place_id INTEGER,
             price INTEGER,
             area INTEGER,
             room_count INTEGER,
-            first_seen_at TIMESTAMP
-        );
-        
-        CREATE TABLE IF NOT EXISTS listings_history(
-            listing_id INTEGER,
-            price INTEGER,
-            seen_at TIMESTAMP
+            seen_at TIMESTAMP,
+            PRIMARY KEY (id, seen_at)
         );
     """
     cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute(sql)
-    g.db.commit()
+    try:
+        cursor.execute(sql)
+        g.db.commit()
+    except:
+        g.db.rollback()
+        print("Error: maybe table already exists?")
+        return
 
 def update():
-    # First create the database if needed
+    # init database
     init_database()
     db_cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     for geom in GEOMS_IDS:
-        page = 0
+        p = 0
         while True:
-            page += 1
-            url = "http://listingapi:5000/listings/" + str(geom) + "?page=" + str(page)
-            data = requests.get(url)
+            p += 1
+            url = "http://listingapi:5000/listings/" + str(geom) + "?page=" + str(p)
+            d = requests.get(url)
 
             # Break when finished
-            if data.status_code == 416:
+            if d.status_code == 416:
                 break
 
-            for item in data.json():
+            for item in d.json():
                 listing_id = item["listing_id"]
                 try:
                     room_count = 1 if "Studio" in item["title"] else int("".join([s for s in item["title"].split("pièces")[0] if s.isdigit()]))
@@ -82,7 +82,6 @@ def update():
 
                 seen_at = datetime.now()
 
-                current_app.logger.info("Inserting (%s, %s, %s, %s, %s, %s)", listing_id, geom, price, area, room_count, seen_at)
                 sql = f"""
                     INSERT INTO listings VALUES(
                         {listing_id},
@@ -92,20 +91,6 @@ def update():
                         {room_count},
                         '{seen_at}'
                     );
-                    
-                   
                 """
-                try:
-                    db_cursor.execute(sql)
-                except:
-                    g.db.rollback()
-
-                sql_history = f"""
-                    INSERT INTO listings_history VALUES(
-                        {listing_id},
-                        {price},
-                        '{seen_at}'
-                    );
-                """
-                db_cursor.execute(sql_history)
+                db_cursor.execute(sql)
                 g.db.commit()
