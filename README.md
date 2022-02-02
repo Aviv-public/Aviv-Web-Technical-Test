@@ -17,7 +17,7 @@ Ce qui est déjà en place:
 - une application web de visualisation (`pricemap`)
 - une base de données (`PostgreSQL`)
 - une API d'annonces de biens immobilier sur Paris (`listingapi`)
-- un premier jet du code pour la partie 1 ("Collecter l'information")
+- un premier jet du code pour la partie 1 ("Collecter l'information") et la partie 2 ("Restituer l'information")
 
 **L'ensemble de votre code doit tourner dans le conteneur `pricemap`.**
 
@@ -94,7 +94,9 @@ Il se peut que les caractéristiques ne soient pas exposées comme souhaité par
 
 ### 1.4 - Structure des informations en base de données
 
-Une fois les annonces extraites en respectant les caractéristiques ci-dessus, elles doivent être ensuite stockées en base de données dans une ou plusieurs tables qui faudra définir au préalable.
+Une fois les annonces extraites en respectant les caractéristiques ci-dessus, elles doivent être ensuite stockées en base de données dans une ou plusieurs tables. La version actuelle du code fourni stocke les informations dans une table `listings`.
+Comme énoncé plus haut, la modélisation en table peut être modifiée.
+
 En plus de leurs caractéristiques, on veut aussi modéliser l’évolution des annonces dans le temps. Plus concrètement, on veut connaître :
 
 - la date de mise en ligne (ou au moins la date à laquelle on l’a vue pour la première fois)
@@ -114,7 +116,7 @@ Voici les informations requises pour se connecter au serveur de base de données
 
 La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrite en Python à l’aide du micro-framework Flask.
 
-Comme pour la partie 1, l’application web est déjà fonctionnelle mais peut être améliorée.
+Comme pour la partie 1, l’application web est déjà fonctionnelle mais **peut être améliorée**.
 
 ### 2.1 - Cartographier les prix par arrondissement
 
@@ -122,7 +124,7 @@ Au chargement de la page web, le code JavaScript en charge de la génération de
 
 Pour chaque arrondissement, le prix moyen par mètre carré réel est calculé pour être ensuite affiché sur le site web.
 
-Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : requête, calcul de la donnée, schémas de stockage de la donnée, etc.
+Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : vérification du calcul effectué, requête SQL, modélisation du stockage de la donnée, etc.
 
 ### 2.2 - Afficher des statistiques par arrondissement
 
