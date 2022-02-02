@@ -37,7 +37,7 @@ On peut accéder à cette API, une fois le projet démarré :
 Afin de commencer, un premier jet du code existe déjà dans le fichier `app.py`. Ce code ajoute un endpoint `/update_data` à l'application `pricemap` qui lance la récupération de la donnée.
 **Le code est fonctionnel, mais il existe plusieurs améliorations possibles.**
 L'objectif de cette partie est de retravailler et compléter ce code déjà existant, afin de le rendre plus propre et plus proche de l'état de l'art.
-Cette partie est libre, il est donc possible de déplacer le code, d'ajouter des bibliothèques, de changer la façon dont le code est appelé etc...
+Cette partie est libre, il est donc possible de déplacer le code, d'ajouter des bibliothèques, de changer la façon dont le code est appelé, etc.
 
 
 
@@ -114,7 +114,7 @@ Voici les informations requises pour se connecter au serveur de base de données
 
 La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrite en Python à l’aide du micro-framework Flask.
 
-Comme pour la partie 1, l’application web est déjà fonctionnelle mais peut être améliorée
+Comme pour la partie 1, l’application web est déjà fonctionnelle mais peut être améliorée.
 
 ### 2.1 - Cartographier les prix par arrondissement
 
@@ -122,16 +122,16 @@ Au chargement de la page web, le code JavaScript en charge de la génération de
 
 Pour chaque arrondissement, le prix moyen par mètre carré réel est calculé pour être ensuite affiché sur le site web.
 
-Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : requête, calcul de la donnée, schémas de stockage de la donnée etc...
+Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : requête, calcul de la donnée, schémas de stockage de la donnée, etc.
 
 ### 2.2 - Afficher des statistiques par arrondissement
 
 Lorsque l’on clique sur un arrondissement, un histogramme apparaît. Cet histogramme représente la distribution du volume d’annonces par gamme de prix dans cet arrondissement. De la même manière que précédemment, le code JavaScript en charge de la génération de cet histogramme interroge l’application web avant chaque affichage, en passant le code de l’arrondissement en paramètre. L’application web fournit en retour une structure de données au format JSON contenant, entre autres, les valeurs de chacune des barres de l’histogramme. L’axe des ordonnées est alors mis à l’échelle automatiquement en fonction des valeurs fournies.
 
-Pour l’arrondissement ciblé, la distribution des annonces par gammes de prix est calculée pour être ensuite intégrée la réponse de l’application web et au code JavaScript en charge de la génération de l’histogramme.
+Pour l’arrondissement ciblé, la distribution des annonces par gamme de prix est calculée côté API pour être ensuite intégrée à la réponse de l’application web. Le code JavaScript va utiliser cette réponse pour générer l’histogramme.
 
 Le code est dans l'endpoint `/get_price/<path:cog>` dans `pricemap/pricemap/blueprints/api.py`. Comme pour l'autre endpoint, le code peut être aussi amélioré.
-Vous pouvez changer la distribution, les labels, la méthode de calcul etc... de l'histogramme.
+Vous pouvez changer la distribution, les labels, la méthode de calcul,etc. de l'histogramme.
 
 ### 2.3 - Afficher le prix moyen de l’arrondissement (bonus)
 
@@ -151,5 +151,5 @@ Pour cela vous devez réfléchir à une architecture qui respectera les contrain
 
 Vous avez carte blanche en terme d'infrastructure, aucune limitation de budget, de langage ou de technologie, ni aucune autre contrainte.
 
-On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test. 
+On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test.
 
