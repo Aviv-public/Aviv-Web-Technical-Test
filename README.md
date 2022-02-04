@@ -17,6 +17,7 @@ Ce qui est déjà en place:
 - une application web de visualisation (`pricemap`)
 - une base de données (`PostgreSQL`)
 - une API d'annonces de biens immobilier sur Paris (`listingapi`)
+- un premier jet du code pour la partie 1 ("Collecter l'information") et la partie 2 ("Restituer l'information")
 
 **L'ensemble de votre code doit tourner dans le conteneur `pricemap`.**
 
@@ -32,6 +33,11 @@ On souhaite collecter l'ensemble des annonces de biens immobilier sur Paris. Ces
 On peut accéder à cette API, une fois le projet démarré :
 - depuis la machine locale via : http://localhost:8181/listings/32682
 - depuis le conteneur de votre application `pricemap` via: http://listingapi:5000/listings/32682
+
+Afin de commencer, un premier jet du code existe déjà dans le fichier `app.py`. Ce code ajoute un endpoint `/update_data` à l'application `pricemap` qui lance la récupération de la donnée.
+**Le code est fonctionnel, mais il existe plusieurs améliorations possibles.**
+L'objectif de cette partie est de retravailler et compléter ce code déjà existant, afin de le rendre plus propre et plus proche de l'état de l'art.
+Cette partie est libre, il est donc possible de déplacer le code, d'ajouter des bibliothèques, de changer la façon dont le code est appelé, etc.
 
 
 
@@ -88,7 +94,9 @@ Il se peut que les caractéristiques ne soient pas exposées comme souhaité par
 
 ### 1.4 - Structure des informations en base de données
 
-Une fois les annonces extraites en respectant les caractéristiques ci-dessus, elles doivent être ensuite stockées en base de données dans une ou plusieurs tables qui faudra définir au préalable.
+Une fois les annonces extraites en respectant les caractéristiques ci-dessus, elles doivent être ensuite stockées en base de données dans une ou plusieurs tables. La version actuelle du code fourni stocke les informations dans une table `listings`.
+Comme énoncé plus haut, la modélisation en table peut être modifiée.
+
 En plus de leurs caractéristiques, on veut aussi modéliser l’évolution des annonces dans le temps. Plus concrètement, on veut connaître :
 
 - la date de mise en ligne (ou au moins la date à laquelle on l’a vue pour la première fois)
@@ -108,23 +116,24 @@ Voici les informations requises pour se connecter au serveur de base de données
 
 La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrite en Python à l’aide du micro-framework Flask.
 
-L’application web est déjà fonctionnelle, il reste à l’alimenter en données correctes.
+Comme pour la partie 1, l’application web est déjà fonctionnelle mais **peut être améliorée**.
 
 ### 2.1 - Cartographier les prix par arrondissement
 
 Au chargement de la page web, le code JavaScript en charge de la génération de la carte interroge l’application web Python afin d’obtenir la liste des entités géographiques à afficher. L’application web fournit en retour une structure de données au format GeoJSON contenant la liste des arrondissements à afficher, leur forme géométrique ainsi qu’un prix moyen, définit aléatoirement pour le moment. La couleur de la forme géométrique dépend du prix de l’arrondissement qu’elle représente, selon la même échelle de couleurs que celle actuellement utilisée pour la carte de Paris sur le site web de MeilleursAgents.
 
-Il ne reste donc plus qu’à calculer, pour chaque arrondissement, le prix moyen par mètre carré réel et à intégrer ce résultat dans la réponse de l’application web au code JavaScript en charge de la génération de la carte.
+Pour chaque arrondissement, le prix moyen par mètre carré réel est calculé pour être ensuite affiché sur le site web.
 
-Pour cela, il faut modifier l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`.
+Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : vérification du calcul effectué, requête SQL, modélisation du stockage de la donnée, etc.
 
 ### 2.2 - Afficher des statistiques par arrondissement
 
 Lorsque l’on clique sur un arrondissement, un histogramme apparaît. Cet histogramme représente la distribution du volume d’annonces par gamme de prix dans cet arrondissement. De la même manière que précédemment, le code JavaScript en charge de la génération de cet histogramme interroge l’application web avant chaque affichage, en passant le code de l’arrondissement en paramètre. L’application web fournit en retour une structure de données au format JSON contenant, entre autres, les valeurs de chacune des barres de l’histogramme. L’axe des ordonnées est alors mis à l’échelle automatiquement en fonction des valeurs fournies.
 
-Il ne reste donc plus qu’à calculer, pour l’arrondissement ciblé, la distribution des annonces par gammes de prix et à l’intégrer à la réponse de l’application web au code JavaScript en charge de la génération de l’histogramme.
+Pour l’arrondissement ciblé, la distribution des annonces par gamme de prix est calculée côté API pour être ensuite intégrée à la réponse de l’application web. Le code JavaScript va utiliser cette réponse pour générer l’histogramme.
 
-Pour cela, il faut modifier l'endpoint `/get_price/<path:cog>` dans `pricemap/pricemap/blueprints/api.py`.
+Le code est dans l'endpoint `/get_price/<path:cog>` dans `pricemap/pricemap/blueprints/api.py`. Comme pour l'autre endpoint, le code peut être aussi amélioré.
+Vous pouvez changer la distribution, les labels, la méthode de calcul,etc. de l'histogramme.
 
 ### 2.3 - Afficher le prix moyen de l’arrondissement (bonus)
 
@@ -144,5 +153,5 @@ Pour cela vous devez réfléchir à une architecture qui respectera les contrain
 
 Vous avez carte blanche en terme d'infrastructure, aucune limitation de budget, de langage ou de technologie, ni aucune autre contrainte.
 
-On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test. 
+On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test.
 

@@ -100,7 +100,7 @@ ALTER TABLE ONLY geo_place
 -- Name: geo_palce_cog_type_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
-CREATE INDEX geo_palce_cog_type_index ON geo_place USING btree (cog);
+CREATE INDEX geo_place_cog_type_index ON geo_place USING btree (cog);
 
 
 -- Completed on 2014-09-12 17:25:14 CEST
