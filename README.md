@@ -1,34 +1,34 @@
-# Projet - Carte des prix à Paris
+# Project - Price map in Paris
 
-L’objectif est de réaliser une carte des prix moyens (€/m2) de mise en vente par arrondissement à Paris, accompagnée de statistiques, à partir d'une API d'annonces de Meilleurs Agents.
-Voici un exemple de ce qu’on veut obtenir au final :
+The objective is to build a price map of the average selling prices (€/m²) per arrondissment in Paris, with statistics, from an API of classified from Meilleurs Agents.
+
+Here is an example of what we want to achieve:
 
 ![image 2](pricemap/img/image2.png)
 ![image 1](pricemap/img/image1.png)
 
-Une partie du projet vous est déjà fourni. Pour le faire fonctionner, les outils suivants sont nécessaires :
+A part of the project is already completed. To make it work, the following tools are required:
 - `docker`
 - `docker-compose`
 - `make`
 
-Pour le reste, utilisez les outils que vous souhaitez.
+For the rest, you can use the tools you prefer.
 
-Ce qui est déjà en place:
-- une application web de visualisation (`pricemap`)
-- une base de données (`PostgreSQL`)
-- une API d'annonces de biens immobilier sur Paris (`listingapi`)
-- un premier jet du code pour la partie 1 ("Collecter l'information") et la partie 2 ("Restituer l'information")
+The following features are already set up:
+- a web application for visualization (`pricemap`)
+- a database (`PostgreSQL`)
+- a real estate properties API of classified for Paris (`listingapi`)
+- a first implementation for the part 1 ("Collecting data") and the part 2 ("Restituting data")
 
-**L'ensemble de votre code doit tourner dans le conteneur `pricemap`.**
+**The entirety of your code must run in the `pricemap` container.**
 
-Une documentation sur le fonctionnement du projet est disponible [ici](./usages.md) pour savoir comment démarrer le projet, entrer dans un conteneur si besoin...
+A documentation detailing how the project is designed can be found [here](./usages.md) to understand how to start the project, interact and enter running containers if needed, ...
 
+## 1 - Collecting data
 
-## 1 - Collecter l’information
+We want to collect the entirety of real estate properties in Paris. These properties will be retrieved from the real estate properties API (`listingapi`), that you will need to browse entirely.
 
-On souhaite collecter l'ensemble des annonces de biens immobilier sur Paris. Ces informations seront à récupérer depuis l'API d'annonces fournie (`listingapi`), qu'il faudra parcourir entièrement.
-
-**Il ne faut donc pas modifier `listingapi`, l'API ne sert qu'à servir les données.**
+**You must not change the `listingapi`, it only serves at exposing data.**
 
 On peut accéder à cette API, une fois le projet démarré :
 - depuis la machine locale via : http://localhost:8181/listings/32682
