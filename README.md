@@ -1,4 +1,4 @@
-# Project - Price map in Paris
+# Backend technical test: Price map in Paris
 
 The objective is to build a price map of the average selling prices (€/m²) per arrondissment in Paris, with statistics, from an API of classified from Meilleurs Agents.
 
