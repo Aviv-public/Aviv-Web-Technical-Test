@@ -7,7 +7,7 @@ Here is an example of what we want to achieve:
 ![image 2](pricemap/img/image2.png)
 ![image 1](pricemap/img/image1.png)
 
-A part of the project is already completed. To make it work, the following tools are required:
+A first version of the project is already completed. To use it, the following tools are required:
 - `docker`
 - `docker-compose`
 - `make`
