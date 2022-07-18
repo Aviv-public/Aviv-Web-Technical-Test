@@ -1,38 +1,38 @@
-# Fonctionnement du projet
+# How to use this project
 
-## Démarrer le projet
-Lance les applications et la base de données.
+## Starting the project
+Starts applications and database.
 
 ```sh
 make run
 ```
 
-`ctrl + C` pour les stopper
+`ctrl + C` to stop.
 
-## Reconstruire le projet
-Normalement cette étape n'est pas nécessaire car effectuée automatiquement au démarrage des applications mais permet de forcer la reconstruction des applications.
+## Rebuilding the project
+This should not be necessary as done automatically on first start, but can allow to force the rebuilt of the apps.
 
 ```sh
 make build
 ```
 
-## Entrer dans le conteneur
-Pour entrer dans le shell de l'application et taper des commandes manuelles
+## Entering a container
+To inter in the shell of the app and run manual commands.
 
 ```sh
 docker-compose run pricemap bash
 ```
 
-Vous pouvez également le faire sur `listingapi` et `db` mais cela ne devrait pas être utile.
+You can also do it on the `listingapi` and `db`, but it should not be necessary.
 
-## Nettoyage
-Détruit les conteneurs des applications. Utile car par défaut, `docker-compose` réutilise des conteneurs déjà lancés
+## Cleaning-up
+Destroys application containers. Useful as `docker-compose` reuses already existing containers by default.
 
 ```sh
 make clean
 ```
 
-Pour supprimer également les volumes de données des applications (pour être certain que votre base de données soit réinitialisée par exemple)
+To also delete application volumes (and remove persisted data, such as database entries):
 ```sh
 make clean-all
 ```

@@ -1,6 +1,6 @@
 # Backend technical test: Price map in Paris
 
-The objective is to build a price map of the average selling prices (€/m²) per arrondissment in Paris, with statistics, from an API of classified from Meilleurs Agents.
+The objective is to build a price map of the average selling prices (€/m²) per arrondissment in Paris, with statistics, from an API of listings from Meilleurs Agents.
 
 Here is an example of what we want to achieve:
 
@@ -17,7 +17,7 @@ For the rest, you can use the tools you prefer.
 The following features are already set up:
 - a web application for visualization (`pricemap`)
 - a database (`PostgreSQL`)
-- a real estate properties API of classified for Paris (`listingapi`)
+- a real estate properties API of listings for Paris (`listingapi`)
 - a first implementation for the part 1 ("Collecting data") and the part 2 ("Restituting data")
 
 **The entirety of your code must run in the `pricemap` container.**
@@ -30,24 +30,24 @@ We want to collect the entirety of real estate properties in Paris. These proper
 
 **You must not change the `listingapi`, it only serves at exposing data.**
 
-On peut accéder à cette API, une fois le projet démarré :
-- depuis la machine locale via : http://localhost:8181/listings/32682
-- depuis le conteneur de votre application `pricemap` via: http://listingapi:5000/listings/32682
+You can access this API, after starting the project :
+- from your local system, at: http://localhost:8181/listings/32682
+- from the container of your `pricemap` application at: http://listingapi:5000/listings/32682
 
-Afin de commencer, un premier jet du code existe déjà dans le fichier `app.py`. Ce code ajoute un endpoint `/update_data` à l'application `pricemap` qui lance la récupération de la donnée.
-**Le code est fonctionnel, mais il existe plusieurs améliorations possibles.**
-L'objectif de cette partie est de retravailler et compléter ce code déjà existant, afin de le rendre plus propre et plus proche de l'état de l'art.
-Cette partie est libre, il est donc possible de déplacer le code, d'ajouter des bibliothèques, de changer la façon dont le code est appelé, etc.
+To get started, a first implementation already exists in the `app.py` file. This code adds a `/update_data` endpoint to the `pricemap` app, which starts data retrieval.
 
+**This code does work, but requires improvements.**
 
+The aim of this part is to rework and complete existing code, to make it cleaner and to match the state of the art.
+You can work the way you want, you can move code, add libraries, change the way code is called, etc.
 
-#### 1.1 -  Filtre par localisation
+#### 1.1 -  Localization filter
 
-Au sein de Paris, nous souhaitons sectoriser les annonces par arrondissement.
+In Paris, we want to display listings per arrondissement.
 
-Lors des appels à `listingsapi`, le paramètre de la requête `place_id` prendra donc successivement pour valeur les identifiants des arrondissements de Paris tels qu’indiqués dans le tableau ci-dessous.
+When calling the `listingapi`, the parameter of the request named `place_id` will successively take the value of each Paris arrondissement identifier as presented in the following array.
 
-Ces identifiants sont également disponibles en base de données, dans le schéma public dans une table nommée `geo_place`, contenant les arrondissements de Paris et leurs cog (Code Officiel Géographique).
+Those identifiers are also available in database, in the public schema in a table called `geo_place`, contianing Paris arrondissements and their COG (Code Officiel Géographique - official geographical code).
 
 | Arrondissement | Id |
 | ------- | ----------|
@@ -75,35 +75,34 @@ Ces identifiants sont également disponibles en base de données, dans le schém
 
 #### 1.2 - Pagination
 
-L'API `listingsapi` renvoie des pages de 20 annonces. Il vous faudra donc parcourir toutes les pages pour tous les arrondissements, via la paramètre `?page=<numero_de_page>`.
+The `listingapi` sends pages of 20 listings. You will have to browse all pages for all arrondissements, using the parameter `?page=<page_number>`.
 
-Exemple: http://listingapi:5000/listings/32682?page=7
+Example: http://listingapi:5000/listings/32682?page=7
 
-Le nombre de pages de résultat est différent pour chaque arrondissement : de zéro à plusieurs dizaines de pages. Il faudra imaginer un mécanisme s’adaptant au nombre de pages à parcourir. Il y a plusieurs manières de faire.
+The number of pages is different for each arrondissement: from zero to dozen of pages. You will have to imagine a mechanism that can be adapted to the number of pages to browse. There are multiple implementations possible.
 
-### 1.3 Extraction des caractéristiques des annonces
+### 1.3 Extracting listings properties
 
-Pour chaque annonce, on est intéressé par les caractéristiques suivantes :
-- `listing_id` : identifiant de l’annonce pour MeilleursAgents
-- `place_id` : identifiant de l’arrondissement (celui passé en paramètre de la recherche)
-- `price` : prix de mise en vente, en valeur entière d’euros
-- `area` : superficie du bien, en valeur entière de mètres carrés
-- `room_count` : nombre de pièces du bien, en valeur entière également ;
+For each listing, we are interested in the following properties:
+- `listing_id`: listing identifier for MeilleursAgents;
+- `place_id`: arrondissement identifier (as passed in the query parameters);
+- `price`: selling price, integer, euros;
+- `area`: area, integer, square meters;
+- `room_count`: number of rooms, integer.
 
-Il se peut que les caractéristiques ne soient pas exposées comme souhaité par l'API `listingsapi`, mais que certaines d'entre elles soient à extraire. Attention aux appartements de 1 pièce qui sont notés « Studio »
+It is possible that some properties might not be exposed as expected by the `listingapi` API, and that some of those might require to be extracted. Beware of some of the 1 room apartments called « Studio »
 
-### 1.4 - Structure des informations en base de données
+### 1.4 - Data structure in database
 
-Une fois les annonces extraites en respectant les caractéristiques ci-dessus, elles doivent être ensuite stockées en base de données dans une ou plusieurs tables. La version actuelle du code fourni stocke les informations dans une table `listings`.
-Comme énoncé plus haut, la modélisation en table peut être modifiée.
+Once listings are extracted, following above specification, they must be stored in a database, in one or multiple tables. The existing code implementation stores listings in a `listings` table.
+As told before, you can adjust data modeling if needed.
 
-En plus de leurs caractéristiques, on veut aussi modéliser l’évolution des annonces dans le temps. Plus concrètement, on veut connaître :
+In addition to their properties, we also want to model the evolution of listings accross time. Concretely, we want to know:
+- when the listing was put online (or at least when it was seen for the first time)
+- when the listing was removed (or when we saw it for the last time)
+- the full price history
 
-- la date de mise en ligne (ou au moins la date à laquelle on l’a vue pour la première fois)
-- la date de retrait du site (ou au moins la dernière date à laquelle on l’a vue)
-- l’historique complet des prix.
-
-Voici les informations requises pour se connecter au serveur de base de données :
+Here are the required credentials to connect to the database:
 
 - type : PostgreSQL (module `psycopg2` en Python)
 - host : `db`
@@ -112,46 +111,43 @@ Voici les informations requises pour se connecter au serveur de base de données
 - password : `pricemap`
 - database : `pricemap`
 
-## 2 - Restituer l’information
+## 2 - Displaying prices
 
-La carte et l’histogramme présentés en introduction de ce document sont servis par une application web écrite en Python à l’aide du micro-framework Flask.
+The map and the histogram presented in the introduction of this document are served by a web application written in Python, using Flask micro-frontend.
 
-Comme pour la partie 1, l’application web est déjà fonctionnelle mais **peut être améliorée**.
+As for part 1, the web application is already working, but **can be improved**.
 
-### 2.1 - Cartographier les prix par arrondissement
+### 2.1 - Displaying prices for each arrondissement
 
-Au chargement de la page web, le code JavaScript en charge de la génération de la carte interroge l’application web Python afin d’obtenir la liste des entités géographiques à afficher. L’application web fournit en retour une structure de données au format GeoJSON contenant la liste des arrondissements à afficher, leur forme géométrique ainsi qu’un prix moyen, définit aléatoirement pour le moment. La couleur de la forme géométrique dépend du prix de l’arrondissement qu’elle représente, selon la même échelle de couleurs que celle actuellement utilisée pour la carte de Paris sur le site web de MeilleursAgents.
+When the page loads, the JavaScript code that generates the map calles the Python web application to get the list of geographical entities to display. The web application responds with GeoJSON formatted data that contains a list of arrondissements to display, their geometrical shape as well as an average price. The color of the shape depends on the price of the arrondissement that is represented, following the same color scale as the one currently used on MeilleursAgents website for Paris map.
 
-Pour chaque arrondissement, le prix moyen par mètre carré réel est calculé pour être ensuite affiché sur le site web.
+For each arrondissement, the average price per real square meter is computed, to be displayed on the website.
 
-Le code est dans l'endpoint `/geoms` dans `pricemap/pricemap/blueprints/api.py`. Comme pour la première partie, le code est fonctionnel mais peut être amélioré : vérification du calcul effectué, requête SQL, modélisation du stockage de la donnée, etc.
+Code is already implemented in the `/geoms` endpoint in `pricemap/pricemap/blueprints/api.py`. As for the first part of this exercise, code does work but can be improved: by checking the calculation, improving the SQL request, improving data modeling, etc.
 
-### 2.2 - Afficher des statistiques par arrondissement
+### 2.2 - Displaying stats for each arrondissement
 
-Lorsque l’on clique sur un arrondissement, un histogramme apparaît. Cet histogramme représente la distribution du volume d’annonces par gamme de prix dans cet arrondissement. De la même manière que précédemment, le code JavaScript en charge de la génération de cet histogramme interroge l’application web avant chaque affichage, en passant le code de l’arrondissement en paramètre. L’application web fournit en retour une structure de données au format JSON contenant, entre autres, les valeurs de chacune des barres de l’histogramme. L’axe des ordonnées est alors mis à l’échelle automatiquement en fonction des valeurs fournies.
+When we click on an arrondissement, an histogram is displayed. It represents the listings distribution per price bin for this arrondissement. As previously, JavaScript code in charge of generating this histogram asks the web application before each display, by passing the arrondissement identifier as a query parameter. The web application responds with JSON formatted data that contains, among others, the values for each bar of the histogram. The y-axis is then automatically scaled based on the returned values.
 
-Pour l’arrondissement ciblé, la distribution des annonces par gamme de prix est calculée côté API pour être ensuite intégrée à la réponse de l’application web. Le code JavaScript va utiliser cette réponse pour générer l’histogramme.
+For each targeted arrondissement, the listings price distribution is calculated on the API side, to be integrated to the response of the web application. The JavaScript code will use this response to generate the histogram.
 
-Le code est dans l'endpoint `/get_price/<path:cog>` dans `pricemap/pricemap/blueprints/api.py`. Comme pour l'autre endpoint, le code peut être aussi amélioré.
-Vous pouvez changer la distribution, les labels, la méthode de calcul,etc. de l'histogramme.
+Code is already implemented in the `/get_price/<path:cog>` endpoint in `pricemap/pricemap/blueprints/api.py`. As for the other endpoint, code can be improved. You can change distribution, labels, calculation method of the histogram, etc.
 
-### 2.3 - Afficher le prix moyen de l’arrondissement (bonus)
+### 2.3 - Displaying the average price of the arrondissement (bonus)
 
-Entre la carte et l’histogramme, nous n’affichons nulle part le prix moyen de l’arrondissement de manière numérique. Que faut-il faire pour l’afficher sur la page web lorsqu’on clique sur un arrondissement de la carte ?
+Between the map and the histogram, we never display the average price of the arrondissement in as a number. What could we do to display it on the web page when we click on an arrondissement on the map?
 
-## 3 - Industrialisation
+## 3 - Industrialization
 
-### 3.1 - Passage à l'échelle
+### 3.1 - Scaling
 
-On souhaite maintenant avoir l'historique des prix à l'échelle de la France pour offrir une carte des prix contenant des valeurs les plus fraîches possibles aux utilisateurs de notre site grand public.
+We now want to have price history at France scale to offer a price map containing values as recent as possible to the users of our public website.
 
-Pour cela vous devez réfléchir à une architecture qui respectera les contraintes suivantes:
+To do so, you need to think about an architecture that will fulfill the following constraints:
 
-1. insérer les prix des annonces sur toute la France en moins de 5 minutes.
+1. Inserting listings prices for France in less than 5 minutes
+2. Guarantee a <500ms response time when consulting the map, independently of the number of users currently connected
 
-2. assurer un temps de réponse inférieur à 500ms lors de la consultation de la carte quel que soit le nombre d'utilisateurs connectés simultanément.
+You have all the money you want, can use any tool, language, framework, infrastructure.
 
-Vous avez carte blanche en terme d'infrastructure, aucune limitation de budget, de langage ou de technologie, ni aucune autre contrainte.
-
-On souhaite avoir comme rendu un schéma (par exemple sur https://draw.io/) qui servira de base de discussion en debrief de test.
-
+The expected output of your study is a schema (you can for instance use https://draw.io) that will be used as a base for discussion during the debrief.
