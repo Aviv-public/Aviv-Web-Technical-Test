@@ -1,6 +1,6 @@
 # Backend technical test: Price map in Paris
 
-The objective is to build a price map of the average selling prices (€/m²) per arrondissment in Paris, with statistics, from an API of listings from MeilleursAgents.
+The objective is to build a price map of the average selling prices (€/m²) per _arrondissement_ (district) in Paris, with statistics, from an API of listings from MeilleursAgents.
 
 Here is an example of what we want to achieve:
 
@@ -43,11 +43,11 @@ You can work the way you want, you can move code, add libraries, change the way 
 
 #### 1.1 -  Localization filter
 
-In Paris, we want to display listings per arrondissement.
+In Paris, we want to display listings per _arrondissement_.
 
-When calling the `listingapi`, the parameter of the request named `place_id` will successively take the value of each Paris arrondissement identifier as presented in the following array.
+When calling the `listingapi`, the parameter of the request named `place_id` will successively take the value of each Paris _arrondissement_ identifier as presented in the following array.
 
-Those identifiers are also available in database, in the public schema in a table called `geo_place`, containing Paris arrondissements and their COG (Code Officiel Géographique - official geographical code).
+Those identifiers are also available in database, in the public schema in a table called `geo_place`, containing Paris _arrondissements_ and their COG (Code Officiel Géographique - official geographical code).
 
 | Arrondissement | Id |
 | ------- | ----------|
@@ -75,17 +75,17 @@ Those identifiers are also available in database, in the public schema in a tabl
 
 #### 1.2 - Pagination
 
-The `listingapi` sends pages of 20 listings. You will have to browse all pages for all arrondissements, using the parameter `?page=<page_number>`.
+The `listingapi` returns 20 listings per page. You will have to browse all pages for all _arrondissements_, using the parameter `?page=<page_number>`.
 
 Example: http://listingapi:5000/listings/32682?page=7
 
-The number of pages is different for each arrondissement: from zero to dozens of pages. You will have to imagine a mechanism that can be adapted to the number of pages to browse. There are multiple implementations possible.
+The number of pages is different for each _arrondissement_: from zero to dozens of pages. You will have to imagine a mechanism that can be adapted to the number of pages to browse. There are multiple implementations possible.
 
 ### 1.3 Extracting listings properties
 
 For each listing, we are interested in the following properties:
 - `listing_id`: listing identifier for MeilleursAgents;
-- `place_id`: arrondissement identifier (as passed in the query parameters);
+- `place_id`: _arrondissement_ identifier (as passed in the query parameters);
 - `price`: selling price, integer, euros;
 - `area`: area, integer, square meters;
 - `room_count`: number of rooms, integer.
@@ -117,25 +117,25 @@ The map and the histogram presented in the introduction of this document are ser
 
 As for part 1, the web application is already working, but **can be improved**.
 
-### 2.1 - Displaying prices for each arrondissement
+### 2.1 - Displaying prices for each _arrondissement_
 
-When the page loads, the JavaScript code that generates the map calls the Python web application to get the list of geographical entities to display. The web application responds with GeoJSON formatted data that contains a list of arrondissements to display, their geometrical shape as well as an average price. The color of the shape depends on the price of the arrondissement that is represented, following the same color scale as the one currently used on MeilleursAgents website for Paris map.
+When the page loads, the JavaScript code that generates the map calls the Python web application to get the list of geographical entities to display. The web application responds with GeoJSON formatted data that contains a list of _arrondissements_ to display, their geometrical shape as well as an average price. The color of the shape depends on the price of the _arrondissement_ that is represented, following the same color scale as the one currently used on MeilleursAgents website for Paris map.
 
-For each arrondissement, the average price per real square meter is computed, to be displayed on the website.
+For each _arrondissement_, the average price per real square meter is computed, to be displayed on the website.
 
 Code is already implemented in the `/geoms` endpoint in `pricemap/pricemap/blueprints/api.py`. As for the first part of this exercise, code does work but can be improved: by checking the calculation, improving the SQL request, improving data modeling, etc.
 
-### 2.2 - Displaying stats for each arrondissement
+### 2.2 - Displaying stats for each _arrondissement_
 
-When we click on an arrondissement, an histogram is displayed. It represents the listings' distribution per price bin for this arrondissement. As previously, JavaScript code in charge of generating this histogram asks the web application before each display, by passing the arrondissement identifier as a query parameter. The web application responds with JSON formatted data that contains, among others, the values for each bar of the histogram. The y-axis is then automatically scaled based on the returned values.
+When we click on an _arrondissement_, an histogram is displayed. It represents the listings' distribution per price bin for this _arrondissement_. As previously, JavaScript code in charge of generating this histogram asks the web application before each display, by passing the _arrondissement_ identifier as a query parameter. The web application responds with JSON formatted data that contains, among others, the values for each bar of the histogram. The y-axis is then automatically scaled based on the returned values.
 
-For each targeted arrondissement, the listings price distribution is calculated on the API side, to be integrated to the response of the web application. The JavaScript code will use this response to generate the histogram.
+For each targeted _arrondissement_, the listings price distribution is calculated on the API side, to be integrated to the response of the web application. The JavaScript code will use this response to generate the histogram.
 
 Code is already implemented in the `/get_price/<path:cog>` endpoint in `pricemap/pricemap/blueprints/api.py`. As for the other endpoint, code can be improved. You can change distribution, labels, calculation method of the histogram, etc.
 
-### 2.3 - Displaying the average price of the arrondissement (bonus)
+### 2.3 - Displaying the average price of the _arrondissement_ (bonus)
 
-Between the map and the histogram, we never display the average price of the arrondissement in as a number. What could we do to display it on the web page when we click on an arrondissement on the map?
+Between the map and the histogram, we never display the average price of the _arrondissement_ in as a number. What could we do to display it on the web page when we click on an _arrondissement_ on the map?
 
 ## 3 - Industrialization
 
