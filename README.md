@@ -22,7 +22,7 @@ The following features are already set up:
 
 **The entirety of your code must run in the `pricemap` container.**
 
-A documentation detailing how the project is designed can be found [here](./usages.md) to understand how to start the project, interact and enter running containers if needed, ...
+A documentation detailing how the project is designed can be found [here](./usages.md) to understand how to start the project, interact and enter into containers if needed, ...
 
 ## 1 - Collecting data
 
@@ -31,17 +31,17 @@ We want to collect the entirety of real estate properties in Paris. These proper
 **You must not change the `listingapi`, it only serves at exposing data.**
 
 You can access this API, after starting the project :
-- from your local system, at: http://localhost:8181/listings/32682
+- from your local environment, at: http://localhost:8181/listings/32682
 - from the container of your `pricemap` application at: http://listingapi:5000/listings/32682
 
 To get started, a first implementation already exists in the `app.py` file. This code adds a `/update_data` endpoint to the `pricemap` app, which starts data retrieval.
 
 **This code does work, but requires improvements.**
 
-The aim of this part is to rework and complete existing code, to make it cleaner and to match the state of the art.
+The aim of this part is to rework and complete existing code, to make it cleaner, easier to maintain and to match the state of the art.
 You can work the way you want, you can move code, add libraries, change the way code is called, etc.
 
-#### 1.1 -  Localization filter
+#### 1.1 -  Location filter
 
 In Paris, we want to display listings per _arrondissement_.
 
