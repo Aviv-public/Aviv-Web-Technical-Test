@@ -121,7 +121,7 @@ As for part 1, the web application is already working, but **can be improved**.
 
 When the page loads, the JavaScript code that generates the map calls the Python web application to get the list of geographical entities to display. The web application responds with GeoJSON formatted data that contains a list of _arrondissements_ to display, their geometrical shape as well as an average price. The color of the shape depends on the price of the _arrondissement_ that is represented, following the same color scale as the one currently used on MeilleursAgents website for Paris map.
 
-For each _arrondissement_, the average price per real square meter is computed, to be displayed on the website.
+For each _arrondissement_, the average price per square meter is computed, to be displayed on the website.
 
 Code is already implemented in the `/geoms` endpoint in `pricemap/pricemap/blueprints/api.py`. As for the first part of this exercise, code does work but can be improved: by checking the calculation, improving the SQL request, improving data modeling, etc.
 
