@@ -1,4 +1,4 @@
-# Backend technical test: Price map in Paris
+# Backend technical test: price map in Paris
 
 The objective is to build a price map of the average selling prices (€/m²) per _arrondissement_ (district) in Paris, with statistics, from an API of listings from MeilleursAgents.
 
@@ -28,13 +28,13 @@ A documentation detailing how the project is designed can be found [here](./usag
 
 We want to collect the entirety of real estate properties in Paris. These properties will be retrieved from the real estate properties API (`listingapi`), that you will need to browse entirely.
 
-**You must not change the `listingapi`, it only serves at exposing data.**
+**You must not change the `listingapi`, it is only used to expose data.**
 
 You can access this API, after starting the project :
 - from your local environment, at: http://localhost:8181/listings/32682
 - from the container of your `pricemap` application at: http://listingapi:5000/listings/32682
 
-To get started, a first implementation already exists in the `app.py` file. This code adds a `/update_data` endpoint to the `pricemap` app, which starts data retrieval.
+To get started, a first implementation already exists in the `app.py` file. This code adds a `/update_data` endpoint to the `pricemap` app, which starts the data retrieval process. If you feels it is necessary to change the way the data retrevial process is started, don't hesitate to change it.
 
 **This code does work, but requires improvements.**
 
