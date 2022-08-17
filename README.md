@@ -34,7 +34,7 @@ You can access this API, after starting the project :
 - from your local environment, at: http://localhost:8181/listings/32682
 - from the container of your `pricemap` application at: http://listingapi:5000/listings/32682
 
-To get started, a first implementation already exists in the `app.py` file. This code adds a `/update_data` endpoint to the `pricemap` app, which starts the data retrieval process. If you feels it is necessary to change the way the data retrevial process is started, don't hesitate to change it.
+To get started, a first implementation already exists in the `app.py` file. This code adds a `/update_data` endpoint to the `pricemap` app, which starts the data retrieval process. If you feel it is necessary to change the way the data retrieval process is started, don't hesitate to change it.
 
 **This code does work, but requires improvements.**
 
@@ -49,28 +49,28 @@ When calling the `listingapi`, the parameter of the request named `place_id` wil
 
 Those identifiers are also available in database, in the public schema in a table called `geo_place`, containing Paris _arrondissements_ and their COG (Code Officiel Géographique - official geographical code).
 
-| Arrondissement | Id |
-| ------- | ----------|
-| Paris 1 | 32682 |
-| Paris 2 | 32683 |
-| Paris 3 | 32684 |
-| Paris 4 | 32685 |
-| Paris 5 | 32686 |
-| Paris 6 | 32687 |
-| Paris 7 | 32688 |
-| Paris 8 | 32689 |
-| Paris 9 | 32690|
-| Paris 10 | 32691 |
-| Paris 11 | 32692 |
-| Paris 12 | 32693 |
-| Paris 13 | 32694 |
-| Paris 14 | 32695 |
-| Paris 15 | 32696 |
-| Paris 16 | 32697 |
-| Paris 17 | 32698 |
-| Paris 18 | 32699 |
-| Paris 19 | 32700 |
-| Paris 20 | 32701 |
+| Arrondissement | Id    |
+|----------------|-------|
+| Paris 1        | 32682 |
+| Paris 2        | 32683 |
+| Paris 3        | 32684 |
+| Paris 4        | 32685 |
+| Paris 5        | 32686 |
+| Paris 6        | 32687 |
+| Paris 7        | 32688 |
+| Paris 8        | 32689 |
+| Paris 9        | 32690 |
+| Paris 10       | 32691 |
+| Paris 11       | 32692 |
+| Paris 12       | 32693 |
+| Paris 13       | 32694 |
+| Paris 14       | 32695 |
+| Paris 15       | 32696 |
+| Paris 16       | 32697 |
+| Paris 17       | 32698 |
+| Paris 18       | 32699 |
+| Paris 19       | 32700 |
+| Paris 20       | 32701 |
 
 
 #### 1.2 - Pagination
@@ -127,7 +127,7 @@ Code is already implemented in the `/geoms` endpoint in `pricemap/pricemap/bluep
 
 ### 2.2 - Displaying stats for each _arrondissement_
 
-When we click on an _arrondissement_, an histogram is displayed. It represents the listings' distribution per price bin for this _arrondissement_. As previously, JavaScript code in charge of generating this histogram asks the web application before each display, by passing the _arrondissement_ identifier as a query parameter. The web application responds with JSON formatted data that contains, among others, the values for each bar of the histogram. The y-axis is then automatically scaled based on the returned values.
+When we click on an _arrondissement_, a histogram is displayed. It represents the listings' distribution per price bin for this _arrondissement_. As previously, JavaScript code in charge of generating this histogram asks the web application before each display, by passing the _arrondissement_ identifier as a query parameter. The web application responds with JSON formatted data that contains, among others, the values for each bar of the histogram. The y-axis is then automatically scaled based on the returned values.
 
 For each targeted _arrondissement_, the listings price distribution is calculated on the API side, to be integrated to the response of the web application. The JavaScript code will use this response to generate the histogram.
 
