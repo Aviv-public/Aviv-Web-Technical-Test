@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   listingapi:
@@ -12,11 +12,20 @@ services:
       FLASK_DEBUG: 1
       FLASK_APP: "listingapi.app"
 
-  pricemap:
-    build: pricemap
+  pricemap-python:
+    build: pricemap-python
     volumes:
-      - ./pricemap:/home/pricemap/app:rw
-    command: ["/home/pricemap/wait-for-postgres.sh", "db:5432", "--", "flask", "run", "-h", "0.0.0.0"]
+      - ./pricemap-python:/home/pricemap/app:rw
+    command:
+      [
+        "/home/pricemap/wait-for-postgres.sh",
+        "db:5432",
+        "--",
+        "flask",
+        "run",
+        "-h",
+        "0.0.0.0",
+      ]
     ports:
       - "8080:5000"
     depends_on:
@@ -30,13 +39,15 @@ services:
       FLASK_DEBUG: 1
       FLASK_APP: "pricemap.app"
 
-  pricemap-ts:
-    build: pricemap
+  pricemap-typescript:
+    build: pricemap-typescript
     volumes:
-      - ./pricemap:/home/pricemap/app:rw
+      - ./pricemap-typescript/src:/home/pricemap/app/src:rw
+      - ./pricemap-typescript/static:/home/pricemap/app/static:rw
     command: ["npm", "run", "watch"]
     ports:
       - "8282:5000"
+      - "9222:9222"
     depends_on:
       - db
       - listingapi
@@ -45,8 +56,6 @@ services:
       PGDATABASE: pricemap
       PGUSER: pricemap
       PGPASSWORD: pricemap
-      FLASK_DEBUG: 1
-      FLASK_APP: "pricemap.app"
 
   db:
     image: "mdillon/postgis:11-alpine"
@@ -55,9 +64,9 @@ services:
       - type: volume
         source: pg-data
         target: /var/lib/postgresql/data
-      - ./pricemap/docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./pricemap-python/docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U" , "postgres" , "-d", "pricemap" ]
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "pricemap"]
       interval: 20s
       timeout: 5s
       retries: 5

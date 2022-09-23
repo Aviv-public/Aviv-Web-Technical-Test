@@ -1,7 +1,0 @@
-[packages]
-Flask = "*"
-psycopg2-binary = "*"
-requests = "*"
-
-[requires]
-python_version = "3.8"
