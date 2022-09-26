@@ -30,7 +30,7 @@ We want to collect the entirety of real estate properties in Paris. These proper
 
 **You must not change the `listingapi`, it is only used to expose data.**
 
-You can access this API, after starting the project :
+You can access this API, after starting the project:
 - from your local environment, at: http://localhost:8181/listings/32682
 - from the container of your `pricemap` application at: http://listingapi:5000/listings/32682
 
@@ -41,7 +41,7 @@ To get started, a first implementation already exists in the `app.py` file. This
 The aim of this part is to rework and complete existing code, to make it cleaner, easier to maintain and to match the state of the art.
 You can work the way you want, you can move code, add libraries, change the way code is called, etc.
 
-#### 1.1 -  Location filter
+### 1.1 - Location filter
 
 In Paris, we want to display listings per _arrondissement_.
 
@@ -73,7 +73,7 @@ Those identifiers are also available in database, in the public schema in a tabl
 | Paris 20       | 32701 |
 
 
-#### 1.2 - Pagination
+### 1.2 - Pagination
 
 The `listingapi` returns 20 listings per page. You will have to browse all pages for all _arrondissements_, using the parameter `?page=<page_number>`.
 
@@ -81,7 +81,7 @@ Example: http://listingapi:5000/listings/32682?page=7
 
 The number of pages is different for each _arrondissement_: from zero to dozens of pages. You will have to imagine a mechanism that can be adapted to the number of pages to browse. There are multiple implementations possible.
 
-### 1.3 Extracting listings properties
+### 1.3 - Extracting listings properties
 
 For each listing, we are interested in the following properties:
 - `listing_id`: listing identifier for MeilleursAgents;
@@ -104,12 +104,12 @@ In addition to their properties, we also want to model the evolution of listings
 
 Here are the required credentials to connect to the database:
 
-- type : PostgreSQL (module `psycopg2` en Python)
-- host : `db`
+- type: PostgreSQL (module `psycopg2` en Python)
+- host: `db`
 - port: `5432`
-- user : `pricemap`
-- password : `pricemap`
-- database : `pricemap`
+- user: `pricemap`
+- password: `pricemap`
+- database: `pricemap`
 
 ## 2 - Displaying prices
 
