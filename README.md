@@ -5,8 +5,8 @@ with statistics, from an API of listings from MeilleursAgents.
 
 Here is an example of what we want to achieve:
 
-![image 2](pricemap/img/image2.png)
-![image 1](pricemap/img/image1.png)
+![image 2](resources/img/image2.png)
+![image 1](resources/img/image1.png)
 
 A first version of the project is already completed. To use it, the following tools are required:
 
