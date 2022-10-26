@@ -10,6 +10,7 @@ RUN pip3 install pipenv
 COPY Pipfile Pipfile.lock ./
 
 ENV PATH /home/listingapi/.local/bin:${PATH}
+RUN pipenv lock
 RUN pipenv install --deploy --system
 
 ENV PYTHONPATH /home/listingapi/app
