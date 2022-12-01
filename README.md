@@ -59,7 +59,7 @@ state of the art. You can work the way you want, you can move code, add librarie
 
 ### 1.1 - Location filter
 
-In Paris, we want to display listings per _arrondissement_.
+In Paris, we are able to retrieve listings per _arrondissement_.
 
 When calling the `listingapi`, the parameter of the request named `place_id` will successively take the value of each
 Paris _arrondissement_ identifier as presented in the following array.
@@ -97,8 +97,8 @@ parameter `?page=<page_number>`.
 
 Example: http://listingapi:5000/listings/32682?page=7
 
-The number of pages is different for each _arrondissement_: from zero to dozens of pages. You will have to imagine a
-mechanism that can be adapted to the number of pages to browse. There are multiple implementations possible.
+The number of pages is different for each _arrondissement_: from zero to dozens of pages. A mechanism is already 
+implemented to adapt to the number of pages. How could we improve this mechanism ? **There are multiple implementations possible.**
 
 ### 1.3 - Extracting listings properties
 

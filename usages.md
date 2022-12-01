@@ -1,5 +1,13 @@
 # How to use this project
 
+## building the project
+
+This should not be necessary as done automatically on first start, but can allow to force the rebuild of the apps.
+
+```sh
+make build
+```
+
 ## Starting the project
 
 Starts applications and database.
@@ -10,13 +18,6 @@ make run
 
 `ctrl + C` to stop.
 
-## Rebuilding the project
-
-This should not be necessary as done automatically on first start, but can allow to force the rebuild of the apps.
-
-```sh
-make build
-```
 
 ## Entering a container
 
