@@ -4,10 +4,12 @@ on:
   # run it on push to the default repository branch
   push:
     branches: [master]
+  # For testing purpose only
+  pull_request:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_PREFIX: ${{ github.repository }}
+  REPOSITORY_NAME: ${{ github.repository }}
 
 jobs:
   # define job to build and publish docker image
@@ -20,16 +22,23 @@ jobs:
       matrix: # Define a matrice to build each images and tag it
         include:
           - dockerfile: ./listingapi/Dockerfile
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/listingapi
+            image: listingapi
           - dockerfile: ./pricemap-python/Dockerfile
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/pricemap-python
+            image: pricemap-python
           - dockerfile: ./pricemap-typescript/Dockerfile
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}/pricemap-typescript
+            image: pricemap-typescript
 
     # steps to perform in job
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      # Github doesn't allow uppercase on registry name
+      - name: set lower case repository name
+        id: lowercase
+        run: echo "repository_name_lower_case=${REPOSITORY_NAME,,}" >>$GITHUB_OUTPUT
+        env:
+          REPOSITORY_NAME: '${{ env.REPOSITORY_NAME }}'
 
       # Use Emulator to build images on different architectures
       - name: Set up QEMU
@@ -52,7 +61,7 @@ jobs:
       # Get the current date and time to tag images
       - name: Get current date and time
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d_%H-%M-%S')"
+        run: echo "date=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
 
       # For each image, build it, tag and push it on registry
       - name: Build image and push to Registry
@@ -63,8 +72,8 @@ jobs:
           file: ${{ matrix.dockerfile }}
           push: true
           tags: |
-            ${{ matrix.image }}:latest
-            ${{ matrix.image }}:${{ steps.date.outputs.date }}
+            ${{ env.REGISTRY }}/${{ steps.lowercase.outputs.repository_name_lower_case }}/${{ matrix.image }}:latest
+            ${{ env.REGISTRY }}/${{ steps.lowercase.outputs.repository_name_lower_case }}/${{ matrix.image }}:${{ steps.date.outputs.date }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
