@@ -1,6 +1,9 @@
 FROM python:3.8-slim
 
-RUN useradd -ms  /bin/bash listingapi
+## Create default user:group for this container
+RUN groupadd group_listingapi;
+RUN useradd -ms /bin/bash listingapi
+RUN usermod -a -G group_listingapi listingapi
 
 USER listingapi
 COPY --chown=listingapi:listingapi listingapi /home/listingapi/app

@@ -21,11 +21,11 @@ jobs:
       fail-fast: false
       matrix: # Define a matrice to build each images and tag it
         include:
-          - dockerfile: ./listingapi/Dockerfile
+          - context: ./listingapi
             image: listingapi
-          - dockerfile: ./pricemap-python/Dockerfile
+          - context: ./pricemap-python
             image: pricemap-python
-          - dockerfile: ./pricemap-typescript/Dockerfile
+          - context: ./pricemap-typescript
             image: pricemap-typescript
 
     # steps to perform in job
@@ -66,10 +66,11 @@ jobs:
       # For each image, build it, tag and push it on registry
       - name: Build image and push to Registry
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           platforms: linux/amd64, linux/arm64/v8
-          file: ${{ matrix.dockerfile }}
+          context: ${{matrix.context}}
+          file: ${{matrix.context}}/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
