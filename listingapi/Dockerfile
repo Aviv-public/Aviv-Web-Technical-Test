@@ -1,13 +1,15 @@
 FROM python:3.8-slim
 
 RUN useradd -ms  /bin/bash listingapi
-COPY listingapi /home/listingapi/listingapi
 
 USER listingapi
+COPY --chown=listingapi:listingapi listingapi /home/listingapi/app
+RUN chown -R listingapi:listingapi /home/listingapi/app
+
 WORKDIR /home/listingapi/app
 
 RUN pip3 install pipenv
-COPY Pipfile Pipfile.lock ./
+COPY --chown=listingapi:listingapi Pipfile Pipfile.lock ./
 
 ENV PATH /home/listingapi/.local/bin:${PATH}
 RUN pipenv lock
