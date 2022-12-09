@@ -14,6 +14,9 @@ RUN if ! $(awk -F':' '{print $3}' /etc/group |grep -q ${GROUP_ID}) ; then groupa
 RUN usermod -a -G ${GROUP_ID} pricemap
 
 USER pricemap
+
+# Force creation of directory by user to avoid permission issue
+RUN mkdir /home/pricemap/app
 WORKDIR /home/pricemap/app
 
 COPY package*.json ./
