@@ -62,6 +62,11 @@ jobs:
         with:
           images: |
             ${{ env.REGISTRY }}/${{ steps.lowercase.outputs.repository_name_lower_case }}/${{ matrix.image }}
+          tags: |
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable={{is_default_branch}}
 
       # For each image, build it, tag and push it on registry
       - name: Build image and push to Registry
@@ -74,7 +79,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
