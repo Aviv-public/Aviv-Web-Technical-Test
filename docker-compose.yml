@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   listingapi:
-    image: "ghcr.io/meilleursagents/backend-technical-test/listingapi:pr-22"
+    image: ghcr.io/meilleursagents/backend-technical-test/listingapi:latest
     user: "listingapi:group_listingapi"
     volumes:
       - ./listingapi:/home/listingapi/app:rw
@@ -14,7 +14,7 @@ services:
       FLASK_APP: "listingapi.app"
 
   pricemap-python:
-    image: "ghcr.io/meilleursagents/backend-technical-test/pricemap-python:pr-22"
+    image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
     user: "pricemap:group_pricemap"
     volumes:
       - ./pricemap-python:/home/pricemap/app:rw
@@ -42,7 +42,7 @@ services:
       FLASK_APP: "pricemap.app"
 
   pricemap-typescript:
-    image: ghcr.io/meilleursagents/backend-technical-test/pricemap-typescript:pr-22
+    image: ghcr.io/meilleursagents/backend-technical-test/pricemap-typescript:latest
     user: "pricemap:group_pricemap"
     volumes:
       - ./pricemap-typescript/src:/home/pricemap/app/src:rw

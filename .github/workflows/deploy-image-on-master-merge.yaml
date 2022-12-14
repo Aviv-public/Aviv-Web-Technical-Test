@@ -4,8 +4,6 @@ on:
   # run it on push to the default repository branch
   push:
     branches: [master]
-  # For testing purpose only
-  pull_request:
 
 env:
   REGISTRY: ghcr.io
