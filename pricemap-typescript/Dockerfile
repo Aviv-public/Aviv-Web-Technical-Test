@@ -4,9 +4,8 @@ FROM node:16-slim
 RUN userdel "$(id -nu 1000)"
 
 ## Create default user:group for this container
-RUN groupadd group_pricemap;
-RUN useradd -ms /bin/bash pricemap
-RUN usermod -a -G group_pricemap pricemap
+RUN groupadd pricemap;
+RUN useradd -g pricemap -ms /bin/bash pricemap;
 
 USER pricemap
 

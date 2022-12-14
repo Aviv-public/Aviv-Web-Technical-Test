@@ -3,7 +3,7 @@ version: "3.4"
 services:
   listingapi:
     image: ghcr.io/meilleursagents/backend-technical-test/listingapi:latest
-    user: "listingapi:group_listingapi"
+    user: "listingapi:listingapi"
     volumes:
       - ./listingapi:/home/listingapi/app:rw
     command: ["flask", "run", "-h", "0.0.0.0"]
@@ -15,7 +15,7 @@ services:
 
   pricemap-python:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
-    user: "pricemap:group_pricemap"
+    user: "pricemap:pricemap"
     volumes:
       - ./pricemap-python:/home/pricemap/app:rw
     command:
@@ -43,7 +43,7 @@ services:
 
   pricemap-typescript:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-typescript:latest
-    user: "pricemap:group_pricemap"
+    user: "pricemap:pricemap"
     volumes:
       - ./pricemap-typescript/src:/home/pricemap/app/src:rw
       - ./pricemap-typescript/static:/home/pricemap/app/static:rw
