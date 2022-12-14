@@ -31,13 +31,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Github doesn't allow uppercase on registry name
-      - name: set lower case repository name
-        id: lowercase
-        run: echo "repository_name_lower_case=${REPOSITORY_NAME,,}" >>$GITHUB_OUTPUT
-        env:
-          REPOSITORY_NAME: '${{ env.REPOSITORY_NAME }}'
-
       # Use Emulator to build images on different architectures
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
@@ -59,7 +52,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ steps.lowercase.outputs.repository_name_lower_case }}/${{ matrix.image }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}/${{ matrix.image }}
           tags: |
             type=ref,event=pr
             type=semver,pattern={{version}}
