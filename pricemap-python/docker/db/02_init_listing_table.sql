@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public.listing
+CREATE TABLE IF NOT EXISTS public.listings
 (
     id INTEGER,
     place_id INTEGER,
@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS public.listing
     area INTEGER,
     room_count INTEGER,
     seen_at TIMESTAMP,
-    PRIMARY KEY (id, seen_at)
+    PRIMARY KEY (id)
     CONSTRAINT fk_place_id FOREIGN KEY (place_id) REFERENCES geo_place (id)
 );
