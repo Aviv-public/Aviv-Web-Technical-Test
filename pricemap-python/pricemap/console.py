@@ -14,8 +14,10 @@ def import_listings():
     Import listings by browsing through the listing api
     """
     from pricemap.usecase.import_listing import ImportListing
+    import settings
 
-    ImportListing().import_all_listings()
+    import_listing = ImportListing(settings.IMPORT_LISTINGS_URI)
+    import_listing.import_all_listings()
 
 if __name__ == '__main__':
     cli()

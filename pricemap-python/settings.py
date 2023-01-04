@@ -13,3 +13,5 @@ DATABASE = {
     'host': 'db',
     'port': 5432
 }
+
+IMPORT_LISTINGS_URI = 'http://listingapi:5000/listings/%d'

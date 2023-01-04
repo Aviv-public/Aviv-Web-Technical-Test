@@ -7,11 +7,15 @@ from pricemap.repository.listing_repository import ListingRepository
 
 
 class ImportListing:
-    def __init__(self):
+    def __init__(self, api_url: str, clock: datetime = None):
+        self.api_url = api_url
+        self.clock = datetime.now() if clock is None else clock
         self.listing_repository = ListingRepository()
 
     def import_all_listings(self):
-
+        """
+        Import listings for all places
+        """
         for geom in GeoPlaceFinder.retrieve_all_places():
             p = 0
             while True:

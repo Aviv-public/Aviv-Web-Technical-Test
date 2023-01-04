@@ -6,7 +6,7 @@ from pricemap.entity.listing import Listing
 class ListingRepository:
 
     @staticmethod
-    def insert(listing: Listing) -> None:
+    def upsert(listing: Listing) -> None:
         """
         Insert new row in listing table
         If row exists, update data
