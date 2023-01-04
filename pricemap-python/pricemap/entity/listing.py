@@ -23,7 +23,7 @@ class Listing:
             int(data['listing_id']),
             place_id,
             rooms_and_area['rooms'],
-            rooms_and_area['surface_area'],
+            rooms_and_area['area'],
             Listing.__parse_price(data['price']),
             seen_at
         )
@@ -34,10 +34,10 @@ class Listing:
         Parse title string to retrieve rooms and surface_area
         Could raise a ValueError when the title isn't correctly formed (for instance, missing surface_area information)
         examples :
-            - Appartement 2 pièces - 29 m² -> {'room': 2, 'surface_area': 29}
-            - Studio - 6 m² -> {'room': 1, 'surface_area': 6}
+            - Appartement 2 pièces - 29 m² -> {'room': 2, 'area': 29}
+            - Studio - 6 m² -> {'room': 1, 'area': 6}
         """
-        regex = re.compile(r'(?P<type>Appartement|Studio)( (?P<rooms>\d+) pièces)? - (?P<surface_area>\d+) m²')
+        regex = re.compile(r'(?P<type>Appartement|Studio)( (?P<rooms>\d+) pièces)? - (?P<area>\d+) m²')
         matches = regex.search(title)
         if matches is None:
             raise ValueError('Unable to parse title for this listing - "%s"' % title)
@@ -49,7 +49,7 @@ class Listing:
 
         return {
             'rooms': rooms,
-            'area': int(matches.group('surface_area'))
+            'area': int(matches.group('area'))
         }
 
     @staticmethod
