@@ -1,6 +1,11 @@
-.DEFAULT_GOAL := help
+#!/usr/bin/env make
 
-.PHONY: help
+.DEFAULT_GOAL: help
+
+MAKEFLAGS=--no-print-directory
+
+DOCKER_COMPOSE?=docker-compose -p owner-technical-test
+
 help: ## List all Makefile targets
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
@@ -8,20 +13,45 @@ help: ## List all Makefile targets
 ## Containers 📦
 ## -------
 ##
-.PHONY: build run
 build: ## Builds the docker image associated with the project
 	docker-compose build --build-arg USER_ID=$(shell id -u $$USER) --build-arg GROUP_ID=$(shell id -g $$USER)
 
-run: build ## Locally run the application
-	docker-compose up
+run: ## Start the containers
+	$(DOCKER_COMPOSE) up -d
+
+clean: ## Remove containers
+	$(DOCKER_COMPOSE) down --remove-orphans
+
+clean-all: ## Remove containers and volumes
+	$(DOCKER_COMPOSE) down --remove-orphans -v
+
+python-pricemap-container: ## Run a bash on pricemap-python container
+	$(DOCKER_COMPOSE) exec -T pricemap-python bash
+
 
 ##
-## Miscellaneous 🪄
-## -------------
+## Import listing
+## --------
 ##
-.PHONY: clean clean-all
-clean: ## Remove temporary files and docker images
-	docker-compose down --remove-orphans
+python-import-listings: ## Run a command to import listings into pricemap database
+	$(DOCKER_COMPOSE) exec -T pricemap-python ./pricemap/console.py import-listings
 
-clean-all: ## Remove temporary files, volumes and images
-	docker-compose down --remove-orphans --rmi all -v
+##
+## Python Installer
+## --------
+##
+python-install: ## Install pricemap module dependencies
+	$(DOCKER_COMPOSE) exec -T pricemap pipenv install --clear
+
+python-require: ## Require a new package for the pricemap container (Use DEP='your package name')
+	$(DOCKER_COMPOSE) exec -T pricemap pipenv install --clear $(DEP)
+
+python-install-dev: ## Install pricemap dev module dependencies
+	$(DOCKER_COMPOSE) exec -T pricemap pipenv install --dev --clear
+
+##
+## Tests
+## --------
+##
+python-tests: python-install-dev ## Execute tests
+	$(DOCKER_COMPOSE) exec -T pricemap pipenv run pytest -vv --ff --exitfirst
