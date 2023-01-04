@@ -1,6 +1,4 @@
-import psycopg2
-from flask import g
-
+from pricemap import db_pool
 
 class GeoPlaceFinder:
 
@@ -10,7 +8,8 @@ class GeoPlaceFinder:
             SELECT DISTINCT(id)
             FROM geo_place
             ORDER BY id ASC;"""
-        cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        connection = db_pool.getconn()
+        cursor = connection.cursor()
         cursor.execute(SQL)
         place_ids = []
         for row in cursor:
@@ -19,4 +18,5 @@ class GeoPlaceFinder:
             place_ids.append(row['id'])
 
         cursor.close()
+        db_pool.putconn(connection) #re-put connection to db pull
         return place_ids

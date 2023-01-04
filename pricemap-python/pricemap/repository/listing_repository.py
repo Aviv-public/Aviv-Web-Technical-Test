@@ -1,7 +1,7 @@
-import psycopg2.extras
-from flask import g
-
+import psycopg2
+from pricemap import db_pool
 from pricemap.entity.listing import Listing
+
 
 class ListingRepository:
 
@@ -15,10 +15,14 @@ class ListingRepository:
         listing -- The entity to insert
         """
         SQL = """
-            INSERT INTO public.listing(id, place_id, price, room_count, area, seen_at)
-            VALUES (:id, :place_id, :room_count, :area, :seen_at);
-            ON CONFLICT (id) DO UPDATE"""
-        cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            INSERT INTO public.listings(id, place_id, price, room_count, area, seen_at)
+            VALUES (%(id)s, %(place_id)s, %(price)s, %(room_count)s, %(area)s, %(seen_at)s)
+            ON CONFLICT (id) DO UPDATE
+                SET price = %(price)s,
+                    seen_at = %(seen_at)s;
+            """
+        connection = db_pool.getconn()
+        cursor = connection.cursor()
         try:
             cursor.execute(
                 SQL, {
@@ -30,11 +34,12 @@ class ListingRepository:
                     'seen_at': listing.seen_at
                 }
             )
-            g.db.commit()
+            connection.commit()
 
         except (psycopg2.errors.InFailedSqlTransaction, psycopg2.errors.SyntaxError,
                 psycopg2.errors.NotNullViolation) as caught:
-            g.db.rollback()
+            connection.rollback()
             raise Exception('Listing Repository', caught)
         finally:
             cursor.close()
+            db_pool.putconn(connection)  # re-put connection to db pull
