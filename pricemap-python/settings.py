@@ -14,4 +14,5 @@ DATABASE = {
     'port': 5432
 }
 
-IMPORT_LISTINGS_URI = 'http://listingapi:5000/listings/%d'
+LISTING_API_URI = 'http://listingapi:5000/listings/%d'
+LISTING_API_PAGINATOR_LIMIT = 20

@@ -16,7 +16,7 @@ def import_listings():
     from pricemap.usecase.import_listing import ImportListing
     import settings
 
-    import_listing = ImportListing(settings.IMPORT_LISTINGS_URI)
+    import_listing = ImportListing(settings.LISTING_API_URI)
     import_listing.import_all_listings()
 
 if __name__ == '__main__':
