@@ -1,1 +1,5 @@
 __pycache__
+front/node_modules
+front/dist
+front/yarn.lock
+front/pnpm-lock.yaml
