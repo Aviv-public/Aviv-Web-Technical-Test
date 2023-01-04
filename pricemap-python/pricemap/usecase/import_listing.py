@@ -37,9 +37,11 @@ class ImportListing:
 
             logger.info('Import listings for placeId {place_id} - page {page}'.format(place_id = place_id, page = current_page))
 
+            bulk_listings = []
             for item in response.json():
                 listing = Listing.from_data(item, place_id, datetime.now())
-                logger.debug('Prepare listing persistance {listing_id}'.format(listing_id = listing.id))
+                logger.debug('Add listing {listing_id} to bulk'.format(listing_id = listing.id))
+                bulk_listings.append(listing)
 
-                self.listing_repository.upsert(listing)
+            self.listing_repository.upsert_bulk(bulk_listings)
             current_page += 1

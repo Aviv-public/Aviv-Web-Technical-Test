@@ -1,3 +1,5 @@
+from typing import List
+
 import psycopg2
 from pricemap import db_pool
 from pricemap.entity.listing import Listing
@@ -6,7 +8,7 @@ from pricemap.entity.listing import Listing
 class ListingRepository:
 
     @staticmethod
-    def upsert(listing: Listing) -> None:
+    def upsert_bulk(listings: List[Listing]) -> None:
         """
         Insert new row in listing table
         If row exists, update data
@@ -23,7 +25,7 @@ class ListingRepository:
             """
         connection = db_pool.getconn()
         cursor = connection.cursor()
-        try:
+        for listing in listings:
             cursor.execute(
                 SQL, {
                     'id': listing.id,
@@ -34,8 +36,8 @@ class ListingRepository:
                     'seen_at': listing.seen_at
                 }
             )
+        try:
             connection.commit()
-
         except (psycopg2.errors.InFailedSqlTransaction, psycopg2.errors.SyntaxError,
                 psycopg2.errors.NotNullViolation) as caught:
             connection.rollback()
