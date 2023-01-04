@@ -3,8 +3,6 @@ import psycopg2
 
 from pricemap.blueprints.api import api
 
-from pricemap.update_data import update
-
 app = Flask(__name__)
 app.config.from_object('settings')
 app.register_blueprint(api, url_prefix='/api')
@@ -28,10 +26,3 @@ def before_request():
 @app.route("/")
 def index():
    return render_template('index.html')
-
-
-@app.route('/update_data')
-def update_data():
-   '''Update the data.'''
-   update()
-   return "", 200
