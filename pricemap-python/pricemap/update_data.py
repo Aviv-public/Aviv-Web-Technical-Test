@@ -73,9 +73,9 @@ def update() -> None:
             for item in d.json():
                 listing_id = item["listing_id"]
 
-                room_count = __extract_rooms(item["title"])
-                area = __extract_area(item["title"])
-                price = __extract_price(item["price"])
+                room_count = _extract_rooms(item["title"])
+                area = _extract_area(item["title"])
+                price = _extract_price(item["price"])
 
                 seen_at = datetime.now()
 
@@ -97,7 +97,7 @@ def update() -> None:
                     db_pool.putconn(connection)  # re-put connection to db pool
 
 
-def __extract_area(title: str) -> int:
+def _extract_area(title: str) -> int:
     try:
         area = int(title.split("-")[1].replace(" ", "").replace("\u00a0m\u00b2", ""))
     except Exception:
@@ -105,7 +105,7 @@ def __extract_area(title: str) -> int:
     return area
 
 
-def __extract_price(price_str: str) -> int:
+def _extract_price(price_str: str) -> int:
     try:
         price = int("".join([s for s in price_str if s.isdigit()]))
     except Exception:
@@ -113,7 +113,7 @@ def __extract_price(price_str: str) -> int:
     return price
 
 
-def __extract_rooms(title: str) -> int:
+def _extract_rooms(title: str) -> int:
     try:
         room_count = (
             1
