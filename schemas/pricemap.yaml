@@ -4,7 +4,7 @@ info:
   version: '1.0'
 servers:
   - url: /api
-    description: 'The Pricemap API'
+    description: The Pricemap API
 paths:
   /geoms:
     get:

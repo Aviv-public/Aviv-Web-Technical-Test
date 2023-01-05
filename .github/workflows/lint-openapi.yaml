@@ -1,3 +1,5 @@
+name: "Lint OpenAPI specifications"
+
 on: [push]
 
 jobs:
@@ -10,6 +12,6 @@ jobs:
 
       - name: Build
         uses: stoplightio/spectral-action@latest
+        working-directory: ./schemas
         with:
-          file_glob: 'schemas/*.yaml'
-
+          file_glob: "schemas/*.yaml"
