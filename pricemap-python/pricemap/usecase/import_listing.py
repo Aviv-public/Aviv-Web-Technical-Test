@@ -36,19 +36,19 @@ class ImportListing:
                 if response.status_code != 416:
                     logger.error(
                         'API responded with {status_code} error - Message : {content}'.format(status_code = response.status_code,
-                                                                                              content = response.content))
+                                                                                              content = response.text))
                 break
 
-            #if we've received less than paginator limit, that means we reached the last page
-            last_page = len(response.json()) < settings.LISTING_API_PAGINATOR_LIMIT
+            json_response = response.json()
+            # If we received less results than expected per page, that means we reached the last page
+            last_page = len(json_response) < settings.LISTING_API_NB_RESULTS_PER_PAGE
 
-            logger.info(
-                'Import listings for placeId {place_id} - page {page}'.format(place_id=place_id, page=current_page))
+            logger.info(f"Import listings for placeId {place_id} - page {current_page}")
 
             bulk_listings = []
-            for item in response.json():
+            for item in json_response:
                 listing = Listing.from_data(item, place_id, datetime.now())
-                logger.debug('Add listing {listing_id} to bulk'.format(listing_id=listing.id))
+                logger.debug(f"Add listing {listing.id} to bulk")
                 bulk_listings.append(listing)
 
             self.listing_repository.upsert_bulk(bulk_listings)

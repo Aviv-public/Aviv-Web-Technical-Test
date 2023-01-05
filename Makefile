@@ -6,6 +6,7 @@ MAKEFLAGS=--no-print-directory
 
 DOCKER_COMPOSE?=docker-compose -p owner-technical-test
 
+.PHONY: help
 help: ## List all Makefile targets
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
@@ -13,6 +14,7 @@ help: ## List all Makefile targets
 ## Containers 📦
 ## -------
 ##
+.PHONY: build run clean clean-all python-shell-pricemap-container
 build: ## Builds the docker image associated with the project
 	docker-compose build --build-arg USER_ID=$(shell id -u $$USER) --build-arg GROUP_ID=$(shell id -g $$USER)
 
@@ -25,7 +27,7 @@ clean: ## Remove containers
 clean-all: ## Remove containers and volumes
 	$(DOCKER_COMPOSE) down --remove-orphans -v
 
-python-pricemap-container: ## Run a bash on pricemap-python container
+python-shell-pricemap-container: ## Run a bash on pricemap-python container
 	$(DOCKER_COMPOSE) exec -T pricemap-python bash
 
 
@@ -33,6 +35,7 @@ python-pricemap-container: ## Run a bash on pricemap-python container
 ## Import listing
 ## --------
 ##
+.PHONY: python-import-listings
 python-import-listings: ## Run a command to import listings into pricemap database
 	$(DOCKER_COMPOSE) exec -T pricemap-python ./pricemap/console.py import-listings
 
@@ -40,6 +43,7 @@ python-import-listings: ## Run a command to import listings into pricemap databa
 ## Python Installer
 ## --------
 ##
+.PHONY: python-install python-require
 python-install: ## Install pricemap module dependencies
 	$(DOCKER_COMPOSE) exec -T pricemap pipenv install --clear
 
@@ -53,5 +57,6 @@ python-install-dev: ## Install pricemap dev module dependencies
 ## Tests
 ## --------
 ##
+.PHONY: python-tests
 python-tests: python-install-dev ## Execute tests
 	$(DOCKER_COMPOSE) exec -T pricemap pipenv run pytest -vv --ff --exitfirst

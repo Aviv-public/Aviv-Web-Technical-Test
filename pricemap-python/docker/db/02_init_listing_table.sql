@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS public.listings
     area INTEGER,
     room_count INTEGER,
     seen_at TIMESTAMP,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
     CONSTRAINT fk_place_id FOREIGN KEY (place_id) REFERENCES geo_place (id)
 );
