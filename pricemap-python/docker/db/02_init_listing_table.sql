@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public.listings
+CREATE TABLE IF NOT EXISTS public.listing
 (
     id INTEGER,
     place_id INTEGER,
