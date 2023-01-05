@@ -4,7 +4,7 @@ import requests
 
 import settings
 from pricemap import logger
-from pricemap.entity.listing import Listing
+from pricemap.entities.listing import Listing
 from pricemap.finder.geo_place_finder import GeoPlaceFinder
 from pricemap.repository.listing_repository import ListingRepository
 
@@ -18,15 +18,15 @@ class ImportListing:
         """Import listings for all places."""
         for place_id in GeoPlaceFinder.retrieve_all_places_ids():
             logger.debug(f"Import listings for placeId {place_id}")
-            self.__import_place(place_id)
+            self._import_listings_for(place_id)
 
-    def __import_place(self, place_id: int) -> None:
+    def _import_listings_for(self, place_id: int) -> None:
         """
         Import all listings for a given place_id.
 
         That method will call an external API to retrieve data
-        while the API returns a 200 status code then bulk persist
-        Listings entity into a dedicated table.
+        while the API returns a 200 status code then bulk persists
+        Listings entities into a dedicated table.
 
         Args:
             - place_id : place id used to call the external API

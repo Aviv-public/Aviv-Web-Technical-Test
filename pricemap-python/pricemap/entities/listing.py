@@ -30,7 +30,7 @@ class Listing:
             - seen_at -- datetime related to the imported listing
 
         Returns:
-            - Listing - Built Listing entity after data extraction
+            - Listing - Built Listing entities after data extraction
         """
         # TODO : Find a better way to avoid encoding issues form the outside
         title = (

@@ -3,7 +3,7 @@ from typing import List
 import psycopg2
 
 from pricemap import db_pool
-from pricemap.entity.listing import Listing
+from pricemap.entities.listing import Listing
 
 
 class ListingRepository:
@@ -56,9 +56,9 @@ class ListingRepository:
             psycopg2.errors.InFailedSqlTransaction,
             psycopg2.errors.SyntaxError,
             psycopg2.errors.NotNullViolation,
-        ) as caught:
+        ):
             connection.rollback()
-            raise Exception("Listing Repository", caught)
+            raise
         finally:
             cursor.close()
             db_pool.putconn(connection)  # release the connection
