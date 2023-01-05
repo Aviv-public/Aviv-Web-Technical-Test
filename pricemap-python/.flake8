@@ -1,0 +1,17 @@
+ [flake8]
+exclude = .venv,__pycache__,vendors,migrations
+# For black compatibility
+max-line-length = 88
+# For Pydantic compatibility
+classmethod-decorators = classmethod, validator, root_validator
+ignore =
+    # Global to Meilleurs Agents
+    W503,
+    # For black compatibility
+    E203,
+    # Missing docstrings
+    D100,D101,D102,D103,D104,D105,D106,D107,
+    # pep257 convention
+    D203,D212,D214,D215,D404,D405,D406,D407,D408,D409,D410,D411,D413,D416,D417
+docstring-convention=all
+extend-select = D213
