@@ -32,22 +32,24 @@ class ImportListing:
             - place_id : place id used to call the external API
         """
         current_page = 1
-        last_page = False
-        while not last_page:
+        is_last_page = False
+        while not is_last_page:
             response = requests.get(self.api_url % place_id, {"page": current_page})
             if response.status_code != 200:
                 if response.status_code != 416:
-                    logger.error(
-                        "API responded with {status_code} - Message : {content}".format(
-                            status_code=response.status_code, content=response.text
-                        )
+                    raise Exception(
+                        "Listing API returns an unexpected status code",
+                        {
+                            "status_code": response.status_code,
+                            "response": response.text,
+                        },
                     )
                 break
 
             json_response = response.json()
             # if we've received less than paginator limit,
             # that means we reached the last page
-            last_page = len(json_response) < settings.LISTING_API_NB_RESULTS_PER_PAGE
+            is_last_page = len(json_response) < settings.LISTING_API_NB_RESULTS_PER_PAGE
 
             logger.info(f"Import listings for placeId {place_id} - page {current_page}")
 

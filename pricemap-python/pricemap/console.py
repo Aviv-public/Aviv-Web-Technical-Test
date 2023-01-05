@@ -12,7 +12,7 @@ def cli() -> None:
 def import_listings() -> None:
     """Import listings by browsing through the listing api."""
     import settings
-    from pricemap.use-cases.import_listing import ImportListing
+    from pricemap.usecases.import_listing import ImportListing
 
     import_listing = ImportListing(settings.LISTING_API_URI)
     import_listing.import_all_listings()
