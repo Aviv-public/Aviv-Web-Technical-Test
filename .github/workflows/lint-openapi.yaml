@@ -14,4 +14,4 @@ jobs:
         uses: stoplightio/spectral-action@latest
         working-directory: ./schemas
         with:
-          file_glob: "schemas/*.yaml"
+          file_glob: "*.yaml"
