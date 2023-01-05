@@ -34,7 +34,7 @@ paths:
     get:
       summary: Get price cog
       description: Get the price of a cog
-      tags: []
+      tags: ["prices"]
       responses:
         '200':
           $ref: '#/components/responses/Serie'
