@@ -14,5 +14,4 @@ jobs:
         uses: stoplightio/spectral-action@v0.8.8
         with:
           file_glob: "./schemas/*.yaml"
-          spectral_ruleset: |
-            extends: ["spectral:oas"]
+          spectral_ruleset: "./schemas/.spectral.yaml"
