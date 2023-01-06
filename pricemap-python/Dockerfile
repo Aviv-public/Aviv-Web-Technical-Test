@@ -12,7 +12,6 @@ COPY docker/wait-for-postgres.sh /home/pricemap/wait-for-postgres.sh
 
 USER pricemap
 COPY --chown=pricemap:pricemap . /home/pricemap/app
-RUN chmod u+x /home/pricemap/app/pricemap/console.py
 
 RUN pip3 install pipenv
 
