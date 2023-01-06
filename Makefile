@@ -17,7 +17,7 @@ help: ## List all Makefile targets
 ##
 .PHONY: build
 build: ## Builds the docker image associated with the project
-	docker-compose build --build-arg USER_ID=$(shell id -u $$USER) --build-arg GROUP_ID=$(shell id -g $$USER)
+	$(MAKE) python-build
 
 .PHONY: run
 run: ## Start the containers

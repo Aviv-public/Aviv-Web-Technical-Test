@@ -26,6 +26,10 @@ help: ## List all Python Makefile targets
 ## Python Containers 📦
 ## -------
 ##
+.PHONY: build
+build: ## Builds the python docker image
+	docker build -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
+
 .PHONY: shell-pricemap-container
 shell-pricemap-container: ## Run a bash on pricemap-python container
 	$(DOCKER_COMPOSE) exec -T pricemap-python bash
