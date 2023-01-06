@@ -11,13 +11,13 @@ RUN useradd -g pricemap -ms /bin/bash pricemap;
 COPY docker/wait-for-postgres.sh /home/pricemap/wait-for-postgres.sh
 
 USER pricemap
-COPY . /home/pricemap/app
-RUN chmod u+x /home/pricemap/console.py
+COPY --chown=pricemap:pricemap . /home/pricemap/app
+RUN chmod u+x /home/pricemap/app/pricemap/console.py
 
 RUN pip3 install pipenv
 
 WORKDIR /home/pricemap/app
 ENV PATH /home/pricemap/.local/bin:${PATH}
-RUN pipenv install --deploy --system
+RUN pipenv install --deploy --system --dev
 
 ENV PYTHONPATH /home/pricemap/app
