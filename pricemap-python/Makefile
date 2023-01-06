@@ -45,7 +45,7 @@ import-listings: ## Run a command to import listings into pricemap database
 ##
 .PHONY: tests
 tests: ## Execute tests
-	$(DOCKER_COMPOSE) exec -T pricemap pipenv run pytest -vv --ff
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python pipenv run pytest -vv --ff
 
 ##
 ## Python mCode Analysis 🔎
@@ -56,18 +56,18 @@ code-analysis: complexity format style ## Run the all code Analysis (code comple
 
 .PHONY: complexity format style
 complexity: ## Compute Cyclomatic complexity and maintainability check
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c \
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c \
 		"radon cc -s -n B pricemap | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
 
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c \
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c \
 		"radon mi -n B pricemap | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
 
 .PHONY: format style
 format: ## Format code.
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "isort pricemap tests; black ."
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "isort pricemap tests; black ."
 
 .PHONY: style
 style: ## Check lint, code styling rules
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "mypy pricemap"
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "flake8 pricemap tests"
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "black --check ."
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "mypy pricemap"
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "flake8 pricemap tests"
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "black --check ."
