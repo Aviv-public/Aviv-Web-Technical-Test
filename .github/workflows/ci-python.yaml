@@ -6,11 +6,11 @@ on:
   push:
     branches: [main]
     paths:
-    - pricemap-python
+    - pricemap-python/**
   pull_request:
     paths:
-    - pricemap-python
-    -
+    - pricemap-python/**
+
 jobs:
  build-test:
     runs-on: ubuntu-latest
