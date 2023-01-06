@@ -3,6 +3,9 @@ from datetime import datetime
 
 
 class Listing:
+    room_regex = re.compile(r"(?P<type>Appartement|Studio)( (?P<rooms>\d+) pièces)?")
+    area_regex = re.compile(r"(?P<area>\d+) m²")
+
     def __init__(
         self,
         id: int,
@@ -32,7 +35,6 @@ class Listing:
         Returns:
             - Listing - Built Listing entities after data extraction
         """
-        # TODO : Find a better way to avoid encoding issues form the outside
         title = (
             data["title"]
             .replace("\u00a0", " ")
@@ -73,8 +75,7 @@ class Listing:
         """
         nb_rooms = 0
 
-        regex = re.compile(r"(?P<type>Appartement|Studio)( (?P<rooms>\d+) pièces)?")
-        matches = regex.search(title)
+        matches = Listing.room_regex.search(title)
         if matches:
             if matches.group("type") == "Studio":
                 nb_rooms = 1
@@ -102,8 +103,7 @@ class Listing:
         """
         area = 0
 
-        regex = re.compile(r"(?P<area>\d+) m²")
-        matches = regex.search(title)
+        matches = Listing.area_regex.search(title)
 
         if matches:
             area = int(matches.group("area"))
