@@ -49,7 +49,7 @@ python-import-listings: ## Run a command to import listings into pricemap databa
 ##
 .PHONY: python-tests
 python-tests: python-install-dev ## Execute tests
-	$(DOCKER_COMPOSE) exec -T pricemap pipenv run pytest -vv --ff --exitfirst
+	$(DOCKER_COMPOSE) exec -T pricemap pipenv run pytest -vv --ff
 
 ##
 ## Code Analysis 🔎
