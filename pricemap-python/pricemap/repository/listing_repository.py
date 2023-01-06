@@ -16,7 +16,7 @@ class ListingRepository:
             - listings -- List of entities to upsert
         """
         sql_request = """
-            INSERT INTO public.listings(
+            INSERT INTO public.listing(
                 id,
                 place_id,
                 price,
@@ -36,21 +36,21 @@ class ListingRepository:
                 SET price = EXCLUDED.price,
                     seen_at = EXCLUDED.seen_at;
         """
-        connection = db_pool.getconn()
-        cursor = connection.cursor()
-        for listing in listings:
-            cursor.execute(
-                sql_request,
-                {
-                    "id": listing.id,
-                    "place_id": listing.place_id,
-                    "price": listing.price,
-                    "room_count": listing.room_count,
-                    "area": listing.area,
-                    "seen_at": listing.seen_at,
-                },
-            )
         try:
+            connection = db_pool.getconn()
+            cursor = connection.cursor()
+            for listing in listings:
+                cursor.execute(
+                    sql_request,
+                    {
+                        "id": listing.id,
+                        "place_id": listing.place_id,
+                        "price": listing.price,
+                        "room_count": listing.room_count,
+                        "area": listing.area,
+                        "seen_at": listing.seen_at,
+                    },
+                )
             connection.commit()
         except (
             psycopg2.errors.InFailedSqlTransaction,
