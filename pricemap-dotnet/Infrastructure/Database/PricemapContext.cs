@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using pricemap.Infrastructure.Database.Model;
 
 namespace pricemap.Infrastructure.Database
 {
@@ -9,7 +10,6 @@ namespace pricemap.Infrastructure.Database
 
         }
         
-        // ToDo put here set of data
-        //public DbSet<Intermediary> Intermediaries { get; set; }
+        public DbSet<Listing> Listings { get; set; }
     }
 }
