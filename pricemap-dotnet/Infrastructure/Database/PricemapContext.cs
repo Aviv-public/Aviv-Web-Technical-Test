@@ -11,5 +11,8 @@ namespace pricemap.Infrastructure.Database
         }
         
         public DbSet<Listing> Listings { get; set; }
+        public DbSet<Price> Prices { get; set; }
+        public DbSet<View> Views { get; set; }
+        public DbSet<GeoPlace> GeoPlaces { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace pricemap.Infrastructure.Database.Model
 {
     [Table("prices")]
-    public class Price
+    public class Price : BaseEntity
     {
         [Column("listing_id")]
         public string ListingId { get; set; }
