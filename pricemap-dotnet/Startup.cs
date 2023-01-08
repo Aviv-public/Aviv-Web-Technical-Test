@@ -1,7 +1,7 @@
 using pricemap.Configuration;
 using pricemap.Infrastructure.Database;
 using pricemap.Services.Contracts;
-using ContractsV1 = pricemap.Services.Contracts.V1;
+using ContractsV1 = pricemap.Services.Contracts;
 using pricemap.Services.Implem;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,8 +15,6 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using pricemap.Services.Implem.V1;
-using pricemap.Services.Contracts.V1;
 using pricemap.Services.Model.Configuration;
 
 namespace pricemap
@@ -37,22 +35,6 @@ namespace pricemap
             services.AddDbContext<PricemapContext>(options =>
             {
                 options.UseNpgsql(pricemapConfig.ToString(),
-                    npgsqlOptionsAction: sqlOptions =>
-                    {
-                        sqlOptions.CommandTimeout(5);
-                        sqlOptions.EnableRetryOnFailure(
-                            maxRetryCount: 5,
-                            maxRetryDelay: TimeSpan.FromSeconds(3),
-                            errorCodesToAdd: null);
-                        sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-                    });
-            });
-
-
-            var pricemapWriteConfig = Configuration.GetSection("dataBase:pricemapWrite").Get<Infrastructure.Database.Model.DataBaseConfiguration>();
-            services.AddDbContext<PricemapWriteContext>(options =>
-            {
-                options.UseNpgsql(pricemapWriteConfig.ToString(),
                     npgsqlOptionsAction: sqlOptions =>
                     {
                         sqlOptions.CommandTimeout(5);

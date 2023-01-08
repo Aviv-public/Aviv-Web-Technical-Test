@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace pricemap.Services.Contracts.V1
+namespace pricemap.Services.Contracts
 {
     public interface IListingService
     {

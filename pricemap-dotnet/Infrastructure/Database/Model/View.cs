@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pricemap.Infrastructure.Database.Model
 {
-    public class PriceView
+    [Table("views")]
+    public class View
     {
         [Column("listing_id")]
         public string ListingId { get; set; }

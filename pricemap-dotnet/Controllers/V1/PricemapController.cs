@@ -1,4 +1,4 @@
-using pricemap.Services.Contracts.V1;
+using pricemap.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

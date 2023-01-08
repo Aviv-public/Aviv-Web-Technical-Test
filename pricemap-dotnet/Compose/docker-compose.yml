@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pricemap:
+    image: ${DOCKER_REGISTRY-}pricemap
+    build:
+      context: .
+      dockerfile: ../Dockerfile

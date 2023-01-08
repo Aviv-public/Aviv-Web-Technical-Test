@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pricemap.Infrastructure.Database.Model
 {
+    [Table("listings")]
     public class Listing
     {
         [Column("listing_id")]

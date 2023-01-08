@@ -1,7 +1,7 @@
-FROM 936992537267.dkr.ecr.eu-west-1.amazonaws.com/groupeseloger/sl.alpine-core6.0-runtime:latest AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
 WORKDIR /app
 
-FROM 936992537267.dkr.ecr.eu-west-1.amazonaws.com/groupeseloger/sl.alpine-core6.0-build:latest AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
 WORKDIR /src
 COPY [".", "."]
 COPY ["nuget.config", "."]

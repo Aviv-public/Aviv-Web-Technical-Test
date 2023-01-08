@@ -1,8 +1,8 @@
-using pricemap.Services.Contracts.V1;
+using pricemap.Services.Contracts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace pricemap.Services.Implem.V1
+namespace pricemap.Services.Implem
 {
     public class ListingService : IListingService
     {
