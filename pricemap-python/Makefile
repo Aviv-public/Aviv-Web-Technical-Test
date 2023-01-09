@@ -52,13 +52,13 @@ tests: ## Execute tests
 	$(DOCKER_COMPOSE) run --rm -T pricemap-python pipenv run pytest -vv --ff
 
 ##
-## Python mCode Analysis 🔎
+## Python Code Analysis 🔎
 ## -----
 ##
 .PHONY: code-analysis complexity format style
 code-analysis: complexity format style ## Run the all code Analysis (code complexity, code format and code style)
 
-.PHONY: complexity format style
+.PHONY: complexity
 complexity: ## Compute Cyclomatic complexity and maintainability check
 	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c \
 		"radon cc -s -n B pricemap | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
@@ -66,7 +66,7 @@ complexity: ## Compute Cyclomatic complexity and maintainability check
 	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c \
 		"radon mi -n B pricemap | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
 
-.PHONY: format style
+.PHONY: style
 format: ## Format code.
 	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "isort pricemap; black ."
 

@@ -32,5 +32,5 @@ clean-all: ## Remove containers and volumes
 	$(DOCKER_COMPOSE) down --remove-orphans -v
 	docker image prune --filter label=owner-technical-test -af
 
-python-%:
+python-%: ## Execute Python command that come from the Python sub Makefile
 	@$(MAKE) -C pricemap-python $${$@}
