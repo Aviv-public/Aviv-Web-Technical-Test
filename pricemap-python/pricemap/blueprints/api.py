@@ -10,7 +10,7 @@ api = Blueprint("api", __name__)
 @api.route("/geoms")
 def geoms() -> "Response":
     # TODO: you can tweak the query and/or the code if you think it's needed :)
-    SQL = """
+    sql_request = """
             SELECT
                 ST_ASGEOJSON(geom) as geom,
                 cog,
@@ -18,13 +18,13 @@ def geoms() -> "Response":
             FROM geo_place
             JOIN listing ON geo_place.id = listing.place_id
             GROUP BY (geom, cog)
-            ;"""
-
+            ;
+    """
     features = []
     connection = db_pool.getconn()
     cursor = connection.cursor()
     try:
-        cursor.execute(SQL)
+        cursor.execute(sql_request)
 
         for row in cursor:
             if not row[0]:
@@ -57,6 +57,18 @@ def get_price(cog: int) -> "Response":
         "14000-100000": 0,
     }
 
+    sql_request = """
+         SELECT
+              count(*) as count
+         FROM geo_place
+         JOIN listing ON geo_place.id = listing.place_id
+         WHERE area != 0
+            AND cog = %(cog)s
+            AND price / area >= %(min_price)s
+            AND price / area <= %(max_price)s
+         ;
+    """
+
     connection = db_pool.getconn()
     cursor = connection.cursor()
 
@@ -65,21 +77,16 @@ def get_price(cog: int) -> "Response":
         for label in labels:
             min_price = label.split("-")[0]
             max_price = label.split("-")[1]
-            SQL = f"""
-                SELECT
-                     ST_ASGEOJSON(geom) as geom,
-                     cog,
-                     area,
-                     price
-                 FROM geo_place
-                 JOIN listing ON geo_place.id = listing.place_id
-                 WHERE area != 0
-                    AND price / area > {min_price}
-                    AND price / area < {max_price}
-                 ;"""
-            cursor.execute(SQL)
-            rows = cursor.fetchall()
-            labels[label] = len(rows)
+            cursor.execute(
+                sql_request,
+                {
+                    "cog": cog,
+                    "min_price": min_price,
+                    "max_price": max_price,
+                },
+            )
+            row = cursor.fetchone()
+            labels[label] = row["count"]
     finally:
         cursor.close()
         db_pool.putconn(connection)  # release the connection
