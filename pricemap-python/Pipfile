@@ -2,7 +2,6 @@
 Flask = "*"
 psycopg2-binary = "*"
 requests = "*"
-typing-extensions = "*"
 
 [[source]]
 name = "pypi"
