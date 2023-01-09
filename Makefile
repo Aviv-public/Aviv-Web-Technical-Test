@@ -33,4 +33,8 @@ clean-all: ## Remove containers and volumes
 	docker image prune --filter label=owner-technical-test -af
 
 python-%: ## Execute Python command that come from the Python sub Makefile
+	# Extract the string right after `python-` and propagate it to Python sub Makefile
+	# Example :
+	# 	- "python-help" will run "help" from the python-pricemap Makefile
+	# 	- "python-import-all-listings" will run "import-all-listings" from the python-pricemap Makefile
 	@$(MAKE) -C pricemap-python $${$@}
