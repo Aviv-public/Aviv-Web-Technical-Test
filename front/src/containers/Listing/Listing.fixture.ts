@@ -1,0 +1,1 @@
+export const mockedData: Array<any> = [];
