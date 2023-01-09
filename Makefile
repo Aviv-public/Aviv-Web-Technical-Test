@@ -30,6 +30,7 @@ clean: ## Remove containers
 .PHONY: clean-all
 clean-all: ## Remove containers and volumes
 	$(DOCKER_COMPOSE) down --remove-orphans -v
+	docker image prune --filter label=owner-technical-test -af
 
 python-%:
 	@$(MAKE) -C pricemap-python $${$@}

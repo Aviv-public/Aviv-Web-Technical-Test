@@ -28,7 +28,7 @@ help: ## List all Python Makefile targets
 ##
 .PHONY: build
 build: ## Builds the python docker image
-	docker build -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
+	docker build --label pricemap-python --label owner-technical-test -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
 
 .PHONY: shell-pricemap-container
 shell-pricemap-container: ## Run a bash on pricemap-python container
@@ -68,10 +68,10 @@ complexity: ## Compute Cyclomatic complexity and maintainability check
 
 .PHONY: format style
 format: ## Format code.
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "isort pricemap tests; black ."
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "isort pricemap; black ."
 
 .PHONY: style
 style: ## Check lint, code styling rules
 	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "mypy pricemap"
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "flake8 pricemap tests"
+	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "flake8 pricemap"
 	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "black --check ."
