@@ -6,20 +6,8 @@ MAKEFLAGS=--no-print-directory
 
 DOCKER_COMPOSE?=docker-compose -p owner-technical-test
 
-define HEADER
-
----------------------
-      PYTHON 🐍
----------------------
-NB : Please add prefix "python-" just before running any command of that Makefile 🙏
-example : "python-help" to the "help" command
-
-endef
-export HEADER
-
 .PHONY: help
 help: ## List all Python Makefile targets
-	@printf "$$HEADER\n"
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
 ##
