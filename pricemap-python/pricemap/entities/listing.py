@@ -3,8 +3,10 @@ from datetime import datetime
 
 
 class Listing:
-    room_regex = re.compile(r"(?P<type>Appartement|Studio)( (?P<rooms>\d+) pièces)?")
-    area_regex = re.compile(r"(?P<area>\d+) m²")
+    NB_ROOMS_REGEX = re.compile(
+        r"(?P<type>Appartement|Studio)( (?P<nb_rooms>\d+) pièces)?"
+    )
+    AREA_REGEX = re.compile(r"(?P<area>\d+) m²")
 
     def __init__(
         self,
@@ -44,16 +46,16 @@ class Listing:
         listing = Listing(
             int(data["listing_id"]),
             place_id,
-            Listing.__extract_rooms_from_string(title),
-            Listing.__extract_area_from_string(title),
-            Listing.__extract_price_from_string(data["price"]),
+            Listing._extract_nb_rooms_from_string(title),
+            Listing._extract_area_from_string(title),
+            Listing._extract_price_from_string(data["price"]),
             seen_at,
         )
 
         return listing
 
     @staticmethod
-    def __extract_rooms_from_string(title: str) -> int:
+    def _extract_nb_rooms_from_string(title: str) -> int:
         """
         Parse title string to retrieve the number of rooms.
 
@@ -75,16 +77,16 @@ class Listing:
         """
         nb_rooms = 0
 
-        matches = Listing.room_regex.search(title)
-        if matches:
-            if matches.group("type") == "Studio":
+        regex_match = Listing.NB_ROOMS_REGEX.search(title)
+        if regex_match:
+            if regex_match.group("type") == "Studio":
                 nb_rooms = 1
-            elif matches.group("rooms") is not None:
-                nb_rooms = int(matches.group("rooms"))
+            elif regex_match.group("nb_rooms") is not None:
+                nb_rooms = int(regex_match.group("nb_rooms"))
         return nb_rooms
 
     @staticmethod
-    def __extract_area_from_string(title: str) -> int:
+    def _extract_area_from_string(title: str) -> int:
         """
         Parse title string to retrieve area.
 
@@ -103,17 +105,17 @@ class Listing:
         """
         area = 0
 
-        matches = Listing.area_regex.search(title)
+        regex_match = Listing.AREA_REGEX.search(title)
 
-        if matches:
-            area = int(matches.group("area"))
+        if regex_match:
+            area = int(regex_match.group("area"))
 
         return area
 
     @staticmethod
-    def __extract_price_from_string(price_str: str) -> int:
+    def _extract_price_from_string(price_str: str) -> int:
         """
-        Parse price to extract the integer value.
+        Parse price string to extract the integer value.
 
         Examples :
             - 1 670 000 € -> 1670000
