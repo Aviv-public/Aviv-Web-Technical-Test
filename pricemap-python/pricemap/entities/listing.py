@@ -24,8 +24,8 @@ class Listing:
         self.price = price
         self.seen_at = seen_at
 
-    @staticmethod
-    def from_data(data: dict, place_id: int, seen_at: datetime) -> "Listing":
+    @classmethod
+    def from_data(cls, data: dict, place_id: int, seen_at: datetime) -> "Listing":
         """
         Instantiate Listing Entity from Dictionary data.
 
@@ -46,16 +46,16 @@ class Listing:
         listing = Listing(
             int(data["listing_id"]),
             place_id,
-            Listing._extract_nb_rooms_from_string(title),
-            Listing._extract_area_from_string(title),
-            Listing._extract_price_from_string(data["price"]),
+            cls._extract_nb_rooms_from_string(title),
+            cls._extract_area_from_string(title),
+            cls._extract_price_from_string(data["price"]),
             seen_at,
         )
 
         return listing
 
-    @staticmethod
-    def _extract_nb_rooms_from_string(title: str) -> int:
+    @classmethod
+    def _extract_nb_rooms_from_string(cls, title: str) -> int:
         """
         Parse title string to retrieve the number of rooms.
 
@@ -85,8 +85,8 @@ class Listing:
                 nb_rooms = int(regex_match.group("nb_rooms"))
         return nb_rooms
 
-    @staticmethod
-    def _extract_area_from_string(title: str) -> int:
+    @classmethod
+    def _extract_area_from_string(cls, title: str) -> int:
         """
         Parse title string to retrieve area.
 
@@ -112,8 +112,8 @@ class Listing:
 
         return area
 
-    @staticmethod
-    def _extract_price_from_string(price_str: str) -> int:
+    @classmethod
+    def _extract_price_from_string(cls, price_str: str) -> int:
         """
         Parse price string to extract the integer value.
 
