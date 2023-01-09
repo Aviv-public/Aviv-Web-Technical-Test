@@ -9,7 +9,7 @@ from pricemap.finder.geo_place_finder import GeoPlaceFinder
 from pricemap.repository.listing_repository import ListingRepository
 
 
-class ImportListing:
+class ImportAllListings:
     def __init__(self, api_url: str):
         self.api_url = api_url
         self.listing_repository = ListingRepository()
@@ -47,8 +47,7 @@ class ImportListing:
                 break
 
             json_response = response.json()
-            # if we've received less than paginator limit,
-            # that means we reached the last page
+            # If we received fewer results than the page limit, we reached the last page
             is_last_page = len(json_response) < settings.LISTING_API_NB_RESULTS_PER_PAGE
 
             logger.info(f"Import listings for placeId {place_id} - page {current_page}")
