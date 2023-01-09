@@ -36,9 +36,9 @@ class ListingRepository:
                 SET price = EXCLUDED.price,
                     seen_at = EXCLUDED.seen_at;
         """
+        connection = db_pool.getconn()
+        cursor = connection.cursor()
         try:
-            connection = db_pool.getconn()
-            cursor = connection.cursor()
             for listing in listings:
                 cursor.execute(
                     sql_request,

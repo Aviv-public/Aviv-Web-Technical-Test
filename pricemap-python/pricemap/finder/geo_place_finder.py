@@ -9,9 +9,9 @@ class GeoPlaceFinder:
             FROM geo_place
             ORDER BY id ASC;
         """
+        connection = db_pool.getconn()
+        cursor = connection.cursor()
         try:
-            connection = db_pool.getconn()
-            cursor = connection.cursor()
             cursor.execute(sql_request)
             places_ids = []
             for row in cursor:

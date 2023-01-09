@@ -21,9 +21,9 @@ def geoms() -> "Response":
             ;"""
 
     features = []
+    connection = db_pool.getconn()
+    cursor = connection.cursor()
     try:
-        connection = db_pool.getconn()
-        cursor = connection.cursor()
         cursor.execute(SQL)
 
         for row in cursor:
@@ -56,9 +56,11 @@ def get_price(cog: int) -> "Response":
         "10000-14000": 0,
         "14000-100000": 0,
     }
+
+    connection = db_pool.getconn()
+    cursor = connection.cursor()
+
     try:
-        connection = db_pool.getconn()
-        cursor = connection.cursor()
 
         for label in labels:
             min_price = label.split("-")[0]
