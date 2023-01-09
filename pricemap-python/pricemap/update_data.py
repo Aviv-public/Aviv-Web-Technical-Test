@@ -1,7 +1,8 @@
-from flask import g, current_app
-import requests
-import psycopg2
 from datetime import datetime
+
+import requests
+
+from pricemap import db_pool
 
 GEOMS_IDS = [
     32684,
@@ -26,7 +27,8 @@ GEOMS_IDS = [
     32701,
 ]
 
-def init_database():
+
+def init_database() -> None:
     sql = """
         CREATE TABLE listings (
             id INTEGER,
@@ -38,20 +40,25 @@ def init_database():
             PRIMARY KEY (id, seen_at)
         );
     """
-    cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    connection = db_pool.getconn()
+    cursor = connection.cursor()
     try:
         cursor.execute(sql)
-        g.db.commit()
-    except:
-        g.db.rollback()
+        connection.commit()
+    except Exception:
+        connection.rollback()
         print("Error: maybe table already exists?")
-        return
+    finally:
+        cursor.close()
+        db_pool.putconn(connection)  # re-put connection to db pool
+    return
 
-def update():
+
+def update() -> None:
     # init database
     init_database()
-    db_cursor = g.db.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
+    connection = db_pool.getconn()
+    cursor = connection.cursor()
     for geom in GEOMS_IDS:
         p = 0
         while True:
@@ -65,20 +72,10 @@ def update():
 
             for item in d.json():
                 listing_id = item["listing_id"]
-                try:
-                    room_count = 1 if "Studio" in item["title"] else int("".join([s for s in item["title"].split("pièces")[0] if s.isdigit()]))
-                except:
-                    room_count = 0
 
-                try:
-                    price =  int("".join([s for s in item["price"] if s.isdigit()]))
-                except:
-                    price = 0
-
-                try:
-                    area = int(item["title"].split("-")[1].replace(" ", '').replace("\u00a0m\u00b2", ''))
-                except:
-                    area = 0
+                room_count = _extract_rooms(item["title"])
+                area = _extract_area(item["title"])
+                price = _extract_price(item["price"])
 
                 seen_at = datetime.now()
 
@@ -92,5 +89,37 @@ def update():
                         '{seen_at}'
                     );
                 """
-                db_cursor.execute(sql)
-                g.db.commit()
+                try:
+                    cursor.execute(sql)
+                    cursor.commit()
+                finally:
+                    cursor.close()
+                    db_pool.putconn(connection)  # re-put connection to db pool
+
+
+def _extract_area(title: str) -> int:
+    try:
+        area = int(title.split("-")[1].replace(" ", "").replace("\u00a0m\u00b2", ""))
+    except Exception:
+        area = 0
+    return area
+
+
+def _extract_price(price_str: str) -> int:
+    try:
+        price = int("".join([s for s in price_str if s.isdigit()]))
+    except Exception:
+        price = 0
+    return price
+
+
+def _extract_rooms(title: str) -> int:
+    try:
+        room_count = (
+            1
+            if "Studio" in title
+            else int("".join([s for s in title.split("pièces")[0] if s.isdigit()]))
+        )
+    except Exception:
+        room_count = 0
+    return room_count

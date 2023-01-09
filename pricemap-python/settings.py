@@ -7,9 +7,9 @@ import os
 
 # Database
 DATABASE = {
-    'database': os.getenv('PGDATABASE'),
-    'user': os.getenv('PGUSER'),
-    'password': os.getenv('PGPASSWORD'),
-    'host': 'db',
-    'port': 5432
+    "database": os.getenv("PGDATABASE"),
+    "user": os.getenv("PGUSER"),
+    "password": os.getenv("PGPASSWORD"),
+    "host": "db",
+    "port": 5432,
 }
