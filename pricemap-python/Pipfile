@@ -2,6 +2,7 @@
 Flask = "*"
 psycopg2-binary = "*"
 requests = "*"
+typing-extensions = "*"
 
 [[source]]
 name = "pypi"
@@ -9,7 +10,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"
 
 [dev-packages]
 black = {version = "*", index = "pypi"}

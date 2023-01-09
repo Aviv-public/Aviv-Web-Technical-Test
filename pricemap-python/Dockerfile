@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.11-slim
 
 # Install postgres client for waiting db container
 RUN apt-get update && apt-get install --assume-yes postgresql-client
@@ -11,12 +11,13 @@ RUN useradd -g pricemap -ms /bin/bash pricemap;
 COPY docker/wait-for-postgres.sh /home/pricemap/wait-for-postgres.sh
 
 USER pricemap
-COPY . /home/pricemap/app
+COPY --chown=pricemap:pricemap . /home/pricemap/app
 
 RUN pip3 install pipenv
 
 WORKDIR /home/pricemap/app
 ENV PATH /home/pricemap/.local/bin:${PATH}
-RUN pipenv install --deploy --system
+
+RUN pipenv install --deploy --system --dev
 
 ENV PYTHONPATH /home/pricemap/app
