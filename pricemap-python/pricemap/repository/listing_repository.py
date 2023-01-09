@@ -1,5 +1,3 @@
-from typing import List
-
 import psycopg2
 
 from pricemap import db_pool
@@ -8,7 +6,7 @@ from pricemap.entities.listing import Listing
 
 class ListingRepository:
     @staticmethod
-    def upsert_bulk(listings: List[Listing]) -> None:
+    def upsert_bulk(listings: list[Listing]) -> None:
         """
         Upsert bulk of rows in listing table.
 
