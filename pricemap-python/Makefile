@@ -40,8 +40,8 @@ shell-pricemap-container: ## Run a bash on pricemap-python container
 ## --------
 ##
 .PHONY: import-listings
-import-listings: ## Run a command to import listings into pricemap database
-	$(DOCKER_COMPOSE) exec -T pricemap-python ./pricemap/console.py import-listings
+import-all-listings: ## Run a command to import listings into pricemap database
+	$(DOCKER_COMPOSE) exec -T pricemap-python ./pricemap/console.py import-all-listings
 
 ##
 ## Python Tests

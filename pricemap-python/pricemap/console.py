@@ -10,7 +10,7 @@ def cli() -> None:
 
 @cli.command()
 def import_all_listings() -> None:
-    """Import listings by browsing through the listing api."""
+    """Import all listings by browsing through the listing api."""
     import settings
     from pricemap.usecases.import_all_listings import ImportAllListings
 
