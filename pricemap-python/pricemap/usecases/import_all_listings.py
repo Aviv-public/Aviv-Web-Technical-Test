@@ -17,7 +17,7 @@ class ImportAllListings:
     def import_all_listings(self) -> None:
         """Import listings for all places."""
         for place_id in GeoPlaceFinder.retrieve_all_places_ids():
-            logger.debug(f"Import listings for placeId {place_id}")
+            logger.debug("Import listings for placeId %s", place_id)
             self._import_listings_for(place_id)
 
     def _import_listings_for(self, place_id: int) -> None:
@@ -55,7 +55,7 @@ class ImportAllListings:
             bulk_listings = []
             for item in json_response:
                 listing = Listing.from_data(item, place_id, datetime.now())
-                logger.debug(f"Add listing {listing.id} to bulk")
+                logger.debug("Add listing %s to bulk", listing.id)
                 bulk_listings.append(listing)
 
             self.listing_repository.upsert_bulk(bulk_listings)
