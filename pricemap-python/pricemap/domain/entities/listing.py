@@ -133,3 +133,18 @@ class Listing:
             price = 0
 
         return price
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Listing):
+            return False
+
+        return self._compare(other)
+
+    def _compare(self, other: "Listing") -> bool:
+        return (
+            self.id == other.id
+            and self.place_id == other.place_id
+            and self.room_count == other.room_count
+            and self.area == other.area
+            and self.seen_at == other.seen_at
+        )
