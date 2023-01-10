@@ -1,4 +1,4 @@
-// use this data if you stuggle to make your api calls
+// use this data if you struggle to make your api calls
 
 export const mockedData: Array<any> = [
   {

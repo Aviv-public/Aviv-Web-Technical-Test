@@ -1,0 +1,32 @@
+.cards_container {
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .card {
+    padding: 24px;
+    border-radius: 3.5px;
+    margin-bottom: 16px;
+    width: 100%;
+    border: 1px solid $neutral-1;
+  }
+  
+  .card-selected {
+    border: 1px solid $primary-70;
+  }
+
+  .counter {
+    background-color: $primary-70;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.4rem;
+  
+    & > * {
+      padding: 0 0.3rem;
+      color: $neutral-0;
+      font-weight: bold;
+    }
+  }

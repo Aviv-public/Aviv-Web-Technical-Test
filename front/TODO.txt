@@ -1,4 +1,0 @@
-TODO: 
-
-- Fournir le css des dumb composants
-- Classes css pour le grisage 
