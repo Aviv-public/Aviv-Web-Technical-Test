@@ -56,12 +56,27 @@ complexity: ## Compute Cyclomatic complexity and maintainability check
 
 .PHONY: format-code
 format-code: ## Format code
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap && black ."
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort tests pricemap && black ."
 
 .PHONY: format-check
 format-check: ## Check code format
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap -c && black --check ."
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort tests pricemap -c && black --check ."
 
 .PHONY: style
 style: ## Check lint, code styling rules
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "mypy pricemap && flake8 pricemap"
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "mypy tests pricemap && flake8 tests pricemap"
+
+
+##
+## Test 🧪
+## -----
+##
+.PHONY: test
+test: ## Shortcut to launch all the test tasks (unit, functional and integration).
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps --no-deps pricemap-python bash -c \
+"pytest -Werror --cov . --cov-report term-missing --cov-report xml --junitxml=junit-coverage.xml --cov-config .coveragerc -vv tests"
+
+.PHONY: test-dev
+test-dev:  ## Shortcut to launch all the test tasks (unit, functional and integration).
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps --no-deps pricemap-python bash -c \
+"pytest -Werror -vv tests"
