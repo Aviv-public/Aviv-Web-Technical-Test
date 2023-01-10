@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using NetTopologySuite.Geometries;
 
 namespace pricemap.Infrastructure.Database.Model
 {
@@ -6,8 +8,11 @@ namespace pricemap.Infrastructure.Database.Model
     public class GeoPlace
     {
         [Column("id")]
+        [Key]
         public int Id { get; set; }
-        [Column("name")]
+        [Column("cog")]
         public string Name { get; set; }
+        [Column("geom")]
+        public Geometry Geom { get; set; }
     }
 }
