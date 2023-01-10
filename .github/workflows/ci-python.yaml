@@ -27,4 +27,4 @@ jobs:
         run: make python-build
 
       - name: Code Analysis
-        run: make python-code-analysis
+        run: make python-check-code-analysis

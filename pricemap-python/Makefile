@@ -43,7 +43,8 @@ tests: ## Execute tests
 ## Python Code Analysis 🔎
 ## -----
 ##
-code-analysis: complexity format-check style ## Run the all code Analysis (code complexity, code format and code style)
+check-code-analysis: complexity format-check style ## Run the all code Analysis (code complexity, code format and code style) without changing code
+code-analysis: complexity format-code style ## Run the all code Analysis (code complexity, code format and code style)
 
 .PHONY: complexity
 complexity: ## Compute Cyclomatic complexity and maintainability check
