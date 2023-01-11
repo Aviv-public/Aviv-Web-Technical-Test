@@ -20,7 +20,7 @@ build: ## Builds the python docker image
 
 .PHONY: shell-pricemap-container
 shell-pricemap-container: ## Run a bash on pricemap-python container
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash
+	$(DOCKER_COMPOSE) exec pricemap-python bash
 
 
 ##

@@ -1,13 +1,9 @@
-import re
 from datetime import datetime
+
+from pricemap.domain.entities.parsers.listing import ListingParser
 
 
 class Listing:
-    NB_ROOMS_REGEX = re.compile(
-        r"(?P<type>Appartement|Studio)( (?P<nb_rooms>\d+) pièces)?"
-    )
-    AREA_REGEX = re.compile(r"(?P<area>\d+) m²")
-
     def __init__(
         self,
         id: int,
@@ -37,114 +33,16 @@ class Listing:
         Returns:
             - Listing - Built Listing entities after data extraction
         """
-        title = (
-            data["title"]
-            .replace("\u00a0", " ")
-            .replace("\u00e8", "è")
-            .replace("\u00b2", "²")
-        )
+        nb_rooms = ListingParser.extract_nb_rooms_from_string(data["title"])
+        area = ListingParser.extract_area_from_string(data["title"])
+        price = ListingParser.extract_price_from_string(data["price"])
         listing = Listing(
             int(data["listing_id"]),
             place_id,
-            cls._extract_nb_rooms_from_string(title),
-            cls._extract_area_from_string(title),
-            cls._extract_price_from_string(data["price"]),
+            nb_rooms,
+            area,
+            price,
             seen_at,
         )
 
         return listing
-
-    @classmethod
-    def _extract_nb_rooms_from_string(cls, title: str) -> int:
-        """
-        Parse title string to retrieve the number of rooms.
-
-        Set default value to 0 if the title does not match the regex
-        If the title contains 'Studio', that means 1 room
-        If the title contains 'Appartement', we extract the number of rooms just after
-
-        Examples :
-            - Appartement 2 pièces - 29 m² -> 2
-            - Studio - 6 m² -> 1
-            - 12 m2 -> 0
-            - Appartement - 29m2 -> 0
-
-        Args:
-            - title -- string that contains rooms data
-
-        Returns:
-            - rooms - The extracted rooms value from title
-        """
-        nb_rooms = 0
-
-        regex_match = Listing.NB_ROOMS_REGEX.search(title)
-        if regex_match:
-            if regex_match.group("type") == "Studio":
-                nb_rooms = 1
-            elif regex_match.group("nb_rooms") is not None:
-                nb_rooms = int(regex_match.group("nb_rooms"))
-        return nb_rooms
-
-    @classmethod
-    def _extract_area_from_string(cls, title: str) -> int:
-        """
-        Parse title string to retrieve area.
-
-        Set default value to 0 if the title does not match the regex
-
-        Examples :
-            - Appartement 2 pièces - 29 m² -> 29
-            - Studio - 6 m² -> 6
-            - Appartement 3 pièces -> 0
-
-        Args:
-            - title -- string that contains area data
-
-        Returns:
-            - area - The extracted area value from title
-        """
-        area = 0
-
-        regex_match = Listing.AREA_REGEX.search(title)
-
-        if regex_match:
-            area = int(regex_match.group("area"))
-
-        return area
-
-    @classmethod
-    def _extract_price_from_string(cls, price_str: str) -> int:
-        """
-        Parse price string to extract the integer value.
-
-        Examples :
-            - 1 670 000 € -> 1670000
-            - Wrong value -> 0
-
-        Args:
-            - price_str -- un-formatted string that contains price
-
-        Returns:
-            - price - The formatted integer price
-        """
-        try:
-            price = int("".join([s for s in price_str if s.isdigit()]))
-        except Exception:
-            price = 0
-
-        return price
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Listing):
-            return False
-
-        return self._compare(other)
-
-    def _compare(self, other: "Listing") -> bool:
-        return (
-            self.id == other.id
-            and self.place_id == other.place_id
-            and self.room_count == other.room_count
-            and self.area == other.area
-            and self.seen_at == other.seen_at
-        )
