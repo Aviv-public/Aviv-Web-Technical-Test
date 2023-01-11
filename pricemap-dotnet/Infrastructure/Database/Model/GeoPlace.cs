@@ -1,6 +1,6 @@
+using NetTopologySuite.Geometries;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using NetTopologySuite.Geometries;
 
 namespace pricemap.Infrastructure.Database.Model
 {
@@ -11,8 +11,9 @@ namespace pricemap.Infrastructure.Database.Model
         [Key]
         public int Id { get; set; }
         [Column("cog")]
-        public string Name { get; set; }
+        public string Cog { get; set; }
         [Column("geom")]
+        [NotMapped]
         public Geometry Geom { get; set; }
     }
 }

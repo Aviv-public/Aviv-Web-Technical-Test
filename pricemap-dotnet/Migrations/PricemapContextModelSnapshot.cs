@@ -27,20 +27,26 @@ namespace pricemap.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Geom")
+                        .HasColumnType("text")
+                        .HasColumnName("geom");
+
                     b.Property<string>("Name")
                         .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasColumnName("cog");
 
                     b.HasKey("Id");
 
-                    b.ToTable("geo_place");
+                    b.ToTable("geo_place", t => t.ExcludeFromMigrations());
                 });
 
             modelBuilder.Entity("pricemap.Infrastructure.Database.Model.Listing", b =>
                 {
-                    b.Property<string>("ListingId")
-                        .HasColumnType("text")
-                        .HasColumnName("listing_id");
+                    b.Property<int>("ListingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("listing_id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("Area")
                         .HasColumnType("integer")
@@ -68,10 +74,11 @@ namespace pricemap.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("ListingId")
-                        .HasColumnType("text")
+                    b.Property<int>("ListingId")
+                        .HasColumnType("integer")
                         .HasColumnName("listing_id");
 
                     b.Property<DateTime>("PriceDate")
@@ -92,10 +99,11 @@ namespace pricemap.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("ListingId")
-                        .HasColumnType("text")
+                    b.Property<int>("ListingId")
+                        .HasColumnType("integer")
                         .HasColumnName("listing_id");
 
                     b.Property<DateTime>("ViewDate")

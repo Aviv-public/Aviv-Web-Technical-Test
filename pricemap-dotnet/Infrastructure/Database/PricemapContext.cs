@@ -9,7 +9,12 @@ namespace pricemap.Infrastructure.Database
         {
 
         }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GeoPlace>().ToTable("geo_place", t => t.ExcludeFromMigrations());
+        }
+
         public DbSet<Listing> Listings { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<View> Views { get; set; }

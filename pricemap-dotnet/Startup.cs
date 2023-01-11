@@ -32,22 +32,19 @@ namespace pricemap
                 options.UseNpgsql(pricemapConfig.ToString(),
                     npgsqlOptionsAction: sqlOptions =>
                     {
-                        sqlOptions.CommandTimeout(5);
-                        sqlOptions.EnableRetryOnFailure(
-                            maxRetryCount: 5,
-                            maxRetryDelay: TimeSpan.FromSeconds(3),
-                            errorCodesToAdd: null);
+                        sqlOptions.CommandTimeout(60);
+                        //sqlOptions.EnableRetryOnFailure(
+                        //    maxRetryCount: 5,
+                        //    maxRetryDelay: TimeSpan.FromSeconds(3),
+                        //    errorCodesToAdd: null);
                         sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
                     });
             });
-
-            services.AddScoped<IListingService, ListingService>();
-            var reviewsOpinionSystemEndpoint = Configuration.GetSection("endPoints:reviews:opinionSystem").Get<EndpointConfiguration>();
-            services.AddHttpClient<ListingService>(client =>
+            var listingsapiEndpoint = Configuration.GetSection("endPoints:listingsapi").Get<EndpointConfiguration>();
+            services.AddHttpClient<IListingService, ListingService>(client =>
             {
-                client.BaseAddress = new Uri(reviewsOpinionSystemEndpoint.BaseUrl);
-                client.DefaultRequestHeaders.Add("x-api-key", reviewsOpinionSystemEndpoint.ApiKey);
-                client.Timeout = TimeSpan.FromSeconds(reviewsOpinionSystemEndpoint.Timeout);
+                client.BaseAddress = new Uri(listingsapiEndpoint.BaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(listingsapiEndpoint.Timeout);
             });
             
             services.AddMemoryCache();

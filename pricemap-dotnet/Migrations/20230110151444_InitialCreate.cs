@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,7 +12,8 @@ namespace pricemap.Migrations
                 name: "listings",
                 columns: table => new
                 {
-                    listing_id = table.Column<string>(type: "text", nullable: false),
+                    listing_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     place_id = table.Column<int>(type: "integer", nullable: false),
                     price = table.Column<int>(type: "integer", nullable: false),
                     area = table.Column<int>(type: "integer", nullable: false),
@@ -27,29 +28,29 @@ namespace pricemap.Migrations
                 name: "prices",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    listing_id = table.Column<string>(type: "text", nullable: true),
+                    listing_id = table.Column<int>(type: "integer", nullable: false),
                     price = table.Column<int>(type: "integer", nullable: false),
                     price_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_prices", x => x.Id);
+                    table.PrimaryKey("PK_prices", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "views",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    listing_id = table.Column<string>(type: "text", nullable: true),
+                    listing_id = table.Column<int>(type: "integer", nullable: false),
                     view_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_views", x => x.Id);
+                    table.PrimaryKey("PK_views", x => x.id);
                 });
         }
 

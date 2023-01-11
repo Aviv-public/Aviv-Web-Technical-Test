@@ -6,7 +6,7 @@ namespace pricemap.Infrastructure.Database.Model
     public class Listing
     {
         [Column("listing_id")]
-        public string ListingId { get; set; }
+        public int ListingId { get; set; }
         [Column("place_id")]
         public int PlaceId { get; set; }
         [Column("price")]

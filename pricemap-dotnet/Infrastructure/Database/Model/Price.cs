@@ -7,7 +7,7 @@ namespace pricemap.Infrastructure.Database.Model
     public class Price : BaseEntity
     {
         [Column("listing_id")]
-        public string ListingId { get; set; }
+        public int ListingId { get; set; }
         [Column("price")]
         public int PriceValue { get; set; }
         [Column("price_date")]
