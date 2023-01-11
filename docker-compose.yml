@@ -60,6 +60,24 @@ services:
       PGUSER: pricemap
       PGPASSWORD: pricemap
 
+  pricemap-typescript-serverless:
+    build: pricemap-typescript-serverless
+    user: "pricemap:pricemap"
+    volumes:
+      - ./pricemap-typescript-serverless/src:/home/pricemap/app/src:rw
+      - ./schemas:/home/pricemap/schemas:rw
+    command: ["npm", "run", "watch"]
+    ports:
+      - "8383:3000"
+    depends_on:
+      - db
+      - listingapi
+    environment:
+      PGHOST: db
+      PGDATABASE: pricemap
+      PGUSER: pricemap
+      PGPASSWORD: pricemap
+
   db:
     image: "mdillon/postgis:11-alpine"
     volumes:

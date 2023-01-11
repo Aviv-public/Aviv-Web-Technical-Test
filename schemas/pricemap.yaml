@@ -39,55 +39,80 @@ paths:
         '200':
           $ref: '#/components/responses/Serie'
       operationId: get-price-cog
+
 components:
-  schemas: {}
-  responses:
+  schemas:
     FeatureCollection:
-      description: A feature collection
-      content:
-        application/json:
-          schema:
+      type: object
+      title: FeatureCollection
+      description: A FeatureCollection per GeoJSON specification.
+      required:
+        - type
+        - features
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - FeatureCollection
+        features:
+          type: array
+          items:
             type: object
+            required:
+              - type
+              - geometry
+              - properties
             additionalProperties: false
             properties:
               type:
                 type: string
                 enum:
-                  - FeatureCollection
-              features:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      enum:
-                        - Feature
-                    geometry:
-                      type: object
-                    properties:
-                      type: object
-                      properties:
-                        cog:
-                          type: string
-                        price:
-                          type: string
+                  - Feature
+              geometry:
+                type: object
+              properties:
+                type: object
+                required:
+                  - cog
+                  - price
+                additionalProperties: false
+                properties:
+                  cog:
+                    type: string
+                  price:
+                    type: string
     Serie:
+      type: object
+      title: Serie
+      description: A serie that can be plotted.
+      required:
+        - serie_name
+        - volumes
+        - labels
+      additionalProperties: false
+      properties:
+        serie_name:
+          type: string
+        volumes:
+          type: array
+          items:
+            type: integer
+        labels:
+          type: array
+          items:
+            type: string
+
+  responses:
+    FeatureCollectionResponse:
+      description: A feature collection
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FeatureCollection'
+    SerieResponse:
       description: A serie
       content:
         application/json:
           schema:
-            type: object
-            additionalProperties: false
-            properties:
-              serie_name:
-                type: string
-              volumes:
-                type: array
-                items:
-                  type: integer
-              labels:
-                type: array
-                items:
-                  type: string
-
+            $ref: '#/components/schemas/Serie'
