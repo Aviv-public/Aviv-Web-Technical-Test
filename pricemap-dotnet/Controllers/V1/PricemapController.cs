@@ -10,6 +10,7 @@ using System.Linq;
 using pricemap.Services.Models;
 using pricemap.Models;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace pricemap.Controllers.V1
 {
@@ -35,22 +36,51 @@ namespace pricemap.Controllers.V1
         /// <param name="cog">cog the place</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("get_price/{placeId}")]
-        public async Task<IActionResult> GetPrice(string cog)
+        [Route("get_price/{cog}")]
+        public IActionResult GetPrice(string cog)
         {
             if (string.IsNullOrEmpty(cog)) return BadRequest();
+
+            var place = _pricemapContext.GeoPlaces.FirstOrDefault(p => p.Cog.Equals(cog));
+            if (place == null) return NotFound();
+
+            var labels = new List<string> {
+                    "0-6000",
+                    "6000-8000",
+                    "8000-10000",
+                    "10000-14000",
+                    "14000-100000"
+                };
+            var volumes = new List<int>();
+            Serie serie = new Serie()
+            {
+                SerieName = $"Paris {cog}",
+                Labels = labels
+            };
+
             try
             {
-                // ToDo
+                foreach (var label in labels)
+                {
+                    var minPrice = int.Parse(label.Split("-")[0]);
+                    var maxPrice = int.Parse(label.Split("-")[1]);
+                    var prices = (from p in _pricemapContext.Listings
+                                 where p.PlaceId == int.Parse(place.Cog)
+                                        && p.Area > 0
+                                        && p.Price / p.Area > minPrice 
+                                        && p.Price / p.Area > maxPrice
+                                 select p.ListingId).Count();
+                    volumes.Add(prices);
+                }
+                serie.Volumes = volumes;
+                return Ok(serie);
             }
             catch (Exception e)
             {
                 _logger.LogError($"GetPrice, cog : {cog}. Error : {e}");
                 return StatusCode(500);
             }
-            return Ok();
         }
-
 
         [HttpGet]
         [Route("geoms")]
@@ -60,7 +90,6 @@ namespace pricemap.Controllers.V1
             {
                 // Get places
                 var places = _pricemapContext.GeoPlaces.ToList();
-
                 // Get prices per place
                 var prices =
                     from prod in _pricemapContext.Listings
@@ -68,9 +97,8 @@ namespace pricemap.Controllers.V1
                     select new
                     {
                         g.Key,
-                        AveragePrice = g.Average(p => p.Price)
+                        Price = g.Sum(p => p.Price) / g.Sum(p => p.Area)
                     };
-
                 return Ok(new FeatureCollection
                 {
                     Type = ResponseType.FeatureCollection,
@@ -80,9 +108,9 @@ namespace pricemap.Controllers.V1
                         Properties = new Models.Properties
                         {
                             Cog = p.Cog,
-                            Price = prices.FirstOrDefault(g => g.Key == int.Parse(p.Cog)) != null 
-                            ? (int)prices.FirstOrDefault(g => g.Key == int.Parse(p.Cog)).AveragePrice 
-                            : 0
+                            Price = prices.FirstOrDefault(g => g.Key == int.Parse(p.Cog)) != null
+                                  ? (int)prices.FirstOrDefault(g => g.Key == int.Parse(p.Cog)).Price
+                                  : 0
                         }
                     })
                 });
@@ -111,26 +139,33 @@ namespace pricemap.Controllers.V1
                     tasks.Add(_listingService.GetListings(place.Id));
                 }
                 Task.WaitAll(tasks.ToArray());
+                var spaceRegex = new Regex(@"\s");
                 for (var i = 0; i < places.Count; i++)
                 {
                     foreach (var l in tasks[i].Result)
                     {
                         try
                         {
+                            string[] bits = spaceRegex.Split(l.Title.ToLower());
+                            int roomCount;
+                            if (l.Title.StartsWith("Studio"))
+                                roomCount = 1;
+                            else
+                                roomCount = bits.Length > 1 && bits[1] != "-" && bits[1] != String.Empty ? int.Parse(bits[1]) : 1;
+
                             _pricemapContext.Listings.Add(new Infrastructure.Database.Model.Listing
                             {
                                 ListingId = int.Parse(l.Id),
                                 PlaceId = int.Parse(places[i].Cog),
-                                RoomCount = 0,// ToDo use regex to extract room count
-                                Area = 0,// ToDo use regex to extract room count
+                                RoomCount = roomCount,
+                                Area = bits.Length >= 4 ? int.Parse(bits[bits.Length - 2]) : 0,
                                 Price = l.Price != "Prix non communiqué" ? int.Parse(RemoveWiteSpaces(l.Price.Replace("€", ""))) : 0
-                            });
+                            }); ;
                         }
                         catch (Exception e)
                         {
                             _logger.LogError($"GetGeoms : {e} ");
                         }
-
                     }
                 }
                 await _pricemapContext.SaveChangesAsync().ConfigureAwait(false);
