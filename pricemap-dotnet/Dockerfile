@@ -1,32 +1,23 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
-WORKDIR /home/pricemap/app
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
-WORKDIR /home/pricemap/src
-COPY [".", "."]
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
 COPY ["nuget.config", "."]
-
-RUN dotnet restore "pricemap.csproj"
+COPY ["pricemap.csproj", "."]
+RUN dotnet restore "./pricemap.csproj"
 COPY . .
-WORKDIR "/home/pricemap/src"
+WORKDIR "/src/."
 RUN dotnet build "pricemap.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "pricemap.csproj" -c Release -o /app/publish
+RUN dotnet publish "pricemap.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
-WORKDIR /home/pricemap/app
+WORKDIR /app
 COPY --from=publish /app/publish .
-# Adding permisisons
-RUN chown -R $USER:$USER /app && chmod -R 777 /app
-
-RUN apk update && apk add --no-cache busybox-extras 
-
-RUN apk add --no-cache curl
-
-RUN apk add --no-cache tcptraceroute
-
-# switch user
-USER $USER
-EXPOSE 8080
 ENTRYPOINT ["dotnet", "pricemap.dll"]
