@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 from freezegun import freeze_time
 
-from pricemap.entities.listing import Listing
+from pricemap.domain.entities.listing import Listing
 
 
 class TestListing:
