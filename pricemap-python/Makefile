@@ -55,15 +55,12 @@ complexity: ## Compute Cyclomatic complexity and maintainability check
 
 .PHONY: format-code
 format-code: ## Format code
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap"
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "black ."
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap && black ."
 
 .PHONY: format-check
 format-check: ## Check code format
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap -c"
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "black --check ."
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap -c && black --check ."
 
 .PHONY: style
 style: ## Check lint, code styling rules
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "mypy pricemap"
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "flake8 pricemap"
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "mypy pricemap && flake8 pricemap"
