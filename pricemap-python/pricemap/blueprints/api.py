@@ -2,7 +2,8 @@ import json
 
 from flask import Blueprint, Response, jsonify
 
-from pricemap import db_pool
+from pricemap.adapters import db_pool
+
 
 api = Blueprint("api", __name__)
 

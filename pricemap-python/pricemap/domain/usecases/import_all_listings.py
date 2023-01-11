@@ -2,21 +2,27 @@ from datetime import datetime
 
 import requests
 
-import settings
-from pricemap import logger
-from pricemap.entities.listing import Listing
-from pricemap.finder.geo_place_finder import GeoPlaceFinder
-from pricemap.repository.listing_repository import ListingRepository
+from pricemap import settings
+from pricemap.domain.entities.listing import Listing
+from pricemap.domain.finder.geo_place_finder import GeoPlaceFinder
+from pricemap.domain.repository.listing_repository import ListingRepository
+from pricemap.registry import logger
 
 
 class ImportAllListings:
-    def __init__(self, api_url: str):
+    def __init__(
+        self,
+        api_url: str,
+        listing_repository: ListingRepository,
+        geo_place_finder: GeoPlaceFinder,
+    ):
         self.api_url = api_url
-        self.listing_repository = ListingRepository()
+        self.listing_repository = listing_repository
+        self.geo_place_finder = geo_place_finder
 
     def import_all_listings(self) -> None:
         """Import listings for all places."""
-        for place_id in GeoPlaceFinder.retrieve_all_places_ids():
+        for place_id in self.geo_place_finder.retrieve_all_places_ids():
             logger.debug("Import listings for placeId %s", place_id)
             self._import_listings_for(place_id)
 
