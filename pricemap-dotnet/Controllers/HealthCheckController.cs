@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace pricemap.Controllers
 {
@@ -6,14 +6,14 @@ namespace pricemap.Controllers
     public class HealthCheckController : ControllerBase
     {
         [HttpGet]
-        [Route("healthcheck.html")]
+        [Route("healthcheck")]
         public IActionResult Get()
         {
             return Ok("OK");
         }
 
         [HttpGet]
-        [Route("readiness.html")]
+        [Route("readiness")]
         public IActionResult GetReadiness()
         {
             return Ok("OK");
