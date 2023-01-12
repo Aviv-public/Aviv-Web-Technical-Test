@@ -43,23 +43,24 @@ tests: ## Execute tests
 ## Python Code Analysis 🔎
 ## -----
 ##
-.PHONY: code-analysis complexity format style
-code-analysis: complexity format style ## Run the all code Analysis (code complexity, code format and code style)
+code-analysis: complexity format-check style ## Run the all code Analysis (code complexity, code format and code style)
 
 .PHONY: complexity
 complexity: ## Compute Cyclomatic complexity and maintainability check
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c \
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c \
 		"radon cc -s -n B pricemap | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
 
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c \
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c \
 		"radon mi -n B pricemap | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
 
-.PHONY: style
-format: ## Format code.
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "isort pricemap; black ."
+.PHONY: format-code
+format-code: ## Format code
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap && black ."
+
+.PHONY: format-check
+format-check: ## Check code format
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "isort pricemap -c && black --check ."
 
 .PHONY: style
 style: ## Check lint, code styling rules
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "mypy pricemap"
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "flake8 pricemap"
-	$(DOCKER_COMPOSE) run --rm -T pricemap-python bash -c "black --check ."
+	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c "mypy pricemap && flake8 pricemap"
