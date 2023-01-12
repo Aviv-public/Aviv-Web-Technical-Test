@@ -1,0 +1,30 @@
+name: CI for Python Code
+
+on:
+  # run it on push to the default repository branch
+  # Only if there are changes on the 'pricemap-python directory
+  push:
+    branches: [main]
+    paths:
+    - pricemap-python/**
+  pull_request:
+    paths:
+    - pricemap-python/**
+
+env:
+  REGISTRY: ghcr.io
+  REPOSITORY_NAME: ${{ github.repository }}
+
+jobs:
+ build-ci-image:
+    name: Build CI Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build docker images
+        run: make python-build
+
+      - name: Code Analysis
+        run: make python-code-analysis
