@@ -1,22 +1,18 @@
-from pricemap.adapters import db_pool
-from pricemap.domain.finder.geo_place_finder import GeoPlaceFinder
+from pricemap.adapters.utils.postgres_db_pool import PostgresDbPool
+from pricemap.domain import ports
 
 
-class PostgresGeoPlaceFinder(GeoPlaceFinder):
+class PostgresGeoPlaceFinder(ports.GeoPlaceFinder):
     def retrieve_all_places_ids(self) -> list[int]:
         sql_request = """
             SELECT id
             FROM geo_place
             ORDER BY id ASC;
         """
-        connection = db_pool.getconn()
-        cursor = connection.cursor()
-        try:
-            cursor.execute(sql_request)
+
+        with PostgresDbPool.get_connection() as connection:
             places_ids = []
-            for row in cursor:
+            for row in connection.execute(sql_request):
                 places_ids.append(row["id"])
-        finally:
-            cursor.close()
-            db_pool.putconn(connection)  # release the connection
+
         return places_ids

@@ -5,8 +5,8 @@ import requests
 
 from pricemap import settings
 from pricemap.domain.entities.listing import Listing
-from pricemap.domain.finder.geo_place_finder import GeoPlaceFinder
-from pricemap.domain.repository.listing_repository import ListingRepository
+from pricemap.domain.ports.finder.geo_place_finder import GeoPlaceFinder
+from pricemap.domain.ports.repository.listing_repository import ListingRepository
 
 
 class ImportAllListings:

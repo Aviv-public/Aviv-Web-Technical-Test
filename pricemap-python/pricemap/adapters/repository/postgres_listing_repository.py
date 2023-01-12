@@ -1,13 +1,12 @@
-import psycopg2
+import psycopg
 
-from pricemap.adapters import db_pool
+from pricemap.adapters.utils.postgres_db_pool import PostgresDbPool
+from pricemap.domain import ports
 from pricemap.domain.entities.listing import Listing
-from pricemap.domain.repository.listing_repository import ListingRepository
 
 
-class PostgresListingRepository(ListingRepository):
-    @staticmethod
-    def upsert_bulk(listings: list[Listing]) -> None:
+class PostgresListingRepository(ports.ListingRepository):
+    def upsert_bulk(self, listings: list[Listing]) -> None:
         """
         Upsert bulk of rows in listing table.
 
@@ -35,29 +34,26 @@ class PostgresListingRepository(ListingRepository):
                 SET price = EXCLUDED.price,
                     seen_at = EXCLUDED.seen_at;
         """
-        connection = db_pool.getconn()
-        cursor = connection.cursor()
-        try:
-            for listing in listings:
-                cursor.execute(
-                    sql_request,
-                    {
-                        "id": listing.id,
-                        "place_id": listing.place_id,
-                        "price": listing.price,
-                        "room_count": listing.room_count,
-                        "area": listing.area,
-                        "seen_at": listing.seen_at,
-                    },
-                )
-            connection.commit()
-        except (
-            psycopg2.errors.InFailedSqlTransaction,
-            psycopg2.errors.SyntaxError,
-            psycopg2.errors.NotNullViolation,
-        ):
-            connection.rollback()
-            raise
-        finally:
-            cursor.close()
-            db_pool.putconn(connection)  # release the connection
+
+        with PostgresDbPool.get_connection() as connection:
+            try:
+                for listing in listings:
+                    connection.execute(
+                        sql_request,
+                        {
+                            "id": listing.id,
+                            "place_id": listing.place_id,
+                            "price": listing.price,
+                            "room_count": listing.room_count,
+                            "area": listing.area,
+                            "seen_at": listing.seen_at,
+                        },
+                    )
+                connection.commit()
+            except (
+                psycopg.errors.InFailedSqlTransaction,
+                psycopg.errors.SyntaxError,
+                psycopg.errors.NotNullViolation,
+            ):
+                connection.rollback()
+                raise
