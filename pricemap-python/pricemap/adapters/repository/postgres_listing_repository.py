@@ -2,12 +2,10 @@ import psycopg2
 
 from pricemap.adapters import db_pool
 from pricemap.domain.entities.listing import Listing
-from pricemap.domain.repository.listing_repository import (
-    ListingRepository as ListingRepositoryInterface,
-)
+from pricemap.domain.repository.listing_repository import ListingRepository
 
 
-class ListingRepository(ListingRepositoryInterface):
+class PostgresListingRepository(ListingRepository):
     @staticmethod
     def upsert_bulk(listings: list[Listing]) -> None:
         """

@@ -1,15 +1,13 @@
 import logging
 import sys
 
-from pricemap.adapters.finder.geo_place_finder import GeoPlaceFinder
-from pricemap.adapters.repository.listing_repository import ListingRepository
+from pricemap import settings
+from pricemap.adapters.finder.postgres_geo_place_finder import PostgresGeoPlaceFinder
+from pricemap.adapters.repository.postgres_listing_repository import (
+    PostgresListingRepository,
+)
+from pricemap.domain.usecases.import_all_listings import ImportAllListings
 
-
-# Import Repository
-listing_repository = ListingRepository()
-
-# Import Finder
-geo_place_finder = GeoPlaceFinder()
 
 # Logger
 logger = logging.getLogger(__name__)
@@ -18,3 +16,14 @@ handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+
+# Import Repository
+_listing_repository = PostgresListingRepository()
+
+# Import Finder
+_geo_place_finder = PostgresGeoPlaceFinder()
+
+# Usecase
+import_all_listing_usecase = ImportAllListings(
+    settings.LISTING_API_URI, _listing_repository, _geo_place_finder, logger
+)

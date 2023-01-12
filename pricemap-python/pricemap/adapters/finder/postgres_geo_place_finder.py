@@ -1,17 +1,9 @@
 from pricemap.adapters import db_pool
-from pricemap.domain.finder.geo_place_finder import (
-    GeoPlaceFinder as GeoPlaceFinderInterface,
-)
+from pricemap.domain.finder.geo_place_finder import GeoPlaceFinder
 
 
-class GeoPlaceFinder(GeoPlaceFinderInterface):
-    def retrieve_all_places_ids(self) -> list:
-        """
-        Retrieve all places Ids.
-
-        Returns:
-            - list - List of all places Ids
-        """
+class PostgresGeoPlaceFinder(GeoPlaceFinder):
+    def retrieve_all_places_ids(self) -> list[int]:
         sql_request = """
             SELECT id
             FROM geo_place
