@@ -31,6 +31,8 @@ paths:
     post:
       summary: Create a listing
       description: Create a listing.
+      tags:
+        - listings
       operationId: post-listings
       responses:
         '201':
