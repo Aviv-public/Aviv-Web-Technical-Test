@@ -1,20 +1,68 @@
 .cards_container {
-    max-width: 500px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
   
-  .card {
-    padding: 24px;
-    border-radius: 3.5px;
-    margin-bottom: 16px;
-    width: 100%;
-    border: 1px solid $neutral-1;
-    max-width: 500px;
+.card {
+  align-items: baseline;
+  border: 1px solid $neutral-1;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin-bottom: $space-m;
+  max-width: 500px;
+  padding: $space-l;
+  width: 100%;
+
   }
-  
-  .card-selected {
-    border: 1px solid $primary-70;
-  }
+.card-selected {
+  border: 1px solid $primary-70;
+}
+
+.input {
+  display: flex;
+  justify-self: flex-start;
+}
+
+.top-block {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  color: $neutral-2;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.read {
+  color: $neutral-1;
+  font-size: 14px;
+}
+
+.place {
+  color: $neutral-2;
+  font-size: 17px;
+  margin: $space-m auto 0;
+}
+
+.reference {
+  color: $neutral-1;
+  font-size: 14px;
+  font-style: italic;
+  margin: 0 auto $space-s;
+}
+
+.see-more {
+  color: $primary-70;
+  display: flex;
+  justify-content: end;
+  margin-top: $space-s;
+  font-size: 14px;
+}
+
+
 
