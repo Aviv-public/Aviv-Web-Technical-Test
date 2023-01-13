@@ -74,7 +74,7 @@ style: ## Check lint, code styling rules
 .PHONY: test
 test: ## Shortcut to launch all the test tasks (unit, functional and integration).
 	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps pricemap-python bash -c \
-"pytest -Werror --cov . --cov-report term-missing --cov-config .coveragerc -vv tests"
+"pytest -Werror --cov . -vv tests"
 
 .PHONY: test-dev
 test-dev:  ## Shortcut to launch all the test tasks (unit, functional and integration).
