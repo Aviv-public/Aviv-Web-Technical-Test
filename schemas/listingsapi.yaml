@@ -25,9 +25,11 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/ListingIdentifier'
-                  - $ref: '#/components/schemas/Listing'
+                type: array
+                items:
+                  - allOf:
+                    - $ref: '#/components/schemas/ListingIdentifier'
+                    - $ref: '#/components/schemas/Listing'
     post:
       summary: Create a listing
       description: Create a listing.
