@@ -202,4 +202,4 @@ components:
           description: The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.
           example: "FR"
           minLength: 2
-          maxLength: 3
+          maxLength: 2
