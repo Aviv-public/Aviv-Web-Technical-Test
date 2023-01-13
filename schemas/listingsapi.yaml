@@ -119,8 +119,8 @@ components:
         - surface_area_m2
         - rooms_count
         - bedrooms_count
-        - creation_date
-        - last_update_date
+        - created_date
+        - updated_date
       additionalProperties: false
       properties:
         name:
@@ -170,12 +170,12 @@ components:
           description: 'Listing main contact phone number, following the E.164 standard.'
           type: string
           pattern: '^\+[1-9]\d{1,14}$'
-        creation_date:
-          name: Posted date
+        created_date:
+          name: Creation date
           description: 'The date at which the listing was produced, following RFC 3339.'
           type: string
           example: '1970-01-01T00:00:00.000Z'
-        last_update_date:
+        updated_date:
           name: Last update date
           description: 'The date at which the listing was last updated, following RFC 3339.'
           type: string
@@ -192,8 +192,8 @@ components:
           description: 'A price, expressed in euros.'
           type: integer
           example: 340000
-        date_posted:
-          name: Date posted
+        created_date:
+          name: Creation date
           description: The date at which the price was published.
           type: string
     PostalAddress:
