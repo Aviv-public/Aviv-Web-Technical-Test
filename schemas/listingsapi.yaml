@@ -28,8 +28,8 @@ paths:
                 type: array
                 items:
                   - allOf:
-                    - $ref: '#/components/schemas/ListingIdentifier'
-                    - $ref: '#/components/schemas/Listing'
+                      - $ref: '#/components/schemas/ListingReadOnly'
+                      - $ref: '#/components/schemas/Listing'
     post:
       summary: Create a listing
       description: Create a listing.
@@ -43,8 +43,12 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/ListingIdentifier'
+                  - $ref: '#/components/schemas/ListingReadOnly'
                   - $ref: '#/components/schemas/Listing'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity (WebDAV)
       requestBody:
         content:
           application/json:
@@ -71,7 +75,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/ListingIdentifier'
+                  - $ref: '#/components/schemas/ListingReadOnly'
                   - $ref: '#/components/schemas/Listing'
       requestBody:
         content:
@@ -103,10 +107,15 @@ paths:
       operationId: get-listing-price-history
 components:
   schemas:
-    ListingIdentifier:
+    ListingReadOnly:
       type: object
+      name: Listing (read only)
+      description: Read-only fields of the listing model
       required:
         - id
+        - created_date
+        - updated_date
+        - price
       additionalProperties: false
       properties:
         id:
@@ -115,6 +124,31 @@ components:
           type: integer
           example: 1234
           minimum: 0
+        created_date:
+          name: Creation date
+          description: 'The date at which the listing was produced, following RFC 3339.'
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+        updated_date:
+          name: Last update date
+          description: 'The date at which the listing was last updated, following RFC 3339.'
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+        price:
+          name: Price
+          description: The last price of the listing.
+          allOf:
+            - $ref: '#/components/schemas/Price'
+            - type: object
+              required:
+                - created_date
+              additionalProperties: false
+              properties:
+                created_date:
+                  name: Creation date
+                  description: 'The date at which the listing was produced, following RFC 3339.'
+                  type: string
+                  example: '1970-01-01T00:00:00.000Z'
     Listing:
       type: object
       required:
@@ -126,8 +160,6 @@ components:
         - surface_area_m2
         - rooms_count
         - bedrooms_count
-        - created_date
-        - updated_date
       additionalProperties: false
       properties:
         name:
@@ -177,21 +209,10 @@ components:
           description: 'Listing main contact phone number, following the E.164 standard.'
           type: string
           pattern: '^\+[1-9]\d{1,14}$'
-        created_date:
-          name: Creation date
-          description: 'The date at which the listing was produced, following RFC 3339.'
-          type: string
-          example: '1970-01-01T00:00:00.000Z'
-        updated_date:
-          name: Last update date
-          description: 'The date at which the listing was last updated, following RFC 3339.'
-          type: string
-          example: '1970-01-01T00:00:00.000Z'
     Price:
       type: object
       required:
         - price_eur
-        - created_date
       additionalProperties: false
       properties:
         price_eur:
@@ -199,10 +220,6 @@ components:
           description: 'A price, expressed in euros.'
           type: integer
           example: 340000
-        created_date:
-          name: Creation date
-          description: The date at which the price was published.
-          type: string
     PostalAddress:
       type: object
       required:
