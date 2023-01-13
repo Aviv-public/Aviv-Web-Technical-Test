@@ -5,11 +5,15 @@ from pricemap.domain.entities.listing import Listing
 
 class ListingRepository(ABC):
     @abstractmethod
-    def upsert_bulk(self, listings: list[Listing]) -> None:
+    def persist(self, listing: Listing) -> None:
         """
-        Upsert bulk of rows in listing table.
+        Persist a Listing.
+        If entity exists, then Update data. Otherwise insert it
 
         Args:
-            - listings -- List of entities to upsert
+            - listing -- Entity to persist
+
+        Raises:
+            - UnableToPersistListing : Something happens when we try to persist the Entity
         """
         pass

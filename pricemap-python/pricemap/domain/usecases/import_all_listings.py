@@ -70,5 +70,5 @@ class ImportAllListings:
                 self.logger.debug("Add listing %s to bulk", listing.id)
                 bulk_listings.append(listing)
 
-            self.listing_repository.upsert_bulk(bulk_listings)
+            self.listing_repository.persist(bulk_listings)
             current_page += 1

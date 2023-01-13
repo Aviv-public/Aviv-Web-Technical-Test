@@ -7,7 +7,7 @@ from pricemap.adapters.repository.postgres_listing_repository import (
     PostgresListingRepository,
 )
 from pricemap.domain.usecases.import_all_listings import ImportAllListings
-
+from pricemap.domain.usecases.persist_listing import PersistListing
 
 # Logger
 logger = logging.getLogger(__name__)
@@ -26,4 +26,9 @@ _geo_place_finder = PostgresGeoPlaceFinder()
 # Usecase
 import_all_listing_usecase = ImportAllListings(
     settings.LISTING_API_URI, _listing_repository, _geo_place_finder, logger
+)
+
+persistListingUsecase = PersistListing(
+    _listing_repository,
+    logger
 )

@@ -39,7 +39,7 @@ services:
       PGUSER: pricemap
       PGPASSWORD: pricemap
       FLASK_DEBUG: 1
-      FLASK_APP: "pricemap.app"
+      FLASK_APP: "pricemap.controllers.app"
 
   pricemap-typescript:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-typescript:latest
