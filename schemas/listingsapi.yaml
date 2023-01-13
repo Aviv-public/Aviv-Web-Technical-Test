@@ -141,9 +141,9 @@ components:
           example: 1
         contact_phone_number:
           name: Contact phone number
-          description: Real estate main contact phone number
+          description: Real estate main contact phone number, following the E.164 standard.
           type: string
-          minLength: 1
+          format: "^\+[1-9]\d{1,14}$"
         date_posted:
           name: Date posted
           description: The date at which the listing was produced.
