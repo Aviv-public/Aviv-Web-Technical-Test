@@ -146,12 +146,12 @@ components:
           pattern: '^\+[1-9]\d{1,14}$'
         creation_date:
           name: Posted date
-          description: The date at which the listing was produced.
+          description: The date at which the listing was produced, following RFC 3339.
           type: string
           example: '1970-01-01T00:00:00.000Z'
         last_update_date:
           name: Last update date
-          description: The date at which the listing was last updated.
+          description: The date at which the listing was last updated, following RFC 3339.
           type: string
           example: '1970-01-01T00:00:00.000Z'
     Price:
