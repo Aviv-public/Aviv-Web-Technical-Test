@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: ListingsAPI
+  description: The Listings API
+  contact:
+    name: AVIV
+  version: '1.0'
+servers:
+  - url: /api
+    description: The Listings API
+tags:
+  - name: listings
+    description: Listings operations
+paths:
+  /listings:
+    get:
+      summary: Get all listings
+      description: Get all the listings registered in the app.
+      tags:
+        - listings
+      operationId: get-listings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RealEstateListing'
+  '/listings/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The id for the listing to get price history from.
+    put:
+      summary: Upsert a listing
+      description: Add or update a listing described by its identifier.
+      tags:
+        - listings
+      operationId: upsert-listing
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RealEstateListing"
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RealEstateListing"
+  '/listings/{id}/history':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The id for the listing to get price history from.
+    get:
+      summary: Get listing price history
+      description: Get the price history of a listing
+      tags:
+        - listings
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Price"
+      operationId: get-listing-price-history
+components:
+  schemas:
+    RealEstateListing:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - building_type
+        - price
+        - surface_area_m2
+        - rooms_count
+        - bedrooms_count
+        - date_posted
+        - last_update_date
+      additionalProperties: false
+      properties:
+        id:
+          name: Identifier
+          description: The real estate listing unique identifier.
+          type: integer
+          example: 1234
+          minimum: 0
+        name:
+          name: Name
+          description: A user friendly name for the listing.
+          type: string
+          minLength: 1
+        description:
+          name: Description
+          description: A user friendly description for the listing.
+          type: string
+          minLength: 1
+        building_type:
+          name: Building type
+          description: The type of building the real estate is.
+          type: string
+          enum:
+            - STUDIO
+            - APARTMENT
+            - HOUSE
+        price:
+          name: Price
+          description: The last price of the real estate listing.
+          $ref: '#/components/schemas/Price'
+        surface_area_m2:
+          name: Surface area
+          description: 'The surface of the real estate, in square meters.'
+          type: number
+          minimum: 0
+          example: 43
+        rooms_count:
+          name: Rooms count
+          description: The number of rooms of the real estate.
+          type: integer
+          minimum: 1
+          example: 2
+        bedrooms_count:
+          name: Bedrooms count
+          description: The number of bedrooms of the real estate.
+          type: integer
+          minimum: 0
+          example: 1
+        contact_phone_number:
+          name: Contact phone number
+          description: Real estate main contact phone number
+          type: string
+          minLength: 1
+        date_posted:
+          name: Date posted
+          description: The date at which the listing was produced.
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+        last_update_date:
+          name: Last update date
+          description: The date at which the listing was last updated.
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+    Price:
+      type: object
+      required:
+        - price_eur
+        - date_posted
+      additionalProperties: false
+      properties:
+        price_eur:
+          name: Price
+          description: 'A price, expressed in euros.'
+          type: integer
+          example: 340000
+        date_posted:
+          name: Date posted
+          description: The date at which the price was published.
+          type: string
