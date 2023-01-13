@@ -143,7 +143,7 @@ components:
           name: Contact phone number
           description: Real estate main contact phone number, following the E.164 standard.
           type: string
-          format: "^\+[1-9]\d{1,14}$"
+          pattern: "^\+[1-9]\d{1,14}$"
         date_posted:
           name: Date posted
           description: The date at which the listing was produced.
