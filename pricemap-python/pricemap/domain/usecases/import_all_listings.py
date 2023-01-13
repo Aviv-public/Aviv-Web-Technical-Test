@@ -4,7 +4,7 @@ from logging import Logger
 import requests
 
 from pricemap import settings
-from pricemap.domain.entities.listing import Listing
+from pricemap.adapters.mappers.listing import ListingMapper
 from pricemap.domain.ports.finder.geo_place_finder import GeoPlaceFinder
 from pricemap.domain.ports.repository.listing_repository import ListingRepository
 
@@ -64,7 +64,9 @@ class ImportAllListings:
 
             bulk_listings = []
             for item in json_response:
-                listing = Listing.from_data(item, place_id, datetime.now())
+                listing = ListingMapper.from_dict_to_entity(
+                    item, place_id, datetime.now()
+                )
                 self.logger.debug("Add listing %s to bulk", listing.id)
                 bulk_listings.append(listing)
 
