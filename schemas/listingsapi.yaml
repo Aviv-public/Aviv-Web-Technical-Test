@@ -26,7 +26,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RealEstateListing'
-  '/listings':
+  '/listings/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The id for the listing to get price history from.
     put:
       summary: Upsert a listing
       description: Add or update a listing described by its identifier.
@@ -39,13 +46,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RealEstateListing"
+                $ref: '#/components/schemas/RealEstateListing'
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RealEstateListing"
+                $ref: '#/components/schemas/RealEstateListing'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RealEstateListing'
   '/listings/{id}/history':
     parameters:
       - schema:
@@ -67,40 +79,34 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Price"
+                  $ref: '#/components/schemas/Price'
       operationId: get-listing-price-history
 components:
   schemas:
-    Listing:
+    RealEstateListing:
       type: object
       required:
         - id
         - name
-        - postal_address
         - description
         - building_type
         - price
         - surface_area_m2
         - rooms_count
         - bedrooms_count
-        - posted_date
+        - date_posted
         - last_update_date
       additionalProperties: false
       properties:
         id:
           name: Identifier
-          description: The listing unique identifier.
+          description: The real estate listing unique identifier.
           type: integer
           example: 1234
           minimum: 0
         name:
           name: Name
           description: A user friendly name for the listing.
-          type: string
-          minLength: 1
-        postal_address:
-          name: Postal address
-          description: The postal address for the listing.
           type: string
           minLength: 1
         description:
@@ -110,7 +116,7 @@ components:
           minLength: 1
         building_type:
           name: Building type
-          description: The type of building the listing referers to.
+          description: The type of building the real estate is.
           type: string
           enum:
             - STUDIO
@@ -118,33 +124,33 @@ components:
             - HOUSE
         price:
           name: Price
-          description: The last price of the listing.
+          description: The last price of the real estate listing.
           $ref: '#/components/schemas/Price'
         surface_area_m2:
           name: Surface area
-          description: 'The surface of the listing, in square meters.'
+          description: 'The surface of the real estate, in square meters.'
           type: number
           minimum: 0
           example: 43
         rooms_count:
           name: Rooms count
-          description: The number of rooms of the listing.
+          description: The number of rooms of the real estate.
           type: integer
           minimum: 1
           example: 2
         bedrooms_count:
           name: Bedrooms count
-          description: The number of bedrooms of the listing.
+          description: The number of bedrooms of the real estate.
           type: integer
           minimum: 0
           example: 1
         contact_phone_number:
           name: Contact phone number
-          description: Listing main contact phone number, following the E.164 standard.
+          description: Real estate main contact phone number
           type: string
-          pattern: "^\+[1-9]\d{1,14}$"
-        creation_date:
-          name: Posted date
+          minLength: 1
+        date_posted:
+          name: Date posted
           description: The date at which the listing was produced.
           type: string
           example: '1970-01-01T00:00:00.000Z'
