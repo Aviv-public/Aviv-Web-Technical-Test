@@ -28,6 +28,19 @@ paths:
                 allOf:
                   - $ref: '#/components/schemas/ListingIdentifier'
                   - $ref: '#/components/schemas/Listing'
+    post:
+      summary: Create a listing
+      description: Create a listing.
+      operationId: post-listings
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ListingIdentifier'
+                  - $ref: '#/components/schemas/Listing'
   '/listings/{id}':
     parameters:
       - schema:
@@ -45,14 +58,6 @@ paths:
       responses:
         '200':
           description: Updated
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ListingIdentifier'
-                  - $ref: '#/components/schemas/Listing'
-        '201':
-          description: Created
           content:
             application/json:
               schema:
@@ -165,12 +170,12 @@ components:
           pattern: '^\+[1-9]\d{1,14}$'
         creation_date:
           name: Posted date
-          description: The date at which the listing was produced, following RFC 3339.
+          description: 'The date at which the listing was produced, following RFC 3339.'
           type: string
           example: '1970-01-01T00:00:00.000Z'
         last_update_date:
           name: Last update date
-          description: The date at which the listing was last updated, following RFC 3339.
+          description: 'The date at which the listing was last updated, following RFC 3339.'
           type: string
           example: '1970-01-01T00:00:00.000Z'
     Price:
@@ -201,13 +206,13 @@ components:
           name: Street address
           type: string
           description: The street address of the postal address.
-          example: "48, boulevard des capucins"
+          example: '48, boulevard des capucins'
           minLength: 1
         postal_code:
           name: Postal code
           type: string
           description: The postal code of the postal address.
-          example: "10294"
+          example: '10294'
           minLength: 1
         city:
           name: City
@@ -218,7 +223,7 @@ components:
         country:
           name: Country
           type: string
-          description: The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.
-          example: "FR"
+          description: 'The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.'
+          example: FR
           minLength: 2
           maxLength: 2
