@@ -26,14 +26,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RealEstateListing'
-  '/listings/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: The id for the listing to get price history from.
+  '/listings':
     put:
       summary: Upsert a listing
       description: Add or update a listing described by its identifier.
