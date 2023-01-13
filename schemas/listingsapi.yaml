@@ -38,13 +38,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Listing"
+                $ref: '#/components/schemas/Listing'
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Listing"
+                $ref: '#/components/schemas/Listing'
       requestBody:
         content:
           application/json:
@@ -71,7 +71,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Price"
+                  $ref: '#/components/schemas/Price'
       operationId: get-listing-price-history
 components:
   schemas:
@@ -103,11 +103,7 @@ components:
           type: string
           minLength: 1
         postal_address:
-          name: Postal address
-          description: The postal address for the listing.
-          type: string
-          minLength: 1
-          example: 48, boulevard des capucins 10294 Papouasi Nouvelle Guinée
+          $ref: '#/components/schemas/PostalAddress'
         description:
           name: Description
           description: A user friendly description for the listing.
@@ -145,9 +141,9 @@ components:
           example: 1
         contact_phone_number:
           name: Contact phone number
-          description: Listing main contact phone number, following the E.164 standard.
+          description: 'Listing main contact phone number, following the E.164 standard.'
           type: string
-          pattern: "^\\+[1-9]\\d{1,14}$"
+          pattern: '^\+[1-9]\d{1,14}$'
         creation_date:
           name: Posted date
           description: The date at which the listing was produced.
@@ -174,3 +170,36 @@ components:
           name: Date posted
           description: The date at which the price was published.
           type: string
+    PostalAddress:
+      type: object
+      required:
+        - street_address
+        - postal_code
+        - city
+        - country
+      properties:
+        street_address:
+          name: Street address
+          type: string
+          description: The street address of the postal address.
+          example: "48, boulevard des capucins"
+          minLength: 1
+        postal_code:
+          name: Postal code
+          type: string
+          description: The postal code of the postal address.
+          example: "10294"
+          minLength: 1
+        city:
+          name: City
+          type: string
+          description: The city of the postal address.
+          example: Paris
+          minLength: 1
+        country:
+          name: Country
+          type: string
+          description: The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.
+          example: "FR"
+          minLength: 2
+          maxLength: 3
