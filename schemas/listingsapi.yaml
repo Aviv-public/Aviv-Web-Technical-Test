@@ -25,10 +25,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Listing'
+                allOf:
+                  - $ref: '#/components/schemas/ListingIdentifier'
+                  - $ref: '#/components/schemas/Listing'
+  '/listings/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The id for the listing to get price history from.
     put:
-      summary: Upsert a listing
-      description: Add or update a listing described by its identifier.
+      summary: Update a listing
+      description: Update a listing described by its identifier.
       tags:
         - listings
       operationId: upsert-listing
@@ -38,13 +48,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Listing'
+                allOf:
+                  - $ref: '#/components/schemas/ListingIdentifier'
+                  - $ref: '#/components/schemas/Listing'
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Listing'
+                allOf:
+                  - $ref: '#/components/schemas/ListingIdentifier'
+                  - $ref: '#/components/schemas/Listing'
       requestBody:
         content:
           application/json:
@@ -75,10 +89,21 @@ paths:
       operationId: get-listing-price-history
 components:
   schemas:
-    Listing:
+    ListingIdentifier:
       type: object
       required:
         - id
+      additionalProperties: false
+      properties:
+        id:
+          name: Identifier
+          description: The listing unique identifier.
+          type: integer
+          example: 1234
+          minimum: 0
+    Listing:
+      type: object
+      required:
         - name
         - postal_address
         - description
@@ -91,12 +116,6 @@ components:
         - last_update_date
       additionalProperties: false
       properties:
-        id:
-          name: Identifier
-          description: The listing unique identifier.
-          type: integer
-          example: 1234
-          minimum: 0
         name:
           name: Name
           description: A user friendly name for the listing.
