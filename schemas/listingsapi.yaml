@@ -87,7 +87,7 @@ components:
         - surface_area_m2
         - rooms_count
         - bedrooms_count
-        - posted_date
+        - creation_date
         - last_update_date
       additionalProperties: false
       properties:
