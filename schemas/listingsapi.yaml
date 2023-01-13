@@ -103,7 +103,9 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Price'
+                  - allOf:
+                      - $ref: '#/components/schemas/Price'
+                      - $ref: '#/components/schemas/PriceReadOnly'
       operationId: get-listing-price-history
 components:
   schemas:
@@ -135,20 +137,7 @@ components:
           type: string
           example: '1970-01-01T00:00:00.000Z'
         price:
-          name: Price
-          description: The last price of the listing.
-          allOf:
-            - $ref: '#/components/schemas/Price'
-            - type: object
-              required:
-                - created_date
-              additionalProperties: false
-              properties:
-                created_date:
-                  name: Creation date
-                  description: 'The date at which the listing was produced, following RFC 3339.'
-                  type: string
-                  example: '1970-01-01T00:00:00.000Z'
+          $ref: '#/components/schemas/PriceReadOnly'
     Listing:
       type: object
       required:
@@ -183,8 +172,6 @@ components:
             - APARTMENT
             - HOUSE
         price:
-          name: Price
-          description: The last price of the listing.
           $ref: '#/components/schemas/Price'
         surface_area_m2:
           name: Surface area
@@ -220,6 +207,19 @@ components:
           description: 'A price, expressed in euros.'
           type: integer
           example: 340000
+    PriceReadOnly:
+      name: Price (read-only)
+      description: Read-only fields for a price.
+      type: object
+      required:
+        - created_date
+      additionalProperties: false
+      properties:
+        created_date:
+          name: Creation date
+          description: 'The date at which the listing was produced, following RFC 3339.'
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
     PostalAddress:
       type: object
       required:
@@ -253,3 +253,4 @@ components:
           example: FR
           minLength: 2
           maxLength: 2
+  examples: {}
