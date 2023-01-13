@@ -107,6 +107,7 @@ components:
           description: The postal address for the listing.
           type: string
           minLength: 1
+          example: 48, boulevard des capucins 10294 Papouasi Nouvelle Guinée
         description:
           name: Description
           description: A user friendly description for the listing.
