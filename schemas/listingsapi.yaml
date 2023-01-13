@@ -189,7 +189,7 @@ components:
       type: object
       required:
         - price_eur
-        - date_posted
+        - created_date
       additionalProperties: false
       properties:
         price_eur:
