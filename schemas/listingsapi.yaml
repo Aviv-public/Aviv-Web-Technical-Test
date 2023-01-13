@@ -43,6 +43,11 @@ paths:
                 allOf:
                   - $ref: '#/components/schemas/ListingIdentifier'
                   - $ref: '#/components/schemas/Listing'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Listing'
   '/listings/{id}':
     parameters:
       - schema:
