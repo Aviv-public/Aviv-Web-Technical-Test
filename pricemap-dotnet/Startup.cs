@@ -4,11 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using pricemap.Configuration;
 using pricemap.Infrastructure.Database;
-using pricemap.Services.Model.Configuration;
-using System;
 
 namespace pricemap
 {
@@ -34,11 +31,11 @@ namespace pricemap
                         sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
                     });
             });
-            
+
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new GroupingByNamespaceConvention());
-            });
+            }).AddNewtonsoftJson();
 
             services.AddSwaggerGen();
         }

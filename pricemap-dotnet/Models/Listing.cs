@@ -3,11 +3,8 @@ using System;
 
 namespace pricemap.Models
 {
-    public class RealEstateListing
+    public class Listing
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -34,36 +31,6 @@ namespace pricemap.Models
 
         [JsonProperty("contact_phone_number")]
         public string ContactPhoneNumber { get; set; }
-
-        [JsonProperty("created_date")]
-        public DateTime CreatedDate { get; set; }
-
-        [JsonProperty("updated_date")]
-        public DateTime UpdatedDate { get; set; }
-    }
-
-    public partial class PostalAddress
-    {
-        [JsonProperty("street_address")]
-        public string StreetAddress { get; set; }
-
-        [JsonProperty("postal_code")]
-        public string PostalCode { get; set; }
-
-        [JsonProperty("city")]
-        public string City { get; set; }
-
-        [JsonProperty("country")]
-        public string Country { get; set; }
-    }
-
-    public partial class Price
-    {
-        [JsonProperty("price_eur")]
-        public long PriceEur { get; set; }
-
-        [JsonProperty("created_date")]
-        public string CreatedDate { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]

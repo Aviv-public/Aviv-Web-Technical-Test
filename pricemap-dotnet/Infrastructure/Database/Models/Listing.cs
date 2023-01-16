@@ -1,14 +1,12 @@
-using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pricemap.Infrastructure.Database.Models
 {
     [Table("listings")]
-    public class Listing
+    public class Listing : BaseEntity
     {
-        [Column("id")]
-        public int Id { get; set; }
         [Column("price")]
         public int Price { get; set; }
         [Column("surface_area_m2")]
@@ -39,5 +37,7 @@ namespace pricemap.Infrastructure.Database.Models
         public string City { get; set; }
         [Column("country")]
         public string Country { get; set; }
+
+        public IList<Price> Prices { get; set; }
     }
 }
