@@ -104,10 +104,16 @@ namespace pricemap.Controllers
             }
         }
 
+        /// <summary>
+        /// Update a listing
+        /// </summary>
+        /// <param name="listing"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RealEstateListing))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PutListingAsync(RealEstateListing listing, CancellationToken cancellationToken)
+        public async Task<IActionResult> PutListingAsync([FromBody] RealEstateListing listing, CancellationToken cancellationToken)
         {
             try
             {
@@ -148,16 +154,22 @@ namespace pricemap.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a listing
+        /// </summary>
+        /// <param name="listing"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RealEstateListing))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PostListingAsync(RealEstateListing listing, CancellationToken cancellationToken)
+        public async Task<IActionResult> PostListingAsync([FromBody] RealEstateListing listing, CancellationToken cancellationToken)
         {
             try
             {
                 var r = _listingsContext.Listings.FirstOrDefault(l => l.Id == listing.Id);
-                if (r == null)
-                {
+                if (r != null) return BadRequest();
+
                     // Insert
                     r = new Infrastructure.Database.Models.Listing
                     {
@@ -178,15 +190,15 @@ namespace pricemap.Controllers
                         PostalCode = listing.PostalAddress.PostalCode,
                         StreetAddress = listing.PostalAddress.StreetAddress
                     };
-                    _listingsContext.Listings.Add(r);
-                    _listingsContext.Prices.Add(new Infrastructure.Database.Models.Price()
-                    {
-                        ListingId = listing.Id,
-                        PriceValue = listing.Price.Price_eur,
-                        PriceDate = listing.Price.Date_posted
-                    });
-                    await _listingsContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-                }
+                _listingsContext.Listings.Add(r);
+                _listingsContext.Prices.Add(new Infrastructure.Database.Models.Price()
+                {
+                    ListingId = listing.Id,
+                    PriceValue = listing.Price.Price_eur,
+                    PriceDate = listing.Price.Date_posted
+                });
+                await _listingsContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
                 return StatusCode(StatusCodes.Status201Created, listing);
             }
             catch (Exception ex)
