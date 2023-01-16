@@ -74,7 +74,7 @@ class PostgresListingRepository(ports.ListingRepository):
                         "country_iso_2": listing.country_iso_2,
                         "price_eur": listing.price_eur,
                         "surface_area_m2": listing.surface_area_m2,
-                        "room_count": listing.rooms_count,
+                        "rooms_count": listing.rooms_count,
                         "bedrooms_count": listing.bedrooms_count,
                         "contact_phone_number": listing.contact_phone_number,
                         "created_date": listing.created_date.utcnow(),
