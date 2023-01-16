@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace pricemap.Infrastructure.Database.Model
+namespace pricemap.Infrastructure.Database.Models
 {
     public class DataBaseConfiguration
     {

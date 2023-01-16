@@ -7,8 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using pricemap.Configuration;
 using pricemap.Infrastructure.Database;
-using pricemap.Services.Contracts;
-using pricemap.Services.Implem;
 using pricemap.Services.Model.Configuration;
 using System;
 
@@ -26,39 +24,23 @@ namespace pricemap
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var pricemapConfig = Configuration.GetSection("dataBase:pricemap").Get<Infrastructure.Database.Model.DataBaseConfiguration>();
-            services.AddDbContext<PricemapContext>(options =>
+            var pricemapConfig = Configuration.GetSection("dataBase:pricemap").Get<Infrastructure.Database.Models.DataBaseConfiguration>();
+            services.AddDbContext<ListingsContext>(options =>
             {
                 options.UseNpgsql(pricemapConfig.ToString(),
                     npgsqlOptionsAction: sqlOptions =>
                     {
                         sqlOptions.CommandTimeout(60);
-                        //sqlOptions.EnableRetryOnFailure(
-                        //    maxRetryCount: 5,
-                        //    maxRetryDelay: TimeSpan.FromSeconds(3),
-                        //    errorCodesToAdd: null);
                         sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
                     });
             });
-            var listingsapiEndpoint = Configuration.GetSection("endPoints:listingsapi").Get<EndpointConfiguration>();
-            services.AddHttpClient<IListingService, ListingService>(client =>
-            {
-                client.BaseAddress = new Uri(listingsapiEndpoint.BaseUrl);
-                client.Timeout = TimeSpan.FromSeconds(listingsapiEndpoint.Timeout);
-            });
             
-            services.AddMemoryCache();
-
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new GroupingByNamespaceConvention());
             });
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "pricemap v1", Version = "v1" });
-                c.CustomSchemaIds(type => type.ToString());
-            });
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,14 +49,9 @@ namespace pricemap
             if (!env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
-
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "pricemap v1");
-            }
-            );
 
             app.UseHttpsRedirection();
 

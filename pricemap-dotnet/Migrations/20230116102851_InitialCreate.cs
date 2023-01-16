@@ -12,16 +12,27 @@ namespace pricemap.Migrations
                 name: "listings",
                 columns: table => new
                 {
-                    listing_id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    place_id = table.Column<int>(type: "integer", nullable: false),
                     price = table.Column<int>(type: "integer", nullable: false),
-                    area = table.Column<int>(type: "integer", nullable: false),
-                    room_count = table.Column<int>(type: "integer", nullable: false)
+                    surface_area_m2 = table.Column<int>(type: "integer", nullable: false),
+                    rooms_count = table.Column<int>(type: "integer", nullable: false),
+                    bedrooms_count = table.Column<int>(type: "integer", nullable: false),
+                    building_type = table.Column<string>(type: "text", nullable: true),
+                    contact_phone_number = table.Column<string>(type: "text", nullable: true),
+                    created_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    updated_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: true),
+                    description = table.Column<string>(type: "text", nullable: true),
+                    price_date_posted = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    street_address = table.Column<string>(type: "text", nullable: true),
+                    postal_code = table.Column<string>(type: "text", nullable: true),
+                    city = table.Column<string>(type: "text", nullable: true),
+                    country = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_listings", x => x.listing_id);
+                    table.PrimaryKey("PK_listings", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,20 +49,6 @@ namespace pricemap.Migrations
                 {
                     table.PrimaryKey("PK_prices", x => x.id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "views",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    listing_id = table.Column<int>(type: "integer", nullable: false),
-                    view_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_views", x => x.id);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -61,9 +58,6 @@ namespace pricemap.Migrations
 
             migrationBuilder.DropTable(
                 name: "prices");
-
-            migrationBuilder.DropTable(
-                name: "views");
         }
     }
 }

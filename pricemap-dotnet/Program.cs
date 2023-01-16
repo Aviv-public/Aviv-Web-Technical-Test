@@ -22,16 +22,6 @@ namespace pricemap
                         .AddJsonFile($"secret.json", true, true);
                     IConfigurationRoot configurationRoot = configuration.Build();
                 })
-                //.ConfigureLogging((hosting, logging) =>
-                //{
-                //    var logger = new LoggerConfiguration()
-                //        .ReadFrom.Configuration(hosting.Configuration)
-                //        .CreateLogger();
-
-                //    logging
-                //        .ClearProviders()
-                //        .AddSerilog(logger, dispose: true);
-                //})
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
         ;
     }

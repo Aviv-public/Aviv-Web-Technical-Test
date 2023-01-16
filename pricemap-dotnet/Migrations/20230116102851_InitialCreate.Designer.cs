@@ -9,8 +9,8 @@ using pricemap.Infrastructure.Database;
 
 namespace pricemap.Migrations
 {
-    [DbContext(typeof(PricemapContext))]
-    [Migration("20230110151444_InitialCreate")]
+    [DbContext(typeof(ListingsContext))]
+    [Migration("20230116102851_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace pricemap.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Model.GeoPlace", b =>
+            modelBuilder.Entity("pricemap.Infrastructure.Database.Models.Listing", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,49 +29,72 @@ namespace pricemap.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Geom")
+                    b.Property<int>("BedroomsCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("bedrooms_count");
+
+                    b.Property<string>("BuildingType")
                         .HasColumnType("text")
-                        .HasColumnName("geom");
+                        .HasColumnName("building_type");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text")
+                        .HasColumnName("city");
+
+                    b.Property<string>("ContactPhoneNumber")
+                        .HasColumnType("text")
+                        .HasColumnName("contact_phone_number");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text")
+                        .HasColumnName("country");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<string>("Name")
                         .HasColumnType("text")
-                        .HasColumnName("cog");
+                        .HasColumnName("name");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("geo_place", t => t.ExcludeFromMigrations());
-                });
-
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Model.Listing", b =>
-                {
-                    b.Property<int>("ListingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("listing_id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Area")
-                        .HasColumnType("integer")
-                        .HasColumnName("area");
-
-                    b.Property<int>("PlaceId")
-                        .HasColumnType("integer")
-                        .HasColumnName("place_id");
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("text")
+                        .HasColumnName("postal_code");
 
                     b.Property<int>("Price")
                         .HasColumnType("integer")
                         .HasColumnName("price");
 
-                    b.Property<int>("RoomCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("room_count");
+                    b.Property<DateTime>("PriceDatePosted")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("price_date_posted");
 
-                    b.HasKey("ListingId");
+                    b.Property<int>("RoomsCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("rooms_count");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("text")
+                        .HasColumnName("street_address");
+
+                    b.Property<int>("SurfaceAreaM2")
+                        .HasColumnType("integer")
+                        .HasColumnName("surface_area_m2");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("updated_date");
+
+                    b.HasKey("Id");
 
                     b.ToTable("listings");
                 });
 
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Model.Price", b =>
+            modelBuilder.Entity("pricemap.Infrastructure.Database.Models.Price", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,27 +117,6 @@ namespace pricemap.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("prices");
-                });
-
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Model.View", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("ListingId")
-                        .HasColumnType("integer")
-                        .HasColumnName("listing_id");
-
-                    b.Property<DateTime>("ViewDate")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("view_date");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("views");
                 });
 #pragma warning restore 612, 618
         }

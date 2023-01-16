@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace pricemap.Infrastructure.Database.Model
+namespace pricemap.Infrastructure.Database.Models
 {
     public class BaseEntity
     {
