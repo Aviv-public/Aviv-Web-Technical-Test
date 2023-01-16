@@ -4,5 +4,12 @@ front/coverage
 front/dist
 front/yarn.lock
 front/pnpm-lock.yaml
-tests/pricemap.unittests/bin/*
+
+## Pricemap Python
+pricemap-python/.coverage
+pricemap-python/coverage.xml
+pricemap-python/junit-coverage.xml
+pricemap-python/.pytest_cache
+pricemap-python/.mypy_cache
 tests/pricemap.unittests/obj/*
+tests/pricemap.unittests/bin/*
