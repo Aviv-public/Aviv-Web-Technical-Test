@@ -1,1 +1,0 @@
-from pricemap.domain.ports.repository.listing_repository import ListingRepository

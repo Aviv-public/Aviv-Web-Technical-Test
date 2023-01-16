@@ -1,7 +1,10 @@
 [packages]
-Flask = "*"
-psycopg = {version = "*", extras = ["binary", "pool"], index = "pypi"}
-requests = "*"
+faker = "*"
+pydantic = "*"
+sqlalchemy = "*"
+flask = "*"
+black = "*"
+psycopg2-binary = "*"
 
 [[source]]
 name = "pypi"

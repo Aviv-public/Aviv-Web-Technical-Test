@@ -17,19 +17,17 @@ services:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
     user: "pricemap:pricemap"
     volumes:
-      - ./pricemap-python:/home/pricemap/app:rw
+      - ./pricemap-python/pricemap:/home/pricemap/app:ro
     command:
       [
         "/home/pricemap/wait-for-postgres.sh",
         "db:5432",
         "--",
-        "flask",
-        "run",
-        "-h",
-        "0.0.0.0",
+        "python",
+        "app.py"
       ]
     ports:
-      - "8080:5000"
+      - "8080:8080"
     depends_on:
       - db
       - listingapi
@@ -38,8 +36,6 @@ services:
       PGDATABASE: pricemap
       PGUSER: pricemap
       PGPASSWORD: pricemap
-      FLASK_DEBUG: 1
-      FLASK_APP: "pricemap.controllers.app"
 
   pricemap-typescript:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-typescript:latest

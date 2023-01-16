@@ -1,10 +1,8 @@
 import logging
 import sys
 
-from pricemap.adapters.repository.postgres_listing_repository import (
-    PostgresListingRepository,
-)
-from pricemap.domain.usecases.persist_listing import PersistListing
+from adapters.repository.listings import ListingRepositorySQLite
+from domain.usecases.listings import PersistListing, RetrieveListings, UpdateListing
 
 
 # Logger
@@ -16,7 +14,10 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # Import Repository
-_listing_repository = PostgresListingRepository()
+listing_repository_sqlite = ListingRepositorySQLite()
 
-# Usecase
-persistListingUsecase = PersistListing(_listing_repository, logger)
+# Usecases
+persist_listing = PersistListing(listing_repository_sqlite)
+retrieve_listings = RetrieveListings(listing_repository_sqlite)
+update_listing = UpdateListing(listing_repository_sqlite)
+
