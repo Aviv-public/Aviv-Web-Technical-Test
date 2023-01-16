@@ -26,7 +26,7 @@ class ListingMapper:
             data["country_iso_2"],
             int(data["price_eur"]),
             int(data["surface_area_m2"]),
-            int(data["room_count"]),
+            int(data["rooms_count"]),
             int(data["bedrooms_count"]),
             data["contact_phone_number"],
             datetime.now(),

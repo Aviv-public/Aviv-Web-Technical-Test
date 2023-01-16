@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS public.listing
     country_iso_2 VARCHAR(2),
     price_eur INTEGER,
     surface_area_m2 INTEGER,
-    room_count INTEGER,
+    rooms_count INTEGER,
     bedrooms_count INTEGER,
     contact_phone_number VARCHAR(32),
     created_date TIMESTAMP,

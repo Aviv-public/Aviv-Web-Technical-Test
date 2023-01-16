@@ -22,7 +22,7 @@ class Listing:
         country_iso_2: str,
         price_eur: int,
         surface_area_m2: int,
-        room_count: int,
+        rooms_count: int,
         bedrooms_count: int,
         contact_phone_number: Optional[str],
         created_date: datetime,
@@ -38,7 +38,7 @@ class Listing:
         self.country_iso_2 = country_iso_2
         self.price_eur = price_eur
         self.surface_area_m2 = surface_area_m2
-        self.room_count = room_count
+        self.rooms_count = rooms_count
         self.bedrooms_count = bedrooms_count
         self.contact_phone_number = contact_phone_number
         self.created_date = created_date
