@@ -8,13 +8,14 @@ class BuildingType(Enum):
     APARTMENT = "APARTMENT"
     STUDIO = "STUDIO"
 
+
 class Listing:
     def __init__(
         self,
         id: int,
         name: str,
         description: str,
-        building_type:BuildingType,
+        building_type: BuildingType,
         street_address: str,
         postal_code: str,
         city: str,

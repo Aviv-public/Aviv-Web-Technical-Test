@@ -1,7 +1,6 @@
 import logging
 import sys
 
-from pricemap import settings
 from pricemap.adapters.finder.postgres_geo_place_finder import PostgresGeoPlaceFinder
 from pricemap.adapters.repository.postgres_listing_repository import (
     PostgresListingRepository,

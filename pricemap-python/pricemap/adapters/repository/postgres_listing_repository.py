@@ -10,13 +10,14 @@ class PostgresListingRepository(ports.ListingRepository):
     def persist(self, listing: Listing) -> None:
         """
         Persist a Listing.
+
         If entity exists, then Update data. Otherwise insert it
 
         Args:
             - listing -- Entity to persist
 
         Raises:
-            - UnableToPersistListing : Something happens when we try to persist the Entity
+            - UnableToPersistListing : Error happens when the entity is persisted
         """
         sql_request = """
             INSERT INTO public.listing(
