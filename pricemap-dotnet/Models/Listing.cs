@@ -15,7 +15,7 @@ namespace pricemap.Models
         public string Description { get; set; }
 
         [JsonProperty("building_type")]
-        public string BuildingType { get; set; }
+        public RealEstateListingBuildingType BuildingType { get; set; }
 
         [JsonProperty("price")]
         public Price Price { get; set; }
@@ -33,8 +33,7 @@ namespace pricemap.Models
         public string ContactPhoneNumber { get; set; }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public enum RealEstateListingBuilding_type
+    public enum RealEstateListingBuildingType
     {
         [System.Runtime.Serialization.EnumMember(Value = @"STUDIO")]
         STUDIO = 0,

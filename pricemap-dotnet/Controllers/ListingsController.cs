@@ -66,6 +66,8 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PostListingAsync([FromBody] Listing listing, CancellationToken cancellationToken)
         {
+            if (listing == null || listing.PostalAddress == null || listing.Price == null) 
+                return BadRequest();
             try
             {
                 // Insert
@@ -73,7 +75,7 @@ namespace pricemap.Controllers
                 var r = new Infrastructure.Database.Models.Listing
                 {
                     BedroomsCount = listing.BedroomsCount,
-                    BuildingType = listing.BuildingType,
+                    BuildingType = listing.BuildingType.ToString(),
                     ContactPhoneNumber = listing.ContactPhoneNumber,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now,
@@ -120,6 +122,9 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PutListingAsync(int id, [FromBody] Listing listing, CancellationToken cancellationToken)
         {
+            if (id <= 0 || listing == null || listing.PostalAddress == null || listing.Price == null)
+                return BadRequest();
+
             try
             {
                 // include Prices here
@@ -132,7 +137,7 @@ namespace pricemap.Controllers
                 var priceDate = DateTime.Now;
 
                 r.BedroomsCount = listing.BedroomsCount;
-                r.BuildingType = listing.BuildingType;
+                r.BuildingType = listing.BuildingType.ToString();
                 r.ContactPhoneNumber = listing.ContactPhoneNumber;
                 r.UpdatedDate = DateTime.Now;
                 r.Name = listing.Name;
@@ -170,8 +175,9 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ICollection<PriceReadOnly>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Route("{id}/history")]
-        public IActionResult GetListingPriceHistoryAsync(int id)
+        public IActionResult GetListingPriceHistory(int id)
         {
+            if (id <= 0) return BadRequest();
             try
             {
                 var prices = _listingsContext.Prices.Where(p => p.ListingId == id);
