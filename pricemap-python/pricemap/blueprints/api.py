@@ -2,7 +2,8 @@ import json
 
 from flask import Blueprint, Response, jsonify
 
-from pricemap import db_pool
+from pricemap.adapters.utils.postgres_db_pool import PostgresDbPool
+
 
 api = Blueprint("api", __name__)
 
@@ -21,23 +22,15 @@ def geoms() -> "Response":
             ;
     """
     features = []
-    connection = db_pool.getconn()
-    cursor = connection.cursor()
-    try:
-        cursor.execute(sql_request)
 
-        for row in cursor:
-            if not row[0]:
-                continue
+    with PostgresDbPool.get_connection() as connection:
+        for row in connection.execute(sql_request):
             geometry = {
                 "type": "Feature",
                 "geometry": json.loads(row["geom"]),
                 "properties": {"cog": row["cog"], "price": row["price"]},
             }
             features.append(geometry)
-    finally:
-        cursor.close()
-        db_pool.putconn(connection)  # release the connection
 
     response = {"type": "FeatureCollection", "features": features}
     return jsonify(response)
@@ -49,7 +42,7 @@ def get_price(cog: int) -> "Response":
     # TODO : maybe we can do a better histogram
     #  (better computation, better volume and labels, etc.)
     serie_name = f"Prix {cog}"
-    labels = {
+    labels: dict[str, int] = {
         "0-6000": 0,
         "6000-8000": 0,
         "8000-10000": 0,
@@ -69,27 +62,19 @@ def get_price(cog: int) -> "Response":
          ;
     """
 
-    connection = db_pool.getconn()
-    cursor = connection.cursor()
-
-    try:
-
+    with PostgresDbPool.get_connection() as connection:
         for label in labels:
             min_price = label.split("-")[0]
             max_price = label.split("-")[1]
-            cursor.execute(
+            row = connection.execute(
                 sql_request,
                 {
                     "cog": cog,
                     "min_price": min_price,
                     "max_price": max_price,
                 },
-            )
-            row = cursor.fetchone()
-            labels[label] = row["count"]
-    finally:
-        cursor.close()
-        db_pool.putconn(connection)  # release the connection
+            ).fetchone()
+            labels[label] = row["count"] if row else 0
 
     response = {
         "serie_name": serie_name,

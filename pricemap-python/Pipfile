@@ -1,6 +1,6 @@
 [packages]
 Flask = "*"
-psycopg2-binary = "*"
+psycopg = {version = "*", extras = ["binary", "pool"], index = "pypi"}
 requests = "*"
 
 [[source]]

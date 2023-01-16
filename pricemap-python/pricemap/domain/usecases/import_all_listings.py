@@ -1,23 +1,31 @@
 from datetime import datetime
+from logging import Logger
 
 import requests
 
-import settings
-from pricemap import logger
-from pricemap.entities.listing import Listing
-from pricemap.finder.geo_place_finder import GeoPlaceFinder
-from pricemap.repository.listing_repository import ListingRepository
+from pricemap import settings
+from pricemap.domain.entities.listing import Listing
+from pricemap.domain.ports.finder.geo_place_finder import GeoPlaceFinder
+from pricemap.domain.ports.repository.listing_repository import ListingRepository
 
 
 class ImportAllListings:
-    def __init__(self, api_url: str):
+    def __init__(
+        self,
+        api_url: str,
+        listing_repository: ListingRepository,
+        geo_place_finder: GeoPlaceFinder,
+        logger: Logger,
+    ):
         self.api_url = api_url
-        self.listing_repository = ListingRepository()
+        self.listing_repository = listing_repository
+        self.geo_place_finder = geo_place_finder
+        self.logger = logger
 
     def import_all_listings(self) -> None:
         """Import listings for all places."""
-        for place_id in GeoPlaceFinder.retrieve_all_places_ids():
-            logger.debug("Import listings for placeId %s", place_id)
+        for place_id in self.geo_place_finder.retrieve_all_places_ids():
+            self.logger.debug("Import listings for placeId %s", place_id)
             self._import_listings_for(place_id)
 
     def _import_listings_for(self, place_id: int) -> None:
@@ -50,12 +58,14 @@ class ImportAllListings:
             # If we received fewer results than the page limit, we reached the last page
             is_last_page = len(json_response) < settings.LISTING_API_NB_RESULTS_PER_PAGE
 
-            logger.info(f"Import listings for placeId {place_id} - page {current_page}")
+            self.logger.info(
+                f"Import listings for placeId {place_id} - page {current_page}"
+            )
 
             bulk_listings = []
             for item in json_response:
                 listing = Listing.from_data(item, place_id, datetime.now())
-                logger.debug("Add listing %s to bulk", listing.id)
+                self.logger.debug("Add listing %s to bulk", listing.id)
                 bulk_listings.append(listing)
 
             self.listing_repository.upsert_bulk(bulk_listings)
