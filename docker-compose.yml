@@ -1,18 +1,6 @@
 version: "3.4"
 
 services:
-  listingapi:
-    image: ghcr.io/meilleursagents/backend-technical-test/listingapi:latest
-    user: "listingapi:listingapi"
-    volumes:
-      - ./listingapi:/home/listingapi/app:rw
-    command: ["flask", "run", "-h", "0.0.0.0"]
-    ports:
-      - "8181:5000"
-    environment:
-      FLASK_DEBUG: 1
-      FLASK_APP: "listingapi.app"
-
   pricemap-python:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
     user: "pricemap:pricemap"
@@ -30,7 +18,6 @@ services:
       - "8080:8080"
     depends_on:
       - db
-      - listingapi
     environment:
       PGHOST: db
       PGDATABASE: pricemap
