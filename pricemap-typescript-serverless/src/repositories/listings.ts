@@ -94,9 +94,11 @@ export function getRepository(postgres: PostgresClient) {
         values: queryValues,
       } = extractVariables(tableRow);
 
-      const queryString = `INSERT INTO listing (${columns.join(
-        ","
-      )}) VALUES(${variables})`;
+      const queryString = `
+        INSERT INTO listing (${columns.join(",")})
+        VALUES(${variables})
+        RETURNING *
+      `;
       const result = await postgres.query(queryString, queryValues);
 
       return tableRowToListing(result.rows[0]);
@@ -106,15 +108,18 @@ export function getRepository(postgres: PostgresClient) {
       const originalListing = await this.getListing(listingId);
 
       const tableRow = listingToTableRow(listing, originalListing.created_date);
-      const { columns, values } = extractVariables(tableRow);
+      const { columns, columnsVariables, values } = extractVariables(tableRow);
 
-      const queryString = `UPDATE listing SET ${columns
-        .map((column, index) => `${column} = $${index}`)
-        .join(", ")} WHERE id = $${columns.length + 1}`;
+      const queryString = `
+        UPDATE listing
+          SET ${columnsVariables.join(", ")}
+          WHERE id = $${columns.length + 1}
+        RETURNING *
+      `;
       const queryValues = [...values, listingId];
       const result = await postgres.query(queryString, queryValues);
 
-      return result.rows;
+      return tableRowToListing(result.rows[0]);
     },
   };
 }

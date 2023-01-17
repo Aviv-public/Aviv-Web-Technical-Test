@@ -13,10 +13,21 @@ export const postgres = new PostgresClient({
  * rows, variables and values for selecting, inserting or updating
  * data in a table.
  */
-export function extractVariables(value: object) {
-  const columns = Object.entries(value).map((row) => row[0]);
-  const variables = Object.entries(value).map((_, index) => `$${index + 1}`);
-  const values = Object.entries(value).map((row) => row[1]);
+export function extractVariables(row: object) {
+  const columns = [];
+  const variables = [];
+  const columnsVariables = [];
+  const values = [];
 
-  return { columns, variables, values };
+  for (const [index, [column, value]] of Object.entries(row).entries()) {
+    columns.push(column);
+
+    const variable = `$${index + 1}`;
+    variables.push(variable);
+    columnsVariables.push(`${column} = ${variable}`);
+
+    values.push(value);
+  }
+
+  return { columns, variables, columnsVariables, values };
 }

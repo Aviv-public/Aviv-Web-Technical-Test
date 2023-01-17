@@ -9,10 +9,13 @@ describe("extractVariables", () => {
       last_name: "Dupont",
     };
 
-    const { columns, variables, values } = extractVariables(myTableRow);
+    const extracted = extractVariables(myTableRow);
 
-    expect(columns).toEqual(["id", "first_name", "last_name"]);
-    expect(variables).toEqual(["$1", "$2", "$3"]);
-    expect(values).toEqual([1, "Michel", "Dupont"]);
+    expect(extracted).toEqual({
+      columns: ["id", "first_name", "last_name"],
+      variables: ["$1", "$2", "$3"],
+      columnsVariables: ["id = $1", "first_name = $2", "last_name = $3"],
+      values: [1, "Michel", "Dupont"],
+    });
   });
 });
