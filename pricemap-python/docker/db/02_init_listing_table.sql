@@ -2,20 +2,20 @@ CREATE TYPE building_type AS ENUM ('STUDIO', 'APARTMENT', 'HOUSE');
 
 CREATE TABLE IF NOT EXISTS public.listing
 (
-    id INTEGER,
-    name VARCHAR(255),
-    description TEXT,
-    building_type building_type,
-    street_address TEXT,
-    postal_code VARCHAR(32),
-    city VARCHAR(255),
-    country_iso_2 VARCHAR(2),
-    price_eur INTEGER,
-    surface_area_m2 INTEGER,
-    rooms_count INTEGER,
-    bedrooms_count INTEGER,
-    contact_phone_number VARCHAR(32),
-    created_date TIMESTAMP,
-    updated_date TIMESTAMP,
-    PRIMARY KEY (id)
+    id                   serial         primary key,
+    name                 varchar          not null,
+    description          varchar          not null,
+    building_type        varchar          not null,
+    street_address       varchar          not null,
+    postal_code          varchar          not null,
+    city                 varchar          not null,
+    country              varchar          not null,
+    surface_area_m2      double precision not null,
+    rooms_count          integer          not null,
+    bedrooms_count       integer          not null,
+    price                double precision not null,
+    price_date           date,
+    contact_phone_number varchar,
+    created_date         timestamp,
+    updated_date         timestamp
 );
