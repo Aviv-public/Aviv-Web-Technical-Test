@@ -1,7 +1,9 @@
 [packages]
-Flask = "*"
-psycopg = {version = "*", extras = ["binary", "pool"], index = "pypi"}
-requests = "*"
+faker = "==16.4.0"
+pydantic = "==1.10.4"
+sqlalchemy =  {version = "==1.4.46", extras = ["mypy"], index = "pypi"}
+flask = "==2.2.2"
+psycopg2-binary = "==2.9.5"
 
 [[source]]
 name = "pypi"

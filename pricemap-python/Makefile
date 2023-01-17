@@ -22,15 +22,6 @@ build: ## Builds the python docker image
 shell-pricemap-container: ## Run a bash on pricemap-python container
 	$(DOCKER_COMPOSE) exec pricemap-python bash
 
-
-##
-## Python Import listing
-## --------
-##
-.PHONY: import-listings
-import-all-listings: ## Run a command to import listings into pricemap database
-	$(DOCKER_COMPOSE) exec -T pricemap-python ./pricemap/controllers/cli/console.py import-all-listings
-
 ##
 ## Python Tests
 ## --------
