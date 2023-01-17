@@ -12,7 +12,6 @@ class PostalAddressEntity(BaseModel):
 
 class PriceEntity(BaseModel):
     price_eur: int
-    date_posted: date
 
 
 class ListingEntity(BaseModel):

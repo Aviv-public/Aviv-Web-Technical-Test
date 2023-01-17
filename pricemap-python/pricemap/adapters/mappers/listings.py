@@ -32,10 +32,10 @@ class ListingMapper:
             description=listing.description,
             building_type=listing.building_type,
             price=listing.price.price_eur,
-            price_date=listing.price.date_posted,
             surface_area_m2=listing.surface_area_m2,
             rooms_count=listing.rooms_count,
             bedrooms_count=listing.bedrooms_count,
+            contact_phone_number=listing.contact_phone_number,
         )
         return listing_model
 
@@ -52,10 +52,11 @@ class ListingMapper:
             },
             "description": listing.description,
             "building_type": listing.building_type,
-            "price": {"price_eur": listing.price, "date_posted": listing.price_date},
+            "price": {"price_eur": listing.price, "created_date": listing.price_date},
             "surface_area_m2": listing.surface_area_m2,
             "rooms_count": listing.rooms_count,
             "bedrooms_count": listing.bedrooms_count,
+            "contact_phone_number": listing.contact_phone_number,
             "created_date": listing.created_date,
             "updated_date": listing.updated_date,
         }

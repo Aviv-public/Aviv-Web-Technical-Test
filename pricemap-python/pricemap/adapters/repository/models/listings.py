@@ -31,3 +31,6 @@ class ListingModel(Base):
     postal_code = Column(String, nullable=False)
     city = Column(String, nullable=False)
     country = Column(String, nullable=False)
+
+    # contact
+    contact_phone_number = Column(String, nullable=True, default=None)

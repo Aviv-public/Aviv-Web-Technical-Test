@@ -33,8 +33,7 @@ class PriceFactory:
     @staticmethod
     def build(fake: Faker) -> PriceEntity:
         price_eur = fake.random_int(100_000, 2_000_000, 5000)
-        date_posted = fake.date_between("-5y", "today")
-        return PriceEntity(price_eur=price_eur, date_posted=date_posted)
+        return PriceEntity(price_eur=price_eur)
 
 
 class ListingFactory:
