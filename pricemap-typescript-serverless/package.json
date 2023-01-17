@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "dependencies": {
+    "@middy/core": "^4.1.0",
+    "@middy/http-json-body-parser": "^4.1.0",
     "axios": "^0.27.2",
     "express": "^4.17.3",
-    "postgres": "^3.3.3"
+    "pg-native": "^3.0.1",
+    "postgres": "^3.3.3",
+    "serverless-postgres": "^2.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
@@ -26,6 +30,8 @@
   },
   "scripts": {
     "generate:types": "./bin/generate-types.js",
-    "watch": "npm run generate:types && serverless offline start --reloadHandler --host 0.0.0.0 --noPrependStageInUrl"
+    "watch": "npm run generate:types && serverless offline start --reloadHandler --host 0.0.0.0 --noPrependStageInUrl",
+    "lint:check": "prettier -c .",
+    "lint:fix": "prettier -w ."
   }
 }

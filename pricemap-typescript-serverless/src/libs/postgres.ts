@@ -1,12 +1,22 @@
-import postgres from "postgres";
+import PostgresClient from "serverless-postgres";
 
-console.log(process.env.PGHOST)
-
-const sql = postgres({
+export const postgres = new PostgresClient({
+  application_name: "listingapi-typescript",
   host: process.env.PGHOST,
   database: process.env.PGDATABASE,
-  username: process.env.PGUSER,
-  pass: process.env.PGPASSWORD,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
 });
 
-export { sql };
+/**
+ * Utility function to turn a dictionnary to a set of
+ * rows, variables and values for selecting, inserting or updating
+ * data in a table.
+ */
+export function extractVariables(value: object) {
+  const columns = Object.entries(value).map((row) => row[0]);
+  const variables = Object.entries(value).map((_, index) => `$${index + 1}`);
+  const values = Object.entries(value).map((row) => row[1]);
+
+  return { columns, variables, values };
+}

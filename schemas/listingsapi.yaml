@@ -227,6 +227,7 @@ components:
         - postal_code
         - city
         - country
+      additionalProperties: false
       properties:
         street_address:
           name: Street address
