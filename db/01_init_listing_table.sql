@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS public.listing
     rooms_count          integer          not null,
     bedrooms_count       integer          not null,
     price                double precision not null,
-    price_date           date,
     contact_phone_number varchar,
     created_date         timestamp,
     updated_date         timestamp
