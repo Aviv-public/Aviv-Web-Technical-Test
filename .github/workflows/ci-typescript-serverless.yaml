@@ -23,4 +23,4 @@ jobs:
 
       - name: Lint
         working-directory: ./pricemap-typescript-serverless
-        run: docker-compose run typescript-serverless npm run lint:check
+        run: docker-compose run typescript-serverless npm run lint

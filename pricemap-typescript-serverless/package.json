@@ -37,8 +37,8 @@
     "generate:types": "./bin/generate-types.js",
     "watch:serverless": "serverless offline start --reloadHandler --host 0.0.0.0 --noPrependStageInUrl",
     "watch": "npm run generate:types && npm run watch:serverless",
-    "lint:check": "eslint src/**.ts && prettier -c .",
-    "lint:fix": "eslint --fix src/**.ts && prettier -w .",
+    "lint": "eslint src && prettier -c --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix src && prettier -w --ignore-path .gitignore .",
     "test": "vitest run"
   }
 }

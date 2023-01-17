@@ -13,7 +13,8 @@ export const getListings = functionHandler<(Listing & ListingReadOnly)[]>(
 export const addListing = functionHandler<Listing & ListingReadOnly>(
   async (event, context) => {
     const listing = await getRepository(context.postgres).insertListing(
-      event.body as any
+      // @ts-expect-error to fix
+      event.body
     );
 
     return { statusCode: 201, response: listing };
@@ -24,7 +25,8 @@ export const updateListing = functionHandler<Listing & ListingReadOnly>(
   async (event, context) => {
     const listing = await getRepository(context.postgres).updateListing(
       parseInt(event.pathParameters.id),
-      event.body as any
+      // @ts-expect-error to fix
+      event.body
     );
 
     return { statusCode: 200, response: listing };
