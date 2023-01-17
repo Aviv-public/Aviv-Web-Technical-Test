@@ -52,7 +52,10 @@ class ListingMapper:
             },
             "description": listing.description,
             "building_type": listing.building_type,
-            "price": {"price_eur": listing.price, "created_date": listing.price_date},
+            "price": {
+                "price_eur": listing.price,
+                "created_date": listing.price_date,
+            },
             "surface_area_m2": listing.surface_area_m2,
             "rooms_count": listing.rooms_count,
             "bedrooms_count": listing.bedrooms_count,

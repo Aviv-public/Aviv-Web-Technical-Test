@@ -1,5 +1,3 @@
-CREATE TYPE building_type AS ENUM ('STUDIO', 'APARTMENT', 'HOUSE');
-
 CREATE TABLE IF NOT EXISTS public.listing
 (
     id                   serial         primary key,

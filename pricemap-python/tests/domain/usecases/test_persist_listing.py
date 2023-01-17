@@ -1,33 +1,67 @@
-from unittest.mock import Mock
+import pytest
+from freezegun import freeze_time
 
+from pricemap.domain.entities.listings import ListingEntity
 from pricemap.domain.ports.repository.listings import ListingRepository
 from pricemap.domain.usecases.listings import PersistListing
+from tests.factory.entities.listing_factory import ListingFactory
+from tests.factory.entities.postal_address_factory import PostalAddressFactory
+from tests.factory.entities.price_factory import PriceFactory
 
 
 class TestPersistListing:
+    @pytest.fixture
+    def persist_listing_use_case(
+        self, listing_repository: ListingRepository
+    ) -> PersistListing:
+        return PersistListing(listing_repository)
 
-    persist_listing_usecase: PersistListing
+    @pytest.fixture
+    def listing_entity(self) -> ListingEntity:
+        listing_entity = (
+            ListingFactory()
+            .with_name("Mikhail Schmiedt")
+            .with_description("description")
+            .with_building_type("APARTMENT")
+            .with_rooms_count(6)
+            .with_bedrooms_count(2)
+            .with_surface_area_m2(167)
+            .with_postal_address(
+                PostalAddressFactory()
+                .with_street_address("Johan-Ernst-Ring 7")
+                .with_postal_code("21810")
+                .with_city("Berchtesgaden")
+                .with_country("DE")
+                .build()
+            )
+            .with_price(PriceFactory().with_price(720000).build())
+            .with_contact_phone_number("")
+            .build()
+        )
 
-    @classmethod
-    def setup_class(cls) -> None:
-        cls.persist_listing_usecase = PersistListing(Mock(ListingRepository))
+        return listing_entity
 
-    def test_persist_listing(self) -> None:
-        pass
-        # input_data = {
-        #     "id": 3030030,
-        #     "name": "string",
-        #     "street_address": "48, boulevard des capucins",
-        #     "postal_code": "10294",
-        #     "city": "Paris",
-        #     "country_iso_2": "FR",
-        #     "description": "A description here",
-        #     "building_type": "HOUSE",
-        #     "price_eur": 340000,
-        #     "surface_area_m2": 43,
-        #     "rooms_count": 2,
-        #     "bedrooms_count": 1,
-        #     "contact_phone_number": "string",
-        # }
-        #
-        # self.persist_listing_usecase.perform(input_data)
+    @freeze_time("2023-01-17 14:56:0")
+    def test_persist_listing(
+        self, persist_listing_use_case: PersistListing, listing_entity: ListingEntity
+    ) -> None:
+
+        persisted_listing_dict = persist_listing_use_case.listing_repository.create(
+            listing_entity
+        )
+
+        assert persisted_listing_dict["id"] == 1
+        assert persisted_listing_dict["name"] == "Mikhail Schmiedt"
+        assert persisted_listing_dict["postal_address"] == {
+            "street_address": "Johan-Ernst-Ring 7",
+            "postal_code": "21810",
+            "city": "Berchtesgaden",
+            "country": "DE",
+        }
+        assert persisted_listing_dict["description"] == "description"
+        assert persisted_listing_dict["building_type"] == "APARTMENT"
+        assert persisted_listing_dict["price"]["price_eur"] == 720000.0
+        assert persisted_listing_dict["surface_area_m2"] == 167
+        assert persisted_listing_dict["rooms_count"] == 6
+        assert persisted_listing_dict["bedrooms_count"] == 2
+        assert persisted_listing_dict["contact_phone_number"] == ""

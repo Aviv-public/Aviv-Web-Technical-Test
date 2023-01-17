@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -21,4 +23,4 @@ class ListingEntity(BaseModel):
     surface_area_m2: int
     rooms_count: int
     bedrooms_count: int
-    contact_phone_number: str
+    contact_phone_number: Optional[str]
