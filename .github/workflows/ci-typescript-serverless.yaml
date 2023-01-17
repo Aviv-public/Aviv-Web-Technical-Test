@@ -4,9 +4,6 @@ on:
   push:
     paths:
     - pricemap-typescript-serverless/**
-  pull_request:
-    paths:
-    - pricemap-typescript-serverless/**
 
 jobs:
   lint_openapi:

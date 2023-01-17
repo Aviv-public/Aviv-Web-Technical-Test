@@ -1,7 +1,9 @@
 name: "Lint OpenAPI specifications"
 
-on: [push]
-
+on:
+  push:
+    paths:
+    - schemas/**
 jobs:
   lint_openapi:
     runs-on: ubuntu-latest
