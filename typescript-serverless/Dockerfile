@@ -1,4 +1,4 @@
-FROM node:16-slim
+FROM node:18-slim
 
 # For using pg-native
 RUN apt update -y && apt install -y python3 libpq-dev g++ make
@@ -10,14 +10,14 @@ RUN userdel "$(id -nu 1000)"
 RUN groupadd listingsapi;
 RUN useradd -g listingsapi -ms /bin/bash listingsapi;
 
+USER listingsapi
+
 RUN mkdir /home/listingsapi/app
 RUN chown listingsapi:listingsapi /home/listingsapi/app
 
 WORKDIR /home/listingsapi/app
-USER listingsapi
 
 COPY --chown=listingsapi:listingsapi package*.json ./
 RUN npm ci
-VOLUME /home/listingsapi/app/node_modules
 
 COPY --chown=listingsapi:listingsapi . .
