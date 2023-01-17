@@ -1,6 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
 
-from sqlalchemy import Column, Date, DateTime, Float, Integer, String
+from sqlalchemy import Column, DateTime, Float, Integer, String
 from sqlalchemy.orm import declarative_base
 
 
@@ -24,7 +24,6 @@ class ListingModel(Base):
 
     # price
     price = Column(Float, nullable=False)
-    price_date = Column(Date, default=date.today, onupdate=date.today)
 
     # postal address
     street_address = Column(String, nullable=False)

@@ -1,12 +1,7 @@
 from faker import Faker
 
-from pricemap.domain.entities.listings import (
-    ListingEntity,
-    PostalAddressEntity,
-    PriceEntity,
-)
+from pricemap.domain.entities.listings import ListingEntity, PostalAddressEntity
 from tests.factory.entities.postal_address_factory import PostalAddressFactory
-from tests.factory.entities.price_factory import PriceFactory
 
 
 class ListingFactory:
@@ -15,7 +10,7 @@ class ListingFactory:
         self.name = fake.name()
         self.description = ""
         self.building_type = fake.random_element(["STUDIO", "APARTMENT", "HOUSE"])
-        self.price = PriceFactory(locale).build()
+        self.price = float(fake.random_int(100_000, 2_000_000, 5000))
         self.surface_area_m2 = fake.random_int(10, 500)
         self.rooms_count = fake.random_int(1, 8)
         self.bedrooms_count = fake.random_int(1, self.rooms_count)
@@ -34,7 +29,7 @@ class ListingFactory:
         self.building_type = building_type
         return self
 
-    def with_price(self, price: PriceEntity) -> "ListingFactory":
+    def with_price(self, price: float) -> "ListingFactory":
         self.price = price
         return self
 
@@ -66,7 +61,7 @@ class ListingFactory:
             postal_address=self.postal_address,
             description=self.description,
             building_type=self.building_type,
-            price=self.price,
+            latest_price_eur=self.price,
             surface_area_m2=self.surface_area_m2,
             rooms_count=self.rooms_count,
             bedrooms_count=self.bedrooms_count,

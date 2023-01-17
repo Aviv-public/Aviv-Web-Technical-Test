@@ -6,7 +6,6 @@ from pricemap.domain.ports.repository.listings import ListingRepository
 from pricemap.domain.usecases.listings import PersistListing
 from tests.factory.entities.listing_factory import ListingFactory
 from tests.factory.entities.postal_address_factory import PostalAddressFactory
-from tests.factory.entities.price_factory import PriceFactory
 
 
 class TestPersistListing:
@@ -34,7 +33,7 @@ class TestPersistListing:
                 .with_country("DE")
                 .build()
             )
-            .with_price(PriceFactory().with_price(720000).build())
+            .with_price(720000)
             .with_contact_phone_number("")
             .build()
         )
@@ -60,7 +59,7 @@ class TestPersistListing:
         }
         assert persisted_listing_dict["description"] == "description"
         assert persisted_listing_dict["building_type"] == "APARTMENT"
-        assert persisted_listing_dict["price"]["price_eur"] == 720000.0
+        assert persisted_listing_dict["latest_price_eur"] == 720000.0
         assert persisted_listing_dict["surface_area_m2"] == 167
         assert persisted_listing_dict["rooms_count"] == 6
         assert persisted_listing_dict["bedrooms_count"] == 2

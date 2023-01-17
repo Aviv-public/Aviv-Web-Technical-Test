@@ -10,16 +10,12 @@ class PostalAddressEntity(BaseModel):
     country: str
 
 
-class PriceEntity(BaseModel):
-    price_eur: int
-
-
 class ListingEntity(BaseModel):
     name: str
     postal_address: PostalAddressEntity
     description: str
     building_type: str
-    price: PriceEntity
+    latest_price_eur: float
     surface_area_m2: int
     rooms_count: int
     bedrooms_count: int
