@@ -1,5 +1,5 @@
 import PostgresClient from "serverless-postgres";
-import { Listing, ListingReadOnly } from "@/types.generated";
+import { Listing, ListingWrite } from "@/types.generated";
 import { extractVariables } from "@/libs/postgres";
 import { EntityNotFound } from "@/libs/errors";
 
@@ -21,7 +21,7 @@ type ListingTableRow = {
   country: string;
 };
 
-function tableRowToListing(row: ListingTableRow): Listing & ListingReadOnly {
+function tableRowToListing(row: ListingTableRow): Listing {
   return {
     id: row.id,
     description: row.description,
@@ -44,7 +44,7 @@ function tableRowToListing(row: ListingTableRow): Listing & ListingReadOnly {
 }
 
 function listingToTableRow(
-  listing: Listing,
+  listing: ListingWrite,
   createdDate: Date
 ): ListingTableRow {
   return {
@@ -67,7 +67,7 @@ function listingToTableRow(
 
 export function getRepository(postgres: PostgresClient) {
   return {
-    async getAllListings(): Promise<(Listing & ListingReadOnly)[]> {
+    async getAllListings(): Promise<Listing[]> {
       const queryString = `SELECT * FROM listing`;
       const result = await postgres.query(queryString);
 
@@ -90,7 +90,7 @@ export function getRepository(postgres: PostgresClient) {
       return tableRowToListing(listing);
     },
 
-    async insertListing(listing: Listing) {
+    async insertListing(listing: ListingWrite) {
       const tableRow = listingToTableRow(listing, new Date());
 
       const {
@@ -109,7 +109,7 @@ export function getRepository(postgres: PostgresClient) {
       return tableRowToListing(result.rows[0]);
     },
 
-    async updateListing(listingId: number, listing: Listing) {
+    async updateListing(listingId: number, listing: ListingWrite) {
       const originalListing = await this.getListing(listingId);
 
       const tableRow = listingToTableRow(listing, originalListing.created_date);

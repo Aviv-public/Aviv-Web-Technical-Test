@@ -1,9 +1,9 @@
 import { functionHandler } from "@/libs/function";
 import { getRepository } from "@/repositories/listings";
-import { Listing, ListingReadOnly } from "@/types.generated";
+import { Listing, ListingWrite } from "@/types.generated";
 import { EntityNotFound, NotFound } from "@/libs/errors";
 
-export const getListings = functionHandler<(Listing & ListingReadOnly)[]>(
+export const getListings = functionHandler<Listing[]>(
   async (_event, context) => {
     const listings = await getRepository(context.postgres).getAllListings();
 
@@ -11,7 +11,7 @@ export const getListings = functionHandler<(Listing & ListingReadOnly)[]>(
   }
 );
 
-export const addListing = functionHandler<Listing & ListingReadOnly>(
+export const addListing = functionHandler<Listing, ListingWrite>(
   async (event, context) => {
     const listing = await getRepository(context.postgres).insertListing(
       event.body
@@ -21,7 +21,7 @@ export const addListing = functionHandler<Listing & ListingReadOnly>(
   }
 );
 
-export const updateListing = functionHandler<Listing & ListingReadOnly>(
+export const updateListing = functionHandler<Listing, ListingWrite>(
   async (event, context) => {
     try {
       const listing = await getRepository(context.postgres).updateListing(

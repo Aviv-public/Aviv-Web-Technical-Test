@@ -17,10 +17,13 @@ export type FunctionResult<T extends object> = {
   statusCode?: number;
 };
 
-export type FunctionHandler<T extends object> = (
-  event: ParsedEvent<T>,
+export type FunctionHandler<
+  ResponseBody extends object,
+  RequestBody extends object = undefined
+> = (
+  event: ParsedEvent<RequestBody>,
   context: FunctionContext
-) => Promise<FunctionResult<T>>;
+) => Promise<FunctionResult<ResponseBody>>;
 
 export type ParsedEvent<T> = Omit<APIGatewayProxyEvent, "body"> & { body: T };
 
@@ -34,11 +37,14 @@ function middify<T>(
  * Application specific function handler that builds a context and handles
  * database connection and disconnection.
  */
-export function functionHandler<T extends object>(handler: FunctionHandler<T>) {
-  return middify<T>(
-    async (event: ParsedEvent<T>): Promise<APIGatewayProxyResult> => {
+export function functionHandler<
+  ResponseBody extends object,
+  RequestBody extends object = undefined
+>(handler: FunctionHandler<ResponseBody, RequestBody>) {
+  return middify<RequestBody>(
+    async (event: ParsedEvent<RequestBody>): Promise<APIGatewayProxyResult> => {
       await postgres.connect();
-      let response: T | APIError;
+      let response: ResponseBody | APIError;
       let statusCode: number;
       try {
         const result = await handler(event, { postgres });

@@ -1,10 +1,8 @@
 import { functionHandler } from "@/libs/function";
-import { Price, PriceReadOnly } from "@/types.generated";
+import { Price } from "@/types.generated";
 
-export const getListingPriceHistory = functionHandler<
-  (Price & PriceReadOnly)[]
->(async () => {
-  // Mocked data, to replace with your implementation.
+export const getListingPriceHistory = functionHandler<Price[]>(async () => {
+  // Replace this with your implementation.
   return {
     statusCode: 200,
     response: [

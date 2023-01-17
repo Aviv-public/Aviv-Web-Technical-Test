@@ -27,9 +27,7 @@ paths:
               schema:
                 type: array
                 items:
-                  - allOf:
-                      - $ref: '#/components/schemas/ListingReadOnly'
-                      - $ref: '#/components/schemas/Listing'
+                  $ref: '#/components/schemas/Listing'
     post:
       summary: Create a listing
       description: Create a listing.
@@ -42,9 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/ListingReadOnly'
-                  - $ref: '#/components/schemas/Listing'
+                $ref: '#/components/schemas/Listing'
         '400':
           description: Bad Request
         '422':
@@ -53,7 +49,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Listing'
+              $ref: '#/components/schemas/ListingWrite'
   '/listings/{id}':
     parameters:
       - schema:
@@ -74,9 +70,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/ListingReadOnly'
-                  - $ref: '#/components/schemas/Listing'
+                $ref: '#/components/schemas/Listing'
         '404':
           description: Not Found
           content:
@@ -87,7 +81,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Listing'
+              $ref: '#/components/schemas/ListingWrite'
   '/listings/{id}/history':
     parameters:
       - schema:
@@ -109,13 +103,15 @@ paths:
               schema:
                 type: array
                 items:
-                  - allOf:
-                      - $ref: '#/components/schemas/Price'
-                      - $ref: '#/components/schemas/PriceReadOnly'
+                  $ref: '#/components/schemas/Price'
       operationId: get-listing-price-history
 components:
   schemas:
-    ListingReadOnly:
+    Listing:
+      allOf:
+        - $ref: '#/components/schemas/ListingRead'
+        - $ref: '#/components/schemas/ListingWrite'
+    ListingRead:
       type: object
       name: Listing (read only)
       description: Read-only fields of the listing model
@@ -141,7 +137,7 @@ components:
           description: 'The date at which the listing was last updated, following RFC 3339.'
           type: string
           example: '1970-01-01T00:00:00.000Z'
-    Listing:
+    ListingWrite:
       type: object
       required:
         - name
@@ -204,17 +200,10 @@ components:
           type: string
           pattern: '^\+[1-9]\d{1,14}$'
     Price:
-      type: object
-      required:
-        - price_eur
-      additionalProperties: false
-      properties:
-        price_eur:
-          name: Price
-          description: 'A price, expressed in euros.'
-          type: integer
-          example: 340000
-    PriceReadOnly:
+      allOf:
+        - $ref: '#/components/schemas/PriceRead'
+        - $ref: '#/components/schemas/PriceWrite'
+    PriceRead:
       name: Price (read-only)
       description: Read-only fields for a price.
       type: object
@@ -227,6 +216,17 @@ components:
           description: 'The date at which the listing was produced, following RFC 3339.'
           type: string
           example: '1970-01-01T00:00:00.000Z'
+    PriceWrite:
+      type: object
+      required:
+        - price_eur
+      additionalProperties: false
+      properties:
+        price_eur:
+          name: Price
+          description: 'A price, expressed in euros.'
+          type: integer
+          example: 340000
     PostalAddress:
       type: object
       required:
