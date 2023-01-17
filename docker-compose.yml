@@ -41,25 +41,6 @@ services:
       FLASK_DEBUG: 1
       FLASK_APP: "pricemap.app"
 
-  pricemap-typescript:
-    image: ghcr.io/meilleursagents/backend-technical-test/pricemap-typescript:latest
-    user: "pricemap:pricemap"
-    volumes:
-      - ./pricemap-typescript/src:/home/pricemap/app/src:rw
-      - ./pricemap-typescript/static:/home/pricemap/app/static:rw
-    command: ["npm", "run", "watch"]
-    ports:
-      - "8282:5000"
-      - "9222:9222"
-    depends_on:
-      - db
-      - listingapi
-    environment:
-      PGHOST: db
-      PGDATABASE: pricemap
-      PGUSER: pricemap
-      PGPASSWORD: pricemap
-
   typescript-serverless:
     build: pricemap-typescript-serverless
     user: "listingsapi:listingsapi"
