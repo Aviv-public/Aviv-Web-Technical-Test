@@ -15,12 +15,12 @@ jobs:
 
       - name: Build
         working-directory: ./pricemap-typescript-serverless
-        run: docker-compose build pricemap-typescript-serverless
+        run: docker-compose build typescript-serverless
 
       - name: Test
         working-directory: ./pricemap-typescript-serverless
-        run: docker-compose run pricemap-typescript-serverless npm run test
+        run: docker-compose run typescript-serverless npm run test
 
       - name: Lint
         working-directory: ./pricemap-typescript-serverless
-        run: docker-compose run pricemap-typescript-serverless npm run lint
+        run: docker-compose run typescript-serverless npm run lint
