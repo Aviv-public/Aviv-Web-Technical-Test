@@ -40,13 +40,13 @@ namespace pricemap.Controllers
         {
             try
             {
-                var r = new List<ListingReadOnly>();
+                var results = new List<ListingReadOnly>();
                 var listings = _listingsContext.Listings.ToList();
                 foreach (var listing in listings)
                 {
-                    r.Add(MapListing(listing));
+                    results.Add(MapListing(listing));
                 }
-                return Ok(r);
+                return Ok(results);
             }
             catch (Exception e)
             {
@@ -72,7 +72,7 @@ namespace pricemap.Controllers
             {
                 // Insert
                 var priceDate = DateTime.Now;
-                var r = new Infrastructure.Database.Models.Listing
+                var result = new Infrastructure.Database.Models.Listing
                 {
                     BedroomsCount = listing.BedroomsCount,
                     BuildingType = listing.BuildingType.ToString(),
@@ -98,10 +98,10 @@ namespace pricemap.Controllers
                         }
                     }
                 };
-                _listingsContext.Listings.Add(r);
+                _listingsContext.Listings.Add(result);
                 await _listingsContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-                return StatusCode(StatusCodes.Status201Created, MapListing(r));
+                return StatusCode(StatusCodes.Status201Created, MapListing(result));
             }
             catch (Exception ex)
             {
@@ -128,36 +128,36 @@ namespace pricemap.Controllers
             try
             {
                 // include Prices here
-                var r = _listingsContext.Listings
+                var result = _listingsContext.Listings
                     .Include(b => b.Prices)
                     .FirstOrDefault(l => l.Id == id);
-                if (r == null) return NotFound();
+                if (result == null) return NotFound();
 
                 // Update listing
                 var priceDate = DateTime.Now;
 
-                r.BedroomsCount = listing.BedroomsCount;
-                r.BuildingType = listing.BuildingType.ToString();
-                r.ContactPhoneNumber = listing.ContactPhoneNumber;
-                r.UpdatedDate = DateTime.Now;
-                r.Name = listing.Name;
-                r.Description = listing.Description;
-                r.Price = listing.Price.Price_eur;
-                r.PriceDatePosted = priceDate;
-                r.RoomsCount = listing.RoomsCount;
-                r.SurfaceAreaM2 = listing.SurfaceAreaM2;
-                r.City = listing.PostalAddress.City;
-                r.Country = listing.PostalAddress.Country;
-                r.PostalCode = listing.PostalAddress.PostalCode;
-                r.StreetAddress = listing.PostalAddress.StreetAddress;
-                r.Prices.Add(new Infrastructure.Database.Models.Price()
+                result.BedroomsCount = listing.BedroomsCount;
+                result.BuildingType = listing.BuildingType.ToString();
+                result.ContactPhoneNumber = listing.ContactPhoneNumber;
+                result.UpdatedDate = DateTime.Now;
+                result.Name = listing.Name;
+                result.Description = listing.Description;
+                result.Price = listing.Price.Price_eur;
+                result.PriceDatePosted = priceDate;
+                result.RoomsCount = listing.RoomsCount;
+                result.SurfaceAreaM2 = listing.SurfaceAreaM2;
+                result.City = listing.PostalAddress.City;
+                result.Country = listing.PostalAddress.Country;
+                result.PostalCode = listing.PostalAddress.PostalCode;
+                result.StreetAddress = listing.PostalAddress.StreetAddress;
+                result.Prices.Add(new Infrastructure.Database.Models.Price()
                 {
                     PriceValue = listing.Price.Price_eur,
                     PriceDate = DateTime.Now
                 });
-                _listingsContext.Listings.Update(r);
+                _listingsContext.Listings.Update(result);
                 await _listingsContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-                return Ok(MapListing(r));
+                return Ok(MapListing(result));
             }
             catch (Exception ex)
             {
