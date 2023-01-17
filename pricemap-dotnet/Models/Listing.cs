@@ -1,35 +1,35 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace pricemap.Models
 {
-    public class Listing
+    public partial class Listing
     {
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("postal_address")]
+        [JsonPropertyName("postal_address")]
         public PostalAddress PostalAddress { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("building_type")]
+        [JsonPropertyName("building_type")]
         public RealEstateListingBuildingType BuildingType { get; set; }
 
-        [JsonProperty("price")]
+        [JsonPropertyName("price")]
         public ListingPrice Price { get; set; }
 
-        [JsonProperty("surface_area_m2")]
+        [JsonPropertyName("surface_area_m2")]
         public int SurfaceAreaM2 { get; set; }
 
-        [JsonProperty("rooms_count")]
+        [JsonPropertyName("rooms_count")]
         public int RoomsCount { get; set; }
 
-        [JsonProperty("bedrooms_count")]
+        [JsonPropertyName("bedrooms_count")]
         public int BedroomsCount { get; set; }
 
-        [JsonProperty("contact_phone_number")]
+        [JsonPropertyName("contact_phone_number")]
         public string ContactPhoneNumber { get; set; }
     }
 
@@ -48,7 +48,7 @@ namespace pricemap.Models
 
     public partial class ListingPrice
     {
-        [JsonProperty("last_price_eur")]
+        [JsonPropertyName("last_price_eur")]
         public int LastPriceEur { get; set; }
     }
 }

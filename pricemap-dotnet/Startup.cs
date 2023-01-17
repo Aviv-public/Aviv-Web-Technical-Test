@@ -35,7 +35,7 @@ namespace pricemap
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new GroupingByNamespaceConvention());
-            }).AddNewtonsoftJson();
+            });
 
             services.AddSwaggerGen();
         }

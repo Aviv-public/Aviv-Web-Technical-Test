@@ -1,12 +1,11 @@
-using Newtonsoft.Json;
-using System;
+using System.Text.Json.Serialization;
 
 namespace pricemap.Models
 {
     public partial class Price
     {
         /// <summary>A price, expressed in euros.</summary>
-        [JsonProperty("price_eur")]
+        [JsonPropertyName("price_eur")]
         public int Price_eur { get; set; }
     }
 }

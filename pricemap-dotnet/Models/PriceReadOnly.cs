@@ -1,11 +1,11 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace pricemap.Models
 {
-    public class PriceReadOnly : Price
+    public partial class PriceReadOnly : Price
     {
-        [JsonProperty("created_date")]
+        [JsonPropertyName("created_date")]
         public DateTime CreatedDate { get; set; }
     }
 }

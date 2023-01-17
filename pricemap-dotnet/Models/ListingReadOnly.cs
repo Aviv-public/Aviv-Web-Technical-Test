@@ -1,44 +1,44 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 
 namespace pricemap.Models
 {
     public partial class ListingReadOnly
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        [JsonProperty("created_date")]
+        [JsonPropertyName("created_date")]
         public DateTime CreatedDate { get; set; }
 
-        [JsonProperty("updated_date")]
+        [JsonPropertyName("updated_date")]
         public DateTime UpdatedDate { get; set; }
 
-        [JsonProperty("price")]
+        [JsonPropertyName("price")]
         public PriceReadOnly Price { get; set; }
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("postal_address")]
+        [JsonPropertyName("postal_address")]
         public PostalAddress PostalAddress { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("building_type")]
+        [JsonPropertyName("building_type")]
         public string BuildingType { get; set; }
 
-        [JsonProperty("surface_area_m2")]
+        [JsonPropertyName("surface_area_m2")]
         public int SurfaceAreaM2 { get; set; }
 
-        [JsonProperty("rooms_count")]
+        [JsonPropertyName("rooms_count")]
         public int RoomsCount { get; set; }
 
-        [JsonProperty("bedrooms_count")]
+        [JsonPropertyName("bedrooms_count")]
         public int BedroomsCount { get; set; }
 
-        [JsonProperty("contact_phone_number")]
+        [JsonPropertyName("contact_phone_number")]
         public string ContactPhoneNumber { get; set; }
     }
 }

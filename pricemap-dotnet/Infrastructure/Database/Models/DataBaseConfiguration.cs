@@ -1,22 +1,22 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace pricemap.Infrastructure.Database.Models
 {
     public class DataBaseConfiguration
     {
-        [JsonProperty("host")]
+        [JsonPropertyName("host")]
         public string? Host { get; set; }
 
-        [JsonProperty("databaseName")]
+        [JsonPropertyName("databaseName")]
         public string? DatabaseName { get; set; }
 
-        [JsonProperty("userName")]
+        [JsonPropertyName("userName")]
         public string? UserName { get; set; }
 
-        [JsonProperty("password")]
+        [JsonPropertyName("password")]
         public string? Password { get; set; }
 
-        [JsonProperty("port")]
+        [JsonPropertyName("port")]
         public long Port { get; set; }
 
         public override string ToString()
@@ -27,7 +27,7 @@ namespace pricemap.Infrastructure.Database.Models
 
     public partial class Databases
     {
-        [JsonProperty("pricemap")]
+        [JsonPropertyName("pricemap")]
         public DataBaseConfiguration? Pricemap { get; set; }
     }
 }
