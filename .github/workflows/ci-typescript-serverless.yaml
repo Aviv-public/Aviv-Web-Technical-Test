@@ -1,0 +1,29 @@
+name: CI for TypeScript Serverless Code
+
+on:
+  push:
+    paths:
+    - pricemap-typescript-serverless/**
+  pull_request:
+    paths:
+    - pricemap-typescript-serverless/**
+
+jobs:
+  lint_openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        working-directory: ./pricemap-typescript-serverless
+        run: docker-compose build pricemap-typescript-serverless
+
+      - name: Test
+        working-directory: ./pricemap-typescript-serverless
+        run: docker-compose run pricemap-typescript-serverless npm run test
+
+      - name: Lint
+        working-directory: ./pricemap-typescript-serverless
+        run: docker-compose run pricemap-typescript-serverless npm run lint
