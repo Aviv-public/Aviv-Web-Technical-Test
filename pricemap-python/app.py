@@ -1,5 +1,5 @@
-import registry
-from controllers.listingapi import app
+from pricemap import registry
+from pricemap.controllers.listingapi import app
 from factory import ListingFactory
 
 

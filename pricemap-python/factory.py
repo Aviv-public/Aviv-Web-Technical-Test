@@ -4,7 +4,11 @@ from typing import List
 
 from faker import Faker
 
-from domain.entities.listings import PostalAddress, Price, Listing
+from pricemap.domain.entities.listings import (
+    PostalAddressEntity,
+    PriceEntity,
+    ListingEntity,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -12,12 +16,12 @@ logger = logging.getLogger(__name__)
 
 class PostalAddressFactory:
     @staticmethod
-    def build(fake: Faker) -> PostalAddress:
+    def build(fake: Faker) -> PostalAddressEntity:
         street_address = fake.street_address()
         postal_code = fake.postcode()
         city = fake.city()
         country = fake.current_country_code()
-        return PostalAddress(
+        return PostalAddressEntity(
             street_address=street_address,
             postal_code=postal_code,
             city=city,
@@ -27,15 +31,15 @@ class PostalAddressFactory:
 
 class PriceFactory:
     @staticmethod
-    def build(fake: Faker) -> Price:
+    def build(fake: Faker) -> PriceEntity:
         price_eur = fake.random_int(100_000, 2_000_000, 5000)
         date_posted = fake.date_between("-5y", "today")
-        return Price(price_eur=price_eur, date_posted=date_posted)
+        return PriceEntity(price_eur=price_eur, date_posted=date_posted)
 
 
 class ListingFactory:
     @staticmethod
-    def build(fake: Faker) -> Listing:
+    def build(fake: Faker) -> ListingEntity:
         name = fake.name()
         postal_address = PostalAddressFactory().build(fake)
         description = ""  # Faker("la").paragraph()  # force pseudo latin lorem ipsum
@@ -47,7 +51,7 @@ class ListingFactory:
         contact_phone_number = f"+{fake.random_number(12)}"
         created_date = fake.date_time_between("-5y", "now")
         updated_date = created_date
-        return Listing(
+        return ListingEntity(
             name=name,
             postal_address=postal_address,
             description=description,
@@ -62,7 +66,7 @@ class ListingFactory:
         )
 
     @staticmethod
-    def build_many(count: int, locales: List[str]) -> List[Listing]:
+    def build_many(count: int, locales: List[str]) -> List[ListingEntity]:
         return [ListingFactory.build(Faker(choice(locales))) for _ in range(count)]
 
 

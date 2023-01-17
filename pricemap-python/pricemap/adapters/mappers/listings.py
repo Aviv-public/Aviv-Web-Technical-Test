@@ -1,10 +1,10 @@
-from adapters.repository.models.listings import Listing as ListingModel
-from domain.entities.listings import Listing as ListingEntity
+from pricemap.adapters.repository.models.listings import ListingModel
+from pricemap.domain.entities.listings import ListingEntity
 
 
 class ListingMapper:
     @staticmethod
-    def from_dict_to_entity(data: dict) -> ListingModel:
+    def from_dict_to_entity(data: dict) -> ListingEntity:
         listing = ListingEntity(
             name=data["name"],
             street_address=data["postal_address"]["street_address"],
@@ -23,7 +23,7 @@ class ListingMapper:
 
     @staticmethod
     def from_entity_to_model(listing: ListingEntity) -> ListingModel:
-        listing = ListingModel(
+        listing_model = ListingModel(
             name=listing.name,
             street_address=listing.postal_address.street_address,
             postal_code=listing.postal_address.postal_code,
@@ -37,11 +37,11 @@ class ListingMapper:
             rooms_count=listing.rooms_count,
             bedrooms_count=listing.bedrooms_count,
         )
-        return listing
+        return listing_model
 
     @staticmethod
     def from_model_to_dict(listing: ListingModel) -> dict:
-        data = {
+        listing_dict = {
             "id": listing.id,
             "name": listing.name,
             "postal_address": {
@@ -59,4 +59,4 @@ class ListingMapper:
             "created_date": listing.created_date,
             "updated_date": listing.updated_date,
         }
-        return data
+        return listing_dict

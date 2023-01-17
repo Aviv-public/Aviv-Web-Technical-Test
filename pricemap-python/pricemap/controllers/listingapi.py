@@ -1,16 +1,18 @@
-from flask import jsonify, request, Flask
+from typing import Tuple
+
+from flask import Flask, Response, jsonify, request
 from werkzeug.exceptions import NotFound
 
-from domain.entities.listings import Listing as ListingModel
-import registry
-from domain.exceptions.listings import ListingNotFoundException
+from pricemap import registry
+from pricemap.domain.entities.listings import ListingEntity
+from pricemap.domain.exceptions.listings import ListingNotFoundException
 
 
 app = Flask(__name__)
 
 
 @app.route("/api/listings", methods=["GET"])
-def get_listings():
+def get_listings() -> Tuple[Response, int]:
     """
     Get all listings.
     """
@@ -19,23 +21,23 @@ def get_listings():
 
 
 @app.route("/api/listings", methods=["POST"])
-def post_listing():
+def post_listing() -> Tuple[Response, int]:
     """
     Create a listing.
     """
     data = request.get_json()
-    listing = ListingModel.parse_obj(data)
+    listing = ListingEntity.parse_obj(data)
     listing_data = registry.persist_listing.perform(listing)
     return jsonify(listing_data), 201
 
 
 @app.route("/api/listings/<int:id_>", methods=["PUT"])
-def put_listing(id_: int):
+def put_listing(id_: int) -> Tuple[Response, int]:
     """
     Update a listing.
     """
     data = request.get_json()
-    listing = ListingModel.parse_obj(data)
+    listing = ListingEntity.parse_obj(data)
     try:
         listing_data = registry.update_listing.perform(id_, listing)
     except ListingNotFoundException:

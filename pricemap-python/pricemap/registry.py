@@ -1,8 +1,12 @@
 import logging
 import sys
 
-from adapters.repository.listings import ListingRepositorySQLite
-from domain.usecases.listings import PersistListing, RetrieveListings, UpdateListing
+from pricemap.adapters.repository.listings import ListingRepositorySQLite
+from pricemap.domain.usecases.listings import (
+    PersistListing,
+    RetrieveListings,
+    UpdateListing,
+)
 
 
 # Logger
@@ -20,4 +24,3 @@ listing_repository_sqlite = ListingRepositorySQLite()
 persist_listing = PersistListing(listing_repository_sqlite)
 retrieve_listings = RetrieveListings(listing_repository_sqlite)
 update_listing = UpdateListing(listing_repository_sqlite)
-

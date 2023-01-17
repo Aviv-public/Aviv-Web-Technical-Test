@@ -22,6 +22,6 @@ COPY --chown=pricemap:pricemap Pipfile.lock /home/pricemap/Pipfile.lock
 
 RUN pipenv install --deploy --system --dev
 
-ENV PYTHONPATH /home/pricemap/app
+ENV PYTHONPATH /home/pricemap/app/
 
-COPY --chown=pricemap:pricemap pricemap /home/pricemap/app/
+COPY --chown=pricemap:pricemap . /home/pricemap/app

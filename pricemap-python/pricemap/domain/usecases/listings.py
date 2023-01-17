@@ -1,7 +1,7 @@
 from typing import Dict, List
 
-from domain.entities.listings import Listing as ListingEntity
-from domain.ports.repository.listings import ListingRepository
+from pricemap.domain.entities.listings import ListingEntity
+from pricemap.domain.ports.repository.listings import ListingRepository
 
 
 class PersistListing:
@@ -27,5 +27,5 @@ class UpdateListing:
         self.listing_repository = listing_repository
 
     def perform(self, id_: int, listing: ListingEntity) -> Dict:
-        listing = self.listing_repository.update(id_, listing)
-        return listing
+        listing_dict = self.listing_repository.update(id_, listing)
+        return listing_dict

@@ -1,17 +1,22 @@
-from abc import ABC
+import abc
+from typing import Dict, List
 
-from domain.entities.listings import Listing as ListingEntity
+from pricemap.domain.entities.listings import ListingEntity
 
 
-class ListingRepository(ABC):
-    def init(self):
+class ListingRepository(abc.ABC):
+    @abc.abstractmethod
+    def init(self) -> None:
         pass
 
-    def create(self, listing: ListingEntity):
+    @abc.abstractmethod
+    def create(self, listing: ListingEntity) -> Dict:
         pass
 
-    def get_all(self):
+    @abc.abstractmethod
+    def get_all(self) -> List[Dict]:
         pass
 
-    def update(self, id_: int, listing: ListingEntity):
+    @abc.abstractmethod
+    def update(self, id_: int, listing: ListingEntity) -> Dict:
         pass

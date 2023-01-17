@@ -1,17 +1,15 @@
-from typing import List, Dict
+from typing import Dict, List
 
-from sqlalchemy import (
-    create_engine,
-)
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
-import settings
-from adapters.mappers.listings import ListingMapper
-from adapters.repository.models.listings import Base, Listing as ListingModel
-from domain.entities.listings import Listing as ListingEntity
-from domain.exceptions.listings import ListingNotFoundException
-from domain.ports.repository.listings import ListingRepository
+from pricemap.adapters.mappers.listings import ListingMapper
+from pricemap.adapters.repository.models.listings import Base, ListingModel
+from pricemap.domain.entities.listings import ListingEntity
+from pricemap.domain.exceptions.listings import ListingNotFoundException
+from pricemap.domain.ports.repository.listings import ListingRepository
+
 
 # FIXME : using in memory sqlite db for testing
 engine = create_engine(
@@ -25,7 +23,7 @@ db_session: scoped_session = scoped_session(_session_factory)
 
 
 class ListingRepositorySQLite(ListingRepository):
-    def init(self):
+    def init(self) -> None:
         Base.metadata.create_all(engine)
 
     def create(self, listing: ListingEntity) -> Dict:
@@ -42,7 +40,7 @@ class ListingRepositorySQLite(ListingRepository):
         ]
         return listings
 
-    def update(self, id_: int, listing: ListingEntity):
+    def update(self, id_: int, listing: ListingEntity) -> Dict:
         existing_listing = db_session.query(ListingModel).get(id_)
         if existing_listing is None:
             raise ListingNotFoundException

@@ -1,20 +1,14 @@
-from datetime import datetime, date
+from datetime import date, datetime
+from typing import TypeAlias
 
-from sqlalchemy import (
-    Column,
-    Integer,
-    Float,
-    DateTime,
-    String,
-    Date,
-)
+from sqlalchemy import Column, Date, DateTime, Float, Integer, String
 from sqlalchemy.orm import declarative_base
 
 
 Base = declarative_base()
 
 
-class Listing(Base):
+class ListingModel(Base):
     __tablename__ = "listing"
 
     id = Column(Integer, primary_key=True)

@@ -17,7 +17,7 @@ services:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
     user: "pricemap:pricemap"
     volumes:
-      - ./pricemap-python/pricemap:/home/pricemap/app:ro
+      - ./pricemap-python:/home/pricemap/app:rw
     command:
       [
         "/home/pricemap/wait-for-postgres.sh",
