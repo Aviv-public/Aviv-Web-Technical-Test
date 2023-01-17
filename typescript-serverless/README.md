@@ -42,5 +42,5 @@ You can find the action you need to implement in `src/functions/price/handler.ts
 
 - The library `@serverless/typescript` has some TypeScript errors in the published type definitions. The consequence
   is that when running `tsc` to check the types, you will see an error `Property '"Fn::Transform"' [...] is not assignable
-to `'string'`. This is why we use the flag `--skipLibCheck` when checking types in the package.json file. See
+to 'string'`. This is why we use the flag `--skipLibCheck` when checking types in the package.json file. See
   [serverless/typescript](https://github.com/serverless/typescript/issues/27).
