@@ -10,14 +10,14 @@ RUN userdel "$(id -nu 1000)"
 RUN groupadd pricemap;
 RUN useradd -g pricemap -ms /bin/bash pricemap;
 
-USER pricemap
-
-# Force creation of directory by user to avoid permission issue
 RUN mkdir /home/pricemap/app
-RUN chown pricemap:pricemap /home/pricemap/app
 WORKDIR /home/pricemap/app
 
 COPY package*.json ./
 RUN npm ci
+VOLUME /home/pricemap/app/node_modules
 
 COPY . .
+
+RUN chown -R pricemap:pricemap /home/pricemap/app
+USER pricemap

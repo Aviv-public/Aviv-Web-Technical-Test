@@ -64,14 +64,14 @@ services:
     build: pricemap-typescript-serverless
     user: "pricemap:pricemap"
     volumes:
-      - ./pricemap-typescript-serverless/src:/home/pricemap/app/src:rw
+      - ./pricemap-typescript-serverless:/home/pricemap/app:rw
+      - /home/pricemap/app/node_modules
       - ./schemas:/home/pricemap/schemas:rw
     command: ["npm", "run", "watch"]
     ports:
       - "8383:3000"
     depends_on:
       - db
-      - listingapi
     environment:
       PGHOST: db
       PGDATABASE: pricemap

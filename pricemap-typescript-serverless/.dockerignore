@@ -1,0 +1,9 @@
+# Ignoring everything by default
+*
+
+# Adding project files
+!*.json
+!*.ts
+!bin/
+!src/
+!tests/

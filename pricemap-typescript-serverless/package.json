@@ -26,12 +26,14 @@
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.8.3",
+    "vitest": "^0.27.2",
     "yaml": "^2.2.1"
   },
   "scripts": {
     "generate:types": "./bin/generate-types.js",
     "watch": "npm run generate:types && serverless offline start --reloadHandler --host 0.0.0.0 --noPrependStageInUrl",
     "lint:check": "prettier -c .",
-    "lint:fix": "prettier -w ."
+    "lint:fix": "prettier -w .",
+    "test": "vitest run"
   }
 }

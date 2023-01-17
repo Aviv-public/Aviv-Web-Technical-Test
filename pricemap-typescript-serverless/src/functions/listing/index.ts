@@ -14,7 +14,7 @@ export const getListings: AWSFunction = {
 };
 
 export const addListing: AWSFunction = {
-  handler: `${handlerPath(__dirname)}/handler.createListing`,
+  handler: `${handlerPath(__dirname)}/handler.addListing`,
   events: [
     {
       http: {
