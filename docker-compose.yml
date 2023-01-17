@@ -23,13 +23,11 @@ services:
         "/home/pricemap/wait-for-postgres.sh",
         "db:5432",
         "--",
-        "flask",
-        "run",
-        "-h",
-        "0.0.0.0",
+        "python",
+        "app.py"
       ]
     ports:
-      - "8080:5000"
+      - "8080:8080"
     depends_on:
       - db
       - listingapi
@@ -38,8 +36,6 @@ services:
       PGDATABASE: pricemap
       PGUSER: pricemap
       PGPASSWORD: pricemap
-      FLASK_DEBUG: 1
-      FLASK_APP: "pricemap.app"
 
   typescript-serverless:
     build: typescript-serverless
@@ -58,6 +54,23 @@ services:
       PGDATABASE: pricemap
       PGUSER: pricemap
       PGPASSWORD: pricemap
+
+  pricemap-dotnet:
+    image: ${DOCKER_REGISTRY-}pricemap
+    build:
+      context: .
+      dockerfile: pricemap-dotnet/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "8686:443"
+      - "60408:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ./pricemap-dotnet:/home/pricemap/src:rw
+      - ./pricemap-dotnet:/home/pricemap/app:rw
 
   db:
     image: "mdillon/postgis:11-alpine"
