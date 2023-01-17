@@ -1,6 +1,7 @@
 import PostgresClient from "serverless-postgres";
 import { Listing, ListingReadOnly } from "@/types.generated";
 import { extractVariables } from "@/libs/postgres";
+import {NotFound} from "@/libs/errors";
 
 type ListingTableRow = {
   id?: number;
@@ -30,10 +31,7 @@ function tableRowToListing(row: ListingTableRow): Listing & ListingReadOnly {
     building_type: row.building_type,
     rooms_count: row.rooms_count,
     bedrooms_count: row.bedrooms_count,
-    price: {
-      price_eur: row.price,
-      created_date: row.updated_date.toISOString(),
-    },
+    latest_price_eur: row.price,
     postal_address: {
       street_address: row.street_address,
       postal_code: row.postal_code,
@@ -57,7 +55,7 @@ function listingToTableRow(
     building_type: listing.building_type,
     rooms_count: listing.rooms_count,
     bedrooms_count: listing.bedrooms_count,
-    price: listing.price.price_eur,
+    price: listing.latest_price_eur,
     street_address: listing.postal_address.street_address,
     postal_code: listing.postal_address.postal_code,
     city: listing.postal_address.city,
@@ -81,8 +79,13 @@ export function getRepository(postgres: PostgresClient) {
       const queryValues = [listingId];
 
       const result = await postgres.query(queryString, queryValues);
+      const listing = result.rows[0]
 
-      return tableRowToListing(result.rows[0]);
+      if (!listing) {
+        throw new NotFound(`Could not find listing with id : ${listingId}`)
+      }
+
+      return tableRowToListing(listing);
     },
 
     async insertListing(listing: Listing) {

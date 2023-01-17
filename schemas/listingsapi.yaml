@@ -117,7 +117,6 @@ components:
         - id
         - created_date
         - updated_date
-        - price
       additionalProperties: false
       properties:
         id:
@@ -136,8 +135,6 @@ components:
           description: 'The date at which the listing was last updated, following RFC 3339.'
           type: string
           example: '1970-01-01T00:00:00.000Z'
-        price:
-          $ref: '#/components/schemas/PriceReadOnly'
     Listing:
       type: object
       required:
@@ -145,7 +142,7 @@ components:
         - postal_address
         - description
         - building_type
-        - price
+        - latest_price_eur
         - surface_area_m2
         - rooms_count
         - bedrooms_count
@@ -171,8 +168,12 @@ components:
             - STUDIO
             - APARTMENT
             - HOUSE
-        price:
-          $ref: '#/components/schemas/Price'
+        latest_price_eur:
+          name: Price
+          description: 'The price of the listing, in euros.'
+          type: number
+          minimum: 0
+          example: 380000
         surface_area_m2:
           name: Surface area
           description: 'The surface of the listing, in square meters.'
@@ -254,4 +255,12 @@ components:
           example: FR
           minLength: 2
           maxLength: 2
-  examples: {}
+    APIError:
+      type: object
+      required:
+        - message
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+

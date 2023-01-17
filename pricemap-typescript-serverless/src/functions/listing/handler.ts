@@ -3,7 +3,7 @@ import { getRepository } from "@/repositories/listings";
 import { Listing, ListingReadOnly } from "@/types.generated";
 
 export const getListings = functionHandler<(Listing & ListingReadOnly)[]>(
-  async (event, context) => {
+  async (_event, context) => {
     const listings = await getRepository(context.postgres).getAllListings();
 
     return { statusCode: 200, response: listings };
