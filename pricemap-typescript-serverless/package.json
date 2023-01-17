@@ -32,7 +32,8 @@
   },
   "scripts": {
     "generate:types": "./bin/generate-types.js",
-    "watch": "npm run generate:types && serverless offline start --reloadHandler --host 0.0.0.0 --noPrependStageInUrl",
+    "watch:serverless": "serverless offline start --reloadHandler --host 0.0.0.0 --noPrependStageInUrl",
+    "watch": "npm run generate:types && npm run watch:serverless",
     "lint:check": "prettier -c .",
     "lint:fix": "prettier -w .",
     "test": "vitest run"
