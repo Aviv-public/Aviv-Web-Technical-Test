@@ -61,7 +61,7 @@ const ListingCard = ( props: { listing: ListingInterface } ) => {
                 <dt className="listing-card__properties-item">{listing.rooms_count} rooms</dt>
             </dl>
             <section className="listing-card__address">
-                <address>{`${ listing.postal_address.street_address }, <br />${ listing.postal_address.postal_code }, ${ listing.postal_address.city }`}</address>
+                <address>{`${ listing.postal_address.street_address }, ${ listing.postal_address.postal_code }, ${ listing.postal_address.city }`}</address>
             </section>
             <section className="listing-card__description">
                 <h3>Property description: </h3>
@@ -72,7 +72,7 @@ const ListingCard = ( props: { listing: ListingInterface } ) => {
                     {/* {listing.description} */}
                 </p>
             </section>
-            <a className="listing-card__link" href={'/' + listing.id + '/history'}>Voir l'annonce &rarr;</a>
+            <a className="listing-card__link" href={'/' + listing.id + '/history'}>See history &rarr;</a>
             <p className="listing-card__reference">Ref: {listing.id}</p>
 
         </article>

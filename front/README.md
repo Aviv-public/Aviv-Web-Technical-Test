@@ -43,7 +43,15 @@ The aim is to provide in a react application two different functional pages :
 - A page that will provide a list of the available listings
 - A page that will provide the history for a specific listing
 
-Note that the CSS styling is already provided and that we don't expect you to focus particularly on that part.
+**Regarding CSS**
+
+Note that the CSS styling is already provided and that we don't expect you to focus particularly on that part. The CSS is built on
+[BEM](https://getbem.com/introduction/) principles and can be found in the file [`src/styles/global.scss`](./src/styles/global.scss).
+
+An [example](./src/containers/Listings/Listings.tsx) of a card is provided along the test for which you have a preview below : 
+
+![](./assets/listing-card.png)
+
 
 ## Logical and technical expectations
 
@@ -52,7 +60,8 @@ Note that the CSS styling is already provided and that we don't expect you to fo
 - I can see a list of available listings on the main page of the application. The unitary element 
 - I can go to the detail of the history of a specific listing by clicking onto an element of the list
 - I can go directly to a specific list page through the URL `/:listingId`
-- I can check a listing, it updates the listings counter (it isn't expected to be persistent)
+- I can fill a form that will post a new listing to the server and see it added onto the list of listings once the server confirms its processing. 
+
 
 ## How to start the test
 
@@ -60,7 +69,7 @@ This repository being a template, it's possible to create a new project using th
 
 Alternatively, you can always clone this repository.
 
-> git clone git@github.com:MeilleursAgents/frontend-technical-test.git
+> git clone git@github.com:/aviv-technical-test.git
 
 ### Start the API
 
