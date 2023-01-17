@@ -15,7 +15,7 @@ jobs:
 
       - name: Build
         working-directory: ./pricemap-typescript-serverless
-        run: docker-compose build typescript-serverless
+        run: docker-compose run typescript-serverless npm run build
 
       - name: Test
         working-directory: ./pricemap-typescript-serverless

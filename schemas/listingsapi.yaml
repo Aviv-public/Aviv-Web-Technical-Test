@@ -77,6 +77,12 @@ paths:
                 allOf:
                   - $ref: '#/components/schemas/ListingReadOnly'
                   - $ref: '#/components/schemas/Listing'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
       requestBody:
         content:
           application/json:

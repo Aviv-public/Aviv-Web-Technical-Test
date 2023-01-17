@@ -1,10 +1,10 @@
-import {APIGatewayProxyEvent, APIGatewayProxyResult} from "aws-lambda";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import PostgresClient from "serverless-postgres";
-import {postgres} from "@/libs/postgres";
+import { postgres } from "@/libs/postgres";
 import middy from "@middy/core";
 import middyJsonBodyParser from "@middy/http-json-body-parser";
-import {formatJSONResponse} from "./api-gateway";
-import {APIError} from "@/types.generated";
+import { formatJSONResponse } from "./api-gateway";
+import { APIError } from "@/types.generated";
 import { NotFound } from "./errors";
 import * as console from "console";
 
@@ -18,12 +18,14 @@ export type FunctionResult<T extends object> = {
 };
 
 export type FunctionHandler<T extends object> = (
-  event: APIGatewayProxyEvent,
+  event: ParsedEvent<T>,
   context: FunctionContext
 ) => Promise<FunctionResult<T>>;
 
-function middify(
-  handler: (event: APIGatewayProxyEvent) => Promise<APIGatewayProxyResult>
+export type ParsedEvent<T> = Omit<APIGatewayProxyEvent, "body"> & { body: T };
+
+function middify<T>(
+  handler: (event: ParsedEvent<T>) => Promise<APIGatewayProxyResult>
 ) {
   return middy(handler).use(middyJsonBodyParser());
 }
@@ -33,25 +35,25 @@ function middify(
  * database connection and disconnection.
  */
 export function functionHandler<T extends object>(handler: FunctionHandler<T>) {
-  return middify(
-    async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  return middify<T>(
+    async (event: ParsedEvent<T>): Promise<APIGatewayProxyResult> => {
       await postgres.connect();
-      let response: T | APIError
-      let statusCode: number
+      let response: T | APIError;
+      let statusCode: number;
       try {
-        const result = await handler(event, {postgres});
-        response = result.response
-        statusCode = result.statusCode
+        const result = await handler(event, { postgres });
+        response = result.response;
+        statusCode = result.statusCode;
       } catch (e) {
         if (e instanceof NotFound) {
-          response = {message: e.message}
-          statusCode = 404
+          response = { message: e.message };
+          statusCode = 404;
         } else if (e instanceof Error) {
-          response = {message: e.message}
-          statusCode = 500
-          console.log(e)
+          response = { message: e.message };
+          statusCode = 500;
+          console.log(e);
         } else {
-          throw e
+          throw e;
         }
       }
 

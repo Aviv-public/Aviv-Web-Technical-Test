@@ -1,6 +1,7 @@
 import { functionHandler } from "@/libs/function";
 import { getRepository } from "@/repositories/listings";
 import { Listing, ListingReadOnly } from "@/types.generated";
+import { EntityNotFound, NotFound } from "@/libs/errors";
 
 export const getListings = functionHandler<(Listing & ListingReadOnly)[]>(
   async (_event, context) => {
@@ -13,7 +14,6 @@ export const getListings = functionHandler<(Listing & ListingReadOnly)[]>(
 export const addListing = functionHandler<Listing & ListingReadOnly>(
   async (event, context) => {
     const listing = await getRepository(context.postgres).insertListing(
-      // @ts-expect-error to fix
       event.body
     );
 
@@ -23,12 +23,19 @@ export const addListing = functionHandler<Listing & ListingReadOnly>(
 
 export const updateListing = functionHandler<Listing & ListingReadOnly>(
   async (event, context) => {
-    const listing = await getRepository(context.postgres).updateListing(
-      parseInt(event.pathParameters.id),
-      // @ts-expect-error to fix
-      event.body
-    );
+    try {
+      const listing = await getRepository(context.postgres).updateListing(
+        parseInt(event.pathParameters.id),
+        event.body
+      );
 
-    return { statusCode: 200, response: listing };
+      return { statusCode: 200, response: listing };
+    } catch (e) {
+      if (e instanceof EntityNotFound) {
+        throw new NotFound(e.message);
+      }
+
+      throw e;
+    }
   }
 );

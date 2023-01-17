@@ -1,7 +1,7 @@
 import PostgresClient from "serverless-postgres";
 import { Listing, ListingReadOnly } from "@/types.generated";
 import { extractVariables } from "@/libs/postgres";
-import {NotFound} from "@/libs/errors";
+import { EntityNotFound } from "@/libs/errors";
 
 type ListingTableRow = {
   id?: number;
@@ -79,10 +79,12 @@ export function getRepository(postgres: PostgresClient) {
       const queryValues = [listingId];
 
       const result = await postgres.query(queryString, queryValues);
-      const listing = result.rows[0]
+      const listing = result.rows[0];
 
       if (!listing) {
-        throw new NotFound(`Could not find listing with id : ${listingId}`)
+        throw new EntityNotFound(
+          `Could not find listing with id: ${listingId}`
+        );
       }
 
       return tableRowToListing(listing);
