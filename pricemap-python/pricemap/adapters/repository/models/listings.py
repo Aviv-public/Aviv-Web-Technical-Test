@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from typing import TypeAlias
 
 from sqlalchemy import Column, Date, DateTime, Float, Integer, String
 from sqlalchemy.orm import declarative_base

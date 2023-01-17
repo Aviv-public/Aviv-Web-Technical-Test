@@ -13,18 +13,14 @@ app = Flask(__name__)
 
 @app.route("/api/listings", methods=["GET"])
 def get_listings() -> Tuple[Response, int]:
-    """
-    Get all listings.
-    """
+    """Get all listings."""
     listings_data = registry.retrieve_listings.perform()
     return jsonify(listings_data), 200
 
 
 @app.route("/api/listings", methods=["POST"])
 def post_listing() -> Tuple[Response, int]:
-    """
-    Create a listing.
-    """
+    """Create a listing."""
     data = request.get_json()
     listing = ListingEntity.parse_obj(data)
     listing_data = registry.persist_listing.perform(listing)
@@ -33,9 +29,7 @@ def post_listing() -> Tuple[Response, int]:
 
 @app.route("/api/listings/<int:id_>", methods=["PUT"])
 def put_listing(id_: int) -> Tuple[Response, int]:
-    """
-    Update a listing.
-    """
+    """Update a listing."""
     data = request.get_json()
     listing = ListingEntity.parse_obj(data)
     try:

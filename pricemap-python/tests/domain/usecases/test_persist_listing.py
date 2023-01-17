@@ -1,4 +1,3 @@
-from logging import Logger
 from unittest.mock import Mock
 
 from pricemap.domain.ports.repository.listings import ListingRepository
