@@ -81,7 +81,7 @@ namespace pricemap.Controllers
                     UpdatedDate = DateTime.Now,
                     Name = listing.Name,
                     Description = listing.Description,
-                    Price = listing.Price.Price_eur,
+                    Price = listing.Price.LastPriceEur,
                     PriceDatePosted = priceDate,
                     RoomsCount = listing.RoomsCount,
                     SurfaceAreaM2 = listing.SurfaceAreaM2,
@@ -93,7 +93,7 @@ namespace pricemap.Controllers
                     {
                        new Infrastructure.Database.Models.Price()
                         {
-                            PriceValue = listing.Price.Price_eur,
+                            PriceValue = listing.Price.LastPriceEur,
                             PriceDate = priceDate
                         }
                     }
@@ -142,7 +142,7 @@ namespace pricemap.Controllers
                 result.UpdatedDate = DateTime.Now;
                 result.Name = listing.Name;
                 result.Description = listing.Description;
-                result.Price = listing.Price.Price_eur;
+                result.Price = listing.Price.LastPriceEur;
                 result.PriceDatePosted = priceDate;
                 result.RoomsCount = listing.RoomsCount;
                 result.SurfaceAreaM2 = listing.SurfaceAreaM2;
@@ -152,7 +152,7 @@ namespace pricemap.Controllers
                 result.StreetAddress = listing.PostalAddress.StreetAddress;
                 result.Prices.Add(new Infrastructure.Database.Models.Price()
                 {
-                    PriceValue = listing.Price.Price_eur,
+                    PriceValue = listing.Price.LastPriceEur,
                     PriceDate = DateTime.Now
                 });
                 _listingsContext.Listings.Update(result);

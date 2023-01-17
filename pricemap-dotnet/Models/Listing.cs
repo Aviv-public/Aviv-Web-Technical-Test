@@ -18,7 +18,7 @@ namespace pricemap.Models
         public RealEstateListingBuildingType BuildingType { get; set; }
 
         [JsonProperty("price")]
-        public Price Price { get; set; }
+        public ListingPrice Price { get; set; }
 
         [JsonProperty("surface_area_m2")]
         public int SurfaceAreaM2 { get; set; }
@@ -44,5 +44,11 @@ namespace pricemap.Models
         [System.Runtime.Serialization.EnumMember(Value = @"HOUSE")]
         HOUSE = 2,
 
+    }
+
+    public partial class ListingPrice
+    {
+        [JsonProperty("last_price_eur")]
+        public int LastPriceEur { get; set; }
     }
 }

@@ -16,9 +16,13 @@
 
   <ItemGroup>
     <Compile Remove="Db\**" />
+    <Compile Remove="tests\**" />
     <Content Remove="Db\**" />
+    <Content Remove="tests\**" />
     <EmbeddedResource Remove="Db\**" />
+    <EmbeddedResource Remove="tests\**" />
     <None Remove="Db\**" />
+    <None Remove="tests\**" />
   </ItemGroup>
 
   <ItemGroup>
