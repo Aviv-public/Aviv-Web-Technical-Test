@@ -7,17 +7,17 @@ RUN apt update -y && apt install -y python3 libpq-dev g++ make
 RUN userdel "$(id -nu 1000)"
 
 ## Create default user:group for this container
-RUN groupadd pricemap;
-RUN useradd -g pricemap -ms /bin/bash pricemap;
+RUN groupadd listingsapi;
+RUN useradd -g listingsapi -ms /bin/bash listingsapi;
 
-RUN mkdir /home/pricemap/app
-WORKDIR /home/pricemap/app
+RUN mkdir /home/listingsapi/app
+RUN chown listingsapi:listingsapi /home/listingsapi/app
 
-COPY package*.json ./
+WORKDIR /home/listingsapi/app
+USER listingsapi
+
+COPY --chown=listingsapi:listingsapi package*.json ./
 RUN npm ci
-VOLUME /home/pricemap/app/node_modules
+VOLUME /home/listingsapi/app/node_modules
 
-COPY . .
-
-RUN chown -R pricemap:pricemap /home/pricemap/app
-USER pricemap
+COPY --chown=listingsapi:listingsapi . .
