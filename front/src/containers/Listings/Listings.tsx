@@ -1,23 +1,38 @@
+import ListingForm from '../../components/ListingForm';
+import axios, { AxiosResponse } from 'axios';
+import { useEffect, useState } from 'react';
+import ListingCard from '../../components/ListingCard/ListingCard';
+import { ListingInterface } from '../../components/ListingCard/ListingCard';
+
 const Listings = () => {
-  return (
-    <div className="container">
-      <h1 className="title">Welcome to the listing page</h1>
-      <div className="card">
-        <input className="input" type="checkbox" />
-        <div>
-          <div className="top-block">
-            <h2 className="price">295 000 €</h2>
-            <span className="read">✓ Vu à 17h45</span>
-          </div>
+    const [listings, updateListings]: Array<any> = useState( [] );
 
-          <p className="place">T1 • Paris 17e</p>
-          <p className="reference"> ref 1969719989</p>
-          <span className="see-more">Voir l'annonce →</span>
-        </div>
-      </div>
+    useEffect( () => {
+        axios.get( 'https://stoplight.io/mocks/testtmptesttmp/testtmptesttmp/125999361/listings' )
+            .then( ( response: AxiosResponse<Array<ListingInterface>> ) => {
+                console.log( response.data );
+                updateListings( response.data );
+            } )
+            .catch( ( error ) => {
+                console.error( error );
+            } );
+    }, [] ); 
 
-      <div className="card card-selected" />
-    </div>
+    return (
+        <main className="container">
+            <h1 className="title">Listings</h1>
+            <section>
+                <h2>Add a listing</h2>
+                <ListingForm />
+            </section>
+            <section className="card-container">
+                {
+                    listings.map( ( listing: ListingInterface ) => {
+                        return ( <ListingCard key={listing.id} listing={listing} /> );
+                    } )
+                }
+            </section>
+        </main>
   );
 };
 

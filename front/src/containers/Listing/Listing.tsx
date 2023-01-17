@@ -1,5 +1,6 @@
 const Listing = () => {
-  return <div />;
+
+    return ( <></> );
 };
 
 export default Listing;

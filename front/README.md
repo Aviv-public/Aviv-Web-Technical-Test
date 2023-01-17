@@ -15,31 +15,25 @@ There is no critical need to fulfill all the functional and technical requests, 
 ## Install
 
 Yarn :
-
 > yarn install
 
 Npm:
-
 > npm i
 
 ## Run
 
-Yarn :
-
+Yarn:
 > yarn dev
 
-npm :
-
+Npm :
 > npm start
 
 ## Launch test :
 
 Yarn:
-
 > yarn test
 
 Npm:
-
 > npm test
 
 ## Objectives
@@ -55,7 +49,7 @@ Note that the CSS styling is already provided and that we don't expect you to fo
 
 **Product functionalities:**
 
-- I can see a list of available listings on the main page of the application
+- I can see a list of available listings on the main page of the application. The unitary element 
 - I can go to the detail of the history of a specific listing by clicking onto an element of the list
 - I can go directly to a specific list page through the URL `/:listingId`
 - I can check a listing, it updates the listings counter (it isn't expected to be persistent)
@@ -67,6 +61,17 @@ This repository being a template, it's possible to create a new project using th
 Alternatively, you can always clone this repository.
 
 > git clone git@github.com:MeilleursAgents/frontend-technical-test.git
+
+### Start the API
+
+To start the API you will need to install Docker Desktop first , go to [Docker](https://www.docker.com/get-started).
+
+
+The [Swagger](https://swagger.io/solutions/api-documentation/) and API are available at the following address http://localhost:8080 by using the command:
+
+    docker run -p 8080:8080 --rm --name MA-FTT-API meilleursagents/frontend-technical-test-api
+
+
 
 ## API Endpoints
 

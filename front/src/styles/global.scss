@@ -12,8 +12,7 @@
 }
 
 .header-box {
-  box-sizing: border-box;
-  padding-left: $space-m;
+  padding: $space-m $space-l;
   box-shadow: $elevation-1;
   display: flex;
   justify-content: space-between;
@@ -32,7 +31,7 @@
 
 .counter {
   background-color: $primary-70;
-  border-radius: 8px;
+  border-radius: $space-s;
   padding: $space-s;
   color: $neutral-0;
   font-weight: bold;
@@ -40,7 +39,7 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: $font-l;
 }
 
 h2 {
