@@ -91,47 +91,6 @@ namespace pricemap.Migrations
 
                     b.ToTable("listings");
                 });
-
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Models.Price", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("ListingId")
-                        .HasColumnType("integer")
-                        .HasColumnName("listing_id");
-
-                    b.Property<DateTime>("PriceDate")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("price_date");
-
-                    b.Property<int>("PriceValue")
-                        .HasColumnType("integer")
-                        .HasColumnName("price");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ListingId");
-
-                    b.ToTable("prices");
-                });
-
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Models.Price", b =>
-                {
-                    b.HasOne("pricemap.Infrastructure.Database.Models.Listing", null)
-                        .WithMany("Prices")
-                        .HasForeignKey("ListingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("pricemap.Infrastructure.Database.Models.Listing", b =>
-                {
-                    b.Navigation("Prices");
-                });
 #pragma warning restore 612, 618
         }
     }

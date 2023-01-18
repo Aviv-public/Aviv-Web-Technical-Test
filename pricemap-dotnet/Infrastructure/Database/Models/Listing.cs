@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pricemap.Infrastructure.Database.Models
@@ -37,7 +36,5 @@ namespace pricemap.Infrastructure.Database.Models
         public string City { get; set; }
         [Column("country")]
         public string Country { get; set; }
-
-        public IList<Price> Prices { get; set; }
     }
 }
