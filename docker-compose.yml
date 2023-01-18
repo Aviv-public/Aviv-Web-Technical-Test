@@ -25,8 +25,12 @@ services:
       PGPASSWORD: pricemap
 
   typescript-serverless:
-    build: typescript-serverless
-    user: "$USER_ID:$GROUP_ID"
+    build:
+      context: typescript-serverless
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     volumes:
       - ./typescript-serverless:/home/listingsapi/app:rw
       - /home/listingsapi/app/node_modules
