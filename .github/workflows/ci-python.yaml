@@ -26,8 +26,11 @@ jobs:
       - name: Build docker images
         run: make python-build
 
-      - name: Check Code Analysis
-        run: make python-check-code-analysis
+      - name: Check code style
+        run: make python-style
+
+      - name: Check code complexity
+        run: make python-complexity
 
       - name: Run Tests
         run: make python-test
