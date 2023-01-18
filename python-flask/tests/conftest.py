@@ -5,6 +5,7 @@ from sqlalchemy.pool import StaticPool
 
 from listingapi.adapters.repository.listings import SqlAlchemyListingRepository
 from listingapi.domain.ports.repository.listings import ListingRepository
+from listingapi.domain.usecases.listings import PersistListing, UpdateListing
 
 
 @pytest.fixture
@@ -27,3 +28,13 @@ def listing_repository(db_session: scoped_session) -> ListingRepository:
     listing_repository = SqlAlchemyListingRepository(db_session)
     listing_repository.init()
     return listing_repository
+
+
+@pytest.fixture
+def persist_listing_use_case(listing_repository: ListingRepository) -> PersistListing:
+    return PersistListing(listing_repository)
+
+
+@pytest.fixture
+def update_listing_use_case(listing_repository: ListingRepository) -> UpdateListing:
+    return UpdateListing(listing_repository)
