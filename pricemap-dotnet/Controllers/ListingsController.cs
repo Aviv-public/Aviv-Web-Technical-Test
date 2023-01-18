@@ -63,7 +63,7 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PostListingAsync([FromBody] Listing listing, CancellationToken cancellationToken)
         {
-            if (listing == null || listing.PostalAddress == null || listing.Price == null)
+            if (listing == null || listing.PostalAddress == null)
                 return BadRequest();
             try
             {
@@ -78,7 +78,7 @@ namespace pricemap.Controllers
                     UpdatedDate = createDate,
                     Name = listing.Name,
                     Description = listing.Description,
-                    Price = listing.Price.LastPriceEur,
+                    Price = listing.LatestPriceEur,
                     PriceDatePosted = createDate,
                     RoomsCount = listing.RoomsCount,
                     SurfaceAreaM2 = listing.SurfaceAreaM2,
@@ -129,11 +129,8 @@ namespace pricemap.Controllers
                 result.UpdatedDate = DateTime.Now;
                 result.Name = listing.Name;
                 result.Description = listing.Description;
-                if (listing.Price != null)
-                {
-                    result.Price = listing.Price.LastPriceEur;
-                    result.PriceDatePosted = priceDate;
-                }
+                result.Price = listing.LatestPriceEur;
+                result.PriceDatePosted = priceDate;
                 result.RoomsCount = listing.RoomsCount;
                 result.SurfaceAreaM2 = listing.SurfaceAreaM2;
                 result.City = listing.PostalAddress.City;
@@ -162,6 +159,7 @@ namespace pricemap.Controllers
         [Route("{id}/history")]
         public IActionResult GetListingPriceHistory(int id)
         {
+            // ToDo : implement me !
             return Ok(new List<PriceReadOnly>
             {
                 new PriceReadOnly

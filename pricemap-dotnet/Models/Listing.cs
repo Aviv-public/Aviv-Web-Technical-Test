@@ -17,8 +17,8 @@ namespace pricemap.Models
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public RealEstateListingBuildingType BuildingType { get; set; }
 
-        [JsonPropertyName("price")]
-        public ListingPrice Price { get; set; }
+        [JsonPropertyName("latest_price_eur")]
+        public int LatestPriceEur { get; set; }
 
         [JsonPropertyName("surface_area_m2")]
         public int SurfaceAreaM2 { get; set; }
