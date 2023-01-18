@@ -11,14 +11,14 @@ from pricemap.domain.exceptions.listings import ListingNotFoundException
 app = Flask(__name__)
 
 
-@app.route("/api/listings", methods=["GET"])
+@app.route("/listings", methods=["GET"])
 def get_listings() -> Tuple[Response, int]:
     """Get all listings."""
     listings_data = registry.retrieve_listings.perform()
     return jsonify(listings_data), 200
 
 
-@app.route("/api/listings", methods=["POST"])
+@app.route("/listings", methods=["POST"])
 def post_listing() -> Tuple[Response, int]:
     """Create a listing."""
     data = request.get_json()
@@ -27,7 +27,7 @@ def post_listing() -> Tuple[Response, int]:
     return jsonify(listing_data), 201
 
 
-@app.route("/api/listings/<int:id_>", methods=["PUT"])
+@app.route("/listings/<int:id_>", methods=["PUT"])
 def put_listing(id_: int) -> Tuple[Response, int]:
     """Update a listing."""
     data = request.get_json()
