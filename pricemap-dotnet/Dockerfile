@@ -20,6 +20,4 @@ RUN dotnet publish "pricemap.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-RUN dotnet tool install --global dotnet-ef
-RUN dotnet ef database update
 ENTRYPOINT ["dotnet", "pricemap.dll"]

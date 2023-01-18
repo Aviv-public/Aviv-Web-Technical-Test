@@ -1,13 +1,40 @@
 # Dotnet technical test: price map in Paris
 
-## 1 - Prerequisite
-Get the Entity Framework Core tools
-https://learn.microsoft.com/en-us/ef/core/get-started/overview/install
-(dotnet tool install --global dotnet-ef)
+## Installation
+> Prerequisites : 
+- .Net 6 SDK (https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- Docker (https://www.docker.com/)
 
-To add a migration (update database add columns tables...)
-dotnet ef migrations add <MigrationName>
 
-To update database
-(dotnet ef database update)
+## Using a command line interface
+1. Run `git clone https://github.com/MeilleursAgents/aviv-technical-test.git`
+2. Run `cd pricemap-dotnet`
+3. Run `docker compose up` (this will build the pricemap project and the database)
+4. For the pricemap swagger go to https://localhost:8686/swagger/index.html 
 
+
+## Using visual studio
+1. Open the solution file `pricemap.sln` found in the folder `pricemap-dotnet`
+2. Set the project docker-compose as the startup project
+3. Run the Docker Compose project
+4. The pricemap swagger should open automatically or go to https://localhost:8686/swagger/index.html
+
+You should then see your 2 containers running!
+
+
+## Explore the database
+1. After running your docker compose, using your favorite database management tool you will be able to explore the database using the following credentials : 
+- POSTGRES_DB: pricemap
+- POSTGRES_USER: pricemap
+- POSTGRES_PASSWORD: pricemap
+
+Example : 
+1. Using visual studio server explorer go to : View > Server Explorer (CTRL+ALT+S)
+2. Install the PostgreSQL integration following : https://marketplace.visualstudio.com/items?itemName=RojanskyS.NpgsqlPostgreSQLIntegration 
+3. Add a new connection with the following configuration
+4. Explore to your heart content
+
+![configuration server explorer](Img/server_explorer1.png)
+
+
+### You are now ready to go, please read carefully the instructions in the README and good luck to you !
