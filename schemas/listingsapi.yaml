@@ -6,7 +6,7 @@ info:
     name: AVIV
   version: '1.0'
 servers:
-  - url: /api
+  - url: /
     description: The Listings API
 tags:
   - name: listings
