@@ -11,7 +11,7 @@ Base = declarative_base()
 class ListingModel(Base):
     __tablename__ = "listing"
 
-    id: int = Column(Integer, primary_key=True)
+    id: int = Column(Integer, primary_key=True, autoincrement=True)
     created_date: datetime = Column(
         DateTime, default=lambda: datetime.utcnow(), nullable=False
     )

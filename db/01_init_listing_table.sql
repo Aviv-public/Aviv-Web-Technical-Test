@@ -2,7 +2,7 @@ CREATE USER postgres;
 
 CREATE TABLE IF NOT EXISTS public.listing
 (
-    id                   serial         primary key,
+    id                   serial           primary key,
     name                 varchar          not null,
     description          varchar          not null,
     building_type        varchar          not null,
