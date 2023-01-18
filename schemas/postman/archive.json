@@ -1,10 +1,10 @@
 {
   "environment": {
-    "DotNet": true,
-    "Python": true,
-    "Typescript": true,
+    "C# .NET": true,
+    "Python Flask": true,
+    "Typescript Serverless": true,
   },
   "collection": {
-    "Aviv_Technical_Test": true,
+    "Aviv_Technical_Test": true
   }
 }
