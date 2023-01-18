@@ -21,8 +21,8 @@ jobs:
         include:
           - context: ./listingapi
             image: listingapi
-          - context: ./pricemap-python
-            image: pricemap-python
+          - context: ./python-flask
+            image: python-flask
           - context: ./typescript-serverless
             image: typescript-serverless
 

@@ -1,11 +1,11 @@
 version: "3.4"
 
 services:
-  pricemap-python:
+  python-flask:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
     user: "pricemap:pricemap"
     volumes:
-      - ./pricemap-python:/home/pricemap/app:rw
+      - ./python-flask:/home/pricemap/app:rw
     command:
       [
         "/home/pricemap/wait-for-postgres.sh",

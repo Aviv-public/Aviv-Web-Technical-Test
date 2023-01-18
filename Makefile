@@ -47,4 +47,4 @@ clean-all: ## Remove containers and volumes
 # 	- "python-help" will run "help" from the python-pricemap Makefile
 # 	- "python-import-all-listings" will run "import-all-listings" from the python-pricemap Makefile
 python-%: ## Execute Python command that come from the Python sub Makefile
-	@$(MAKE) -C pricemap-python $${$@}
+	@$(MAKE) -C python-flask $${$@}
