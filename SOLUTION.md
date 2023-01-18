@@ -20,7 +20,9 @@ This section contains additional questions your expected to answer before the de
 
 ## When you're done
 
-Send us a `.zip` file with commits history (keep the `.git` folder). The repository should include this SOLUTION.md file
-with the answers to the questions, written above.
+Send us a `.zip` file with commits history (keep the `.git` folder). The file should include
+- the `.git/` folder;
+- the entire codebase;
+- this SOLUTION.md file, with the answers to the questions written above.
 
 If you want to join any additional file, you can add them to the archive and link them here.
