@@ -85,7 +85,7 @@ You can continue by reading the README.md in the back-end test directory of the 
 
 You have several flavors available:
 - Python Flask
-- TypeScript Serverless
+- [TypeScript Serverless](./typescript-serverless)
 - C# .NET
 
 You must pick the one that is relevant to the position your applying to.
