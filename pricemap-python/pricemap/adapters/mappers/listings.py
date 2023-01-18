@@ -39,7 +39,7 @@ class ListingMapper:
             "rooms_count": listing.rooms_count,
             "bedrooms_count": listing.bedrooms_count,
             "contact_phone_number": listing.contact_phone_number,
-            "created_date": listing.created_date,
-            "updated_date": listing.updated_date,
+            "created_date": listing.created_date.isoformat(),
+            "updated_date": listing.updated_date.isoformat(),
         }
         return listing_dict
