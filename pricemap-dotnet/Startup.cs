@@ -36,7 +36,6 @@ namespace pricemap
             {
                 options.Conventions.Add(new GroupingByNamespaceConvention());
             });
-
             services.AddSwaggerGen();
         }
 

@@ -34,30 +34,12 @@ namespace pricemap.Migrations
                 {
                     table.PrimaryKey("PK_listings", x => x.id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "prices",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    listing_id = table.Column<int>(type: "integer", nullable: false),
-                    price = table.Column<int>(type: "integer", nullable: false),
-                    price_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_prices", x => x.id);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "listings");
-
-            migrationBuilder.DropTable(
-                name: "prices");
         }
     }
 }

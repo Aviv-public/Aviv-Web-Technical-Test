@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using System;
 
 namespace pricemap.Models
 {
@@ -15,6 +14,7 @@ namespace pricemap.Models
         public string Description { get; set; }
 
         [JsonPropertyName("building_type")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public RealEstateListingBuildingType BuildingType { get; set; }
 
         [JsonPropertyName("price")]

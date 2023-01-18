@@ -15,6 +15,5 @@ namespace pricemap.Infrastructure.Database
         }
 
         public virtual DbSet<Listing> Listings { get; set; }
-        public virtual DbSet<Price> Prices { get; set; }
     }
 }

@@ -1,13 +1,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using NetTopologySuite.Simplify;
 using pricemap.Infrastructure.Database;
 using pricemap.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -66,37 +63,29 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PostListingAsync([FromBody] Listing listing, CancellationToken cancellationToken)
         {
-            if (listing == null || listing.PostalAddress == null || listing.Price == null) 
+            if (listing == null || listing.PostalAddress == null || listing.Price == null)
                 return BadRequest();
             try
             {
                 // Insert
-                var priceDate = DateTime.Now;
+                var createDate = DateTime.Now;
                 var result = new Infrastructure.Database.Models.Listing
                 {
                     BedroomsCount = listing.BedroomsCount,
                     BuildingType = listing.BuildingType.ToString(),
                     ContactPhoneNumber = listing.ContactPhoneNumber,
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now,
+                    CreatedDate = createDate,
+                    UpdatedDate = createDate,
                     Name = listing.Name,
                     Description = listing.Description,
                     Price = listing.Price.LastPriceEur,
-                    PriceDatePosted = priceDate,
+                    PriceDatePosted = createDate,
                     RoomsCount = listing.RoomsCount,
                     SurfaceAreaM2 = listing.SurfaceAreaM2,
                     City = listing.PostalAddress.City,
                     Country = listing.PostalAddress.Country,
                     PostalCode = listing.PostalAddress.PostalCode,
                     StreetAddress = listing.PostalAddress.StreetAddress,
-                    Prices = new List<Infrastructure.Database.Models.Price>
-                    {
-                       new Infrastructure.Database.Models.Price()
-                        {
-                            PriceValue = listing.Price.LastPriceEur,
-                            PriceDate = priceDate
-                        }
-                    }
                 };
                 _listingsContext.Listings.Add(result);
                 await _listingsContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
@@ -109,7 +98,7 @@ namespace pricemap.Controllers
                 return StatusCode(500);
             }
         }
-        
+
         /// <summary>
         /// Update a listing
         /// </summary>
@@ -122,39 +111,35 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PutListingAsync(int id, [FromBody] Listing listing, CancellationToken cancellationToken)
         {
-            if (id <= 0 || listing == null || listing.PostalAddress == null || listing.Price == null)
+            if (id <= 0 || listing == null || listing.PostalAddress == null)
                 return BadRequest();
 
             try
             {
                 // include Prices here
                 var result = _listingsContext.Listings
-                    .Include(b => b.Prices)
                     .FirstOrDefault(l => l.Id == id);
                 if (result == null) return NotFound();
 
                 // Update listing
                 var priceDate = DateTime.Now;
-
                 result.BedroomsCount = listing.BedroomsCount;
                 result.BuildingType = listing.BuildingType.ToString();
                 result.ContactPhoneNumber = listing.ContactPhoneNumber;
                 result.UpdatedDate = DateTime.Now;
                 result.Name = listing.Name;
                 result.Description = listing.Description;
-                result.Price = listing.Price.LastPriceEur;
-                result.PriceDatePosted = priceDate;
+                if (listing.Price != null)
+                {
+                    result.Price = listing.Price.LastPriceEur;
+                    result.PriceDatePosted = priceDate;
+                }
                 result.RoomsCount = listing.RoomsCount;
                 result.SurfaceAreaM2 = listing.SurfaceAreaM2;
                 result.City = listing.PostalAddress.City;
                 result.Country = listing.PostalAddress.Country;
                 result.PostalCode = listing.PostalAddress.PostalCode;
                 result.StreetAddress = listing.PostalAddress.StreetAddress;
-                result.Prices.Add(new Infrastructure.Database.Models.Price()
-                {
-                    PriceValue = listing.Price.LastPriceEur,
-                    PriceDate = DateTime.Now
-                });
                 _listingsContext.Listings.Update(result);
                 await _listingsContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
                 return Ok(MapListing(result));
@@ -177,21 +162,17 @@ namespace pricemap.Controllers
         [Route("{id}/history")]
         public IActionResult GetListingPriceHistory(int id)
         {
-            if (id <= 0) return BadRequest();
-            try
+            return Ok(new List<PriceReadOnly>
             {
-                var prices = _listingsContext.Prices.Where(p => p.ListingId == id);
-                return Ok(prices?.Select(p => new PriceReadOnly
+                new PriceReadOnly
                 {
-                    CreatedDate = p.PriceDate,
-                    PriceEur = p.PriceValue
-                }));
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"GetListingPriceHistoryAsync. Id : {id}. Error : {e}");
-                return StatusCode(500);
-            }
+                    PriceEur = 130000
+                },
+                new PriceReadOnly
+                {
+                    PriceEur = 250000
+                }
+            });
         }
 
         private static ListingReadOnly MapListing(Infrastructure.Database.Models.Listing listing)

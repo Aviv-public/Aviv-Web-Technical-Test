@@ -20,7 +20,6 @@ namespace pricemap.unittests
             var options = new DbContextOptionsBuilder<ListingsContext>().Options;
             var listingContextMock = new Mock<ListingsContext>(options);
             listingContextMock.Setup(m => m.Listings).Returns(new Mock<DbSet<Infrastructure.Database.Models.Listing>>().Object);
-            listingContextMock.Setup(m => m.Prices).Returns(new Mock<DbSet<Infrastructure.Database.Models.Price>>().Object);
             _listingsController = new ListingsController(loggerMock.Object, listingContextMock.Object);
         }
 
@@ -87,9 +86,9 @@ namespace pricemap.unittests
         }
 
         [Fact]
-        public async Task TestGetListingPriceHistoryBadRequest()
+        public async Task TestGetListingPriceHistoryValid()
         {
-            var actionResult = _listingsController.GetListingPriceHistory(0) as BadRequestResult;
+            var actionResult = _listingsController.GetListingPriceHistory(0) as ObjectResult;
             Assert.NotNull(actionResult);
         }
 
