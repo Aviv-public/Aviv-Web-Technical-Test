@@ -1,0 +1,15 @@
+{
+	"id": "56910b76-28cc-4a39-a15b-663f94a03d1d",
+	"name": "Python",
+	"values": [
+		{
+			"key": "applicationURI",
+			"value": "localhost:8080",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-01-18T11:49:40.361Z",
+	"_postman_exported_using": "Postman/10.4.5"
+}

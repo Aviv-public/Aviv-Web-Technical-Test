@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "applicationURI",
-			"value": "localhost:9222/",
+			"value": "localhost:9222",
 			"type": "default",
 			"enabled": true
 		}

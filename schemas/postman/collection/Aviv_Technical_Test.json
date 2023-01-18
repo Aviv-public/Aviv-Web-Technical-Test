@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4ffc501d-b50f-45fa-a15c-a7c52ba53def",
+		"_postman_id": "6f0ff360-2358-43e3-8005-2e35e3c5a9ca",
 		"name": "Aviv Technical Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19906920"
@@ -21,9 +21,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{applicationURI}}api/listings/10",
+					"raw": "{{applicationURI}}/listings/10",
 					"host": [
-						"{{applicationURI}}api"
+						"{{applicationURI}}"
 					],
 					"path": [
 						"listings",
@@ -48,9 +48,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{applicationURI}}api/listings",
+					"raw": "{{applicationURI}}/listings",
 					"host": [
-						"{{applicationURI}}api"
+						"{{applicationURI}}"
 					],
 					"path": [
 						"listings"
@@ -65,9 +65,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{applicationURI}}api/listings",
+					"raw": "{{applicationURI}}/listings",
 					"host": [
-						"{{applicationURI}}api"
+						"{{applicationURI}}"
 					],
 					"path": [
 						"listings"
