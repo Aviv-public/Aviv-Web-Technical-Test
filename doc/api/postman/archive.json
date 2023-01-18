@@ -1,0 +1,10 @@
+{
+  "environment": {
+    "DotNet": true,
+    "Python": true,
+    "Typescript": true,
+  },
+  "collection": {
+    "Aviv_Technical_Test": true,
+  }
+}

@@ -1,0 +1,15 @@
+{
+	"id": "67120229-c024-4033-9edf-85a883c39048",
+	"name": "Typescript",
+	"values": [
+		{
+			"key": "applicationURI",
+			"value": "localhost:9222/",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-01-18T11:49:47.199Z",
+	"_postman_exported_using": "Postman/10.4.5"
+}
