@@ -12,6 +12,11 @@ needing an AWS account or complex configuration.
 To start developing, use the following command:
 
 ```
+# The image will be built with your user and group id to avoid any
+# filesystem permission issue.
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+
 docker-compose up typescript-serverless
 ```
 
