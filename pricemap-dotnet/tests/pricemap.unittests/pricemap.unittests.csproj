@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\pricemap-dotnet\pricemap.csproj" />
+    <ProjectReference Include="..\..\pricemap.csproj" />
   </ItemGroup>
 
 </Project>
