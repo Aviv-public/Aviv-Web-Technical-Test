@@ -1,4 +1,4 @@
-name: CI for TypeScript Serverless Code
+name: TypeScript Serverless
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: "Lint OpenAPI specifications"
+name: OpenAPI
 
 on:
   push:
