@@ -12,7 +12,7 @@ services:
   db:
     image: "mdillon/postgis:11-alpine"
     volumes:
-      - ../db/01_init_listing_table.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../db:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     healthcheck:
