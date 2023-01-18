@@ -15,8 +15,8 @@ This section contains additional questions your expected to answer before the de
 
 - **If you had to implement the same application from scratch, what would you do differently?**
 
-- **The application aims at storing hundreds of thousands listings and millions of price, and be accessed by millions
-  of users every month. What should be anticipated and done to handle this evolution?**
+- **The application aims at storing hundreds of thousands listings and millions of prices, and be accessed by millions
+  of users every month. What should be anticipated and done to handle it?**
 
 ## When you're done
 
