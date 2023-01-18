@@ -111,7 +111,7 @@ namespace pricemap.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PutListingAsync(int id, [FromBody] Listing listing, CancellationToken cancellationToken)
         {
-            if (id <= 0 || listing == null || listing.PostalAddress == null || listing.Price == null)
+            if (id <= 0 || listing == null || listing.PostalAddress == null)
                 return BadRequest();
 
             try
@@ -123,15 +123,17 @@ namespace pricemap.Controllers
 
                 // Update listing
                 var priceDate = DateTime.Now;
-
                 result.BedroomsCount = listing.BedroomsCount;
                 result.BuildingType = listing.BuildingType.ToString();
                 result.ContactPhoneNumber = listing.ContactPhoneNumber;
                 result.UpdatedDate = DateTime.Now;
                 result.Name = listing.Name;
                 result.Description = listing.Description;
-                result.Price = listing.Price.LastPriceEur;
-                result.PriceDatePosted = priceDate;
+                if (listing.Price != null)
+                {
+                    result.Price = listing.Price.LastPriceEur;
+                    result.PriceDatePosted = priceDate;
+                }
                 result.RoomsCount = listing.RoomsCount;
                 result.SurfaceAreaM2 = listing.SurfaceAreaM2;
                 result.City = listing.PostalAddress.City;
