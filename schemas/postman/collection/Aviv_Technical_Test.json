@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"name\":\"Mikhail Schmiedt\",\n   \"postal_address\":{\n      \"street_address\":\"Johan-Ernst-Ring 7\",\n      \"postal_code\":\"21810\",\n      \"city\":\"Berchtesgaden\",\n      \"country\":\"DE\"\n   },\n   \"description\":\"\",\n   \"building_type\":\"STUDIO\",\n   \"latest_price_eur\":720000,\n   \"surface_area_m2\":167,\n   \"rooms_count\":6,\n   \"bedrooms_count\":2,\n   \"contact_phone_number\":\"+219779210354\"\n}",
+					"raw": "{\n   \"name\":\"Mikhail Schmiedt\",\n   \"postal_address\":{\n      \"street_address\":\"Johan-Ernst-Ring 7\",\n      \"postal_code\":\"21810\",\n      \"city\":\"Berchtesgaden\",\n      \"country\":\"DE\"\n   },\n   \"description\":\"Lorem Ipsum Dolor ...\",\n   \"building_type\":\"STUDIO\",\n   \"latest_price_eur\":720000,\n   \"surface_area_m2\":167,\n   \"rooms_count\":6,\n   \"bedrooms_count\":2,\n   \"contact_phone_number\":\"+219779210354\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"name\":\"Mikhail Schmiedt\",\n   \"postal_address\":{\n      \"street_address\":\"Johan-Ernst-Ring 7\",\n      \"postal_code\":\"21810\",\n      \"city\":\"Berchtesgaden\",\n      \"country\":\"DE\"\n   },\n   \"description\":\"\",\n   \"building_type\":\"STUDIO\",\n   \"latest_price_eur\":720000,\n   \"surface_area_m2\":167,\n   \"rooms_count\":6,\n   \"bedrooms_count\":2,\n   \"contact_phone_number\":\"+219779210354\"\n}",
+					"raw": "{\n   \"name\":\"Mikhail Schmiedt\",\n   \"postal_address\":{\n      \"street_address\":\"Johan-Ernst-Ring 7\",\n      \"postal_code\":\"21810\",\n      \"city\":\"Berchtesgaden\",\n      \"country\":\"DE\"\n   },\n   \"description\":\"Lorem Ipsum Dolor ...\",\n   \"building_type\":\"STUDIO\",\n   \"latest_price_eur\":720000,\n   \"surface_area_m2\":167,\n   \"rooms_count\":6,\n   \"bedrooms_count\":2,\n   \"contact_phone_number\":\"+219779210354\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
