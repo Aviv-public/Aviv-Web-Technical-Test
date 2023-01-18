@@ -39,8 +39,8 @@ def put_listing(id_: int) -> Tuple[Response, int]:
     return jsonify(listing_data), 200
 
 
-@app.route("/listings/<int:id_>/history", methods=["PUT"])
-def get_history(id_: int) -> Tuple[Response, int]:
+@app.route("/listings/<int:id_>/prices", methods=["GET"])
+def get_price_history(id_: int) -> Tuple[Response, int]:
     """Get price history."""
     # TODO: implement this
     mock_response = [
