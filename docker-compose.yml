@@ -26,7 +26,7 @@ services:
 
   typescript-serverless:
     build: typescript-serverless
-    user: "listingsapi:listingsapi"
+    user: "$USER_ID:$GROUP_ID"
     volumes:
       - ./typescript-serverless:/home/listingsapi/app:rw
       - /home/listingsapi/app/node_modules
