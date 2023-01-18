@@ -16,6 +16,8 @@ this API, please note the following expectations:
 The aim of the technical is to serve as a base for a debrief, in which you will defend your choices, and discuss what is
 missing in your implementation.
 
+You can find the instructions on how to hand over your solution in the [SOLUTION.md](./SOLUTION.md) file.
+
 ## Context
 
 At AVIV, we often deal with _listings_. A listing is the description of a real estate that can be rented or bought. It
