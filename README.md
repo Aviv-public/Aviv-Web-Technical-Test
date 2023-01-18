@@ -29,6 +29,8 @@ test) or to write down the code to serve the price history of a given listing (f
 
 The ListingsAPI has a schema that is documented in the [schemas/listingsapi.yaml](./schemas/listingsapi.yaml) folder.
 
+`Pro tip` You can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
+
 ### Front-end test
 
 If you applied to a front-end position, you can continue by reading the README.md in the front-end test directory.
