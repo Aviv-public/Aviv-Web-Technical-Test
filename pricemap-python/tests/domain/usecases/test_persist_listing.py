@@ -40,7 +40,7 @@ class TestPersistListing:
 
         return listing_entity
 
-    @freeze_time("2023-01-17 14:56:0")
+    @freeze_time("2023-01-18 08:50:03.761691")
     def test_persist_listing(
         self, persist_listing_use_case: PersistListing, listing_entity: ListingEntity
     ) -> None:
@@ -64,3 +64,5 @@ class TestPersistListing:
         assert persisted_listing_dict["rooms_count"] == 6
         assert persisted_listing_dict["bedrooms_count"] == 2
         assert persisted_listing_dict["contact_phone_number"] == ""
+        assert persisted_listing_dict["created_date"] == "2023-01-18T08:50:03.761691"
+        assert persisted_listing_dict["updated_date"] == "2023-01-18T08:50:03.761691"
