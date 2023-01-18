@@ -13,11 +13,11 @@ RUN useradd -g listingsapi -ms /bin/bash listingsapi;
 USER listingsapi
 
 RUN mkdir /home/listingsapi/app
-RUN chown listingsapi:listingsapi /home/listingsapi/app
+RUN chmod 777 /home/listingsapi/app
 
 WORKDIR /home/listingsapi/app
 
-COPY --chown=listingsapi:listingsapi package*.json ./
+COPY package*.json ./
 RUN npm ci
 
-COPY --chown=listingsapi:listingsapi . .
+COPY . .
