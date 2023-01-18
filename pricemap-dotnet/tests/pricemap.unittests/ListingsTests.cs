@@ -41,9 +41,9 @@ namespace pricemap.unittests
                     PostalCode = "13007",
                     StreetAddress = "47 quai de rive neuve"
                 },
-                Price = new Price
+                Price = new ListingPrice
                 {
-                    Price_eur = 130000
+                    LastPriceEur = 130000
                 },
                 RoomsCount = 4,
                 SurfaceAreaM2 = 87

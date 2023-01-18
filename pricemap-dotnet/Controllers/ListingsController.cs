@@ -184,7 +184,7 @@ namespace pricemap.Controllers
                 return Ok(prices?.Select(p => new PriceReadOnly
                 {
                     CreatedDate = p.PriceDate,
-                    Price_eur = p.PriceValue
+                    PriceEur = p.PriceValue
                 }));
             }
             catch (Exception e)
@@ -203,7 +203,7 @@ namespace pricemap.Controllers
                 UpdatedDate = listing.UpdatedDate,
                 Price = new PriceReadOnly
                 {
-                    Price_eur = listing.Price,
+                    PriceEur = listing.Price,
                     CreatedDate = listing.PriceDatePosted
                 },
                 BedroomsCount = listing.BedroomsCount,

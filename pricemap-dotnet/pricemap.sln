@@ -19,7 +19,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C36EA6E4-18F2-4B56-99BC-CDBBA6E30727}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pricemap.unittests", "..\tests\pricemap.unittests\pricemap.unittests.csproj", "{CA352B00-739F-446E-9F51-B34E00CE4D1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pricemap.unittests", "tests\pricemap.unittests\pricemap.unittests.csproj", "{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,16 +35,16 @@ Global
 		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA352B00-739F-446E-9F51-B34E00CE4D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA352B00-739F-446E-9F51-B34E00CE4D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA352B00-739F-446E-9F51-B34E00CE4D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA352B00-739F-446E-9F51-B34E00CE4D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CA352B00-739F-446E-9F51-B34E00CE4D1B} = {C36EA6E4-18F2-4B56-99BC-CDBBA6E30727}
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03} = {C36EA6E4-18F2-4B56-99BC-CDBBA6E30727}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB30415A-9604-4B97-AB94-0797C730AAF4}

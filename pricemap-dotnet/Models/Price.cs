@@ -6,6 +6,6 @@ namespace pricemap.Models
     {
         /// <summary>A price, expressed in euros.</summary>
         [JsonPropertyName("price_eur")]
-        public int Price_eur { get; set; }
+        public int PriceEur { get; set; }
     }
 }
