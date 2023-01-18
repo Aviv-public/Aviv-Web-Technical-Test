@@ -12,3 +12,8 @@ Write here notes about your implementation choices and assumptions.
 This section contains additional questions your expected to answer before the debrief interview.
 
 - **What is missing with your implementation to go to production?**
+
+- **If you had to implement the same application from scratch, what would you do differently?**
+
+- **The application aims at storing hundreds of thousands listings and millions of price, and be accessed by millions
+  of users every month. What should be anticipated and done to handle this evolution?**
