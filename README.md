@@ -23,8 +23,8 @@ The ListingsAPI has a schema that is documented in the [schemas/listingsapi.yaml
 
 You will need `Docker` and `docker-compose` to run this test.
 
-All backend tests provide an implementation of a similar REST API. The front-end test provides an implementation 
-consuming it. Before digging into this API, please note the following expectations:
+All backend tests provide an implementation of the `ListingsAPI`. The front-end test provides an implementation that
+consumes it. Before digging into the test, please note the following expectations:
 
 - The test is expected to be **achieved in 90 minutes**, including the discovery phase;
 - You are expected to work in **one of the available codebase** depending on the position you applied to;
