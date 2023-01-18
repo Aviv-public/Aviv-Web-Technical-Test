@@ -17,7 +17,12 @@ already started to provide a resource endpoint to retrieve, create and update su
 
 The ListingsAPI has a schema that is documented in the [schemas/listingsapi.yaml](./schemas/listingsapi.yaml) folder.
 
-`Pro tip` You can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
+
+**NB**: You can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
+
+**NB**: A Postman collection is available on the [Schemas directory](./schemas/postman). You can import it directly and run
+API calls by choosing your environment(`Python Flask`, `C# .NET` or `Typescript Serverless`)
+
 
 ## Prerequisites
 

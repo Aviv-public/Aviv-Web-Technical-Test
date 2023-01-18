@@ -2,14 +2,14 @@ name: Python Flask
 
 on:
   # run it on push to the default repository branch
-  # Only if there are changes on the 'pricemap-python directory
+  # Only if there are changes on the 'python-flask directory
   push:
     branches: [main]
     paths:
-    - pricemap-python/**
+    - python-flask/**
   pull_request:
     paths:
-    - pricemap-python/**
+    - python-flask/**
 
 env:
   REGISTRY: ghcr.io

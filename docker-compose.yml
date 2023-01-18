@@ -1,14 +1,14 @@
 version: "3.4"
 
 services:
-  pricemap-python:
+  python-flask:
     image: ghcr.io/meilleursagents/backend-technical-test/pricemap-python:latest
-    user: "pricemap:pricemap"
+    user: "listingapi:listingapi"
     volumes:
-      - ./pricemap-python:/home/pricemap/app:rw
+      - ./python-flask:/home/listingapi/app:rw
     command:
       [
-        "/home/pricemap/wait-for-postgres.sh",
+        "/home/listingapi/wait-for-postgres.sh",
         "db:5432",
         "--",
         "python",
@@ -20,9 +20,9 @@ services:
       - db
     environment:
       PGHOST: db
-      PGDATABASE: pricemap
-      PGUSER: pricemap
-      PGPASSWORD: pricemap
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
 
   typescript-serverless:
     build:
@@ -42,9 +42,9 @@ services:
       - db
     environment:
       PGHOST: db
-      PGDATABASE: pricemap
-      PGUSER: pricemap
-      PGPASSWORD: pricemap
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
 
   pricemap-dotnet:
     image: ${DOCKER_REGISTRY-}pricemap
@@ -75,15 +75,15 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "pricemap"]
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "listing"]
       interval: 20s
       timeout: 5s
       retries: 5
       start_period: 15s
     environment:
-      POSTGRES_DB: pricemap
-      POSTGRES_USER: pricemap
-      POSTGRES_PASSWORD: pricemap
+      POSTGRES_DB: listing
+      POSTGRES_USER: listing
+      POSTGRES_PASSWORD: listing
 
 volumes:
   pg-data:
