@@ -1,6 +1,6 @@
 from faker import Faker
 
-from pricemap.domain.entities.listings import ListingEntity, PostalAddressEntity
+from listingapi.domain.entities.listings import ListingEntity, PostalAddressEntity
 from tests.factory.entities.postal_address_factory import PostalAddressFactory
 
 

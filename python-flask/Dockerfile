@@ -4,24 +4,24 @@ FROM python:3.11-slim
 RUN apt-get update && apt-get install --assume-yes postgresql-client
 
 ## Create default user:group for this container
-RUN groupadd pricemap;
-RUN useradd -g pricemap -ms /bin/bash pricemap;
+RUN groupadd listingapi;
+RUN useradd -g listingapi -ms /bin/bash listingapi;
 
 # add script to wait for db container to be ready
-COPY docker/wait-for-postgres.sh /home/pricemap/wait-for-postgres.sh
+COPY docker/wait-for-postgres.sh /home/listingapi/wait-for-postgres.sh
 
-USER pricemap
+USER listingapi
 
 RUN pip3 install pipenv
 
-WORKDIR /home/pricemap/app
-ENV PATH /home/pricemap/.local/bin:${PATH}
+WORKDIR /home/listingapi/app
+ENV PATH /home/listingapi/.local/bin:${PATH}
 
-COPY --chown=pricemap:pricemap Pipfile /home/pricemap/Pipfile
-COPY --chown=pricemap:pricemap Pipfile.lock /home/pricemap/Pipfile.lock
+COPY --chown=listingapi:listingapi Pipfile /home/listingapi/Pipfile
+COPY --chown=listingapi:listingapi Pipfile.lock /home/listingapi/Pipfile.lock
 
 RUN pipenv install --deploy --system --dev
 
-ENV PYTHONPATH /home/pricemap/app/
+ENV PYTHONPATH /home/listingapi/app/
 
-COPY --chown=pricemap:pricemap . /home/pricemap/app
+COPY --chown=listingapi:listingapi . /home/listingapi/app

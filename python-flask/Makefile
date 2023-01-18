@@ -18,8 +18,8 @@ help: ## List all Python Makefile targets
 build: ## Builds the python docker image
 	docker build --label python-flask --label owner-technical-test -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
 
-.PHONY: shell-pricemap-container
-shell-pricemap-container: ## Run a bash on python-flask container
+.PHONY: shell-listingapi-container
+shell-listingapi-container: ## Run a bash on python-flask container
 	$(DOCKER_COMPOSE) exec python-flask bash
 
 ##
@@ -39,23 +39,23 @@ code-analysis: complexity format-code style ## Run the all code Analysis (code c
 
 .PHONY: complexity
 complexity: ## Compute Cyclomatic complexity and maintainability check
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c \
-		"radon cc -s -n B pricemap | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
+		"radon cc -s -n B listingapi | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
 
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c \
-		"radon mi -n B pricemap | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
+		"radon mi -n B listingapi | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
 
 .PHONY: format-code
 format-code: ## Format code
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c "isort tests pricemap && black ."
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "isort tests listingapi && black ."
 
 .PHONY: format-check
 format-check: ## Check code format
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c "isort tests pricemap -c && black --check ."
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "isort tests listingapi -c && black --check ."
 
 .PHONY: style
 style: ## Check lint, code styling rules
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c "mypy tests pricemap && flake8 tests pricemap"
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "mypy tests listingapi && flake8 tests listingapi"
 
 
 ##
@@ -64,10 +64,10 @@ style: ## Check lint, code styling rules
 ##
 .PHONY: test
 test: ## Shortcut to launch all the test tasks (unit, functional and integration).
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c \
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
 "COVERAGE_FILE=/tmp/.coverage pytest -p no:cacheprovider -Werror --cov . --cov-report term-missing -vv tests"
 
 .PHONY: test-dev
 test-dev:  ## Shortcut to launch all the test tasks (unit, functional and integration).
-	$(DOCKER_COMPOSE) run --user pricemap:pricemap --rm -T --no-deps python-flask bash -c \
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
 "pytest -Werror -vv tests"

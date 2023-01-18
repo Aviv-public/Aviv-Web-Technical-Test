@@ -25,15 +25,15 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "pricemap", "-d", "pricemap"]
+      test: ["CMD", "pg_isready", "-U", "listingapi", "-d", "listingapi"]
       interval: 20s
       timeout: 5s
       retries: 5
       start_period: 15s
     environment:
-      POSTGRES_DB: pricemap
-      POSTGRES_USER: pricemap
-      POSTGRES_PASSWORD: pricemap
+      POSTGRES_DB: listingapi
+      POSTGRES_USER: listingapi
+      POSTGRES_PASSWORD: listingapi
 
 volumes:
   pg-data:

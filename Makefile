@@ -44,7 +44,7 @@ clean-all: ## Remove containers and volumes
 
 # Extract the string right after `python-` and propagate it to Python sub Makefile
 # Example :
-# 	- "python-help" will run "help" from the python-pricemap Makefile
-# 	- "python-import-all-listings" will run "import-all-listings" from the python-pricemap Makefile
+# 	- "python-help" will run "help" from the python-flask Makefile
+# 	- "python-import-all-listings" will run "test" from the python-test Makefile
 python-%: ## Execute Python command that come from the Python sub Makefile
 	@$(MAKE) -C python-flask $${$@}

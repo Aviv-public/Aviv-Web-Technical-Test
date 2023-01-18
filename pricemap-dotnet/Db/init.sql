@@ -33,7 +33,7 @@ SET default_with_oids = false;
 
 
 --
--- Name: listings; Type: TABLE; Schema: public; Owner: pricemap
+-- Name: listings; Type: TABLE; Schema: public; Owner: listing
 --
 
 CREATE TABLE public.listings (

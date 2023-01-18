@@ -1,7 +1,7 @@
 from typing import Dict, List
 
-from pricemap.domain.entities.listings import ListingEntity
-from pricemap.domain.ports.repository.listings import ListingRepository
+from listingapi.domain.entities.listings import ListingEntity
+from listingapi.domain.ports.repository.listings import ListingRepository
 
 
 class PersistListing:

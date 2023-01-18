@@ -1,9 +1,9 @@
 import pytest
 from freezegun import freeze_time
 
-from pricemap.domain.entities.listings import ListingEntity
-from pricemap.domain.ports.repository.listings import ListingRepository
-from pricemap.domain.usecases.listings import PersistListing
+from listingapi.domain.entities.listings import ListingEntity
+from listingapi.domain.ports.repository.listings import ListingRepository
+from listingapi.domain.usecases.listings import PersistListing
 from tests.factory.entities.listing_factory import ListingFactory
 from tests.factory.entities.postal_address_factory import PostalAddressFactory
 

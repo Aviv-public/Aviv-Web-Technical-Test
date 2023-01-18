@@ -4,9 +4,9 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from pricemap import settings
-from pricemap.adapters.repository.listings import SqlAlchemyListingRepository
-from pricemap.domain.usecases.listings import (
+from listingapi import settings
+from listingapi.adapters.repository.listings import SqlAlchemyListingRepository
+from listingapi.domain.usecases.listings import (
     PersistListing,
     RetrieveListings,
     UpdateListing,

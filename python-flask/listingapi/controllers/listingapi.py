@@ -3,9 +3,9 @@ from typing import Tuple
 from flask import Flask, Response, jsonify, request
 from werkzeug.exceptions import NotFound
 
-from pricemap import registry
-from pricemap.domain.entities.listings import ListingEntity
-from pricemap.domain.exceptions.listings import ListingNotFoundException
+from listingapi import registry
+from listingapi.domain.entities.listings import ListingEntity
+from listingapi.domain.exceptions.listings import ListingNotFoundException
 
 
 app = Flask(__name__)
