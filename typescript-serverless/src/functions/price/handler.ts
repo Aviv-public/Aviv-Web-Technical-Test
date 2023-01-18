@@ -1,7 +1,7 @@
 import { functionHandler } from "@/libs/function";
 import { Price } from "@/types.generated";
 
-export const getListingPriceHistory = functionHandler<Price[]>(async () => {
+export const getListingPrices = functionHandler<Price[]>(async () => {
   // Replace this with your implementation.
   return {
     statusCode: 200,

@@ -82,7 +82,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ListingWrite'
-  '/listings/{id}/history':
+  '/listings/{id}/prices':
     parameters:
       - schema:
           type: string
@@ -104,7 +104,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Price'
-      operationId: get-listing-price-history
+      operationId: get-listing-prices
 components:
   schemas:
     Listing:

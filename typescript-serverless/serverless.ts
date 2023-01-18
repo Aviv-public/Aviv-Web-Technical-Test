@@ -1,7 +1,7 @@
 import type { AWS } from "@serverless/typescript";
 
 import { addListing, getListings, updateListing } from "@/functions/listing";
-import { getListingPriceHistory } from "@/functions/price";
+import { getListingPrices } from "@/functions/price";
 
 const serverlessConfiguration: AWS = {
   service: "listingsapi",
@@ -25,7 +25,7 @@ const serverlessConfiguration: AWS = {
   },
   // When adding new functions, you need to restart the watcher
   // to reload the configuration.
-  functions: { getListings, addListing, updateListing, getListingPriceHistory },
+  functions: { getListings, addListing, updateListing, getListingPrices },
   package: { individually: true },
   custom: {
     esbuild: {
