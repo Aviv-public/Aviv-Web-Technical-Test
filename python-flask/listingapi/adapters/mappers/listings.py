@@ -1,5 +1,5 @@
-from pricemap.adapters.repository.models.listings import ListingModel
-from pricemap.domain.entities.listings import ListingEntity
+from listingapi.adapters.repository.models.listings import ListingModel
+from listingapi.domain.entities.listings import ListingEntity
 
 
 class ListingMapper:

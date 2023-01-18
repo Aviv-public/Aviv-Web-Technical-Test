@@ -2,11 +2,11 @@ from typing import Dict, List
 
 from sqlalchemy.orm import scoped_session
 
-from pricemap.adapters.mappers.listings import ListingMapper
-from pricemap.adapters.repository.models.listings import Base, ListingModel
-from pricemap.domain.entities.listings import ListingEntity
-from pricemap.domain.exceptions.listings import ListingNotFoundException
-from pricemap.domain.ports.repository.listings import ListingRepository
+from listingapi.adapters.mappers.listings import ListingMapper
+from listingapi.adapters.repository.models.listings import Base, ListingModel
+from listingapi.domain.entities.listings import ListingEntity
+from listingapi.domain.exceptions.listings import ListingNotFoundException
+from listingapi.domain.ports.repository.listings import ListingRepository
 
 
 class SqlAlchemyListingRepository(ListingRepository):

@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from pricemap.adapters.repository.listings import SqlAlchemyListingRepository
-from pricemap.domain.ports.repository.listings import ListingRepository
+from listingapi.adapters.repository.listings import SqlAlchemyListingRepository
+from listingapi.domain.ports.repository.listings import ListingRepository
 
 
 @pytest.fixture

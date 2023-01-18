@@ -1,7 +1,7 @@
 import abc
 from typing import Dict, List
 
-from pricemap.domain.entities.listings import ListingEntity
+from listingapi.domain.entities.listings import ListingEntity
 
 
 class ListingRepository(abc.ABC):
