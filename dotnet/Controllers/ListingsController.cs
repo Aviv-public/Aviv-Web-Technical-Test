@@ -79,7 +79,6 @@ namespace listingapi.Controllers
                     Name = listing.Name,
                     Description = listing.Description,
                     Price = listing.LatestPriceEur,
-                    PriceDatePosted = createDate,
                     RoomsCount = listing.RoomsCount,
                     SurfaceAreaM2 = listing.SurfaceAreaM2,
                     City = listing.PostalAddress.City,
@@ -130,7 +129,6 @@ namespace listingapi.Controllers
                 result.Name = listing.Name;
                 result.Description = listing.Description;
                 result.Price = listing.LatestPriceEur;
-                result.PriceDatePosted = priceDate;
                 result.RoomsCount = listing.RoomsCount;
                 result.SurfaceAreaM2 = listing.SurfaceAreaM2;
                 result.City = listing.PostalAddress.City;
@@ -156,7 +154,7 @@ namespace listingapi.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ICollection<PriceReadOnly>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Route("{id}/history")]
+        [Route("{id}/prices")]
         public IActionResult GetListingPriceHistory(int id)
         {
             // ToDo : implement me !
@@ -182,8 +180,7 @@ namespace listingapi.Controllers
                 UpdatedDate = listing.UpdatedDate,
                 Price = new PriceReadOnly
                 {
-                    PriceEur = listing.Price,
-                    CreatedDate = listing.PriceDatePosted
+                    PriceEur = (int)listing.Price
                 },
                 BedroomsCount = listing.BedroomsCount,
                 BuildingType = listing.BuildingType,
@@ -198,7 +195,7 @@ namespace listingapi.Controllers
                     StreetAddress = listing.StreetAddress
                 },
                 RoomsCount = listing.RoomsCount,
-                SurfaceAreaM2 = listing.SurfaceAreaM2
+                SurfaceAreaM2 = (int)listing.SurfaceAreaM2
             };
         }
     }

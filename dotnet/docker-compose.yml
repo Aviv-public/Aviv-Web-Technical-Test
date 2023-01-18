@@ -1,7 +1,7 @@
 version: "3.4"
 
 services:
-  listingapi:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,19 +12,19 @@ services:
   db:
     image: "mdillon/postgis:11-alpine"
     volumes:
-      - ./Db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../db/01_init_listing_table.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "listingapi", "-d", "listingapi"]
+      test: ["CMD", "pg_isready", "-U", "listing", "-d", "listing"]
       interval: 20s
       timeout: 5s
       retries: 5
       start_period: 15s
     environment:
-      POSTGRES_DB: listingapi
-      POSTGRES_USER: listingapi
-      POSTGRES_PASSWORD: listingapi
+      POSTGRES_DB: listing
+      POSTGRES_USER: listing
+      POSTGRES_PASSWORD: listing
 
 volumes:
   pg-data:

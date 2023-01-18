@@ -30,7 +30,7 @@ namespace listingapi.Models
         public string BuildingType { get; set; }
 
         [JsonPropertyName("surface_area_m2")]
-        public int SurfaceAreaM2 { get; set; }
+        public double SurfaceAreaM2 { get; set; }
 
         [JsonPropertyName("rooms_count")]
         public int RoomsCount { get; set; }
