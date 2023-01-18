@@ -1,0 +1,33 @@
+name: TypeScript Serverless
+
+on:
+  push:
+    paths:
+    - typescript-serverless/**
+    - schemas/**
+    - .github/workflows/ci-typescript-serverless.yaml
+
+jobs:
+  lint_openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set user
+        run: |
+          echo "USER_ID=$(id -u)" >> $GITHUB_ENV
+          echo "GROUP_ID=$(id -g)" >> $GITHUB_ENV
+
+      - name: Build
+        working-directory: ./typescript-serverless
+        run: docker-compose run typescript-serverless npm run build
+
+      - name: Test
+        working-directory: ./typescript-serverless
+        run: docker-compose run typescript-serverless npm run test
+
+      - name: Lint
+        working-directory: ./typescript-serverless
+        run: docker-compose run typescript-serverless npm run lint

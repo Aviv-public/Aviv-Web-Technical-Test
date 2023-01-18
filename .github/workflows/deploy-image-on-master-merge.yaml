@@ -23,8 +23,8 @@ jobs:
             image: listingapi
           - context: ./pricemap-python
             image: pricemap-python
-          - context: ./pricemap-typescript
-            image: pricemap-typescript
+          - context: ./typescript-serverless
+            image: typescript-serverless
 
     # steps to perform in job
     steps:

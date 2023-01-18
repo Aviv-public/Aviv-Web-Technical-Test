@@ -1,0 +1,1 @@
+export { getListings } from "./listing";
