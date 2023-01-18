@@ -75,11 +75,13 @@ services:
 
   db:
     image: "mdillon/postgis:11-alpine"
+    labels:
+      - aviv-technical-test
     volumes:
       - type: volume
         source: pg-data
         target: /var/lib/postgresql/data
-      - ./pricemap-python/docker/db:/docker-entrypoint-initdb.d
+      - ./db:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     healthcheck:
