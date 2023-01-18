@@ -26,8 +26,7 @@ You will need `Docker` and `docker-compose` to run this test.
 All backend tests provide an implementation of the `ListingsAPI`. The front-end test provides an implementation that
 consumes it. Before digging into the test, please note the following expectations:
 
-- The test is expected to be **achieved in 90 minutes**, including the discovery phase;
-- You are expected to work in **one of the available codebase** depending on the position you applied to;
+- You shall allocate around **90 minutes** on this test, including the discovery phase;
 - During the development phase, be sure to **write down your assumptions** and any other development you were not
   able to achieve, in the [SOLUTION.md](./SOLUTION.md) file.
 
@@ -86,5 +85,7 @@ You can continue by reading the README.md in the back-end test directory of the 
 
 You have several flavors available:
 - Python Flask
-- TypeScript Serverless
+- [TypeScript Serverless](./typescript-serverless)
 - C# .NET
+
+You must pick the one that is relevant to the position your applying to.
