@@ -46,22 +46,12 @@ services:
       PGUSER: listing
       PGPASSWORD: listing
 
-  pricemap-dotnet:
-    image: ${DOCKER_REGISTRY-}pricemap
-    build:
-      context: .
-      dockerfile: pricemap-dotnet/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+  dotnet:
+    build: dotnet
     ports:
-      - "8686:443"
-      - "60408:80"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ./pricemap-dotnet:/home/pricemap/src:rw
-      - ./pricemap-dotnet:/home/pricemap/app:rw
+      - 8686:80
+    depends_on:
+      - db
 
   db:
     image: "mdillon/postgis:11-alpine"
