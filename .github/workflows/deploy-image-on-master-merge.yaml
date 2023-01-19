@@ -3,7 +3,7 @@ name: Deploy Application images when Merging on Master
 on:
   # run it on push to the default repository branch
   push:
-    branches: [master]
+    branches: [main]
 
 env:
   REGISTRY: ghcr.io
@@ -21,10 +21,10 @@ jobs:
         include:
           - context: ./listingapi
             image: listingapi
-          - context: ./pricemap-python
-            image: pricemap-python
-          - context: ./pricemap-typescript
-            image: pricemap-typescript
+          - context: ./python-flask
+            image: python-flask
+          - context: ./typescript-serverless
+            image: typescript-serverless
 
     # steps to perform in job
     steps:

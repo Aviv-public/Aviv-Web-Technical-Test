@@ -1,51 +1,50 @@
-.DEFAULT_GOAL := help
+#!/usr/bin/env make
 
-DOCKER_COMPOSE?=docker-compose -p owner-technical-test
+.DEFAULT_GOAL: help
+
+DOCKER_COMPOSE?=docker-compose -p aviv-technical-test
+
+define PYTHON_HEADER
+
+---------------------
+      PYTHON 🐍
+---------------------
+NB : Please add prefix "python-" just before running any command of that Makefile 🙏
+example : "python-help" to the "help" command
+
+endef
+export PYTHON_HEADER
 
 .PHONY: help
 help: ## List all Makefile targets
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+	@printf "$$PYTHON_HEADER\n"
+	@$(MAKE) python-help
 
 ##
 ## Containers 📦
 ## -------
 ##
-.PHONY: build run
+.PHONY: build
 build: ## Builds the docker image associated with the project
-	docker-compose build --build-arg USER_ID=$(shell id -u $$USER) --build-arg GROUP_ID=$(shell id -g $$USER)
+	$(MAKE) python-build
 
-run: build ## Locally run the application
-	docker-compose up
+.PHONY: run
+run: ## Start the containers
+	$(DOCKER_COMPOSE) up -d
 
-##
-## Miscellaneous 🪄
-## -------------
-##
-.PHONY: clean clean-all
-clean: ## Remove temporary files and docker images
-	docker-compose down --remove-orphans
+.PHONY: clean
+clean: ## Remove containers
+	$(DOCKER_COMPOSE) down --remove-orphans
 
-clean-all: ## Remove temporary files, volumes and images
-	docker-compose down --remove-orphans --rmi all -v
+.PHONY: clean-all
+clean-all: ## Remove containers and volumes
+	$(DOCKER_COMPOSE) down --remove-orphans -v
+	docker image prune --filter label=aviv-technical-test -af
 
-##
-## Code Analysis 🔎
-## -----
-##
-.PHONY: code-analysis complexity format style
-python-code-analysis: python-complexity python-format python-style ## Run the all code Analysis (code complexity, code format and code style)
-
-python-complexity: ## Compute Cyclomatic complexity (McCabe) and maintainability check
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c \
-		"radon cc -s -n B pricemap | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
-
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c \
-		"radon mi -n B pricemap | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
-
-python-format: ## Format code. e.g Prettier (js), format (golang)
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "isort pricemap tests; black ."
-
-python-style: ## Check lint, code styling rules. e.g. pylint, phpcs, eslint, style (java) etc ...
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "mypy pricemap"
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "flake8 pricemap tests"
-	$(DOCKER_COMPOSE) exec -T pricemap-python bash -c "black --check ."
+# Extract the string right after `python-` and propagate it to Python sub Makefile
+# Example :
+# 	- "python-help" will run "help" from the python-flask Makefile
+# 	- "python-import-all-listings" will run "test" from the python-test Makefile
+python-%: ## Execute Python command that come from the Python sub Makefile
+	@$(MAKE) -C python-flask $${$@}

@@ -1,0 +1,272 @@
+openapi: 3.1.0
+info:
+  title: ListingsAPI
+  description: The Listings API
+  contact:
+    name: AVIV
+  version: '1.0'
+servers:
+  - url: /
+    description: The Listings API
+tags:
+  - name: listings
+    description: Listings operations
+paths:
+  /listings:
+    get:
+      summary: Get all listings
+      description: Get all the listings registered in the app.
+      tags:
+        - listings
+      operationId: get-listings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Listing'
+    post:
+      summary: Create a listing
+      description: Create a listing.
+      tags:
+        - listings
+      operationId: post-listings
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity (WebDAV)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingWrite'
+  '/listings/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The id for the listing to get price history from.
+    put:
+      summary: Update a listing
+      description: Update a listing described by its identifier.
+      tags:
+        - listings
+      operationId: upsert-listing
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingWrite'
+  '/listings/{id}/prices':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The id for the listing to get price history from.
+    get:
+      summary: Get listing price history
+      description: Get the price history of a listing
+      tags:
+        - listings
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Price'
+      operationId: get-listing-prices
+components:
+  schemas:
+    Listing:
+      allOf:
+        - $ref: '#/components/schemas/ListingRead'
+        - $ref: '#/components/schemas/ListingWrite'
+    ListingRead:
+      type: object
+      name: Listing (read only)
+      description: Read-only fields of the listing model
+      required:
+        - id
+        - created_date
+        - updated_date
+      additionalProperties: false
+      properties:
+        id:
+          name: Identifier
+          description: The listing unique identifier.
+          type: integer
+          example: 1234
+          minimum: 0
+        created_date:
+          name: Creation date
+          description: 'The date at which the listing was produced, following RFC 3339.'
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+        updated_date:
+          name: Last update date
+          description: 'The date at which the listing was last updated, following RFC 3339.'
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+    ListingWrite:
+      type: object
+      required:
+        - name
+        - postal_address
+        - description
+        - building_type
+        - latest_price_eur
+        - surface_area_m2
+        - rooms_count
+        - bedrooms_count
+      additionalProperties: false
+      properties:
+        name:
+          name: Name
+          description: A user friendly name for the listing.
+          type: string
+          minLength: 1
+        postal_address:
+          $ref: '#/components/schemas/PostalAddress'
+        description:
+          name: Description
+          description: A user friendly description for the listing.
+          type: string
+          minLength: 1
+        building_type:
+          name: Building type
+          description: The type of building the listing referers to.
+          type: string
+          enum:
+            - STUDIO
+            - APARTMENT
+            - HOUSE
+        latest_price_eur:
+          name: Price
+          description: 'The price of the listing, in euros.'
+          type: number
+          minimum: 0
+          example: 380000
+        surface_area_m2:
+          name: Surface area
+          description: 'The surface of the listing, in square meters.'
+          type: number
+          minimum: 0
+          example: 43
+        rooms_count:
+          name: Rooms count
+          description: The number of rooms of the listing.
+          type: integer
+          minimum: 1
+          example: 2
+        bedrooms_count:
+          name: Bedrooms count
+          description: The number of bedrooms of the listing.
+          type: integer
+          minimum: 0
+          example: 1
+        contact_phone_number:
+          name: Contact phone number
+          description: 'Listing main contact phone number, following the E.164 standard.'
+          type: string
+          pattern: '^\+[1-9]\d{1,14}$'
+    Price:
+      allOf:
+        - $ref: '#/components/schemas/PriceRead'
+        - $ref: '#/components/schemas/PriceWrite'
+    PriceRead:
+      name: Price (read-only)
+      description: Read-only fields for a price.
+      type: object
+      required:
+        - created_date
+      additionalProperties: false
+      properties:
+        created_date:
+          name: Creation date
+          description: 'The date at which the listing was produced, following RFC 3339.'
+          type: string
+          example: '1970-01-01T00:00:00.000Z'
+    PriceWrite:
+      type: object
+      required:
+        - price_eur
+      additionalProperties: false
+      properties:
+        price_eur:
+          name: Price
+          description: 'A price, expressed in euros.'
+          type: integer
+          example: 340000
+    PostalAddress:
+      type: object
+      required:
+        - street_address
+        - postal_code
+        - city
+        - country
+      additionalProperties: false
+      properties:
+        street_address:
+          name: Street address
+          type: string
+          description: The street address of the postal address.
+          example: '48, boulevard des capucins'
+          minLength: 1
+        postal_code:
+          name: Postal code
+          type: string
+          description: The postal code of the postal address.
+          example: '10294'
+          minLength: 1
+        city:
+          name: City
+          type: string
+          description: The city of the postal address.
+          example: Paris
+          minLength: 1
+        country:
+          name: Country
+          type: string
+          description: 'The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.'
+          example: FR
+          minLength: 2
+          maxLength: 2
+    APIError:
+      type: object
+      required:
+        - message
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+

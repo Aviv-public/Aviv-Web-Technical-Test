@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8686:80
+    depends_on:
+      - db
+    environment:
+      PGHOST: db
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
+  db:
+    image: "mdillon/postgis:11-alpine"
+    volumes:
+      - ../db:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "listing", "-d", "listing"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    environment:
+      POSTGRES_DB: listing
+      POSTGRES_USER: listing
+      POSTGRES_PASSWORD: listing
+
+volumes:
+  pg-data:
