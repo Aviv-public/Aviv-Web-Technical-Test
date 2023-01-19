@@ -15,59 +15,46 @@ help: ## List all Python Makefile targets
 ## -------
 ##
 .PHONY: build
-build: ## Builds the python docker image
-	docker build --label python-flask --label owner-technical-test -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
+build: ## Build the python docker image
+	docker build --label python-flask --label owner-technical-test -t ghcr.io/meilleursagents/aviv-technical-test/python-flask .
 
-.PHONY: shell-listingapi-container
-shell-listingapi-container: ## Run a bash on python-flask container
-	$(DOCKER_COMPOSE) exec python-flask bash
+.PHONY:
+run:  ## Run a python-flask container
+	$(DOCKER_COMPOSE) run -p 8080:8080 --rm python-flask python app.py
+
+.PHONY: shell
+shell: ## Open a bash shell on a python-flask container
+	$(DOCKER_COMPOSE) run --rm python-flask bash
 
 ##
 ## Python Tests
 ## --------
-##
-.PHONY: tests
-tests: ## Execute tests
-	$(DOCKER_COMPOSE) run --rm -T python-flask pipenv run pytest -vv --ff
-
-##
-## Python Code Analysis 🔎
-## -----
-##
-check-code-analysis: complexity format-check style ## Run the all code Analysis (code complexity, code format and code style) without changing code
-code-analysis: complexity format-code style ## Run the all code Analysis (code complexity, code format and code style)
-
-.PHONY: complexity
-complexity: ## Compute Cyclomatic complexity and maintainability check
-	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
-		"radon cc -s -n B listingapi | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
-
-	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
-		"radon mi -n B listingapi | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
-
-.PHONY: format-code
-format-code: ## Format code
-	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "isort tests listingapi && black ."
-
-.PHONY: format-check
-format-check: ## Check code format
-	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "isort tests listingapi -c && black --check ."
-
-.PHONY: style
-style: ## Check lint, code styling rules
-	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "mypy tests listingapi && flake8 tests listingapi"
-
-
-##
-## Test 🧪
-## -----
 ##
 .PHONY: test
 test: ## Shortcut to launch all the test tasks (unit, functional and integration).
 	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
 "COVERAGE_FILE=/tmp/.coverage pytest -p no:cacheprovider -Werror --cov . --cov-report term-missing -vv tests"
 
-.PHONY: test-dev
-test-dev:  ## Shortcut to launch all the test tasks (unit, functional and integration).
+##
+## Python Code Analysis 🔎
+## -----
+##
+.PHONY: complexity
+complexity: ## Compute cyclomatic complexity and maintainability check
 	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
-"pytest -Werror -vv tests"
+		"radon cc -s -n B listingapi | tee /tmp/cc.txt && if [ -s /tmp/cc.txt ]; then exit 1; fi"
+
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c \
+		"radon mi -n B listingapi | tee /tmp/mi.txt && if [ -s /tmp/mi.txt ]; then exit 1; fi"
+
+.PHONY: format
+format: ## Format code
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "isort tests listingapi && black ."
+
+
+.PHONY: style
+style: ## Check lint, code styling rules
+	$(DOCKER_COMPOSE) run --user listingapi:listingapi --rm -T --no-deps python-flask bash -c "mypy tests listingapi && flake8 tests listingapi && isort tests listingapi -c && black --check ."
+
+.PHONY: all
+all: build format style test ## Build, format, check style and test

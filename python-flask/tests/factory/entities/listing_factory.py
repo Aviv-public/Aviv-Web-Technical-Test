@@ -8,7 +8,7 @@ class ListingFactory:
     def __init__(self, locale: str = "fr-FR"):
         fake = Faker(locale)
         self.name = fake.name()
-        self.description = ""
+        self.description = "Accusantium ut nam autem eligendi aut in quia rerum."
         self.building_type = fake.random_element(["STUDIO", "APARTMENT", "HOUSE"])
         self.price = float(fake.random_int(100_000, 2_000_000, 5000))
         self.surface_area_m2 = fake.random_int(10, 500)
