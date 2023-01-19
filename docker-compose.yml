@@ -1,59 +1,59 @@
 version: "3.4"
 
 services:
-  python-flask:
-    image: ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest
-    build:
-      context: python-flask
-    labels:
-      - aviv-technical-test
-    user: "listingapi:listingapi"
-    volumes:
-      - ./python-flask:/home/listingapi/app:rw
-    command:
-      [
-        "/home/listingapi/wait-for-postgres.sh",
-        "db:5432",
-        "--",
-        "python",
-        "app.py"
-      ]
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      PGHOST: db
-      PGDATABASE: listing
-      PGUSER: listing
-      PGPASSWORD: listing
+  # python-flask:
+  #   image: ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest
+  #   build:
+  #     context: python-flask
+  #   labels:
+  #     - aviv-technical-test
+  #   user: "listingapi:listingapi"
+  #   volumes:
+  #     - ./python-flask:/home/listingapi/app:rw
+  #   command:
+  #     [
+  #       "/home/listingapi/wait-for-postgres.sh",
+  #       "db:5432",
+  #       "--",
+  #       "python",
+  #       "app.py"
+  #     ]
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PGHOST: db
+  #     PGDATABASE: listing
+  #     PGUSER: listing
+  #     PGPASSWORD: listing
 
-  typescript-serverless:
-    build:
-      context: typescript-serverless
-      args:
-        USER_ID: ${USER_ID:-1000}
-        GROUP_ID: ${GROUP_ID:-1000}
-    labels:
-      - aviv-technical-test
-    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
-    volumes:
-      - ./typescript-serverless:/home/listingsapi/app:rw
-      - /home/listingsapi/app/node_modules
-      - ./schemas:/home/listingsapi/schemas:rw
-    command: ["npm", "run", "watch"]
-    ports:
-      - "8383:3000"
-    depends_on:
-      - db
-    environment:
-      PGHOST: db
-      PGDATABASE: listing
-      PGUSER: listing
-      PGPASSWORD: listing
+  # typescript-serverless:
+  #   build:
+  #     context: typescript-serverless
+  #     args:
+  #       USER_ID: ${USER_ID:-1000}
+  #       GROUP_ID: ${GROUP_ID:-1000}
+  #   labels:
+  #     - aviv-technical-test
+  #   user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+  #   volumes:
+  #     - ./typescript-serverless:/home/listingsapi/app:rw
+  #     - /home/listingsapi/app/node_modules
+  #     - ./schemas:/home/listingsapi/schemas:rw
+  #   command: ["npm", "run", "watch"]
+  #   ports:
+  #     - "8383:3000"
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PGHOST: db
+  #     PGDATABASE: listing
+  #     PGUSER: listing
+  #     PGPASSWORD: listing
 
   dotnet:
-    build: dotnet
+    build: c#-dotnet
     labels:
       - aviv-technical-test
     ports:
