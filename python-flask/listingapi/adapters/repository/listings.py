@@ -31,13 +31,14 @@ class SqlAlchemyListingRepository(ListingRepository):
         return listings
 
     def update(self, id_: int, listing: ListingEntity) -> Dict:
-        existing_listing = self.db_session.query(ListingModel).get(id_)
+        existing_listing = self.db_session.get(ListingModel, id_)
         if existing_listing is None:
             raise ListingNotFoundException
+        self.db_session.delete(existing_listing)
 
         listing_model = ListingMapper.from_entity_to_model(listing)
         listing_model.id = id_
-        self.db_session.merge(listing_model)
+        self.db_session.add(listing_model)
         self.db_session.commit()
 
         listing_dict = ListingMapper.from_model_to_dict(listing_model)

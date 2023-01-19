@@ -2,19 +2,12 @@ import pytest
 from freezegun import freeze_time
 
 from listingapi.domain.entities.listings import ListingEntity
-from listingapi.domain.ports.repository.listings import ListingRepository
 from listingapi.domain.usecases.listings import PersistListing
 from tests.factory.entities.listing_factory import ListingFactory
 from tests.factory.entities.postal_address_factory import PostalAddressFactory
 
 
 class TestPersistListing:
-    @pytest.fixture
-    def persist_listing_use_case(
-        self, listing_repository: ListingRepository
-    ) -> PersistListing:
-        return PersistListing(listing_repository)
-
     @pytest.fixture
     def listing_entity(self) -> ListingEntity:
         listing_entity = (
