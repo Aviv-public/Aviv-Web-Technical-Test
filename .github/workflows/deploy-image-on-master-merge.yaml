@@ -19,12 +19,14 @@ jobs:
       fail-fast: false
       matrix: # Define a matrice to build each images and tag it
         include:
-          - context: ./listingapi
-            image: listingapi
           - context: ./python-flask
             image: python-flask
           - context: ./typescript-serverless
             image: typescript-serverless
+          - context: ./c#-dotnet
+            image: csharp-dotnet
+          # - context: ./front
+          #   image: typescript-react
 
     # steps to perform in job
     steps:
@@ -47,6 +49,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set user
+        id: user
+        run: |
+          echo "USER_ID=$(id -u)" >> $GITHUB_OUTPUT
+          echo "GROUP_ID=$(id -g)" >> $GITHUB_OUTPUT
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -66,6 +74,9 @@ jobs:
         with:
           platforms: linux/amd64, linux/arm64/v8
           context: ${{matrix.context}}
+          build-args: |
+            "USER_ID=${{ steps.user.outputs.USER_ID }}"
+            "GROUP_ID=${{ steps.user.outputs.GROUP_ID }}"
           file: ${{matrix.context}}/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
