@@ -53,7 +53,7 @@ services:
       PGPASSWORD: listing
 
   dotnet:
-    build: dotnet
+    build: c#-dotnet
     labels:
       - aviv-technical-test
     ports:
