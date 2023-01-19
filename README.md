@@ -89,7 +89,7 @@ GET /listings/<id>/prices
 You can continue by reading the README.md in the back-end test directory of the language of your choice.
 
 You have several flavors available:
-- Python Flask
+- [Python Flask](./python-flask)
 - [TypeScript Serverless](./typescript-serverless)
 - C# .NET
 

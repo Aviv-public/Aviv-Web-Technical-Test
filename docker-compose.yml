@@ -3,6 +3,10 @@ version: "3.4"
 services:
   python-flask:
     image: ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest
+    build:
+      context: python-flask
+    labels:
+      - aviv-technical-test
     user: "listingapi:listingapi"
     volumes:
       - ./python-flask:/home/listingapi/app:rw
@@ -30,6 +34,8 @@ services:
       args:
         USER_ID: ${USER_ID:-1000}
         GROUP_ID: ${GROUP_ID:-1000}
+    labels:
+      - aviv-technical-test
     user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     volumes:
       - ./typescript-serverless:/home/listingsapi/app:rw
@@ -48,6 +54,8 @@ services:
 
   dotnet:
     build: dotnet
+    labels:
+      - aviv-technical-test
     ports:
       - 8686:80
     depends_on:

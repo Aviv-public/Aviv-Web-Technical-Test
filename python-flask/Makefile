@@ -4,7 +4,7 @@
 
 MAKEFLAGS=--no-print-directory
 
-DOCKER_COMPOSE?=docker-compose -p owner-technical-test
+DOCKER_COMPOSE?=docker-compose -p aviv-technical-test
 
 .PHONY: help
 help: ## List all Python Makefile targets
@@ -16,7 +16,7 @@ help: ## List all Python Makefile targets
 ##
 .PHONY: build
 build: ## Build the python docker image
-	docker build --label python-flask --label owner-technical-test -t ghcr.io/meilleursagents/aviv-technical-test/python-flask .
+	docker build --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
 
 .PHONY:
 run:  ## Run a python-flask container
