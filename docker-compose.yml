@@ -3,6 +3,10 @@ version: "3.4"
 services:
   python-flask:
     image: ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest
+    build:
+      context: python-flask
+    labels:
+      - aviv-technical-test
     user: "listingapi:listingapi"
     volumes:
       - ./python-flask:/home/listingapi/app:rw

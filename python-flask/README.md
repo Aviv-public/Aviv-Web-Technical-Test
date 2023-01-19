@@ -8,9 +8,6 @@ and how to start developing on this codebase. For more general information about
 To start developing, use the following command:
 
 ```shell
-# Build the latest version of the Python image
-make build
-
 # Run Python project
 make run
 ```
