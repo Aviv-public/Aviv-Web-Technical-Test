@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL: help
 
-DOCKER_COMPOSE?=docker-compose -p owner-technical-test
+DOCKER_COMPOSE?=docker-compose -p aviv-technical-test
 
 define PYTHON_HEADER
 
@@ -40,7 +40,7 @@ clean: ## Remove containers
 .PHONY: clean-all
 clean-all: ## Remove containers and volumes
 	$(DOCKER_COMPOSE) down --remove-orphans -v
-	docker image prune --filter label=owner-technical-test -af
+	docker image prune --filter label=aviv-technical-test -af
 
 # Extract the string right after `python-` and propagate it to Python sub Makefile
 # Example :
