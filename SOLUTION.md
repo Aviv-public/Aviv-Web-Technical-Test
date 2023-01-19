@@ -13,6 +13,8 @@ This section contains additional questions your expected to answer before the de
 
 - **What is missing with your implementation to go to production?**
 
+- **How would you deploy your implementation?**
+
 - **If you had to implement the same application from scratch, what would you do differently?**
 
 - **The application aims at storing hundreds of thousands listings and millions of prices, and be accessed by millions

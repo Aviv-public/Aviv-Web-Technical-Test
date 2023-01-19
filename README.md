@@ -17,12 +17,7 @@ already started to provide a resource endpoint to retrieve, create and update su
 
 The ListingsAPI has a schema that is documented in the [schemas/listingsapi.yaml](./schemas/listingsapi.yaml) folder.
 
-
-**NB**: You can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
-
-**NB**: A Postman collection is available on the [Schemas directory](./schemas/postman). You can import it directly and run
-API calls by choosing your environment(`Python Flask`, `C# .NET` or `Typescript Serverless`)
-
+Note that you can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
 
 ## Prerequisites
 
@@ -49,7 +44,12 @@ You can find the instructions on how to hand over your solution in the [SOLUTION
 ### Back-end expectations
 
 **If applied to a backend position**, you are expected to write the code, so we can, for a specific listing,
-see all the prices that was given to it. For instance, you can consider this simple scenario:
+see all the prices that was given to it.
+
+A Postman collection is available on the [Schemas directory](./schemas/postman). You can import it directly and run
+API calls by choosing your environment (`Python Flask`, `C# .NET` or `Typescript Serverless`).
+
+For instance, you can consider this simple scenario:
 
 - a listing is created using the API, with a specified price `100000`
 
