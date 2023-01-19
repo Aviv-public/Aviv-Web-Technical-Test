@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using listingapi.Configuration;
 using listingapi.Infrastructure.Database;
 using listingapi.Infrastructure.Database.Models;
+using System;
 
 namespace listingapi
 {
@@ -22,13 +23,17 @@ namespace listingapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var listingApiConfig = Configuration.GetSection("dataBase:listingApi").Get<DataBaseConfiguration>();
+            var host = Environment.GetEnvironmentVariable("PGHOST") ?? String.Empty;
+            var databse = Environment.GetEnvironmentVariable("PGDATABASE") ?? "listing";
+            var user = Environment.GetEnvironmentVariable("PGUSER") ?? "listing";
+            var pwd = Environment.GetEnvironmentVariable("PGPASSWORD") ?? "listing";
+            var connectionString = $"Host={host};port=5432;Username={user};Password={pwd};Database={databse};"; ;
             services.AddDbContext<ListingsContext>(options =>
             {
-                options.UseNpgsql(listingApiConfig.ToString(),
+                options.UseNpgsql(connectionString,
                     npgsqlOptionsAction: sqlOptions =>
                     {
-                        sqlOptions.CommandTimeout(60);
+                        sqlOptions.CommandTimeout(5);
                         sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
                     });
             });

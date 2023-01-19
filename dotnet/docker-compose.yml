@@ -9,6 +9,11 @@ services:
       - 8686:80
     depends_on:
       - db
+    environment:
+      PGHOST: db
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
   db:
     image: "mdillon/postgis:11-alpine"
     volumes:
