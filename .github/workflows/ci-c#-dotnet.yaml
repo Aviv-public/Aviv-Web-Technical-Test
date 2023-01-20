@@ -1,0 +1,30 @@
+name: c#-dotnet
+
+on:
+  # run it on push to the default repository branch
+  # Only if there are changes on the 'c#-dotnet' directory
+  push:
+    branches: [main]
+    paths:
+    - c#-dotnet/**
+  pull_request:
+    paths:
+    - c#-dotnet/**
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.x'
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build listingapi.csproj
+      - name: Test
+        run: dotnet test listingapi.csproj
