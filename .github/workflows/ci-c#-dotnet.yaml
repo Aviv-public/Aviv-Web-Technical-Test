@@ -4,7 +4,6 @@ on:
   # run it on push to the default repository branch
   # Only if there are changes on the 'c#-dotnet' directory
   push:
-    branches: [main]
     paths:
     - c#-dotnet/**
     - .github/workflows/ci-c#-dotnet.yaml
