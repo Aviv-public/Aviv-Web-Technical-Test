@@ -7,9 +7,7 @@ on:
     branches: [main]
     paths:
     - c#-dotnet/**
-  pull_request:
-    paths:
-    - c#-dotnet/**
+    - .github/workflows/ci-c#-dotnet.yaml
 
 jobs:
   build:
