@@ -27,10 +27,10 @@ jobs:
         run: dotnet build listingapi.csproj --configuration Release --no-restore
       - name: Test
         working-directory: ./c#-dotnet
-        run: dotnet test listingapi.csproj --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
+        run: dotnet test listingapi.csproj --logger "trx;LogFileName=test-results.trx"
+      - name: Test Report
+        uses: dorny/test-reporter@v1.6.0
         with:
-          name: dotnet-results-${{ matrix.dotnet-version }}
-          path: TestResults-${{ matrix.dotnet-version }}
-        if: ${{ always() }}
+          name: listingapi Tests
+          path: ./c#-dotnet/test-results.trx
+          reporter: dotnet-trx
