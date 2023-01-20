@@ -1,36 +1,37 @@
 import ListingForm from '../../components/ListingForm';
-import axios, { AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
-import ListingCard from '../../components/ListingCard/ListingCard';
-import { ListingInterface } from '../../components/ListingCard/ListingCard';
 
 const Listings = () => {
-    const [listings, updateListings]: Array<any> = useState( [] );
-
-    useEffect( () => {
-        axios.get( 'https://stoplight.io/mocks/testtmptesttmp/testtmptesttmp/125999361/listings' )
-            .then( ( response: AxiosResponse<Array<ListingInterface>> ) => {
-                console.log( response.data );
-                updateListings( response.data );
-            } )
-            .catch( ( error ) => {
-                console.error( error );
-            } );
-    }, [] ); 
-
     return (
         <main className="container">
-            <h1 className="title">Listings</h1>
-            <section>
+            <h1 className="title">Main Listings page</h1>
+
+            <section className="card-container">
                 <h2>Add a listing</h2>
                 <ListingForm />
             </section>
             <section className="card-container">
-                {
-                    listings.map( ( listing: ListingInterface ) => {
-                        return ( <ListingCard key={listing.id} listing={listing} /> );
-                    } )
-                }
+                <h2>Listings</h2>
+                <article className="listing-card">
+                    <span className="listing-card__price">320 000 &euro;</span>
+                    <dl className="listing-card__properties">
+                        <dt className="listing-card__properties-item">Studio</dt>
+                        <dt className="listing-card__properties-item">74m<sup>2</sup></dt>
+                        <dt className="listing-card__properties-item">3 rooms</dt>
+                    </dl>
+                    <section className="listing-card__address">
+                        <address>48, boulevard des capucins, 10294, Paris</address>
+                    </section>
+                    <section className="listing-card__description">
+                        <h3>Property description: </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Nullam commodo, arcu eu varius dapibus, lacus velit posuere tellus,
+                            nec convallis sem velit ut leo. Maecenas maximus volutpat felis.
+                        </p>
+                    </section>
+                    <a className="listing-card__link">See history &rarr;</a>
+                    <p className="listing-card__reference">Ref: 123456 <br />Last update: 31/12/2021</p>
+                </article>
             </section>
         </main>
   );

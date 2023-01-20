@@ -1,5 +1,5 @@
 const ListingForm = () => {
-    const submit = () => { }
+    const submit = () => null;
 
     return (
         <form className="listing-form" onSubmit={submit}>
@@ -20,11 +20,11 @@ const ListingForm = () => {
                     <label htmlFor="building_type">Building type:</label>
                     <select name="building_type" className="listing-form__select">
                         <option value="STUDIO">Studio</option>
-                        <option value="APARTMENT">Appartement</option>
-                        <option value="HOUSE">Maison</option>
+                        <option value="APARTMENT">Apartment</option>
+                        <option value="HOUSE">House</option>
                     </select>
                 </div>
-                <button type="submit" className="listing-form__button--submit" >Send</button>
+                <button type="submit" className="listing-form__button--submit" >Create</button>
             </div>
         </form >
     );

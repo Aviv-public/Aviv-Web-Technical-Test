@@ -1,27 +1,63 @@
-.cards_container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
+.header-box {
+    padding: $space-m $space-l;
+    box-shadow: $elevation-1;
+    display: flex;
+    justify-content: space-between;
 }
-  
+
+.title {
+    font-size: $font-xl;
+    margin: 0 25vw $space-l;
+    width: 50vw;
+
+    @media screen and (max-width: $min-screen-s) {
+        margin: 0 5vw $space-l;
+        width: 90vw;
+    }
+
+    @media screen and (min-width: $min-screen-l) {
+        margin: 0 30vw $space-l;
+        width: 40vw;
+    }
+
+}
+
+.card-container {
+    margin: 0 25vw;
+    width: 50vw;
+
+    @media screen and (max-width: $min-screen-s) {
+        margin: 0 5vw;
+        width: 90vw;
+    }
+
+    @media screen and (min-width: $min-screen-l) {
+        margin: 0 30vw;
+        width: 40vw;
+    }
+
+    &>h2 {
+        margin-bottom: $space-m;
+    }
+}
+
+
+h2 {
+    margin: 0;
+}
+
 .listing-form {
 
     &__card {
-    align-items: baseline;
-    border: 1px solid $neutral-1;
-    border-radius: 4px;
-    display: grid;
-    grid-template-columns: 100%;
-    margin-bottom: $space-m;
-    max-width: 500px;
-    padding: $space-l;
-    width: 100%;
-    background-color: lighten($neutral-1,20%);
-
-    }
-
-    &__input-group {
+        align-items: baseline;
+        border: 1px solid $neutral-1;
+        border-radius: 4px;
+        display: grid;
+        grid-template-columns: 100%;
+        margin-bottom: $space-m;
+        padding: $space-l;
+        width: 100%;
+        background-color: lighten($neutral-1, 20%);
 
     }
 
@@ -46,26 +82,23 @@
             padding: $space-s;
             border-radius: 4px;
             margin-top: $space-s;
-            
             cursor: pointer;
-            &:hover{
-                background-color: darken($primary-70,5%);
+
+            &:hover {
+                background-color: darken($primary-70, 5%);
             }
+        }
     }
 }
-}
-
 
 .listing-card {
-  align-items: baseline;
-  border: 1px solid $neutral-1;
-  border-radius: 4px;
-//   display: grid;
-  grid-template-columns: 100%;
-  margin-bottom: $space-m;
-  max-width: 500px;
-  padding: $space-l;
-  width: 100%;
+    align-items: baseline;
+    border: 1px solid $neutral-1;
+    border-radius: 4px;
+    grid-template-columns: 100%;
+    margin-bottom: $space-m;
+    padding: $space-l;
+    width: 100%;
 
     &__price {
         font-size: $font-l;
@@ -78,11 +111,11 @@
     }
 
     &__properties-item {
-      display: inline-block;
+        display: inline-block;
 
-      &:not(:first-child):before {
-        content: '\00a0-\00a0';
-      }
+        &:not(:first-child):before {
+            content: '\00a0-\00a0';
+        }
     }
 
     &__reference {
@@ -99,31 +132,17 @@
         float: right;
     }
 
-    &__form-card{
+    &__form-card {
         grid-column: 100%;
-        
-        background-color: lighten($neutral-1,15%);
+
+        background-color: lighten($neutral-1, 15%);
 
         .input-group {
             input {
                 display: inline-block;
                 width: 100%;
                 padding: $space-s
-                
             }
         }
     }
 }
-
-.card-selected {
-  border: 1px solid $primary-70;
-}
-
-.input {
-  display: flex;
-  justify-self: flex-start;
-}
-
-
-
-

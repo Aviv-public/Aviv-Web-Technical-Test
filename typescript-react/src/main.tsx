@@ -13,8 +13,6 @@ if (rootElement === null) {
   throw new Error(`Could not find element with id ${rootSelectorId}`);
 }
 
-createRoot(rootElement).render(
-    <>
-        <App />
-    </>,
+createRoot( rootElement ).render(
+    <App />
 );
