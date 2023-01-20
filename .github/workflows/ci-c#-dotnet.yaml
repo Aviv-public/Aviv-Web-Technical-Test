@@ -32,5 +32,5 @@ jobs:
         uses: dorny/test-reporter@v1.6.0
         with:
           name: listingapi Tests
-          path: c#-dotnet/test-results.trx
+          path: test-results.trx
           reporter: dotnet-trx
