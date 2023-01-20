@@ -37,6 +37,6 @@ jobs:
       #     reporter: dotnet-trx
       #     fail-on-error: true
       - name: RUN LS
-        working-directory: ./c#-dotnet
+        working-directory: ./c#-dotnet/tests
         run: ls
 
