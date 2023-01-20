@@ -49,7 +49,7 @@ make style
 
 ## Development
 
-This project uses the Flask framework to serve the ListingsAPI endpoints and SQLAlchemy to persist entities.
+This project uses the Flask framework to serve the ListingAPI endpoints and SQLAlchemy to persist entities.
 Furthermore, we implemented it using `Hexagonal Architecture` (more details on this [article](https://alexgrover.me/posts/python-hexagonal-architecture)).
 
 The project can be improved on different ways. You are totally free to improve the tests, codebase, etc... as you want.

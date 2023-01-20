@@ -4,7 +4,7 @@ import { addListing, getListings, updateListing } from "@/functions/listing";
 import { getListingPrices } from "@/functions/price";
 
 const serverlessConfiguration: AWS = {
-  service: "listingsapi",
+  service: "listingapi",
   frameworkVersion: "3",
   plugins: ["serverless-esbuild", "serverless-offline"],
   provider: {
