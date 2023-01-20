@@ -33,6 +33,6 @@ jobs:
         if: always()
         with:
           name: listingapi Tests
-          path: "**/test-results.trx"
+          path: "c#-dotnet/**/test-results.trx"
           reporter: dotnet-trx
           fail-on-error: true
