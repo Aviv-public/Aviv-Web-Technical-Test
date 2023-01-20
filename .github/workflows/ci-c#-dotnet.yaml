@@ -20,7 +20,7 @@ jobs:
         with:
           dotnet-version: '6.x'
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore listingapi.csproj
       - name: Build
         run: dotnet build listingapi.csproj
       - name: Test
