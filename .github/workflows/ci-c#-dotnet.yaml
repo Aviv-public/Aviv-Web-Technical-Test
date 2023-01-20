@@ -33,3 +33,4 @@ jobs:
         with:
           name: listingapi Tests
           path: test-results/listingapi.trx
+          reporter: dotnet-trx
