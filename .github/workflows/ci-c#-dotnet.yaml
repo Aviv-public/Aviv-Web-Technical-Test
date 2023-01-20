@@ -27,4 +27,4 @@ jobs:
         run: dotnet build listingapi.csproj
       - name: Test
         working-directory: ./c#-dotnet
-        run: dotnet test listingapi.csproj
+        run: dotnet test listingapi.csproj --verbosity detailed
