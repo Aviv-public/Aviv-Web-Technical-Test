@@ -29,6 +29,7 @@ jobs:
         working-directory: ./c#-dotnet
         run: dotnet test listingapi.csproj --logger "trx;LogFileName=./test-results/listingapi.trx"
       - name: Test Report
+        working-directory: ./c#-dotnet
         uses: dorny/test-reporter@v1.6.0
         with:
           name: listingapi Tests
