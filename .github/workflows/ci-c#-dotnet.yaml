@@ -24,10 +24,10 @@ jobs:
         run: dotnet restore listingapi.csproj
       - name: Build
         working-directory: ./c#-dotnet
-        run: dotnet build listingapi.csproj --configuration Release
+        run: dotnet build --configuration Release listingapi.csproj
       - name: Test
         working-directory: ./c#-dotnet
-        run: dotnet test listingapi.csproj --logger "trx;LogFileName=test-results.trx" || true
+        run: dotnet test --logger "trx;LogFileName=test-results.trx" || true listingapi.csproj
       # - name: Test Report
       #   uses: dorny/test-reporter@v1.6.0
       #   if: always()
