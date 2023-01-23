@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains instructions for the Aviv - Owner - Frontend Technical Test.
+This repository contains instructions for the Aviv Frontend Technical Test.
 
 Its aim is to give us an overview of your practical technical knowledge through a screening technical test.
 
