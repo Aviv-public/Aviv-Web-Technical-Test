@@ -10,7 +10,7 @@ const ListingForm = () => {
                 </div>
                 <div className="listing-form__input-group">
                     <label htmlFor="price">Area:</label>
-                    <input type="text" name="price" className="listing-form__input-text" />
+                    <input type="text" name="area" className="listing-form__input-text" />
                 </div>
                 <div className="listing-form__input-group">
                     <label htmlFor="price">Street address:</label>
