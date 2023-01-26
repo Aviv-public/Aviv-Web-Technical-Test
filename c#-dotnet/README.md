@@ -1,4 +1,4 @@
-# Dotnet technical test: Listings API
+# Dotnet technical test: Listing API
 
 ## Installation
 > Prerequisites : 

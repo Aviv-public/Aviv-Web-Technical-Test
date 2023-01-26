@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: ListingsAPI
-  description: The Listings API
+  title: ListingAPI
+  description: The Listing API
   contact:
     name: AVIV
   version: '1.0'
 servers:
   - url: /
-    description: The Listings API
+    description: The Listing API
 tags:
   - name: listings
     description: Listings operations

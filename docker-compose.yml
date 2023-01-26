@@ -38,9 +38,9 @@ services:
       - aviv-technical-test
     user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     volumes:
-      - ./typescript-serverless:/home/listingsapi/app:rw
-      - /home/listingsapi/app/node_modules
-      - ./schemas:/home/listingsapi/schemas:rw
+      - ./typescript-serverless:/home/listingapi/app:rw
+      - /home/listingapi/app/node_modules
+      - ./schemas:/home/listingapi/schemas:rw
     command: ["npm", "run", "watch"]
     ports:
       - "8383:3000"

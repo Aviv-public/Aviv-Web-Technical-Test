@@ -5,7 +5,7 @@ const fs = require("fs");
 const { parse } = require("yaml");
 const { compile } = require("json-schema-to-typescript");
 
-const schemasPath = path.join(__dirname, "../../schemas/listingsapi.yaml");
+const schemasPath = path.join(__dirname, "../../schemas/listingapi.yaml");
 const generatedTypesPath = path.join(__dirname, "../src/types.generated.d.ts");
 
 const openAPISchemaYaml = fs.readFileSync(schemasPath, "utf8");

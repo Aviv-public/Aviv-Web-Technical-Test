@@ -16,7 +16,7 @@ help: ## List all Python Makefile targets
 ##
 .PHONY: build
 build: ## Build the python docker image
-	docker build --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/backend-technical-test/pricemap-python .
+	docker build --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/backend-technical-test/python-flask .
 
 .PHONY:
 run:  ## Run a python-flask container

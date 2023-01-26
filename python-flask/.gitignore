@@ -1,0 +1,5 @@
+.coverage
+coverage.xml
+junit-coverage.xml
+.pytest_cache
+.mypy_cache

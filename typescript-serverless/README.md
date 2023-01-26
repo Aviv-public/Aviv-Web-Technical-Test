@@ -3,7 +3,7 @@
 Welcome to the TypeScript Serverless version of this test. This README lists the specificities of this application
 and how to start developing on this codebase. For more general information about the test, refer to the main README.
 
-This project uses the [Serverless](https://www.serverless.com/) framework to serve the ListingsAPI endpoints. We do not
+This project uses the [Serverless](https://www.serverless.com/) framework to serve the ListingAPI endpoints. We do not
 use this framework at AVIV, but chose to use it for this test, so you can experience lambdas development without
 needing an AWS account or complex configuration.
 

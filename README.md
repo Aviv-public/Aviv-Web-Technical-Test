@@ -13,9 +13,9 @@ It has been decided by the product team to provide a view of our listings to our
 a list of each listing we have in our database, with its price history. The technical team, has determined that a REST
 API should be developed to provide the listings, so they can be displayed on a single page application. Developers have
 already started to provide a resource endpoint to retrieve, create and update such listings in an API called the
-`ListingsAPI`.
+`ListingAPI`.
 
-The ListingsAPI has a schema that is documented in the [schemas/listingsapi.yaml](./schemas/listingsapi.yaml) folder.
+The ListingAPI has a schema that is documented in the [schemas/listingapi.yaml](./schemas/listingapi.yaml) folder.
 
 Note that you can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
 
@@ -23,7 +23,7 @@ Note that you can upload the YAML file to [ReDoc](https://redocly.github.io/redo
 
 You will need `Docker` and `docker-compose` to run this test.
 
-All backend tests provide an implementation of the `ListingsAPI`. The front-end test provides an implementation that
+All backend tests provide an implementation of the `ListingAPI`. The front-end test provides an implementation that
 consumes it. Before digging into the test, please note the following expectations:
 
 - You shall allocate around **90 minutes** on this test, including the discovery phase;

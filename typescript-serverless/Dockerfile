@@ -10,17 +10,17 @@ ARG USER_ID
 ARG GROUP_ID
 
 ## Create default user:group for this container
-RUN groupadd -g ${GROUP_ID} listingsapi;
-RUN useradd -g listingsapi -u ${USER_ID} -ms /bin/bash listingsapi;
+RUN groupadd -g ${GROUP_ID} listingapi;
+RUN useradd -g listingapi -u ${USER_ID} -ms /bin/bash listingapi;
 
-USER listingsapi
+USER listingapi
 
-RUN mkdir /home/listingsapi/app
-RUN chown listingsapi:listingsapi /home/listingsapi/app
+RUN mkdir /home/listingapi/app
+RUN chown listingapi:listingapi /home/listingapi/app
 
-WORKDIR /home/listingsapi/app
+WORKDIR /home/listingapi/app
 
-COPY --chown=listingsapi:listingsapi package*.json ./
+COPY --chown=listingapi:listingapi package*.json ./
 RUN npm ci
 
-COPY --chown=listingsapi:listingsapi . .
+COPY --chown=listingapi:listingapi . .
