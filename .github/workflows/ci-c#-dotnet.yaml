@@ -22,9 +22,14 @@ jobs:
       - name: Install dependencies
         working-directory: ./c#-dotnet
         run: dotnet restore "listingapi.csproj"
-      - name: Build
-        working-directory: ./c#-dotnet
-        run: dotnet build --configuration Release "listingapi.csproj"
       - name: Test
         working-directory: ./c#-dotnet
-        run: dotnet test "listingapi.csproj" --no-build
+        run: dotnet test "tests/listingapi.unittests/listingapi.unittests.csproj" --logger "trx;LogFileName=test-results.trx"
+      - name: Test Report
+        uses: dorny/test-reporter@v1.6.0
+        if: always()
+        with:
+            name: listingapi Tests
+            path: "**/test-results.trx"
+            reporter: dotnet-trx
+            fail-on-error: true
