@@ -10,9 +10,3 @@ COPY *.* ./
 COPY src ./src
 
 RUN npm run build
-
-# Base image for testing the application
-FROM builder as tester
-
-RUN npm test
-RUN npm run lint:check

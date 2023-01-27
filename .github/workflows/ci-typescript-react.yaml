@@ -15,15 +15,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build
-        uses: docker/build-push-action@v3
-        with:
-          context: "./typescript-react"
-          push: false
-          target: builder
+        working-directory: ./typescript-react
+        run: docker build -t typescript-react
 
       - name: Test
-        uses: docker/build-push-action@v3
-        with:
-          context: "./typescript-react"
-          push: false
-          target: tester
+        working-directory: ./typescript-serverless
+        run: docker run -it typescript-react npm run test
+
+      - name: Lint
+        working-directory: ./typescript-serverless
+        run: docker run -it typescript-react npm run lint
