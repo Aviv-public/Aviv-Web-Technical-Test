@@ -24,4 +24,4 @@ jobs:
 
       - name: Lint
         working-directory: ./typescript-serverless
-        run: docker run typescript-react npm run lint
+        run: docker run typescript-react npm run lint:check
