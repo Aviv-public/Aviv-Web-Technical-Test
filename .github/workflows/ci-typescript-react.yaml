@@ -20,8 +20,8 @@ jobs:
 
       - name: Test
         working-directory: ./typescript-serverless
-        run: docker run -it typescript-react npm run test
+        run: docker run typescript-react npm run test
 
       - name: Lint
         working-directory: ./typescript-serverless
-        run: docker run -it typescript-react npm run lint
+        run: docker run typescript-react npm run lint
