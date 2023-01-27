@@ -16,7 +16,7 @@ jobs:
 
       - name: Build
         working-directory: ./typescript-react
-        run: docker build -t typescript-react
+        run: docker build -t typescript-react .
 
       - name: Test
         working-directory: ./typescript-serverless
