@@ -17,13 +17,13 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v3
         with:
-          file: "{{context}}/typescript-react/Dockerfile"
+          file: "./typescript-react/Dockerfile"
           push: false
           target: builder
 
       - name: Test
         uses: docker/build-push-action@v3
         with:
-          file: "{{context}}/typescript-react/Dockerfile"
+          file: "./typescript-react/Dockerfile"
           push: false
           target: tester
