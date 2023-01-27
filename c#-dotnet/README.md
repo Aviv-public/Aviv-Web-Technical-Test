@@ -5,6 +5,9 @@
 - .Net 6 SDK (https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - Docker (https://www.docker.com/)
 
+## Development
+The project can be improved on different ways. You are totally free to improve the tests, codebase, etc... as you want.
+You can explain your improvements and choices on the [SOLUTION.md](../SOLUTION.md) file 
 
 ## Using a command line interface
 1. Run `git clone https://github.com/MeilleursAgents/aviv-technical-test.git`
