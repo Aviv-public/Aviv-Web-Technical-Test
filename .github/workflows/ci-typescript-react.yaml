@@ -1,4 +1,4 @@
-name: TypeScript Serverless
+name: TypeScript React
 
 on:
   push:
