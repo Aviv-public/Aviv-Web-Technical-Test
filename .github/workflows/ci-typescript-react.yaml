@@ -7,7 +7,7 @@ on:
     - .github/workflows/ci-typescript-react.yaml
 
 jobs:
-  lint_openapi:
+  build_and_test:
     runs-on: ubuntu-latest
 
     steps:

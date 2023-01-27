@@ -3,7 +3,7 @@ FROM node:18.10.0 as builder
 
 WORKDIR /build/app
 
-COPY package-lock.yaml package.json ./
+COPY package-lock.json package.json ./
 RUN npm ci
 
 COPY *.* ./
