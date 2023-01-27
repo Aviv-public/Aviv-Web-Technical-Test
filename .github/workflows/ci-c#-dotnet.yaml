@@ -27,5 +27,5 @@ jobs:
         run: dotnet build --configuration Release "listingapi.csproj"
       - name: Test
         working-directory: ./c#-dotnet
-        run: dotnet test "listingapi.csproj" --no-build "--logger:Console;verbosity=minimal"
+        run: dotnet test "listingapi.csproj" --configuration Debug "--logger:Console;verbosity=minimal"
 
