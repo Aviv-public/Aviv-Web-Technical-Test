@@ -26,10 +26,10 @@ If you want to run some npm commands, you can do it using the following:
 
 ```
 # Check the lint of the project
-docker-compose typescript-serverless npm run lint
+docker-compose run --rm typescript-serverless npm run lint
 
 # Run the tests of the project
-docker-compose typescript-serverless npm run test
+docker-compose run --rm typescript-serverless npm run test
 ```
 
 If you want to install dependencies locally without installing `pg-native` requirements, for instance because you do not have
