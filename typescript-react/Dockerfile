@@ -3,17 +3,16 @@ FROM node:18.10.0 as builder
 
 WORKDIR /build/app
 
-RUN npm install -g pnpm && \
-    npm remove -g npm
-
-COPY pnpm-lock.yaml package.json ./
-RUN pnpm install
+COPY package-lock.yaml package.json ./
+RUN npm ci
 
 COPY *.* ./
 COPY src ./src
-RUN pnpm run lint:check
-RUN pnpm run build
+
+RUN npm run build
 
 # Base image for testing the application
 FROM builder as tester
-RUN pnpm run test
+
+RUN npm test
+RUN npm run lint:check
