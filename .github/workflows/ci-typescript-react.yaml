@@ -1,0 +1,29 @@
+name: TypeScript Serverless
+
+on:
+  push:
+    paths:
+    - typescript-react/**
+    - .github/workflows/ci-typescript-react.yaml
+
+jobs:
+  lint_openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        uses: docker/build-push-action@v3
+        working-directory: ./typescript-react
+        with:
+          push: false
+          target: builder
+
+      - name: Test
+        uses: docker/build-push-action@v3
+        working-directory: ./typescript-react
+        with:
+          push: false
+          target: tester
