@@ -63,7 +63,7 @@ POST /listings
 }
 ```
 
-- a listing is updated using the API, with a new price `200000`
+- the listing is updated using the API, with a new price `200000` 📈
 
 ```
 PUT /listings/<id>
@@ -75,14 +75,27 @@ PUT /listings/<id>
 }
 ```
 
-- when trying to retrieve the prices for this specific listing, we should see two prices listed
+- the listing is updated again using the API, with a new price `175000` 📉
+
+```
+PUT /listings/<id>
+
+{
+    ...
+    "latest_price_eur": 175000
+    ...
+}
+```
+
+- when trying to retrieve the prices for this specific listing, we should see three prices listed:
 
 ```
 GET /listings/<id>/prices
 
 [
     { price_eur: 100000, created_date: "<creation date>" },
-    { price_eur: 200000, created_date: "<update date>" }
+    { price_eur: 200000, created_date: "<first update date>" },
+    { price_eur: 175000, created_date: "<second update date>" }
 ]
 ```
 
