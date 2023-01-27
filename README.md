@@ -1,9 +1,7 @@
 # AVIV technical test
 
-This repository contains the technical test that you are expected to fulfill. It contains multiple folders, depending
-on the position you applied to.
-
-Take 5 minutes to read this README.md entirely 🙏
+Welcome to the AVIV technical test! This README will provide you with everything you need to know to start the exercise.
+Please read it thoroughly before starting working on your implementation proposal.
 
 ## 1. A bit of context
 
@@ -37,82 +35,16 @@ missing in your implementation.
 
 ## 3. The exercise
 
-### Front-end expectations
+**If you are applying for a front-end position**, please take a look on the [FRONTEND-README.md](./FRONTEND-README.md) file
 
-**If you applied to a front-end position**, you can continue by reading the README.md in the front-end test directory.
+**If you are applying for a back-end position**, please take a look on the [BACKEND-README.md](./BACKEND-README.md) file
 
-### Back-end expectations
-
-**If applied to a backend position**, you are expected to write the code, so we can, for a specific listing,
-see all the prices that was given to it.
-
-A Postman collection is available on the [Schemas directory](./schemas/postman). You can import it directly and run
-API calls by choosing your environment (`Python Flask`, `C# .NET` or `Typescript Serverless`).
-
-For instance, you can consider this simple scenario:
-
-- a listing is created using the API, with a specified price `100000`
-
-```
-POST /listings
-
-{
-    ...
-    "latest_price_eur": 100000
-    ...
-}
-```
-
-- the listing is updated using the API, with a new price `200000` 📈
-
-```
-PUT /listings/<id>
-
-{
-    ...
-    "latest_price_eur": 200000
-    ...
-}
-```
-
-- the listing is updated again using the API, with a new price `175000` 📉
-
-```
-PUT /listings/<id>
-
-{
-    ...
-    "latest_price_eur": 175000
-    ...
-}
-```
-
-- when trying to retrieve the prices for this specific listing, we should see three prices listed:
-
-```
-GET /listings/<id>/prices
-
-[
-    { price_eur: 100000, created_date: "<creation date>" },
-    { price_eur: 200000, created_date: "<first update date>" },
-    { price_eur: 175000, created_date: "<second update date>" }
-]
-```
-
-You can continue by reading the README.md in the back-end test directory of the language of your choice.
-
-You have several flavors available:
-- [Python Flask](./python-flask)
-- [TypeScript Serverless](./typescript-serverless)
-- [C# .NET](./c#-dotnet)
-
-You must pick the one that is relevant to the position your applying to.
-
-## 4. When you're done
+## 4. Render Expectation
 
 Send us a `.zip` file with commits history (keep the `.git` folder). The file should include
 - the `.git/` folder;
 - the entire codebase;
-- this SOLUTION.md file, with the answers to the questions written above.
+- the [SOLUTION.md](./SOLUTION.md) file, with the answers to the questions written above.
 
-If you want to join any additional file, you can add them to the archive and link them here.
+If you want to join any additional file, you can add them to the archive and link them in
+the [SOLUTION.md](./SOLUTION.md) file.
