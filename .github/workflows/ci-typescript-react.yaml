@@ -16,14 +16,14 @@ jobs:
 
       - name: Build
         uses: docker/build-push-action@v3
-        context: "{{defaultContext}}:typescript-react"
         with:
+          context: "{{defaultContext}}:typescript-react"
           push: false
           target: builder
 
       - name: Test
         uses: docker/build-push-action@v3
-        context: "{{defaultContext}}:typescript-react"
         with:
+          context: "{{defaultContext}}:typescript-react"
           push: false
           target: tester
