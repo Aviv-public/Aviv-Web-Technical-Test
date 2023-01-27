@@ -3,7 +3,9 @@
 This repository contains the technical test that you are expected to fulfill. It contains multiple folders, depending
 on the position you applied to.
 
-## Context
+Take 5 minutes to read this README.md entirely 🙏
+
+## 1. A bit of context
 
 At AVIV, we often deal with _listings_. A listing is the description of a real estate that can be rented or bought. It
 contains information such as price and availability. We also display real estates characteristics, such as its category
@@ -19,9 +21,9 @@ The ListingAPI has a schema that is documented in the [schemas/listingapi.yaml](
 
 Note that you can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
 
-## Prerequisites
+## 2. Before starting
 
-You will need `Docker` and `docker-compose` to run this test.
+You will need [`Docker`](https://www.docker.com/) and [`docker-compose`](https://docs.docker.com/compose/) to run this test.
 
 All backend tests provide an implementation of the `ListingAPI`. The front-end test provides an implementation that
 consumes it. Before digging into the test, please note the following expectations:
@@ -33,9 +35,7 @@ consumes it. Before digging into the test, please note the following expectation
 The aim of the technical is to serve as a base for a debrief, in which you will defend your choices, and discuss what is
 missing in your implementation.
 
-You can find the instructions on how to hand over your solution in the [SOLUTION.md](./SOLUTION.md) file.
-
-## Functional expectations
+## 3. The exercise
 
 ### Front-end expectations
 
@@ -107,3 +107,12 @@ You have several flavors available:
 - [C# .NET](./c#-dotnet)
 
 You must pick the one that is relevant to the position your applying to.
+
+## 4. When you're done
+
+Send us a `.zip` file with commits history (keep the `.git` folder). The file should include
+- the `.git/` folder;
+- the entire codebase;
+- this SOLUTION.md file, with the answers to the questions written above.
+
+If you want to join any additional file, you can add them to the archive and link them here.
