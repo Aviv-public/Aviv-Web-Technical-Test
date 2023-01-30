@@ -17,7 +17,7 @@ already started to provide a resource endpoint to retrieve, create and update su
 
 The ListingAPI has a schema that is documented in the [schemas/listingapi.yaml](./schemas/listingapi.yaml) folder.
 
-Note that you can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
+You should upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) and browse it carefully.
 
 ## 2. Before starting
 

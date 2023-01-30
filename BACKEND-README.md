@@ -56,22 +56,22 @@ PUT /listings/<id>
 
 {
     ...
-    "latest_price_eur": 200000
+    "latest_price_eur": 150000
     ...
 }
 ```
 
-On this example, the listing is updated using the API, with a new price `200000` 📈
+On this example, the listing is updated using the API, with a new price `150000` 📈
 
 #### GET /listings/<id>/prices
 
 This endpoint will retrieve all prices changes for a given listing ID `<id>`
+
 ```
 
 [
-    { price_eur: 100000, created_date: "<creation date>" },
-    { price_eur: 200000, created_date: "<first update date>" },
-    { price_eur: 175000, created_date: "<second update date>" }
+    { "price_eur": 100000, "created_date": "2023-01-12T09:23:36Z" },
+    { "price_eur": 150000, "created_date": "2023-01-17T08:17:32Z" },
 ]
 ```
 
@@ -79,7 +79,7 @@ This endpoint will retrieve all prices changes for a given listing ID `<id>`
 
 The [endpoint that returns listing price changes](#get-listings-id-prices) returns mocked data. 
 
-**We expect from you to implement a way to replace those mocked data by real ones**
+**You are expected to store the listing prices history and return it instead of the mocked response.**
 
 ### Back-end versions
 
