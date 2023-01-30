@@ -1,16 +1,18 @@
 ## Back-end exercice
 
 ### Context
-We have create an API to handle listings. 
-Today we need to implement a **new feature to persist** price changes over the time for a listing. 
+Your team has created the ListingAPI, that handles listings.
+Today, you have picked a ticket in the Kanban and need to implement
+a **new feature** to persist price changes for a given listing over time.
 
 ### Structure
 
 The ListingAPI has a schema that is documented in the [schemas/listingapi.yaml](./schemas/listingapi.yaml) folder.
 
 Note that you can upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) to read it comfortably.
-Otherwise, Postman collection is available on the [Schemas directory](./schemas/postman). You can import it directly and run
-API calls by choosing your environment (`Python Flask`, `C# .NET` or `Typescript Serverless`).
+Your team also prepared a Postman collection to easily interact with the API.
+It is available on the [Schemas directory](./schemas/postman).
+You can import it directly and run
 
 The Listing API exposes 4 endpoints : 
 

@@ -41,7 +41,7 @@ missing in your implementation.
 
 ## 4. Render Expectation
 
-Send us a `.zip` file with commits history (keep the `.git` folder). The file should include
+Send us a `.zip` file with commits history (keep the `.git` folder). The file should include:
 - the `.git/` folder;
 - the entire codebase;
 - the [SOLUTION.md](./SOLUTION.md) file, with the answers to the questions written above.
