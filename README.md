@@ -19,6 +19,9 @@ The `ListingAPI` has a schema that is documented in the [schemas/listingapi.yaml
 
 You should upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) and browse it carefully.
 
+Your team made a schema of the current application architecture
+![Application Architecture](./schemas/Aviv-Technical-Test-Architecture.png "Application Architecture")
+
 ## 2. Before starting
 
 You will need [`Docker`](https://www.docker.com/) and [`docker-compose`](https://docs.docker.com/compose/) to run this test.
