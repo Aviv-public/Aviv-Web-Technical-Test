@@ -4,7 +4,7 @@
 
 Your team has created the `ListingAPI`, that handles listings.
 Today, you have picked a ticket in the Kanban and need to implement
-a **new feature** to persist and return price changes for a given listing over time.
+a **new endpoint**  that will return the price changes for a given listing over time.
 
 ### API structure
 
