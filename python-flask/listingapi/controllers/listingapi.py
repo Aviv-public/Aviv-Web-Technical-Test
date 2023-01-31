@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
 from werkzeug.exceptions import NotFound
@@ -14,14 +12,14 @@ cors = CORS(app)
 
 
 @app.route("/listings", methods=["GET"])
-def get_listings() -> Tuple[Response, int]:
+def get_listings() -> tuple[Response, int]:
     """Get all listings."""
     listings_data = registry.retrieve_listings.perform()
     return jsonify(listings_data), 200
 
 
 @app.route("/listings", methods=["POST"])
-def post_listing() -> Tuple[Response, int]:
+def post_listing() -> tuple[Response, int]:
     """Create a listing."""
     data = request.get_json()
     listing = ListingEntity.parse_obj(data)
@@ -30,7 +28,7 @@ def post_listing() -> Tuple[Response, int]:
 
 
 @app.route("/listings/<int:id_>", methods=["PUT"])
-def put_listing(id_: int) -> Tuple[Response, int]:
+def put_listing(id_: int) -> tuple[Response, int]:
     """Update a listing."""
     data = request.get_json()
     listing = ListingEntity.parse_obj(data)
@@ -42,7 +40,7 @@ def put_listing(id_: int) -> Tuple[Response, int]:
 
 
 @app.route("/listings/<int:id_>/prices", methods=["GET"])
-def get_price_history(id_: int) -> Tuple[Response, int]:
+def get_price_history(id_: int) -> tuple[Response, int]:
     """Get price history."""
     # TODO: implement this
     mock_response = [
