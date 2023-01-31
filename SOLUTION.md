@@ -20,3 +20,5 @@ This section contains additional questions your expected to answer before the de
 - **The application aims at storing hundreds of thousands listings and millions of prices, and be accessed by millions
   of users every month. What should be anticipated and done to handle it?**
 
+  NB : You can update the [given architecture schema](./schemas/Aviv_Technical_Test_Architecture.drawio) by importing it
+  on [diagrams.net](https://app.diagrams.net/) 
