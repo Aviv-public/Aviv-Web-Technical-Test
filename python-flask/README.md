@@ -5,7 +5,7 @@ and how to start developing on this codebase. For more general information about
 
 ## Getting started
 
-To start developing, use the following command:
+To start developing, use the following command in this folder (`/python-flask/`):
 
 ```shell
 # Run Python project

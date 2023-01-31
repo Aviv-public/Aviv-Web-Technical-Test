@@ -18,7 +18,7 @@ help: ## List all Python Makefile targets
 build: ## Build the python docker image
 	docker build --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/backend-technical-test/python-flask .
 
-.PHONY:
+.PHONY: run
 run:  ## Run a python-flask container
 	$(DOCKER_COMPOSE) run -p 8080:8080 --rm python-flask python app.py
 

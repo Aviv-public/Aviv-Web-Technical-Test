@@ -35,7 +35,7 @@ db_session: scoped_session = scoped_session(_session_factory)
 # Import Repository
 sql_alchemy_listing_repository = SqlAlchemyListingRepository(db_session)
 
-# Usecases
+# Use cases
 persist_listing = PersistListing(sql_alchemy_listing_repository)
 retrieve_listings = RetrieveListings(sql_alchemy_listing_repository)
 update_listing = UpdateListing(sql_alchemy_listing_repository)

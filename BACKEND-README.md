@@ -52,7 +52,7 @@ POST /listings
 
 On this example, a listing is created using the API, with a specified price: `100000`.
 
-#### PUT /listings/<id>
+#### PUT /listings/\<id\>
 
 This endpoint will update a persisted listing described by its identifier `<id>`.
 
@@ -68,7 +68,7 @@ PUT /listings/<id>
 
 On this example, the listing is updated using the API, with a new price: `150000`.
 
-#### GET /listings/\<id>/prices
+#### GET /listings/\<id\>/prices
 
 This endpoint will return all prices changes for a persisted listing described by its identifier `<id>`.
 
@@ -116,6 +116,6 @@ The test is declined in 3 versions:
 
 You can now start development by reading the README.md in the back-end test directory of the language of your choice.
 
-**You must pick the one that is relevant to the position your applying to.**
+**You must pick the one that is relevant to the position you're applying to.**
 
 Good luck!
