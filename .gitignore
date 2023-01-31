@@ -1,9 +1,4 @@
 __pycache__
-front/node_modules
-front/coverage
-front/dist
-front/yarn.lock
-front/pnpm-lock.yaml
 
 ## Pricemap Python
 python-flask/.coverage
