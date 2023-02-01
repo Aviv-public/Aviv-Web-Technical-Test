@@ -17,16 +17,16 @@ class SqlAlchemyListingRepository(ListingRepository):
         Base.metadata.create_all(self.db_session.get_bind())
 
     def create(self, listing: ListingEntity) -> Dict:
-        listing_entity = ListingMapper.from_entity_to_model(listing)
-        self.db_session.add(listing_entity)
+        listing_model = ListingMapper.from_entity_to_model(listing)
+        self.db_session.add(listing_model)
         self.db_session.commit()
-        data = ListingMapper.from_model_to_dict(listing_entity)
+        data = ListingMapper.from_model_to_dict(listing_model)
         return data
 
     def get_all(self) -> List[Dict]:
-        listing_entities = self.db_session.query(ListingModel).all()
+        listing_models = self.db_session.query(ListingModel).all()
         listings = [
-            ListingMapper.from_model_to_dict(listing) for listing in listing_entities
+            ListingMapper.from_model_to_dict(listing) for listing in listing_models
         ]
         return listings
 
