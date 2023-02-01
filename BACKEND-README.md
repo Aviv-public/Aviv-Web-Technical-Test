@@ -68,7 +68,7 @@ PUT /listings/<id>
 
 On this example, the listing is updated using the API, with a new price: `150000`.
 
-#### GET /listings/<id>/prices
+#### GET /listings/\<id>/prices
 
 This endpoint will return all prices changes for a persisted listing described by its identifier `<id>`.
 
