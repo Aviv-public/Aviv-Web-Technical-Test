@@ -1,6 +1,7 @@
 from typing import Tuple
 
 from flask import Flask, Response, jsonify, request
+from flask_cors import CORS
 from werkzeug.exceptions import NotFound
 
 from listingapi import registry
@@ -9,6 +10,7 @@ from listingapi.domain.exceptions.listings import ListingNotFoundException
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 @app.route("/listings", methods=["GET"])
