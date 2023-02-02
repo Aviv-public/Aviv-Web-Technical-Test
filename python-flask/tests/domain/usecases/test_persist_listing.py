@@ -37,7 +37,6 @@ class TestPersistListing:
     def test_persist_listing(
         self, persist_listing_use_case: PersistListing, listing_entity: ListingEntity
     ) -> None:
-
         persisted_listing_dict = persist_listing_use_case.listing_repository.create(
             listing_entity
         )
