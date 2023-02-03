@@ -1,0 +1,12 @@
+# Ignore everything by default
+*
+
+# Include only strictly necessary files
+!.lintignore
+!src/
+!index.html
+!pnpm-lock.yaml
+!*.ts
+!*.js
+!*.json
+!*.tsx

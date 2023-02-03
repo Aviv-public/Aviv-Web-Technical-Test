@@ -1,7 +1,10 @@
 __pycache__
-front/node_modules
-front/coverage
-front/dist
-front/yarn.lock
-front/pnpm-lock.yaml
 
+## Pricemap Python
+python-flask/.coverage
+python-flask/coverage.xml
+python-flask/junit-coverage.xml
+python-flask/.pytest_cache
+python-flask/.mypy_cache
+tests/pricemap.unittests/obj/*
+tests/pricemap.unittests/bin/*
