@@ -1,12 +1,12 @@
+using listingapi.Configuration;
+using listingapi.Infrastructure.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using listingapi.Configuration;
-using listingapi.Infrastructure.Database;
-using listingapi.Infrastructure.Database.Models;
+using Microsoft.OpenApi.Models;
 using System;
 
 namespace listingapi
@@ -41,9 +41,12 @@ namespace listingapi
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new GroupingByNamespaceConvention());
-            })
-                .AddNewtonsoftJson();
-            services.AddSwaggerGen();
+            }).AddNewtonsoftJson();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "listingapi", Version = "v1" });
+            });
+            services.AddSwaggerGenNewtonsoftSupport();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
