@@ -66,7 +66,7 @@ paths:
       operationId: upsert-listing
       responses:
         '200':
-          description: Updated
+          description: Ok
           content:
             application/json:
               schema:
@@ -97,7 +97,7 @@ paths:
         - listings
       responses:
         '200':
-          description: Updated
+          description: OK
           content:
             application/json:
               schema:
