@@ -1,19 +1,19 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace listingapi.Models
 {
     public partial class PostalAddress
     {
-        [JsonPropertyName("street_address")]
+        [JsonProperty("street_address")]
         public string StreetAddress { get; set; }
 
-        [JsonPropertyName("postal_code")]
+        [JsonProperty("postal_code")]
         public string PostalCode { get; set; }
 
-        [JsonPropertyName("city")]
+        [JsonProperty("city")]
         public string City { get; set; }
 
-        [JsonPropertyName("country")]
+        [JsonProperty("country")]
         public string Country { get; set; }
     }
 }

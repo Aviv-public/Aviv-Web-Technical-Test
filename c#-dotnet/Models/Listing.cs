@@ -1,35 +1,38 @@
-using System.Text.Json.Serialization;
+
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace listingapi.Models
 {
     public partial class Listing
     {
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("postal_address")]
+        [JsonProperty("postal_address")]
         public PostalAddress PostalAddress { get; set; }
 
-        [JsonPropertyName("description")]
+        [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("building_type")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonProperty("building_type")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public RealEstateListingBuildingType BuildingType { get; set; }
 
-        [JsonPropertyName("latest_price_eur")]
+        [JsonProperty("latest_price_eur")]
         public double LatestPriceEur { get; set; }
 
-        [JsonPropertyName("surface_area_m2")]
+        [JsonProperty("surface_area_m2")]
         public double SurfaceAreaM2 { get; set; }
 
-        [JsonPropertyName("rooms_count")]
+        [JsonProperty("rooms_count")]
         public int RoomsCount { get; set; }
 
-        [JsonPropertyName("bedrooms_count")]
+        [JsonProperty("bedrooms_count")]
         public int BedroomsCount { get; set; }
 
-        [JsonPropertyName("contact_phone_number")]
+        [JsonProperty("contact_phone_number")]
         public string ContactPhoneNumber { get; set; }
     }
 
@@ -48,7 +51,7 @@ namespace listingapi.Models
 
     public partial class ListingPrice
     {
-        [JsonPropertyName("last_price_eur")]
+        [JsonProperty("last_price_eur")]
         public int LastPriceEur { get; set; }
     }
 }
