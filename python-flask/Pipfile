@@ -4,6 +4,7 @@ pydantic = "==1.10.4"
 sqlalchemy =  {version = "==1.4.46", extras = ["mypy"], index = "pypi"}
 flask = "==2.2.2"
 psycopg2-binary = "==2.9.5"
+flask-cors = {version = "==3.0.10", extras = ["mypy"], index = "pypi"}
 
 [[source]]
 name = "pypi"
