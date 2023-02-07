@@ -11,7 +11,7 @@
     "lint:check:eslint": "eslint --ignore-path .lintignore .",
     "lint:check:prettier": "prettier --ignore-path .lintignore --check ./src",
     "lint:check": "npm run lint:check:prettier && npm run lint:check:eslint",
-    "test": "./node_modules/.bin/vitest run --coverage"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^1.2.2",
@@ -55,7 +55,6 @@
     "pre-commit": "1.2.2",
     "prettier": "2.7.1",
     "typescript": "4.8.4",
-    "vite": "3.1.4",
-    "vitest": "^0.26.3"
+    "vite": "3.1.4"
   }
 }
