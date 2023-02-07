@@ -1,5 +1,3 @@
-from typing import Dict, List
-
 from sqlalchemy.orm import scoped_session
 
 from listingapi.adapters.mappers.listings import ListingMapper
@@ -16,21 +14,21 @@ class SqlAlchemyListingRepository(ListingRepository):
     def init(self) -> None:
         Base.metadata.create_all(self.db_session.get_bind())
 
-    def create(self, listing: ListingEntity) -> Dict:
+    def create(self, listing: ListingEntity) -> dict:
         listing_model = ListingMapper.from_entity_to_model(listing)
         self.db_session.add(listing_model)
         self.db_session.commit()
         data = ListingMapper.from_model_to_dict(listing_model)
         return data
 
-    def get_all(self) -> List[Dict]:
+    def get_all(self) -> list[dict]:
         listing_models = self.db_session.query(ListingModel).all()
         listings = [
             ListingMapper.from_model_to_dict(listing) for listing in listing_models
         ]
         return listings
 
-    def update(self, id_: int, listing: ListingEntity) -> Dict:
+    def update(self, id_: int, listing: ListingEntity) -> dict:
         existing_listing = self.db_session.get(ListingModel, id_)
         if existing_listing is None:
             raise ListingNotFoundException
