@@ -97,7 +97,7 @@ The API will provide you with the data you need in order to produce the expected
 
   Response samples:
 
-  ```js
+  ```ts
   [
       {
           "id": 1,
@@ -132,13 +132,13 @@ The API will provide you with the data you need in order to produce the expected
 
   Path Parameters (REQUIRED):
 
-  ```js
+  ```ts
     id: string //The id for the listing to get price history from.
   ```
 
   Response samples:
 
-    ```js
+    ```ts
     [
         {
             "created_date": "2023-01-12T09:23:36Z",
@@ -158,26 +158,26 @@ The API will provide you with the data you need in order to produce the expected
 
   Request body schema (all fields are REQUIRED):
 
-  ```json
-    bedrooms_count: number, //The number of bedrooms
-    building_type: string  //The type of building the listing referers to. allowed values : STUDIO, APARTMENT, HOUSE.
-    contact_phone_number: string //Listing main contact phone number, following the E.164 standard. Match patten : ^\+[1-9]\d{1,14}$.
-    description: string  //A user friendly description for the listing.
-    latest_price_eur: number  //The price of the listing, in euros.	
-    name: string //A user friendly name for the listing.
+  ```
+    bedrooms_count: NUMBER, //The number of bedrooms
+    building_type: STRING  //The type of building the listing referers to. allowed values : STUDIO, APARTMENT, HOUSE.
+    contact_phone_number: STRING //Listing main contact phone number, following the E.164 standard. Match patten : ^\+[1-9]\d{1,14}$.
+    description: STRING  //A user friendly description for the listing.
+    latest_price_eur: NUMBER  //The price of the listing, in euros.	
+    name: NUMBER //A user friendly name for the listing.
     postal_address: {
-        street_address: string //The street address of the postal address.	
-        postal_code: string //The postal code of the postal address.	
-        city: string //The city of the postal address.	
-        country: string //The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.	
+        street_address: STRING //The street address of the postal address.	
+        postal_code: STRING //The postal code of the postal address.	
+        city: STRING //The city of the postal address.	
+        country: STRING //The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.	
         }
-    rooms_count: number //The number of rooms of the listing.
-    surface_area_m2: number  //The surface of the listing, in square meters.
+    rooms_count: NUMBER //The number of rooms of the listing.
+    surface_area_m2: NUMBER  //The surface of the listing, in square meters.
   ```
 
   Payload example:
 
-    ```json
+    ```ts
     {
     "bedrooms_count": 2,
     "building_type": "STUDIO",
@@ -199,7 +199,7 @@ The API will provide you with the data you need in order to produce the expected
 
   Response samples:
 
-    ```json
+    ```ts
     {
     "id": 1,
     "bedrooms_count": 2,
@@ -221,7 +221,8 @@ The API will provide you with the data you need in order to produce the expected
   }
     ```
 
-Note that you can also access the endpoint documentation following [the context section](../README.md#context) of the
+Note that you can also access the endpoint documentation following [the context section](./BACKEND-README.md#context) of
+the
 main README.
 
 
