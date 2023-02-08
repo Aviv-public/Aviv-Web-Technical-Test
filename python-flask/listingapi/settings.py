@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Service
 import os
 
 
@@ -12,6 +9,7 @@ DATABASE = {
     "host": os.getenv("PGHOST"),
     "port": 5432,
 }
+
 DATABASE_CONNECTION_STRING = (
     f"postgresql://"
     f'{DATABASE["user"]}:{DATABASE["password"]}'

@@ -3,9 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from listingapi.adapters.repository.listings import SqlAlchemyListingRepository
-from listingapi.domain.ports.repository.listings import ListingRepository
-from listingapi.domain.usecases.listings import PersistListing, UpdateListing
+from listingapi import adapters
+from listingapi.domain import ports, use_cases
 
 
 @pytest.fixture
@@ -24,17 +23,21 @@ def db_session() -> scoped_session:
 
 
 @pytest.fixture
-def listing_repository(db_session: scoped_session) -> ListingRepository:
-    listing_repository = SqlAlchemyListingRepository(db_session)
+def listing_repository(db_session: scoped_session) -> ports.ListingRepository:
+    listing_repository = adapters.SqlAlchemyListingRepository(db_session)
     listing_repository.init()
     return listing_repository
 
 
 @pytest.fixture
-def persist_listing_use_case(listing_repository: ListingRepository) -> PersistListing:
-    return PersistListing(listing_repository)
+def persist_listing_use_case(
+    listing_repository: ports.ListingRepository,
+) -> use_cases.PersistListing:
+    return use_cases.PersistListing(listing_repository)
 
 
 @pytest.fixture
-def update_listing_use_case(listing_repository: ListingRepository) -> UpdateListing:
-    return UpdateListing(listing_repository)
+def update_listing_use_case(
+    listing_repository: ports.ListingRepository,
+) -> use_cases.UpdateListing:
+    return use_cases.UpdateListing(listing_repository)
