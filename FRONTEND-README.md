@@ -159,6 +159,7 @@ The API will provide you with the data you need in order to produce the expected
   Request body schema (all fields are REQUIRED):
 
   ```json
+    bedrooms_count: number, //The number of bedrooms
     building_type: string  //The type of building the listing referers to. allowed values : STUDIO, APARTMENT, HOUSE.
     contact_phone_number: string //Listing main contact phone number, following the E.164 standard. Match patten : ^\+[1-9]\d{1,14}$.
     description: string  //A user friendly description for the listing.

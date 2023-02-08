@@ -1,21 +1,17 @@
-.header-box {
-  padding: $space-m $space-l;
-  box-shadow: $elevation-1;
-  display: flex;
-  justify-content: space-between;
-}
+@use './src/styles/variables' as *;
 
 .listing-form {
   &__card {
     align-items: baseline;
     border: 1px solid $neutral-1;
     border-radius: 4px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
     display: grid;
     grid-template-columns: 100%;
     margin-bottom: $space-m;
     padding: $space-l;
     width: 100%;
-    background-color: lighten($neutral-1, 20%);
+    background-color: $neutral-0;
   }
 
   &__input-text {

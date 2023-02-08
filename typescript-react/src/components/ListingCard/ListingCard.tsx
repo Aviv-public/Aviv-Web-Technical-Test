@@ -22,13 +22,15 @@ const ListingCard = () => {
           convallis sem velit ut leo. Maecenas maximus volutpat felis.
         </p>
       </section>
-      <a href="/" className={styles['listing-card__link']}>
-        See history &rarr;
-      </a>
-      <p className={styles['listing-card__reference']}>
-        Ref: 123456 <br />
-        Last update: 31/12/2021
-      </p>
+      <div className={styles['listing-card__footer']}>
+        <p className={styles['listing-card__reference']}>
+          Ref: 123456 <br />
+          Last update: 31/12/2021
+        </p>
+        <a href="/" className={styles['listing-card__link']}>
+          See history &rarr;
+        </a>
+      </div>
     </article>
   );
 };

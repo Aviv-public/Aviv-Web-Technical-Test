@@ -1,0 +1,9 @@
+@use './src/styles/variables' as *;
+
+.header {
+  padding: $space-m $space-l;
+  box-shadow: $elevation-1;
+  display: flex;
+  justify-content: space-between;
+  background-color: $neutral-0;
+}
