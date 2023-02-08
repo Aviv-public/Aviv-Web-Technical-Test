@@ -1,0 +1,62 @@
+@use './src/styles/variables' as *;
+
+.listings {
+  padding: $space-s;
+
+  @media screen and (min-width: $min-screen-s) {
+    padding: $space-m;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $min-screen-s) {
+      flex-direction: row;
+    }
+  }
+
+  &__aside {
+    position: sticky;
+    width: 100%;
+
+    @media screen and (min-width: $min-screen-s) {
+      margin-right: $space-l;
+      width: 50vw;
+    }
+
+    @media screen and (min-width: $min-screen-l) {
+      margin-right: $space-l * 2;
+      width: 25vw;
+    }
+  }
+
+  &__section {
+    width: 100%;
+
+    @media screen and (min-width: $min-screen-s) {
+      margin-right: $space-l;
+      width: 50vw;
+    }
+
+    @media screen and (min-width: $min-screen-l) {
+      width: 40vw;
+    }
+  }
+
+  &__title {
+    width: 100%;
+    font-size: $font-xl;
+    text-align: center;
+
+    @media screen and (min-width: $min-screen-l) {
+      margin: 0 30vw $space-l;
+      width: 40vw;
+    }
+  }
+
+  &__sub-title {
+    margin-top: 0;
+    margin-bottom: $space-m;
+  }
+}
