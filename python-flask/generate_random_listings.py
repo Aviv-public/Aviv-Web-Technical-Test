@@ -2,7 +2,7 @@ import logging
 
 from faker import Faker
 
-from tests.factory.entities.listing_factory import ListingFactory
+from tests import factories
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     for i in range(10):
         faker = Faker()
         locale = faker.random_element(["fr-FR", "de-DE", "nl-BE"])
-        listing = ListingFactory(locale).build()
+        listing = factories.entties.Listing(locale).build()
         print(listing.json(ensure_ascii=False))
 
     logger.info("done")

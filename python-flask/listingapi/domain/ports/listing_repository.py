@@ -1,6 +1,6 @@
 import abc
 
-from listingapi.domain.entities.listings import ListingEntity
+from listingapi.domain import entities
 
 
 class ListingRepository(abc.ABC):
@@ -9,7 +9,7 @@ class ListingRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def create(self, listing: ListingEntity) -> dict:
+    def create(self, listing: entities.ListingEntity) -> dict:
         pass
 
     @abc.abstractmethod
@@ -17,5 +17,5 @@ class ListingRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def update(self, id_: int, listing: ListingEntity) -> dict:
+    def update(self, id_: int, listing: entities.ListingEntity) -> dict:
         pass

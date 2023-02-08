@@ -1,17 +1,19 @@
 from freezegun import freeze_time
 
-from listingapi.domain.usecases.listings import PersistListing, UpdateListing
-from tests.factory.entities.listing_factory import ListingFactory
+from listingapi.domain import use_cases
+from tests import factories
 
 
 class TestUpdateListing:
     @freeze_time("2023-01-18 08:50:03.761691")
     def test_update_listing(
         self,
-        persist_listing_use_case: PersistListing,
-        update_listing_use_case: UpdateListing,
+        persist_listing_use_case: use_cases.PersistListing,
+        update_listing_use_case: use_cases.UpdateListing,
     ) -> None:
-        listing_entity = ListingFactory().with_name("Mikhail Schmiedt").build()
+        listing_entity = (
+            factories.entities.Listing().with_name("Mikhail Schmiedt").build()
+        )
         persisted_listing = persist_listing_use_case.listing_repository.create(
             listing_entity
         )

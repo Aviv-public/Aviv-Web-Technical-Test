@@ -16,6 +16,8 @@ ignore =
 docstring-convention=all
 extend-select = D213
 
-# ignore imports in init files
+# Ignore some linting errors in specific files
+# F401 = Module imported but unused
+# E501 = Line too long
 per-file-ignores =
-    __init__.py:F401
+    __init__.py:F401,E501

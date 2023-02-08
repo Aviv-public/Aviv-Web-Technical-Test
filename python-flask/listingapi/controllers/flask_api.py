@@ -3,8 +3,8 @@ from flask_cors import CORS
 from werkzeug.exceptions import NotFound
 
 from listingapi import registry
-from listingapi.domain.entities.listings import ListingEntity
-from listingapi.domain.exceptions.listings import ListingNotFoundException
+from listingapi.domain import entities
+from listingapi.domain.entities import exceptions
 
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ cors = CORS(app)
 @app.route("/listings", methods=["GET"])
 def get_listings() -> tuple[Response, int]:
     """Get all listings."""
-    listings_data = registry.retrieve_listings.perform()
+    listings_data = registry.retrieve_listings_use_case.perform()
     return jsonify(listings_data), 200
 
 
@@ -22,8 +22,8 @@ def get_listings() -> tuple[Response, int]:
 def post_listing() -> tuple[Response, int]:
     """Create a listing."""
     data = request.get_json()
-    listing = ListingEntity.parse_obj(data)
-    listing_data = registry.persist_listing.perform(listing)
+    listing = entities.ListingEntity.parse_obj(data)
+    listing_data = registry.persist_listing_use_case.perform(listing)
     return jsonify(listing_data), 201
 
 
@@ -31,10 +31,10 @@ def post_listing() -> tuple[Response, int]:
 def put_listing(id_: int) -> tuple[Response, int]:
     """Update a listing."""
     data = request.get_json()
-    listing = ListingEntity.parse_obj(data)
+    listing = entities.ListingEntity.parse_obj(data)
     try:
-        listing_data = registry.update_listing.perform(id_, listing)
-    except ListingNotFoundException:
+        listing_data = registry.update_listing_use_case.perform(id_, listing)
+    except exceptions.ListingNotFound:
         raise NotFound
     return jsonify(listing_data), 200
 

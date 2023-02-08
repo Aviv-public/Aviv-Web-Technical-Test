@@ -1,10 +1,10 @@
-from listingapi.adapters.repository.models.listings import ListingModel
-from listingapi.domain.entities.listings import ListingEntity
+from listingapi.adapters.sql_alchemy_listing_repository.models import ListingModel
+from listingapi.domain import entities
 
 
 class ListingMapper:
     @staticmethod
-    def from_entity_to_model(listing: ListingEntity) -> ListingModel:
+    def from_entity_to_model(listing: entities.ListingEntity) -> ListingModel:
         listing_model = ListingModel(
             name=listing.name,
             street_address=listing.postal_address.street_address,

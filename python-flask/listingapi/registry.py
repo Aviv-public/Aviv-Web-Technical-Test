@@ -4,38 +4,36 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from listingapi import settings
-from listingapi.adapters.repository.listings import SqlAlchemyListingRepository
-from listingapi.domain.usecases.listings import (
-    PersistListing,
-    RetrieveListings,
-    UpdateListing,
-)
+from listingapi import adapters, settings
+from listingapi.domain import use_cases
+
+
+# SqlAlchemy logging
+logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
 
 # Logger
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+_handler = logging.StreamHandler(sys.stdout)
+_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+logger.addHandler(_handler)
 
-logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
-# Init Repositories
+# Database connection
 postgres_engine = create_engine(
     settings.DATABASE_CONNECTION_STRING,
     echo=True,
 )
-
 _session_factory = sessionmaker(autocommit=False, autoflush=True, bind=postgres_engine)
-db_session: scoped_session = scoped_session(_session_factory)
+_db_session: scoped_session = scoped_session(_session_factory)
 
-# Import Repository
-sql_alchemy_listing_repository = SqlAlchemyListingRepository(db_session)
+
+# Adapters
+_sql_alchemy_listing_repository = adapters.SqlAlchemyListingRepository(_db_session)
+
 
 # Use cases
-persist_listing = PersistListing(sql_alchemy_listing_repository)
-retrieve_listings = RetrieveListings(sql_alchemy_listing_repository)
-update_listing = UpdateListing(sql_alchemy_listing_repository)
+persist_listing_use_case = use_cases.PersistListing(_sql_alchemy_listing_repository)
+retrieve_listings_use_case = use_cases.RetrieveListings(_sql_alchemy_listing_repository)
+update_listing_use_case = use_cases.UpdateListing(_sql_alchemy_listing_repository)
