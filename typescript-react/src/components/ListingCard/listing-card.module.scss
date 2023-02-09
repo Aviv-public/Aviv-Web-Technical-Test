@@ -9,7 +9,7 @@
   margin-bottom: $space-m;
   padding: $space-l;
   background-color: $neutral-0;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: $elevation-1;
 
 
   &__price {
