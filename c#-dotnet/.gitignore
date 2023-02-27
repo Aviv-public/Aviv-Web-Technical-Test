@@ -1,0 +1,9 @@
+﻿.vs
+obj
+bin
+*/bin
+*/obj
+secret*.json
+appsettings.Development.json
+.vscode/*
+

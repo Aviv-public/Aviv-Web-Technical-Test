@@ -1,0 +1,41 @@
+---
+repository:
+    name: backend-technical-test
+    description: Backend Technical test for new applicants
+    topics: python, api, typescript, docker
+    private: false
+
+    has_issues: false
+    has_projects: false
+    has_wiki: false
+    has_downloads: false
+
+    default_branch: master
+
+    allow_squash_merge: true
+    allow_merge_commit: true
+    allow_rebase_merge: true
+    allow_auto_merge: true
+
+    delete_branch_on_merge: true
+    enable_automated_security_fixes: true
+    enable_vulnerability_alerts: true
+
+teams:
+    - name: managers
+      permission: admin
+    - name: employees
+      permission: push
+
+branches:
+    - name: master
+      protection:
+          required_pull_request_reviews:
+              required_approving_review_count: 1
+              dismiss_stale_reviews: false
+              require_code_owner_reviews: false
+          enforce_admins: true
+          required_linear_history: false
+          required_signatures: true
+          required_conversation_resolution: true
+          restrictions: null

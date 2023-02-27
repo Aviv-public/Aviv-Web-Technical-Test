@@ -1,0 +1,87 @@
+version: "3.4"
+
+services:
+  python-flask:
+    image: ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest
+    build:
+      context: python-flask
+    labels:
+      - aviv-technical-test
+    user: "listingapi:listingapi"
+    volumes:
+      - ./python-flask:/home/listingapi/app:rw
+    command:
+      [
+        "/home/listingapi/wait-for-postgres.sh",
+        "db:5432",
+        "--",
+        "python",
+        "app.py"
+      ]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      PGHOST: db
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
+
+  typescript-serverless:
+    build:
+      context: typescript-serverless
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    labels:
+      - aviv-technical-test
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    volumes:
+      - ./typescript-serverless:/home/listingapi/app:rw
+      - /home/listingapi/app/node_modules
+      - ./schemas:/home/listingapi/schemas:rw
+    command: ["npm", "run", "watch"]
+    ports:
+      - "8383:3000"
+    depends_on:
+      - db
+    environment:
+      PGHOST: db
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
+
+  dotnet:
+    build: c#-dotnet
+    labels:
+      - aviv-technical-test
+    ports:
+      - 8686:80
+    depends_on:
+      - db
+
+  db:
+    image: "mdillon/postgis:11-alpine"
+    labels:
+      - aviv-technical-test
+    volumes:
+      - type: volume
+        source: pg-data
+        target: /var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "listing"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    environment:
+      POSTGRES_DB: listing
+      POSTGRES_USER: listing
+      POSTGRES_PASSWORD: listing
+
+volumes:
+  pg-data:

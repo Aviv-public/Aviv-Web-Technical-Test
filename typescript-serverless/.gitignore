@@ -1,0 +1,5 @@
+types.generated.d.ts
+node_modules/
+dist/
+.serverless
+.esbuild

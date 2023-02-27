@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96C49AA0-A393-4760-8328-39C0BAF360D6}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		..\.github\workflows\ci-c#-dotnet.yaml = ..\.github\workflows\ci-c#-dotnet.yaml
+		Db\init.sql = Db\init.sql
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "listingapi", "listingapi.csproj", "{4A836E5E-7418-4004-A48D-5A0A71E581B2}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C36EA6E4-18F2-4B56-99BC-CDBBA6E30727}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "listingapi.unittests", "tests\listingapi.unittests\listingapi.unittests.csproj", "{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A836E5E-7418-4004-A48D-5A0A71E581B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A836E5E-7418-4004-A48D-5A0A71E581B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A836E5E-7418-4004-A48D-5A0A71E581B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A836E5E-7418-4004-A48D-5A0A71E581B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CBF5FF5-9018-49EB-A1D6-A2F8EA246F4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CAC5C4F3-C6C0-48F7-8FCB-4A68BFC2BD03} = {C36EA6E4-18F2-4B56-99BC-CDBBA6E30727}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB30415A-9604-4B97-AB94-0797C730AAF4}
+	EndGlobalSection
+EndGlobal

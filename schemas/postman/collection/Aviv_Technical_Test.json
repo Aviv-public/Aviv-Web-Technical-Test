@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "6f0ff360-2358-43e3-8005-2e35e3c5a9ca",
+		"name": "Aviv Technical Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19906920"
+	},
+	"item": [
+		{
+			"name": "Update a listing",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Mikhail Schmiedt\",\n   \"postal_address\":{\n      \"street_address\":\"Johan-Ernst-Ring 7\",\n      \"postal_code\":\"21810\",\n      \"city\":\"Berchtesgaden\",\n      \"country\":\"DE\"\n   },\n   \"description\":\"Lorem Ipsum Dolor ...\",\n   \"building_type\":\"STUDIO\",\n   \"latest_price_eur\":720000,\n   \"surface_area_m2\":167,\n   \"rooms_count\":6,\n   \"bedrooms_count\":2,\n   \"contact_phone_number\":\"+219779210354\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{applicationURI}}/listings/10",
+					"host": [
+						"{{applicationURI}}"
+					],
+					"path": [
+						"listings",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a listing",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Mikhail Schmiedt\",\n   \"postal_address\":{\n      \"street_address\":\"Johan-Ernst-Ring 7\",\n      \"postal_code\":\"21810\",\n      \"city\":\"Berchtesgaden\",\n      \"country\":\"DE\"\n   },\n   \"description\":\"Lorem Ipsum Dolor ...\",\n   \"building_type\":\"STUDIO\",\n   \"latest_price_eur\":720000,\n   \"surface_area_m2\":167,\n   \"rooms_count\":6,\n   \"bedrooms_count\":2,\n   \"contact_phone_number\":\"+219779210354\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{applicationURI}}/listings",
+					"host": [
+						"{{applicationURI}}"
+					],
+					"path": [
+						"listings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all listings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{applicationURI}}/listings",
+					"host": [
+						"{{applicationURI}}"
+					],
+					"path": [
+						"listings"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
