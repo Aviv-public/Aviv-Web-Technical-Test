@@ -10,10 +10,9 @@ The project can be improved on different ways. You are totally free to improve t
 You can explain your improvements and choices on the [SOLUTION.md](../SOLUTION.md) file 
 
 ## Using a command line interface
-1. Run `git clone https://github.com/MeilleursAgents/aviv-technical-test.git`
-2. Run `cd c#-dotnet`
-3. Run `docker compose up` (this will build the listingapi project and the database)
-4. For the listingapi swagger go to http://localhost:8686/swagger/index.html 
+1. Run `cd c#-dotnet`
+2. Run `docker compose up` (this will build the listingapi project and the database)
+3. For the listingapi swagger go to http://localhost:8686/swagger/index.html 
 
 
 ## Using visual studio
