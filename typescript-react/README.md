@@ -88,7 +88,7 @@ Simply clone the repository :
 
 To start the API you will need to install Docker Desktop first , go to [Docker](https://www.docker.com/get-started).
 
-The [Swagger](https://swagger.io/solutions/api-documentation/) and API are available at the following address http://localhost:8080 by using the following command from the root folder of the repository :
+The API is available at the following address http://localhost:8080 by using the following command from the root folder of the repository :
 
     docker-compose -p aviv-technical-test run -p 8080:8080 --rm python-flask python app.py
 
