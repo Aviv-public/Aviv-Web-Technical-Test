@@ -21,7 +21,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ES6",
-    "useDefineForClassFields": true,
+    "useDefineForClassFields": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

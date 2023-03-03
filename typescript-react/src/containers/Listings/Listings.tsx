@@ -1,5 +1,5 @@
-import ListingForm from '@components/ListingForm';
 import ListingCard from '@components/ListingCard';
+import ListingForm from '@components/ListingForm';
 
 import styles from './listings.module.scss';
 
