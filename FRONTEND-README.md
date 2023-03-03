@@ -58,7 +58,7 @@ be accepted by the server.
 We want the main page to provide a list of cards, each card representing a listing. The user should be able to click a
 card to go to a sub-page that will display the price history of the selected listing.
 
-An [example](./src/containers/Listings/Listings.tsx) of a card is provided along the test for which you have a preview
+An [example](./typescript-react/src/components/ListingCard/ListingCard.tsx) of a card is provided along the test for which you have a preview
 below :
 
 <img src="./typescript-react/assets/listing-card.png"  width="400">
@@ -164,7 +164,7 @@ The API will provide you with the data you need in order to produce the expected
     contact_phone_number: STRING //Listing main contact phone number, following the E.164 standard. Match patten : ^\+[1-9]\d{1,14}$.
     description: STRING  //A user friendly description for the listing.
     latest_price_eur: NUMBER  //The price of the listing, in euros.	
-    name: NUMBER //A user friendly name for the listing.
+    name: STRING //A user friendly name for the listing.
     postal_address: {
         street_address: STRING //The street address of the postal address.	
         postal_code: STRING //The postal code of the postal address.	
