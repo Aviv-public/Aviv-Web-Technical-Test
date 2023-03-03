@@ -1,5 +1,5 @@
 import 'sanitize.css';
-import './styles/global.scss';
+import '@styles/global.scss';
 
 import { createRoot } from 'react-dom/client';
 
