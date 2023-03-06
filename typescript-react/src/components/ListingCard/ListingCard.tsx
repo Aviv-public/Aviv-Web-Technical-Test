@@ -4,13 +4,13 @@ const ListingCard = () => {
   return (
     <article className={styles['listing-card']}>
       <span className={styles['listing-card__price']}>320 000 &euro;</span>
-      <dl className={styles['listing-card__properties']}>
-        <dt className={styles['listing-card__properties-item']}>Studio</dt>
-        <dt className={styles['listing-card__properties-item']}>
+      <ul className={styles['listing-card__properties']}>
+        <li className={styles['listing-card__properties-item']}>Studio</li>
+        <li className={styles['listing-card__properties-item']}>
           74m<sup>2</sup>
-        </dt>
-        <dt className={styles['listing-card__properties-item']}>3 rooms</dt>
-      </dl>
+        </li>
+        <li className={styles['listing-card__properties-item']}>3 rooms</li>
+      </ul>
       <section className={styles['listing-card__address']}>
         <address>48, boulevard des capucins, 10294, Paris</address>
       </section>
@@ -25,7 +25,7 @@ const ListingCard = () => {
       <div className={styles['listing-card__footer']}>
         <p className={styles['listing-card__reference']}>
           Ref: 123456 <br />
-          Last update: 31/12/2021
+          Last update: 2021/12/31
         </p>
         <a href="/" className={styles['listing-card__link']}>
           See history &rarr;
