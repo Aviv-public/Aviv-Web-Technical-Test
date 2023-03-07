@@ -1,4 +1,4 @@
-from factory import Factory, Faker, LazyAttribute, SelfAttribute, SubFactory
+from factory import Factory, Faker, SelfAttribute, SubFactory
 
 from .postal_address_factory import PostalAddress
 

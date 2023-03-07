@@ -1,3 +1,5 @@
+from typing import Iterator
+
 import factory
 import pytest
 from sqlalchemy import create_engine
@@ -45,6 +47,6 @@ def update_listing_use_case(
 
 
 @pytest.fixture(scope="session", autouse=True)
-def fix_faker_local():
+def fix_faker_local() -> Iterator:
     with factory.Faker.override_default_locale("fr_FR"):
         yield
