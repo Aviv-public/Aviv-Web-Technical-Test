@@ -1,3 +1,4 @@
+import factory
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -41,3 +42,9 @@ def update_listing_use_case(
     listing_repository: ports.ListingRepository,
 ) -> use_cases.UpdateListing:
     return use_cases.UpdateListing(listing_repository)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def fix_faker_local():
+    with factory.Faker.override_default_locale("fr_FR"):
+        yield
