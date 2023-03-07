@@ -8,7 +8,7 @@ from listingapi import adapters
 from listingapi.domain import ports, use_cases
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def db_session() -> scoped_session:
     in_memory_engine = create_engine(
         "sqlite:///:memory:",
@@ -23,21 +23,21 @@ def db_session() -> scoped_session:
     return db_session
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def listing_repository(db_session: scoped_session) -> ports.ListingRepository:
     listing_repository = adapters.SqlAlchemyListingRepository(db_session)
     listing_repository.init()
     return listing_repository
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def persist_listing_use_case(
     listing_repository: ports.ListingRepository,
 ) -> use_cases.PersistListing:
     return use_cases.PersistListing(listing_repository)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def update_listing_use_case(
     listing_repository: ports.ListingRepository,
 ) -> use_cases.UpdateListing:
