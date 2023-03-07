@@ -27,7 +27,7 @@ stop:  ## Stop the running containers
 
 .PHONY: build
 build: ## Build the python docker image
-	docker build --no-cache --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest .
+	docker build --label python-flask --label aviv-technical-test -t ghcr.io/meilleursagents/aviv-technical-test/python-flask:latest .
 
 .PHONY: clear
 clear:  ## Clear volumes and stop containers
