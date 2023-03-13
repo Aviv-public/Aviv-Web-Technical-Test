@@ -1,5 +1,5 @@
-import Header from './components/Header/Header';
-import Listings from './containers/Listings/Listings';
+import Header from '@components/Header/Header';
+import Listings from '@containers/Listings/Listings';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => (

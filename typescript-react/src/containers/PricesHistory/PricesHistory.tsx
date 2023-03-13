@@ -1,4 +1,5 @@
-import PricesHistoryCard from '../../components/PriceHistoryCard';
+import PricesHistoryCard from '@components/PriceHistoryCard';
+
 import styles from './prices-history.module.scss';
 
 const PricesHistory = () => {

@@ -1,9 +1,9 @@
-import 'sanitize.css';
-import './styles/global.scss';
-
 import { createRoot } from 'react-dom/client';
 
 import App from './App';
+
+import 'sanitize.css';
+import '@styles/global.scss';
 
 const rootSelectorId = 'root';
 const rootElement = document.getElementById(rootSelectorId);
