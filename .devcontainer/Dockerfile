@@ -1,0 +1,3 @@
+
+RUN pwd
+RUN ls
