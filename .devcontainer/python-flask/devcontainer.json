@@ -1,5 +1,5 @@
 {
-	"name": "TypeScript Serverless",
+	"name": "Python Flask",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/python-flask",
@@ -8,6 +8,13 @@
 			"version": "latest"
 		}
 	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"git.openRepositoryInParentFolders": "always"
+			}
+		}
+	},
 	"forwardPorts": [8080, 5432],
-	"postCreateCommand": "ls"
+	"postCreateCommand": "pipenv install --deploy --system --dev"
 }

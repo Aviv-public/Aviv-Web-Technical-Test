@@ -8,6 +8,13 @@
 			"version": "latest"
 		}
 	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"git.openRepositoryInParentFolders": "always"
+			}
+		}
+	},
 	"forwardPorts": [3000, 5432],
 	"postCreateCommand": "npm ci"
 }
