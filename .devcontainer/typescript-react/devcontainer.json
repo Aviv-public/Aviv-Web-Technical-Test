@@ -16,5 +16,17 @@
 		}
 	},
 	"forwardPorts": [5173, 8080, 5432],
-	"postCreateCommand": "npm ci"
+	"postCreateCommand": "npm ci",
+	"portsAttributes": {
+		"5173": {
+			"label": "React application",
+			"onAutoForward": "openPreview"
+		},
+		"5432": {
+			"label": "Postgres database"
+		},
+		"8080": {
+			"label": "Backend API"
+		}
+	}
 }
