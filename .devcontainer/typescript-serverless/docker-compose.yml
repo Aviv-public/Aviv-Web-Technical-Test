@@ -8,9 +8,10 @@ services:
     command: sleep infinity
     network_mode: service:db
     environment:
-      POSTGRES_DB: listing
-      POSTGRES_USER: listing
-      POSTGRES_PASSWORD: listing
+      PGHOST: localhost
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
 
   db:
     image: "mdillon/postgis:11-alpine"
