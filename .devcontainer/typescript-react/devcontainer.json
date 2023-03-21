@@ -15,6 +15,9 @@
 			}
 		}
 	},
+	"remoteEnv": {
+		"BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+	},
 	"forwardPorts": [5173, 8080, 5432],
 	"postCreateCommand": "npm ci",
 	"portsAttributes": {

@@ -86,11 +86,7 @@ Simply clone the repository :
 
 ### Start the API
 
-To start the API you will need to install Docker Desktop first , go to [Docker](https://www.docker.com/get-started).
-
-The API is available at the following address `https://${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}` by using the following command from the root folder of the repository :
-
-    docker-compose -p aviv-technical-test run -p 8080:8080 --rm python-flask python app.py
+The API is available at the address stored in the `BACKEND_API_HOST` environment variable.
 
 ## API Endpoints
 
