@@ -2,12 +2,12 @@
 	"name": "TypeScript React",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/typescript-serverless",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/typescript-react",
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {
 			"version": "latest"
 		}
 	},
-	"forwardPorts": [3000, 5432],
+	"forwardPorts": [5173, 8080, 5432],
 	"postCreateCommand": "npm ci"
 }

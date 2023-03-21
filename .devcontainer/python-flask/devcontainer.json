@@ -1,0 +1,13 @@
+{
+	"name": "TypeScript Serverless",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/python-flask",
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest"
+		}
+	},
+	"forwardPorts": [8080, 5432],
+	"postCreateCommand": "ls"
+}
