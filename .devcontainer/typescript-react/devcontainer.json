@@ -20,6 +20,7 @@
 	},
 	"forwardPorts": [5173, 8080, 5432],
 	"postCreateCommand": "npm ci",
+	"postStartCommand": "gh codespace ports visibility 8080:public -c $CODESPACE_NAME",
 	"portsAttributes": {
 		"5173": {
 			"label": "React application",

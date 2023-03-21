@@ -3,6 +3,9 @@
 Welcome to the AVIV technical test! This README will provide you with everything you need to know to start the exercise.
 Please read it thoroughly before you start working on your implementation proposal.
 
+completion time
+solution md
+
 ## 1. A bit of context
 
 At AVIV, we often deal with _listings_. A listing is the description of a real estate that can be rented or bought. It
