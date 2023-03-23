@@ -24,8 +24,7 @@
 	},
 	"forwardPorts": [5173, 8000, 8080, 5432],
 	"postCreateCommand": "npm ci",
-	// todo add back 8000
-	"postStartCommand": "gh codespace ports visibility 8080:public -c $CODESPACE_NAME",
+	"postStartCommand": "gh codespace ports visibility 8080:public 8000:public -c $CODESPACE_NAME",
 	"portsAttributes": {
 		"5173": {
 			"label": "React application",
@@ -34,8 +33,11 @@
 		"5432": {
 			"label": "Postgres database"
 		},
-		"8080": {
+		"8000": {
 			"label": "Backend API"
+		},
+		"8080": {
+			"label": "OpenAPI schema"
 		}
 	}
 }
