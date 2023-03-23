@@ -9,8 +9,7 @@ services:
     network_mode: service:api
 
   api:
-    build:
-      context: ../../python-flask
+    image: python:3.11-slim
     command:
       [
         "/home/listingapi/wait-for-postgres.sh",
@@ -19,6 +18,10 @@ services:
         "python",
         "app.py"
       ]
+    working_dir: /home/listingapi
+    volumes:
+      - ../../python-flask:/home/listingapi/app
+      - ../../docker/wait-for-postgres.sh:/home/listingapi/wait-for-postgres.sh
     environment:
       PGHOST: localhost
       PGDATABASE: listing

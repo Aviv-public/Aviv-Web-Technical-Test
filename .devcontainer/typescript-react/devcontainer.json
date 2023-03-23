@@ -22,7 +22,7 @@
 	"remoteEnv": {
 		"BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 	},
-	"forwardPorts": [5173, 8000, 8080, 5432],
+	"forwardPorts": [5173, 8000, 80, 5432],
 	"postCreateCommand": "npm ci",
 	"postStartCommand": "gh codespace ports visibility 8080:public 8000:public -c $CODESPACE_NAME",
 	"portsAttributes": {
@@ -36,7 +36,7 @@
 		"8000": {
 			"label": "Backend API"
 		},
-		"8080": {
+		"80": {
 			"label": "OpenAPI schema"
 		}
 	}
