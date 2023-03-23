@@ -36,5 +36,10 @@ services:
       POSTGRES_PASSWORD: listing
     network_mode: service:api
 
+  schema:
+    image: "httpd:2.4"
+    volumes:
+      - ../../schemas/listingapi.yaml:/usr/local/apache2/htdocs/listingsapi.yaml
+
 volumes:
   postgres-data:

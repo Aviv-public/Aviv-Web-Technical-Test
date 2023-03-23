@@ -15,6 +15,6 @@
 			}
 		}
 	},
-	"forwardPorts": [8080, 5432],
+	"forwardPorts": [8000, 5432],
 	"postCreateCommand": "pipenv install --deploy --system --dev"
 }

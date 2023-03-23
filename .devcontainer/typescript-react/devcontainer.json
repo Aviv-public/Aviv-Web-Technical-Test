@@ -6,6 +6,10 @@
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {
 			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": false,
+			"version": "latest"
 		}
 	},
 	"customizations": {
@@ -18,8 +22,9 @@
 	"remoteEnv": {
 		"BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 	},
-	"forwardPorts": [5173, 8080, 5432],
+	"forwardPorts": [5173, 8000, 8080, 5432],
 	"postCreateCommand": "npm ci",
+	// todo add back 8000
 	"postStartCommand": "gh codespace ports visibility 8080:public -c $CODESPACE_NAME",
 	"portsAttributes": {
 		"5173": {
