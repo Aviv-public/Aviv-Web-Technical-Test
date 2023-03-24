@@ -9,7 +9,6 @@ services:
     network_mode: service:api
 
   api:
-    #image: python:3.11-slim
     build:
       context: ../../python-flask
     command:
@@ -20,10 +19,6 @@ services:
         "python",
         "app.py"
       ]
-    #working_dir: /home/listingapi
-    #volumes:
-    #  - ../../python-flask:/home/listingapi/app
-    #  - ../../docker/wait-for-postgres.sh:/home/listingapi/wait-for-postgres.sh
     environment:
       PGHOST: localhost
       PGDATABASE: listing
@@ -45,6 +40,7 @@ services:
     image: "httpd:2.4"
     volumes:
       - ../../schemas/listingapi.yaml:/usr/local/apache2/htdocs/listingsapi.yaml
+    network_mode: service:api
 
 volumes:
   postgres-data:

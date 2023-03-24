@@ -19,12 +19,7 @@
 			}
 		}
 	},
-	"remoteEnv": {
-		"BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-	},
-	"forwardPorts": [5173, 8000, 80, 5432],
-	"postCreateCommand": "npm ci",
-	"postStartCommand": "gh codespace ports visibility 8080:public 8000:public -c $CODESPACE_NAME",
+	"forwardPorts": [5173, 8080, 80, 5432],
 	"portsAttributes": {
 		"5173": {
 			"label": "React application",
@@ -33,11 +28,17 @@
 		"5432": {
 			"label": "Postgres database"
 		},
-		"8000": {
+		"8080": {
 			"label": "Backend API"
 		},
 		"80": {
 			"label": "OpenAPI schema"
 		}
-	}
+	},
+	"remoteEnv": {
+		"BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}",
+		"REDOC_URL": "https://redocly.github.io/redoc/?url=https://${localEnv:CODESPACE_NAME}-80.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/listingsapi.yaml"
+	},
+	"postCreateCommand": "npm ci",
+	"postStartCommand": "gh codespace ports visibility 8080:public 80:public -c $CODESPACE_NAME"
 }
