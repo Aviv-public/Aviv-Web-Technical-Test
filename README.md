@@ -36,7 +36,7 @@ The frontend test provides an implementation that consumes it.
 Before digging into the test, please note the following expectations:
 
 - You should allow between **90 minutes - 180 minutes** for this test, including the discovery phase;
-  - Please, indicate on the (./SOLUTION.md) file how many time you spent on the test
+- Please, indicate on the [SOLUTION.md](./SOLUTION.md) file how many time you spent on the test
 - During the development phase, be sure to **write down your assumptions** and any other development you were not able to achieve, in the [SOLUTION.md](./SOLUTION.md) file.
 
 The aim of the technical test is to serve as a basis for the debrief that follows it, in which you will defend your decisions and discuss what might be missing in your implementation.
