@@ -80,10 +80,6 @@ The sub-page should be accessible through the url `/:listingId/prices`.
 
 ## How to start the test
 
-Simply clone the repository :
-
-> git clone git@github.com:MeilleursAgents/aviv-technical-test.git
-
 ### Start the API
 
 To start the API you will need to install Docker Desktop first , go to [Docker](https://www.docker.com/get-started).
