@@ -21,7 +21,7 @@ a local IDE while having your code running remotely. It comes with a few drawbac
 Please follow carefully these instructions to get started. This is the recommended path to run the technical test and should save you plenty of setup times.
 You can always chose a different approach you are more used to (e.g., cloning and running locally the test), at the risk of spending more time on the test.
 
-### I - Create your Codespace
+### I - Creating your Codespace
 
 GitHub provides a feature called GitHub Codespaces to allow developing using VS Code directly in development containers. This is the recommended approach for
 completing this test.
@@ -38,7 +38,7 @@ Creating the Codespace can take a few minutes. Read the following steps while wa
 > 
 > Before starting using your Codespace, **please finish reading the following**.
 
-### II - A few tips on how to use a Codespace
+### II - A few tips on using your Codespace
 
 When the Codespace, please wait a few additional seconds. The Codespace is ready when the README is opened and displayed in the main screen of VS Code. You may
 not see a loader while it's getting prepared. Just be patient. You can assume the Codespace is ready when the README is displayed to you.
@@ -58,7 +58,7 @@ When you have completed the exercises, you are expected to send a pull request l
 pull request template, and provide all the relevant details. This pull request will be reviewed by multiple developers from AVIV. If you want to have
 a look at the questions you are expected to answer to manage your time properly, you can have a look to the [pull request template](./.github/pull_request_template.md).
 
-### IV - A bit of context
+### IV - Understanding the context
 
 At AVIV, we often deal with _listings_. A listing is the description of a real estate that can be rented or bought. It
 contains information such as price and availability. We also display real estates characteristics, such as its category
@@ -74,7 +74,7 @@ Your team made a schema of the current application architecture:
 
 ![Application Architecture](./docs/Aviv-Technical-Test-Architecture.png "Application Architecture")
 
-### V - You can start coding!
+### V - Starting to code
 
 You can now start reading the README in your Codespace. Enjoy coding!
 
