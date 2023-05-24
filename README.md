@@ -42,21 +42,18 @@ Creating the Codespace can take a few minutes. Read the following steps while wa
 
 ### II - A few tips on using your Codespace
 
-When the Codespace, please wait a few additional seconds. The Codespace is ready when the README is opened and displayed in the main screen of VS Code. You may
-not see a loader while it's getting prepared. Just be patient. You can assume the Codespace is ready when the README is displayed to you.
+**Wait a bit longer.** When the Codespace is created, please wait a few dozen additional seconds. The Codespace is ready when the README is opened and displayed in the main screen of VS Code. You can assume the Codespace is ready when the README is displayed to you.
 
-By default, the Codespace will be pre-configured so you can immediately start coding. The port forwarding rules are pre-configured so you do not have to perform
-any additional configuration. If you are unsure on how to reach a service from your Codespace, you can go to the `PORTS` tab next to your console. You will see
-all the services. Services that do not have a green dot are not started yet. You will launch them by following the Codespace README.
+**Repository default state.** By default, the Codespace will be pre-configured so you can immediately start your usual coding process, like you would do just after cloning a repository. You can use Git normally in your Codespace.
 
-You can click on the local address to access the running service (e.g., a running API). By default, the visibility of services is private (it means you need to
-be authenticated with GitHub to load the page). If you want access from an exernal tool (for instance Postman), you can change the visibility to Public.
-
-You can use Git normally in your Codespace.
+**Port forwarding when coding in the Cloud.** The Codespace port forwarding rules are pre-configured so you do not have to perform
+any additional configuration. If you are unsure on how to reach a service from your Codespace, you can go to the `PORTS` tab next to your open `TERMINAL`. You will see
+all the available services. Services that do not have a green 🟢 icon are not started yet. You will launch them by following the Codespace README that is open to you on first start. You can click on the local address to access the running service (e.g., a running API). By default, the visibility of services is `🔒 Private` (it means you need to
+be authenticated with GitHub to load the page). If you want access from an exernal tool (for instance Postman), you can change the visibility to `Public`.
 
 ### III - Handing over your work
 
-When you have completed the exercises, you are expected to send a pull request link to the recruiter. Make sure to read and answer the questions in the
+When you have completed the exercises, you are expected to **send a pull request link** to the recruiter. Make sure to read and answer all the questions in the
 pull request template, and provide all the relevant details. This pull request will be reviewed by multiple developers from AVIV. If you want to have
 a look at the questions you are expected to answer to manage your time properly, you can have a look to the [pull request template](./.github/pull_request_template.md).
 
