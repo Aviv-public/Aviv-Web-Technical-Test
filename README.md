@@ -30,7 +30,7 @@ You can always chose a different approach you are more used to (e.g., cloning an
 GitHub provides a feature called GitHub Codespaces to allow developing using VS Code directly in development containers. This is the recommended approach for
 completing this test.
 
-Make sure you are signed in, then click on the green `‹ › Code` button at the top of this page and on the `⋯` at the top right of the modal (make sure to *not*
+Make sure you are signed in, then click on the green `‹› Code` button at the top of this page and on the `⋯` at the top right of the modal (make sure to *not*
 use the big green `Create codespace` button). Click on `+ New with options...`.
 
 Do not change the branch on the new page nor the region or the Machine type. In the `Dev container configuration`, choose the one that matches the technical test
