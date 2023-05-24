@@ -3,10 +3,62 @@
 Welcome to the AVIV technical test! This README will provide you with everything you need to know to start the exercise.
 Please read it thoroughly before you start working on your implementation proposal.
 
-completion time
-solution md
+## Before you start
 
-## 1. A bit of context
+> **⚠️ Heads up!**
+> 
+> Please read this section carefully before starting doing any development. It contains critical instructions that you are expecting to follow.
+
+**Pick the right test.** You are expected to achieve *one* technical test to assert your technical skills depending on the interview process you are currently in. If you are unsure of which test you should achieve, please reach out to the recruiter you are in contact with.
+
+**Spend a reasonable amount of time.** There is no hard limit on how much time you should spend on the exercise. In practice, we do not expect candidates
+to spend more than three hours on it. In the pull request you will create, a few questions will be asked including the amount of time you spent on it.
+
+**Running the test.** We recommend candidates to use GitHub Codespaces to run this test. It is preconfigured so you can start to code quickly, enabling you
+to show most of your skills. You can still clone the repository and work locally if you prefer. Note that you can also work in a hybrid environment, using
+a local IDE while having your code running remotely. It comes with a few drawbacks documented in the Known issues section below.
+
+## Getting started
+
+Please follow carefully these instructions to get started. This is the recommended path to run the technical test and should save you plenty of setup times.
+You can always chose a different approach you are more used to (e.g., cloning and running locally the test), at the risk of spending more time on the test.
+
+1. **Create your Codespace**
+
+GitHub provides a feature called GitHub Codespaces to allow developing using VS Code directly in development containers. This is the recommended approach for
+completing this test.
+
+Make sure you are signed in, then click on the green `‹ › Code` button at the top of this page and on the `⋯` at the top right of the modal (make sure to *not*
+use the big green `Create codespace` button). Click on `+ New with options...`.
+
+Do not change the branch on the new page nor the region or the Machine type. In the `Dev container configuration`, choose the one that matches the technical test
+you're expected to perform. Finally, click on the `Create codespace` button.
+
+Creating the Codespace can take a few minutes. Read the following steps while waiting.
+
+> **⚠️ Heads up!**
+> 
+> Before starting using your Codespace, please finish to read the following.
+
+2. **A few tips on how to use a Codespace**
+
+When the Codespace, please wait a few additional seconds. The Codespace is ready when the README is opened and displayed in the main screen of VS Code. You may
+not see a loader while it's getting prepared. Just be patient. You can assume the Codespace is ready when the README is displayed to you.
+
+By default, the Codespace will be pre-configured so you can immediately start coding. The port forwarding rules are pre-configured so you do not have to perform
+any additional configuration. If you are unsure on how to reach a service from your Codespace, you can go to the `PORTS` tab next to your console. You will see
+all the services. Services that do not have a green dot are not started yet. You will launch them by following the Codespace README.
+
+You can click on the local address to access the running service (e.g., a running API). By default, the visibility of services is private (it means you need to
+be authenticated with GitHub to load the page). If you want access from an exernal tool (for instance Postman), you can change the visibility to Public.
+
+3. **Handing over your work**
+
+When you have completed the exercises, you are expected to send a pull request link to the recruiter. Make sure to read and answer the questions in the
+pull request template, and provide all the relevant details. This pull request will be reviewed by multiple developers from AVIV. If you want to have
+a look at the questions you are expected to answer to manage your time properly, you can have a look to the [pull request template](./.github/pull_request_template.md).
+
+4. **A bit of context**
 
 At AVIV, we often deal with _listings_. A listing is the description of a real estate that can be rented or bought. It
 contains information such as price and availability. We also display real estates characteristics, such as its category
@@ -18,43 +70,21 @@ API should be developed to provide the listings, so they can be displayed on a s
 already started to provide a resource endpoint to retrieve, create and update such listings in an API called the
 `ListingAPI`.
 
-The `ListingAPI` has a schema that is documented in the [schemas/listingapi.yaml](./schemas/listingapi.yaml) folder.
+Your team made a schema of the current application architecture:
 
-You should upload the YAML file to [ReDoc](https://redocly.github.io/redoc/) and browse it carefully.
-
-Your team made a schema of the current application architecture
 ![Application Architecture](./schemas/Aviv-Technical-Test-Architecture.png "Application Architecture")
 
-## 2. Before starting
+5. **You can start coding!**
 
-### Installation
+You can now start reading the README in your Codespace. Enjoy coding!
 
-If you need to install Docker Desktop, go to the [Docker Get Started](https://www.docker.com/get-started/) page.
-You will also need [`docker-compose`](https://docs.docker.com/compose/) to run this test.
+## Known issues
 
-The backend test provides an implementation of the `ListingAPI`.
+This section contains a few details on known issues and workarounds.
 
-The frontend test provides an implementation that consumes it.
+### Working with JetBrains Gateway
 
-Before digging into the test, please note the following expectations:
-
-- You should allow about **90 minutes** for this test, including the discovery phase;
-- During the development phase, be sure to **write down your assumptions** and any other development you were not able to achieve, in the [SOLUTION.md](./SOLUTION.md) file.
-
-The aim of the technical test is to serve as a basis for the debrief that follows it, in which you will defend your decisions and discuss what might be missing in your implementation.
-
-## 3. The exercise
-
-**If you are applying for a front-end position**, please continue reading the [FRONTEND-README.md](./FRONTEND-README.md) file.
-
-**If you are applying for a back-end position**, please continue reading the [BACKEND-README.md](./BACKEND-README.md) file.
-
-## 4. Deliverable expectations
-
-When you're done, send us a `.zip` file with commits history (keep the `.git` folder). The file should include:
-
-- the `.git/` folder;
-- the entire codebase;
-- the [SOLUTION.md](./SOLUTION.md) file, with the answers to the questions written above.
-
-If you want to join any additional file, you can add them to the archive and link them in the [SOLUTION.md](./SOLUTION.md) file.
+JetBrains provides a beta software called Gateway, allowing to work with Codespaces while having your IDE running locally. It can starve your Codespace as it
+requires a Java connector to run in the Codespace. In practice, we advise to either increase the CPU and RAM of your Codespace (at the risk of burning your free
+credit faster) or go with VS Code for this test. We do not provide support for using JetBrains for this test (but teams are relying a lot on JetBrains awesome 
+products at AVIV).
