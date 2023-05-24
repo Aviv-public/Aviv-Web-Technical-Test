@@ -3,6 +3,8 @@
 Welcome to the AVIV technical test! This README will provide you with everything you need to know to start the exercise.
 Please read it thoroughly before you start working on your implementation proposal.
 
+![AVIV logo](./docs/aviv-logo.svg)
+
 ## Before you start
 
 > **⚠️ Heads up!**
@@ -74,7 +76,7 @@ already started to provide a resource endpoint to retrieve, create and update su
 
 Your team made a schema of the current application architecture:
 
-![Application Architecture](./schemas/Aviv-Technical-Test-Architecture.png "Application Architecture")
+![Application Architecture](./docs/Aviv-Technical-Test-Architecture.png "Application Architecture")
 
 5. **You can start coding!**
 
