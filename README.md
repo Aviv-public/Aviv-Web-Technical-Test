@@ -52,6 +52,8 @@ all the services. Services that do not have a green dot are not started yet. You
 You can click on the local address to access the running service (e.g., a running API). By default, the visibility of services is private (it means you need to
 be authenticated with GitHub to load the page). If you want access from an exernal tool (for instance Postman), you can change the visibility to Public.
 
+You can use Git normally in your Codespace.
+
 3. **Handing over your work**
 
 When you have completed the exercises, you are expected to send a pull request link to the recruiter. Make sure to read and answer the questions in the
