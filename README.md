@@ -27,9 +27,11 @@ GitHub provides a feature called GitHub Codespaces to allow developing using VS 
 completing this test.
 
 1. Click on the green `‹› Code` button at the top of this page.
-2. Click on `⋯` at the top right of the modal. ⚠️ Make sure to *not* use the big green `Create codespace` button.
+> ℹ️ Make sure to *not* use the big green `Create codespace` button.
+2. Click on `⋯` at the top right of the modal.
 3. Click on `+ New with options...`.
-4. In the `Dev container configuration`, choose the one that matches the technical test you're expected to perform. ⚠️ Do not change the branch on the new page nor the region or the Machine type.
+4. In the `Dev container configuration`, choose the one that matches the technical test you're expected to perform.
+> ℹ️ Do not change the branch on the new page nor the region or the Machine type.
 5. Click on the `Create codespace` button.
 
 Creating the Codespace can take a few minutes. Read the following steps while waiting.
