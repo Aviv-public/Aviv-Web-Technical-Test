@@ -3,7 +3,8 @@ Then, answer the questions below.*
 
 ---
 
-This section contains additional questions your expected to answer before the debrief interview.
+This section contains additional questions your expected to answer before the debrief interview. Please
+provide precise, specific answers.
 
 - **What is missing with your implementation to go to production?**
 
