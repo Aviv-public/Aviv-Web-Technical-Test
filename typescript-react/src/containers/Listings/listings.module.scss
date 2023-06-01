@@ -19,6 +19,7 @@
   &__aside {
     position: sticky;
     width: 100%;
+    flex: 0.6;
 
     @media screen and (min-width: $min-screen-s) {
       margin-right: $space-l;

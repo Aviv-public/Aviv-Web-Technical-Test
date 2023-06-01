@@ -7,14 +7,21 @@
     border-radius: 4px;
     box-shadow: $elevation-1;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: repeat(2, 1fr);
     margin-bottom: $space-m;
     padding: $space-l;
     width: 100%;
     background-color: $neutral-0;
+    gap: 0.5em;
   }
 
-  &__input-text {
+  &__required-field {
+    color: red;
+    padding-right: 2px;
+  }
+
+  &__input-text,
+  &__input-number {
     display: inline-block;
     width: 100%;
     padding: $space-s;
@@ -23,8 +30,8 @@
 
   &__select {
     display: inline-block;
+    width: 100%;
     padding: $space-s;
-    margin-left: $space-s;
   }
 
   &__button {
@@ -36,6 +43,7 @@
       border-radius: 4px;
       margin-top: $space-s;
       cursor: pointer;
+      grid-column: span 2;
 
       &:hover {
         background-color: darken($primary-70, 5%);
