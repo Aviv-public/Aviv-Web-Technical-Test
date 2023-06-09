@@ -10,14 +10,14 @@ Welcome to the AVIV technical test! This README will provide you with everything
 **Spend a reasonable amount of time.** There is no hard limit on how much time you should spend on the exercise. In practice, we do not expect candidates
 to spend more than three hours on it. In the pull request you will create, a few questions will be asked, including the amount of time you spent on it.
 
-**Running the test.** We recommend you to use GitHub Codespaces to run this test. It is preconfigured so you can start to code now, without additional configuration, enabling you
+**Running the test.** We recommend you to use GitHub Codespaces to run this test. It is preconfigured, so you can start to code now, without additional configuration, enabling you
 to show most of your skills. You can still clone the repository and work locally if you prefer, or work in a hybrid environment using
 a local IDE while having your code running remotely. It comes with a few drawbacks documented in the [Known issues](#known-issues) section below depending on the IDE you use.
 
 ## Getting started
 
 Please follow carefully these instructions to get started. This is the recommended path to run the technical test and should save you from setup headache.
-You can always chose a different approach you are more used to (e.g., cloning and running locally the test), at the risk of spending more time on the test.
+You can always choose a different approach you are more used to (e.g., cloning and running locally the test), at the risk of spending more time on the test.
 
 ### I - Creating your Codespace
 
@@ -42,12 +42,12 @@ Creating the Codespace will take a few minutes. Read the following steps while w
 
 **Wait a bit longer.** When the Codespace is created, do not interact with the Codespace and wait a few dozen additional seconds. The Codespace is ready when the README is opened and displayed in the main screen of VS Code. If not, wait a little longer.
 
-**Repository default state.** By default, the Codespace will be pre-configured so you can immediately start your usual coding process, like you would do just after cloning a repository. You can use Git normally in your Codespace.
+**Repository default state.** By default, the Codespace will be preconfigured, so you can immediately start your usual coding process, like you would do just after cloning a repository. You can use Git normally in your Codespace.
 
-**Port forwarding when coding in the Cloud.** The Codespace port forwarding rules are pre-configured so you do not have to perform
+**Port forwarding when coding in the Cloud.** The Codespace port forwarding rules are preconfigured, so you do not have to perform
 any additional configuration. If you are unsure on how to reach a service from your Codespace (e.g., a running API), you can go to the `PORTS` tab next to your open `TERMINAL`. You will see
 all the declared services. Services that do not have a green 🟢 icon are not started yet. You will launch them by following the Codespace README that is open to you on first start. You can click on the local address to access the running service. By default, the visibility of services is `🔒 Private` (it means you need to
-be authenticated with GitHub to load the page). If you want access from an exernal tool (for instance Postman), you can change the visibility to `Public`.
+be authenticated with GitHub to load the page). If you want access from an external tool (for instance Postman), you can change the visibility to `Public`.
 
 ### III - Handing over your work
 

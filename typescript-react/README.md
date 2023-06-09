@@ -17,7 +17,7 @@ To achieve this, you will need to complete three objectives.
 
 ## Objective 1: New listing form
 
-We want the main page to include a form that allows the user to create a new listing. Your objective is to implement that form so new listings are stored in the API when submitted.
+We want the main page to include a form that allows the user to create a new listing. Your objective is to implement that form, so new listings are stored in the API when submitted.
 
 ## Objective 2: Listings Page
 
@@ -28,16 +28,16 @@ An [example](./src/containers/Listings/Listings.tsx) of a card is provided along
 ## Objective 3: Listing price history page
 
 This sub-page should load and display a simple list of the price history for a specific listing.
-The sub-page should be accessible through the url `/:listingId/prices`.
+The sub-page should be accessible through the URL `/:listingId/prices`.
 
 > **ℹ️ Styles and CSS**
 > 
-> The CSS styling is already provided and **we do not expect you to focus particularly on that part**. The CSS is built on
+> The CSS styling is already provided, and **we do not expect you to focus particularly on that part**. The CSS is built on
 [BEM](https://getbem.com/introduction/) principles and can be found in the file [`src/styles/global.scss`](./src/styles/global.scss).
 
 # Running the project
 
-A bootstrapped project is provided to you with React and some dependencies so you can start working directly without the headache of configuring the project.
+A bootstrapped project is provided to you with React and some dependencies, so you can start working directly without the headache of configuring the project.
 
 ## Browsing the API
 
@@ -56,9 +56,9 @@ echo ${REDOC_URL}
 
 Click on the displayed URL and browse the documentation to understand how the API works.
 
-## Beggining development
+## Beginning development
 
-You can start developing by running the following command, and reading the warning carrefuly:
+You can start developing by running the following command, and reading the warning carefully:
 
 ```sh
 npm run dev
@@ -66,7 +66,7 @@ npm run dev
 
 > **⚠️ How can I access my development server?**
 > 
-> The output displays that the development servers is running on `localhost`. Of course, because you are using a GitHub Codespace, you cannot access this url directly, because it would point to your local machine. However, if you `ctrl`+`click` on it, GitHub Codespace will automatically substitute `localhost` so it points to the cloud running instance. You can see all running services in the `PORTS` tab on the bottom panel of this IDE.
+> The output displays that the development servers is running on `localhost`. Of course, because you are using a GitHub Codespace, you cannot access this URL directly, because it would point to your local machine. However, if you `ctrl`+`click` on it, GitHub Codespace will automatically substitute `localhost` so it points to the cloud running instance. You can see all running services in the `PORTS` tab on the bottom panel of this IDE.
 
 To run the tests, you can use:
 
