@@ -41,11 +41,11 @@ A bootstrapped project is provided to you with React and some dependencies, so y
 
 ## Browsing the API
 
-You will need to interact with an API when implementing your front-end. Because we are running in a GitHub Codespace, you will have to use the `BACKEND_API_HOST` environment variable instead of `localhost` to connect to this backend. The API is already running. Here is an example command to get the list of listings:
+You will need to interact with an API when implementing your front-end. Because we are running in a GitHub Codespace, you will have to use the `VITE_BACKEND_API_HOST` environment variable instead of `localhost` to connect to this backend. The API is already running. Here is an example command to get the list of listings:
 
 ```sh
-echo https://${BACKEND_API_HOST}/listings
-curl https://${BACKEND_API_HOST}/listings
+echo https://${VITE_BACKEND_API_HOST}/listings
+curl https://${VITE_BACKEND_API_HOST}/listings
 ```
 
 This API is described by an OpenAPI specification. You can open and view this specification in ReDoc by using the terminal and running the following command:

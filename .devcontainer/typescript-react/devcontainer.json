@@ -36,7 +36,7 @@
 		}
 	},
 	"remoteEnv": {
-		"BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}",
+		"VITE_BACKEND_API_HOST": "${localEnv:CODESPACE_NAME}-8080.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}",
 		"REDOC_URL": "https://redocly.github.io/redoc/?url=https://${localEnv:CODESPACE_NAME}-80.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/listingsapi.yaml"
 	},
 	"postCreateCommand": "npm ci",
