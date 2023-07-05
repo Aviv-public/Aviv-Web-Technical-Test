@@ -40,8 +40,9 @@
 		"REDOC_URL": "https://redocly.github.io/redoc/?url=https://${localEnv:CODESPACE_NAME}-80.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/listingsapi.yaml"
 	},
 	"postCreateCommand": "npm ci",
-	// We need to enforce private and then apply public, otherwise
+	// We need to wait for some unknown operations to be executed, then
+	// enforce private and then apply public, otherwise
 	// a bug turns the port to public when listing ports in GitHub-CLI,
 	// but the ports are kept private...
-	"postStartCommand": "gh codespace ports visibility 8080:private 80:private -c $CODESPACE_NAME && gh codespace ports visibility 8080:public 80:public -c $CODESPACE_NAME"
+	"postStartCommand": "sleep 30 && gh codespace ports visibility 8080:private 80:private -c $CODESPACE_NAME && gh codespace ports visibility 8080:public 80:public -c $CODESPACE_NAME"
 }
