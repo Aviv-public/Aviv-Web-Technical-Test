@@ -67,9 +67,9 @@ API should be developed to provide the listings, so they can be displayed on a s
 already started to provide a resource endpoint to retrieve, create and update such listings in an API called the
 `ListingAPI`.
 
-Your team made a schema of the current application architecture:
+Your team made a simplified schema of the current application architecture:
 
-![Application Architecture](./docs/Aviv-Technical-Test-Architecture.png "Application Architecture")
+![Application Architecture](./docs/application-architecture.png "Application Architecture")
 
 ### V - Starting to code
 

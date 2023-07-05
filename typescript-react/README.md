@@ -54,7 +54,8 @@ This API is described by an OpenAPI specification. You can open and view this sp
 echo ${REDOC_URL}
 ```
 
-Click on the displayed URL and browse the documentation to understand how the API works.
+Click on the displayed URL and browse the documentation to understand how the API works. If you are having trouble to get it work, you can also download
+the OpenAPI schema in the `schemas/listingapi.yaml` file (from GitHub).
 
 ## Beginning development
 
