@@ -85,3 +85,20 @@ JetBrains provides a beta software called Gateway, allowing to work with Codespa
 requires a Java connector to run in the Codespace. In practice, we advise to either increase the CPU and RAM of your Codespace (at the risk of burning your free
 credit faster) or go with VS Code for this test. We do not provide support for using JetBrains for this test (but teams are relying a lot on JetBrains awesome 
 products at AVIV).
+
+### I'm having CORS issues
+
+This is likely due to the fact that the service you are trying to reach is behind a _private_ port. Consequently, this enables an authentication portal
+and blocks cross-origin requests. However, there is a flaky behavior where, sometimes, the initialization of the Codespaces does not turn the ports to public
+while they are displayed as public. To fix this issue, run the first command to identify which ports should be turned to public, and use the following ones
+to fix them:
+
+```sh
+gh codespace ports -c $CODESPACE_NAME
+
+# Pick the <port number> that you want to turn to public, then run those two commands:
+gh codespace ports visibility <port number>:private -c $CODESPACE_NAME
+gh codespace ports visibility <port number>:public -c $CODESPACE_NAME
+```
+
+You now should be good to go! If it still does not work, go to the `PORTS` tab and right-click on the port you want to change. Then: `Port Visibility` > `Public`.
