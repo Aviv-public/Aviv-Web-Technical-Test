@@ -42,7 +42,6 @@
 	"postCreateCommand": "npm ci",
 	// We need to wait for some unknown operations to be executed, then
 	// enforce private and then apply public, otherwise
-	// a bug turns the port to public when listing ports in GitHub-CLI,
-	// but the ports are kept private...
+	// a bug prevents the port to be turned to public in GitHub-CLI.
 	"postStartCommand": "sleep 30 && gh codespace ports visibility 8080:private 80:private -c $CODESPACE_NAME && gh codespace ports visibility 8080:public 80:public -c $CODESPACE_NAME"
 }
