@@ -13,7 +13,7 @@ The aim of this project is to provide in a React application made of two differe
 - A page that will provide a list of the available listings, with a form to create new ones;
 - A page that provides the history of a specific listing.
 
-To achieve this, you will need to complete three objectives.
+To achieve this, you will need to complete multiple objectives.
 
 ## Objective 1: New listing form
 
@@ -29,6 +29,11 @@ An [example](./src/containers/Listings/Listings.tsx) of a card is provided along
 
 This sub-page should load and display a simple list of the price history for a specific listing.
 The sub-page should be accessible through the URL `/:listingId/prices`.
+
+## Objective 4: Answer the questions in the pull request
+
+When you will create the pull request to hand over your work, it will contain a few questions. Do not forget to plan for some time to answer all of them. You can 
+read more about it in the [main README file](../README.md).
 
 > **ℹ️ Styles and CSS**
 > 
