@@ -48,6 +48,8 @@ echo https://${VITE_BACKEND_API_HOST}/listings
 curl https://${VITE_BACKEND_API_HOST}/listings
 ```
 
+The variable is pre-populated in the Codespace. You can read more on how to use it in the `.env` file.
+
 This API is described by an OpenAPI specification. You can open and view this specification in ReDoc by using the terminal and running the following command:
 
 ```sh
