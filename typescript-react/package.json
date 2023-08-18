@@ -40,6 +40,7 @@
     "@typescript-eslint/parser": "5.38.1",
     "@vitejs/plugin-react": "2.1.0",
     "@vitest/coverage-c8": "0.26.3",
+    "babel-plugin-transform-vite-meta-env": "1.0.3",
     "classnames": "^2.3.2",
     "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
