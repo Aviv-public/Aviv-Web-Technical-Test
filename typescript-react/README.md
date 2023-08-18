@@ -33,7 +33,7 @@ The sub-page should be accessible through the URL `/:listingId/prices`.
 ## Objective 4: Answer the questions in the pull request
 
 When you will create the pull request to hand over your work, it will contain a few questions. Do not forget to plan for some time to answer all of them. You can 
-read more about it in the [main README file](../README.md).
+read more about it in the [main README file](../README.md#iii---handing-over-your-work).
 
 > **ℹ️ Styles and CSS**
 > 
