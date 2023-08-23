@@ -12,7 +12,6 @@
     "moduleResolution": "Node",
     "noEmit": true,
     "paths": {
-      "@/*": ["./*"],
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"],
       "@styles/*": ["./styles/*"]
