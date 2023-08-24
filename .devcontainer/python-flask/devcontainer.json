@@ -1,0 +1,20 @@
+{
+	"name": "Python Flask",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/python-flask",
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"git.openRepositoryInParentFolders": "always"
+			}
+		}
+	},
+	"forwardPorts": [8000, 5432],
+	"postCreateCommand": "pipenv install --deploy --system --dev"
+}

@@ -1,155 +1,87 @@
-# AVIV Front-end Test
+**Welcome to the AVIV front-end test.**
 
-## Introduction
+This test will assess your skills when working with React. To get started, please read this document carefully, before starting working on the project.
 
-This repository contains instructions for the Aviv Frontend Technical Test.
+> **⚠️ Heads up!**
+> 
+> Make sure you have carefully read the [main README file](../README.md) before continuing. It contains _critical_ instructions regarding expectations and test completion.
 
-Its aim is to give us an overview of your practical technical knowledge through a screening technical test.
+# Objectives
 
-## Completion time
+The aim of this project is to provide in a React application made of two different pages:
 
-There is no critical need to fulfill all the functional and technical requests, so keep in mind to focus on what you think you can solve within this timeframe rather trying to solve all the demands if this seems out of scope. Quality over quantity.
-If you do not manage to provide all the requested features, please fulfill what are the features missing in the [SOLUTION.md](../SOLUTION.md) file explaining how you would have provided such feature.
+- A page that will provide a list of the available listings, with a form to create new ones;
+- A page that provides the history of a specific listing.
 
-## Objectives
+To achieve this, you will need to complete multiple objectives.
 
-The aim is to provide in a react application two different functional pages :
+## Objective 1: New listing form
 
-- A page that will provide a list of the available listings with a form to create new listings.
-- A page that will provide the history for a specific listing.
+We want the main page to include a form that allows the user to create a new listing. Your objective is to implement that form, so new listings are stored in the API when submitted.
 
-A bootstrapped project is provided to you with react and some dependencies so you can start working directly without the headache of configuring the project.
-
-### Install
-
-Npm:
-
-> npm i
-
-### Run
-
-Npm :
-
-> npm start
-
-### Launch test :
-
-Npm:
-
-> npm test
-
-**Regarding CSS**
-
-Note that the CSS styling is already provided and that we don't expect you to focus particularly on that part. The CSS is built on
-[BEM](https://getbem.com/introduction/) principles and can be found in the file [`src/styles/global.scss`](./src/styles/global.scss).
-
-## Logical and technical expectations
-
-### New listing form
-
-We want the main page to have a form that allows the user to create a new listing.
-Below you will find a table of the required fields the user will have to fill in order to be able to submit the form and be accepted by the server :
-
-| field key            | parent         | description                                                                                         | expected type  | nullable |
-| -------------------- | -------------- | --------------------------------------------------------------------------------------------------- | -------------- | -------- |
-| name                 |                | A user friendly name for the listing                                                                | string         | false    |
-| postal_address       |                |                                                                                                     | object         | false    |
-| street_address       | postal_address | The street address of the postal address.                                                           | string         | false    |
-| postal_code          | postal_address | The postal code of the postal address.                                                              | string         | false    |
-| city                 | postal_address | The city of the postal address.                                                                     | string         | false    |
-| country              | postal_address | The country of the Postal Address, as a ISO 3166-1 alpha-2 country code.                            | 2 chars string | false    |
-| description          |                | A user friendly description for the listing.                                                        | string         | false    |
-| building_type        |                | The type of building the listing referers to. allowed values : `STUDIO`, `APARTMENT`, `HOUSE`       | string         | false    |
-| latest_price_eur     |                | The price of the listing, in euros.                                                                 | number         | false    |
-| surface_area_m2      |                | The surface of the listing, in square meters.                                                       | number         | false    |
-| rooms_count          |                | The number of rooms of the listing.                                                                 | number         | false    |
-| contact_phone_number |                | Listing main contact phone number, following the E.164 standard. Match patten : `^\+[1-9]\d{1,14}$` | string         | true     |
-
-### Listings Page
+## Objective 2: Listings Page
 
 We want the main page to provide a list of cards, each card representing a listing. The user should be able to click a card to go to a sub-page that will display the price history of the selected listing.
 
-An [example](./src/containers/Listings/Listings.tsx) of a card is provided along the test for which you have a preview below :
+An [example](./src/containers/Listings/Listings.tsx) of a card is provided along the test for which you have a preview [here](./assets/listing-card.png).
 
-![](./assets/listing-card.png)
+## Objective 3: Listing price history page
 
-### Listing history page
+This sub-page should load and display a simple list of the price history for a specific listing.
+The sub-page should be accessible through the URL `/:listingId/prices`.
 
-This sub-page should load and display a simple list of the history for a specific listing.
-The sub-page should be accessible through the url `/:listingId/prices`.
+## Objective 4: Answer the questions in the pull request
 
-## How to start the test
+When you will create the pull request to hand over your work, it will contain a few questions. Do not forget to plan for some time to answer all of them. You can 
+read more about it in the [main README file](../README.md#iii---handing-over-your-work).
 
-### Start the API
+> **ℹ️ Styles and CSS**
+> 
+> The CSS styling is already provided, and **we do not expect you to focus particularly on that part**. The CSS is built on
+[BEM](https://getbem.com/introduction/) principles and can be found in the file [`src/styles/global.scss`](./src/styles/global.scss).
 
-To start the API you will need to install Docker Desktop first , go to [Docker](https://www.docker.com/get-started).
+# Running the project
 
-The API is available at the following address http://localhost:8080 by using the following command from the root folder of the repository :
+A bootstrapped project is provided to you with React and some dependencies, so you can start working directly without the headache of configuring the project.
 
-    docker-compose -p aviv-technical-test run -p 8080:8080 --rm python-flask python app.py
+## Browsing the API
 
-## API Endpoints
+You will need to interact with an API when implementing your front-end. Because we are running in a GitHub Codespace, you will have to use the `VITE_BACKEND_API_HOST` environment variable instead of `localhost` to connect to this backend. The API is already running. Here is an example command to get the list of listings:
 
-The API will provide you with the data you need in order to produce the expected rendering.
-
-- List of listings:
-
-  > curl http://localhost:8080/listings
-
-- History of a specific listing:
-
-  > curl http://localhost:8080/listings/{id}/prices
-
-- Post a new listing:
-  > curl -X POST http://localhost:8080/listings -H 'Content-Type: application/json' -d '{ "name": "string", "postal_address": { "street_address": "48, boulevard des capucins", "postal_code": "10294", "city": "Paris", "country": "FR" }, "description": "string", "building_type": "STUDIO", "latest_price_eur": 380000, "surface_area_m2": 43, "rooms_count": 2, "bedrooms_count": 1, "contact_phone_number": "string" }'
-
-Note that you can also access the endpoint documentation following [the context section](../README.md#context) of the main README.
-
-## Data samples
-
-### Listings
-
-Below is an example of listing with history that will be provided by the API :
-
-```json
-[
-  {
-    "id": 1234,
-    "created_date": "1970-01-01T00:00:00.000Z",
-    "updated_date": "1970-01-01T00:00:00.000Z",
-    "name": "Cozy studio in the center of Paris",
-    "postal_address": {
-      "street_address": "48, boulevard des capucins",
-      "postal_code": "10294",
-      "city": "Paris",
-      "country": "FR"
-    },
-    "description": "string",
-    "building_type": "STUDIO",
-    "latest_price_eur": 380000,
-    "surface_area_m2": 43,
-    "rooms_count": 2,
-    "bedrooms_count": 1,
-    "contact_phone_number": "0123456789"
-  }
-]
+```sh
+echo https://${VITE_BACKEND_API_HOST}/listings
+curl https://${VITE_BACKEND_API_HOST}/listings
 ```
 
-### History
+The variable is pre-populated in the Codespace. You can read more on how to use it in the `.env` file.
 
-```json
-[
-  {
-    "created_date": "1970-03-01T00:00:00.000Z",
-    "price_eur": 340000
-  },
-  {
-    "created_date": "1970-02-01T00:00:00.000Z",
-    "price_eur": 320000
-  },
-  {
-    "created_date": "1970-01-01T00:00:00.000Z",
-    "price_eur": 300000
-  }
-]
+This API is described by an OpenAPI specification. You can open and view this specification in ReDoc by using the terminal and running the following command:
+
+```sh
+echo ${REDOC_URL}
 ```
+
+Click on the displayed URL and browse the documentation to understand how the API works. If you are having trouble to get it work, you can also download
+the OpenAPI schema in the `schemas/listingapi.yaml` file (from GitHub).
+
+## Beginning development
+
+You can start developing by running the following command, and reading the warning carefully:
+
+```sh
+npm run dev
+```
+
+> **⚠️ How can I access my development server?**
+> 
+> The output displays that the development servers is running on `localhost`. Of course, because you are using a GitHub Codespace, you cannot access this URL directly, because it would point to your local machine. However, if you `ctrl`+`click` on it, GitHub Codespace will automatically substitute `localhost` so it points to the cloud running instance. You can see all running services in the `PORTS` tab on the bottom panel of this IDE.
+
+To run the tests, you can use:
+
+```sh
+npm run test
+```
+
+If you need to install additional dependencies, you can of course use the usual `npm` commands.
+
+**Good luck**, and do not forget to read again the [main README file](../README.md) to ensure you did not forget anything when you think you're done!

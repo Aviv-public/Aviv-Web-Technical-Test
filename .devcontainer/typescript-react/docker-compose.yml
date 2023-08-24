@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/javascript-node:0-18
+    volumes:
+      - ../../..:/workspaces:cached
+    command: sleep infinity
+    network_mode: service:api
+
+  api:
+    build:
+      context: ../../python-flask
+    command:
+      [
+        "/home/listingapi/wait-for-postgres.sh",
+        "localhost:5432",
+        "--",
+        "python",
+        "app.py"
+      ]
+    environment:
+      PGHOST: localhost
+      PGDATABASE: listing
+      PGUSER: listing
+      PGPASSWORD: listing
+
+  db:
+    image: "mdillon/postgis:11-alpine"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ../../db:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: listing
+      POSTGRES_USER: listing
+      POSTGRES_PASSWORD: listing
+    network_mode: service:api
+
+  schema:
+    image: "httpd:2.4"
+    volumes:
+      - ../../schemas/listingapi.yaml:/usr/local/apache2/htdocs/listingsapi.yaml
+    network_mode: service:api
+
+volumes:
+  postgres-data:

@@ -1,0 +1,20 @@
+{
+	"name": "TypeScript Serverless",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/typescript-serverless",
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"git.openRepositoryInParentFolders": "always"
+			}
+		}
+	},
+	"forwardPorts": [3000, 5432],
+	"postCreateCommand": "npm ci"
+}
