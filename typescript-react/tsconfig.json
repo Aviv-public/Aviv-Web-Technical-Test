@@ -12,7 +12,6 @@
     "moduleResolution": "Node",
     "noEmit": true,
     "paths": {
-      "@/*": ["./*"],
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"],
       "@styles/*": ["./styles/*"]
@@ -21,7 +20,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ES6",
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "types": ["@testing-library/jest-dom"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
