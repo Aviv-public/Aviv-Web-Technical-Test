@@ -3,7 +3,7 @@ import { Price } from "@/types.generated";
 import { extractVariables } from "@/libs/postgres";
 import { EntityNotFound } from "@/libs/errors";
 
-type PriceTableRow = {
+export type PriceTableRow = {
   id?: number;
   listing_id: number;
   price: number;
