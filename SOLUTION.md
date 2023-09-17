@@ -2,6 +2,8 @@
 
 ## Notes
 
+I spent about 2 hours 30 minutes to complete the test.
+
 The implementation of the price history feature was done in a way that is consistent with the existing codebase. The same structure and naming conventions were used to ensure that the code is easy to understand and maintain.
 
 A new table was created in the PostgreSQL database to store the price history of each listing. This was done to keep the price history separate from the listing data and to allow for efficient retrieval of the price history.
