@@ -49,3 +49,5 @@ You can find the action you need to implement in `src/functions/price/handler.ts
   is that when running `tsc` to check the types, you will see an error `Property '"Fn::Transform"' [...] is not assignable
 to 'string'`. This is why we use the flag `--skipLibCheck` when checking types in the package.json file. See
   [serverless/typescript](https://github.com/serverless/typescript/issues/27).
+- Recent versions of Docker for Mac (> 4.18) [may trigger a segmentation fault](https://github.com/docker/for-mac/issues/6824#issuecomment-1662351336)
+  when running the test. If you face the issue, you will need to downgrade to Docker for Mac 4.18.
