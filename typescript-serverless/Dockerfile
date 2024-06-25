@@ -1,4 +1,4 @@
-FROM node:18-slim
+FROM node:20-slim
 
 # For using pg-native
 RUN apt update -y && apt install -y python3 libpq-dev g++ make
